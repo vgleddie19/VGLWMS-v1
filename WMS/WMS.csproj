@@ -1,0 +1,772 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{97CE55D9-6225-4652-9D13-B39EC13A5F27}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WMS</RootNamespace>
+    <AssemblyName>WMS</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>ftp://ftp.vglinfotech.com/programmer/johnsie/publish - wms/</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <TargetCulture>en</TargetCulture>
+    <ProductName>Warehouse Management System</ProductName>
+    <PublisherName>VGL InfoTech</PublisherName>
+    <SuiteName>VGL InfoTech - WMS</SuiteName>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>true</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>WMS.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>BDFAE9795E2ADF9047E6A35638AEABAD9F927930</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>WMS_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=14.1.0.0, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.DotNetBar2, Version=14.1.0.0, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.Instrumentation, Version=14.1.0.0, Culture=neutral, PublicKeyToken=f90dc37c26666a67, processorArchitecture=MSIL" />
+    <Reference Include="DevComponents.SuperGrid.Design, Version=14.1.0.0, Culture=neutral, PublicKeyToken=26d81176cfa2b486, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net35\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SupportForms\AuthenticationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportForms\AuthenticationForm.Designer.cs">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupportForms\BinSetupWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportForms\BinSetupWindow.Designer.cs">
+      <DependentUpon>BinSetupWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupportForms\ConnectionSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportForms\ConnectionSettings.Designer.cs">
+      <DependentUpon>ConnectionSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupportForms\SearchProductStocks.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportForms\SearchProductStocks.Designer.cs">
+      <DependentUpon>SearchProductStocks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SupportForms\StockCheckingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportForms\StockCheckingWindow.Designer.cs">
+      <DependentUpon>StockCheckingWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\3 Replishment\BinReplishmentWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\3 Replishment\BinReplishmentWindow.Designer.cs">
+      <DependentUpon>BinReplishmentWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanningWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanningWindow.Designer.cs">
+      <DependentUpon>DisposeExpiredStocksScanningWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanPicklistWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanPicklistWindow.Designer.cs">
+      <DependentUpon>DisposeExpiredStocksScanPicklistWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\3 Replishment\GenerateBinReplenishPicklist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\3 Replishment\GenerateBinReplenishPicklist.Designer.cs">
+      <DependentUpon>GenerateBinReplenishPicklist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\PrintDisposalPicklist.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\PrintDisposalPicklist.Designer.cs">
+      <DependentUpon>PrintDisposalPicklist.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\PrintReleaseDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\PrintReleaseDocument.Designer.cs">
+      <DependentUpon>PrintReleaseDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPCS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPCS.Designer.cs">
+      <DependentUpon>DeclareCaseBreakPCS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPickListScanID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPickListScanID.Designer.cs">
+      <DependentUpon>DeclareCaseBreakPickListScanID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPicklistScanningWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPicklistScanningWindow.Designer.cs">
+      <DependentUpon>DeclareCaseBreakPicklistScanningWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\NewCaseBreakConfirm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\NewCaseBreakConfirm.Designer.cs">
+      <DependentUpon>NewCaseBreakConfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\RegistrationSupport.cs" />
+    <Compile Include="Reports\PhysicalCountCalendarReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\PhysicalCountCalendarReport.Designer.cs">
+      <DependentUpon>PhysicalCountCalendarReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\PrintPhysicalCountReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\PrintPhysicalCountReport.Designer.cs">
+      <DependentUpon>PrintPhysicalCountReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\StocksAgeReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\StocksAgeReport.Designer.cs">
+      <DependentUpon>StocksAgeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\SecuritySupport.cs" />
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\CancelledPalletPutawayWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\CancelledPalletPutawayWindow.Designer.cs">
+      <DependentUpon>CancelledPalletPutawayWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\CancelledPutawayConfirmationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\CancelledPutawayConfirmationWindow.Designer.cs">
+      <DependentUpon>CancelledPutawayConfirmationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions - Orders\CancelOrderConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions - Orders\CancelOrderConfirmation.Designer.cs">
+      <DependentUpon>CancelOrderConfirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions - Orders\OrdersForResolutionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions - Orders\OrdersForResolutionsWindow.Designer.cs">
+      <DependentUpon>OrdersForResolutionsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions - Orders\ReasonForCancellingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions - Orders\ReasonForCancellingWindow.Designer.cs">
+      <DependentUpon>ReasonForCancellingWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\DeclarePicklistIncompleteConfirmationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\DeclarePicklistIncompleteConfirmationWindow.Designer.cs">
+      <DependentUpon>DeclarePicklistIncompleteConfirmationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\OrderHoldingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\OrderHoldingWindow.Designer.cs">
+      <DependentUpon>OrderHoldingWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\ChooseBadStockLocationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\ChooseBadStockLocationWindow.Designer.cs">
+      <DependentUpon>ChooseBadStockLocationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\MissingOrBadGridWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\MissingOrBadGridWindow.Designer.cs">
+      <DependentUpon>MissingOrBadGridWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\ConfirmBadStocksWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\ConfirmBadStocksWindow.Designer.cs">
+      <DependentUpon>ConfirmBadStocksWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\NewBadStockDetailWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\NewBadStockDetailWindow.Designer.cs">
+      <DependentUpon>NewBadStockDetailWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\DeclareBadStockWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\DeclareBadStockWindow.Designer.cs">
+      <DependentUpon>DeclareBadStockWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\NewBadStockWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Bad Stocks\NewBadStockWindow.Designer.cs">
+      <DependentUpon>NewBadStockWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\ConfirmResolveWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\ConfirmResolveWindow.Designer.cs">
+      <DependentUpon>ConfirmResolveWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\1 Receiving\NewReceiptsDetailWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\1 Receiving\NewReceiptsDetailWindow.Designer.cs">
+      <DependentUpon>NewReceiptsDetailWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\1 Receiving\NewReceiptsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\1 Receiving\NewReceiptsWindow.Designer.cs">
+      <DependentUpon>NewReceiptsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\ResolutionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\ResolutionsWindow.Designer.cs">
+      <DependentUpon>ResolutionsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\ResolveWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\ResolveWindow.Designer.cs">
+      <DependentUpon>ResolveWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\ForResolutionsWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For Resolutions\ForResolutionsWindow.Designer.cs">
+      <DependentUpon>ForResolutionsWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\NewCaseBreakWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\7 CaseBreak\NewCaseBreakWindow.designer.cs">
+      <DependentUpon>NewCaseBreakWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\RegistrySupport.cs" />
+    <Compile Include="Utilities\RollbackDataSupport.cs" />
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\DeclarePhysicalCountConfirmationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\DeclarePhysicalCountConfirmationWindow.Designer.cs">
+      <DependentUpon>DeclarePhysicalCountConfirmationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\DeclareUnexpectedProductWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\DeclareUnexpectedProductWindow.Designer.cs">
+      <DependentUpon>DeclareUnexpectedProductWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\GenerateCountSheetWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\GenerateCountSheetWindow.Designer.cs">
+      <DependentUpon>GenerateCountSheetWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\ScanPhysicalCountWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\ScanPhysicalCountWindow.Designer.cs">
+      <DependentUpon>ScanPhysicalCountWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\DeclarePhysicalCountWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\DeclarePhysicalCountWindow.Designer.cs">
+      <DependentUpon>DeclarePhysicalCountWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\NewPhysicalCountWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\NewPhysicalCountWindow.Designer.cs">
+      <DependentUpon>NewPhysicalCountWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\5 Releasing\ScanReleaseIDWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\5 Releasing\ScanReleaseIDWindow.Designer.cs">
+      <DependentUpon>ScanReleaseIDWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\5 Releasing\ReleasesWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\5 Releasing\ReleasesWindow.Designer.cs">
+      <DependentUpon>ReleasesWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\DeclarePicklistScanID.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\DeclarePicklistScanID.Designer.cs">
+      <DependentUpon>DeclarePicklistScanID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\DeclarePicklistScanningWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\DeclarePicklistScanningWindow.Designer.cs">
+      <DependentUpon>DeclarePicklistScanningWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\DeclarePicklistWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\DeclarePicklistWindow.Designer.cs">
+      <DependentUpon>DeclarePicklistWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\LedgerSupport.cs" />
+    <Compile Include="Transactions\API\MakeReleaseOrderWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\API\MakeReleaseOrderWindow.Designer.cs">
+      <DependentUpon>MakeReleaseOrderWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\NewPicklistConfirmationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\NewPicklistConfirmationWindow.Designer.cs">
+      <DependentUpon>NewPicklistConfirmationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\NewPicklistWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\4 Picking\NewPicklistWindow.Designer.cs">
+      <DependentUpon>NewPicklistWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\DeclareCompleteOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\DeclareCompleteOptions.Designer.cs">
+      <DependentUpon>DeclareCompleteOptions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\DeclarePutawayScanContainerWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\DeclarePutawayScanContainerWindow.Designer.cs">
+      <DependentUpon>DeclarePutawayScanContainerWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\DeclarePutawayScanIDWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\DeclarePutawayScanIDWindow.Designer.cs">
+      <DependentUpon>DeclarePutawayScanIDWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\DeclareIncompleteWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\DeclareIncompleteWindow.Designer.cs">
+      <DependentUpon>DeclareIncompleteWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MenuWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MenuWindow.Designer.cs">
+      <DependentUpon>MenuWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\NewPutawayConfirmationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\NewPutawayConfirmationWindow.Designer.cs">
+      <DependentUpon>NewPutawayConfirmationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\NewPutawayDetailWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\NewPutawayDetailWindow.Designer.cs">
+      <DependentUpon>NewPutawayDetailWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\NewPutawaySplitLocationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\NewPutawaySplitLocationWindow.Designer.cs">
+      <DependentUpon>NewPutawaySplitLocationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\NewPutawayWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\2 Putaway\NewPutawayWindow.Designer.cs">
+      <DependentUpon>NewPutawayWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\1 Receiving\NewReceiptConfirmationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\1 Receiving\NewReceiptConfirmationWindow.Designer.cs">
+      <DependentUpon>NewReceiptConfirmationWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\JSONSupport.cs" />
+    <Compile Include="Utilities\SelectGridWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utilities\SelectGridWindow.Designer.cs">
+      <DependentUpon>SelectGridWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\BarcodeSupport.cs" />
+    <Compile Include="Utilities\DataSupport.cs" />
+    <Compile Include="Utilities\FAQ.cs" />
+    <Compile Include="Utilities\ORMSupport.cs" />
+    <Compile Include="Utilities\SynchroSupport.cs" />
+    <Compile Include="Utilities\TaskSupport.cs" />
+    <Compile Include="Utilities\Utils.cs" />
+    <Compile Include="Utilities\WebControlSupport.cs" />
+    <EmbeddedResource Include="SupportForms\AuthenticationForm.resx">
+      <DependentUpon>AuthenticationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportForms\BinSetupWindow.resx">
+      <DependentUpon>BinSetupWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportForms\ConnectionSettings.resx">
+      <DependentUpon>ConnectionSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportForms\SearchProductStocks.resx">
+      <DependentUpon>SearchProductStocks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupportForms\StockCheckingWindow.resx">
+      <DependentUpon>StockCheckingWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\3 Replishment\BinReplishmentWindow.resx">
+      <DependentUpon>BinReplishmentWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanningWindow.resx">
+      <DependentUpon>DisposeExpiredStocksScanningWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanPicklistWindow.resx">
+      <DependentUpon>DisposeExpiredStocksScanPicklistWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\3 Replishment\GenerateBinReplenishPicklist.resx">
+      <DependentUpon>GenerateBinReplenishPicklist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\PrintDisposalPicklist.resx">
+      <DependentUpon>PrintDisposalPicklist.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\PrintReleaseDocument.resx">
+      <DependentUpon>PrintReleaseDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PhysicalCountCalendarReport.resx">
+      <DependentUpon>PhysicalCountCalendarReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\PrintPhysicalCountReport.resx">
+      <DependentUpon>PrintPhysicalCountReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\StocksAgeReport.resx">
+      <DependentUpon>StocksAgeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions\CancelledPalletPutawayWindow.resx">
+      <DependentUpon>CancelledPalletPutawayWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions\CancelledPutawayConfirmationWindow.resx">
+      <DependentUpon>CancelledPutawayConfirmationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions - Orders\CancelOrderConfirmation.resx">
+      <DependentUpon>CancelOrderConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions - Orders\OrdersForResolutionsWindow.resx">
+      <DependentUpon>OrdersForResolutionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions - Orders\ReasonForCancellingWindow.resx">
+      <DependentUpon>ReasonForCancellingWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\4 Picking\DeclarePicklistIncompleteConfirmationWindow.resx">
+      <DependentUpon>DeclarePicklistIncompleteConfirmationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\4 Picking\OrderHoldingWindow.resx">
+      <DependentUpon>OrderHoldingWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\4 Picking\ChooseBadStockLocationWindow.resx">
+      <DependentUpon>ChooseBadStockLocationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\4 Picking\MissingOrBadGridWindow.resx">
+      <DependentUpon>MissingOrBadGridWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\ConfirmBadStocksWindow.resx">
+      <DependentUpon>ConfirmBadStocksWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\NewBadStockDetailWindow.resx">
+      <DependentUpon>NewBadStockDetailWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\DeclareBadStockWindow.resx">
+      <DependentUpon>DeclareBadStockWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\NewBadStockWindow.resx">
+      <DependentUpon>NewBadStockWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions\ConfirmResolveWindow.resx">
+      <DependentUpon>ConfirmResolveWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\1 Receiving\NewReceiptsDetailWindow.resx">
+      <DependentUpon>NewReceiptsDetailWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\1 Receiving\NewReceiptsWindow.resx">
+      <DependentUpon>NewReceiptsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions\ResolutionsWindow.resx">
+      <DependentUpon>ResolutionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions\ResolveWindow.resx">
+      <DependentUpon>ResolveWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions\ForResolutionsWindow.resx">
+      <DependentUpon>ForResolutionsWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\DeclarePhysicalCountConfirmationWindow.resx">
+      <DependentUpon>DeclarePhysicalCountConfirmationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\DeclareUnexpectedProductWindow.resx">
+      <DependentUpon>DeclareUnexpectedProductWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\GenerateCountSheetWindow.resx">
+      <DependentUpon>GenerateCountSheetWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\ScanPhysicalCountWindow.resx">
+      <DependentUpon>ScanPhysicalCountWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\4 Picking\DeclarePicklistScanID.resx">
+      <DependentUpon>DeclarePicklistScanID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\4 Picking\DeclarePicklistScanningWindow.resx">
+      <DependentUpon>DeclarePicklistScanningWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\4 Picking\DeclarePicklistWindow.resx">
+      <DependentUpon>DeclarePicklistWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\5 Releasing\ReleasesWindow.resx">
+      <DependentUpon>ReleasesWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\5 Releasing\ScanReleaseIDWindow.resx">
+      <DependentUpon>ScanReleaseIDWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\DeclarePhysicalCountWindow.resx">
+      <DependentUpon>DeclarePhysicalCountWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\NewPhysicalCountWindow.resx">
+      <DependentUpon>NewPhysicalCountWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\7 CaseBreak\DeclareCaseBreakPCS.resx">
+      <DependentUpon>DeclareCaseBreakPCS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\7 CaseBreak\DeclareCaseBreakPickListScanID.resx">
+      <DependentUpon>DeclareCaseBreakPickListScanID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\7 CaseBreak\DeclareCaseBreakPicklistScanningWindow.resx">
+      <DependentUpon>DeclareCaseBreakPicklistScanningWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\7 CaseBreak\NewCaseBreakConfirm.resx">
+      <DependentUpon>NewCaseBreakConfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\7 CaseBreak\NewCaseBreakWindow.resx">
+      <DependentUpon>NewCaseBreakWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\API\MakeReleaseOrderWindow.resx">
+      <DependentUpon>MakeReleaseOrderWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\4 Picking\NewPicklistConfirmationWindow.resx">
+      <DependentUpon>NewPicklistConfirmationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\4 Picking\NewPicklistWindow.resx">
+      <DependentUpon>NewPicklistWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\2 Putaway\DeclareCompleteOptions.resx">
+      <DependentUpon>DeclareCompleteOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\2 Putaway\DeclarePutawayScanContainerWindow.resx">
+      <DependentUpon>DeclarePutawayScanContainerWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\2 Putaway\DeclarePutawayScanIDWindow.resx">
+      <DependentUpon>DeclarePutawayScanIDWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\2 Putaway\DeclareIncompleteWindow.resx">
+      <DependentUpon>DeclareIncompleteWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MenuWindow.resx">
+      <DependentUpon>MenuWindow.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\2 Putaway\NewPutawayConfirmationWindow.resx">
+      <DependentUpon>NewPutawayConfirmationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\2 Putaway\NewPutawayDetailWindow.resx">
+      <DependentUpon>NewPutawayDetailWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\2 Putaway\NewPutawaySplitLocationWindow.resx">
+      <DependentUpon>NewPutawaySplitLocationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\2 Putaway\NewPutawayWindow.resx">
+      <DependentUpon>NewPutawayWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\1 Receiving\NewReceiptConfirmationWindow.resx">
+      <DependentUpon>NewReceiptConfirmationWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utilities\SelectGridWindow.resx">
+      <DependentUpon>SelectGridWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="WMS_TemporaryKey.pfx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\receiving_report.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\putaway_report.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\picklist_report.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SqlServer.Express.10.5">
+      <Visible>False</Visible>
+      <ProductName>SQL Server 2008 R2 Express</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\physical_count_report.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\declare_physical_count_report.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\resolution_report.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bad_stock_declaration_form.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="db_create.sql" />
+    <None Include="Resources\secrecy-icon.png" />
+    <Content Include="Resources\case_break_report.html" />
+    <Content Include="WMS.ico" />
+    <None Include="Resources\wms_badge.png" />
+    <None Include="Resources\releasing_report.html" />
+    <None Include="Resources\dispose_picklist_report.html" />
+    <None Include="Resources\pc_calendar.html" />
+    <None Include="Resources\order_cancel.html" />
+    <None Include="Resources\incomplete_picklist_report.html" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

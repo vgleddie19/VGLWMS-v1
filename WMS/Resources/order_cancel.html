@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+         <style type="text/css">
+             body {
+                font-family:Arial;
+                line-height:15px;
+                font-size:12px;
+             }
+             .table, .table tr td, .table tr th {
+                border-collapse:collapse;
+                border: 1px solid black;
+             }
+         </style>
+    </head>
+	<body> 
+		<strong>  Order Cancellation #</strong> (issued on save)  <br/>
+        Cancelled On: [cancelled_on]
+         <br/> <br/>
+		 
+        Order No: [order_id] <br />
+        <br />
+		Client: [client] <br />
+		Customer: [customer] <br />
+		Invoice Value: [invoice_amount] <br />
+		<br/> 
+        Reason:
+		[reason]
+
+        <br/>
+        <br />
+        
+		
+		 <h3>URGENT: MOVE TO CANCELLED PALLET</h3>
+		 
+		 
+		 <br/> <br/>
+        [products_table]
+		 
+		
+		
+		
+        <strong>CANCELLED BY</strong>  <br/> <br/>
+
+        <div style="display:inline-block; border-top: 2px solid black; width:50px;">[cancelled_by]</div>
+	</body>
+</html>
