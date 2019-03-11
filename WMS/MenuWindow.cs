@@ -345,11 +345,16 @@ namespace WMS
         }
         private void btnNewCaseBreak_Click(object sender, EventArgs e)
         {
-            NewCaseBreakWindow dialog = new NewCaseBreakWindow();
+            BinReplishmentWindow dialog = new BinReplishmentWindow();
             dialog.ShowIcon = false;
             dialog.ShowInTaskbar = false;
             dialog.Icon = this.Icon;
             dialog.ShowDialog();
+            //NewCaseBreakWindow dialog = new NewCaseBreakWindow();
+            //dialog.ShowIcon = false;
+            //dialog.ShowInTaskbar = false;
+            //dialog.Icon = this.Icon;
+            //dialog.ShowDialog();
         }
 
         private void btnConfirmCaseBreak_Click(object sender, EventArgs e)
