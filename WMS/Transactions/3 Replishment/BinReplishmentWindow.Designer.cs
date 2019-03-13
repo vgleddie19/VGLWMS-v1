@@ -29,7 +29,11 @@
         private void InitializeComponent()
         {
             this.headerGrid = new System.Windows.Forms.DataGridView();
-            this.bin_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btngenpick = new System.Windows.Forms.Button();
+            this.btnrepbins = new System.Windows.Forms.Button();
+            this.btngencasebreak = new System.Windows.Forms.Button();
+            this.btnconpick = new System.Windows.Forms.Button();
+            this.location_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lot_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,8 +42,6 @@
             this.min_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qty_to_be_replenished = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,7 +55,7 @@
             this.headerGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.headerGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.headerGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.bin_id,
+            this.location_id,
             this.product,
             this.Uom,
             this.lot_no,
@@ -62,20 +64,64 @@
             this.min_qty,
             this.qty_to_be_replenished,
             this.status});
-            this.headerGrid.Location = new System.Drawing.Point(12, 68);
+            this.headerGrid.Location = new System.Drawing.Point(11, 11);
+            this.headerGrid.Margin = new System.Windows.Forms.Padding(2);
             this.headerGrid.Name = "headerGrid";
             this.headerGrid.ReadOnly = true;
             this.headerGrid.RowTemplate.Height = 28;
             this.headerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.headerGrid.Size = new System.Drawing.Size(1241, 468);
+            this.headerGrid.Size = new System.Drawing.Size(827, 304);
             this.headerGrid.TabIndex = 23;
             this.headerGrid.TabStop = false;
             // 
-            // bin_id
+            // btngenpick
             // 
-            this.bin_id.HeaderText = "Bin ID";
-            this.bin_id.Name = "bin_id";
-            this.bin_id.ReadOnly = true;
+            this.btngenpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btngenpick.Location = new System.Drawing.Point(12, 330);
+            this.btngenpick.Name = "btngenpick";
+            this.btngenpick.Size = new System.Drawing.Size(117, 58);
+            this.btngenpick.TabIndex = 28;
+            this.btngenpick.Text = "Generate Pick List";
+            this.btngenpick.UseVisualStyleBackColor = false;
+            this.btngenpick.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnrepbins
+            // 
+            this.btnrepbins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
+            this.btnrepbins.Location = new System.Drawing.Point(393, 330);
+            this.btnrepbins.Name = "btnrepbins";
+            this.btnrepbins.Size = new System.Drawing.Size(125, 54);
+            this.btnrepbins.TabIndex = 29;
+            this.btnrepbins.Text = "Replenish Bins";
+            this.btnrepbins.UseVisualStyleBackColor = false;
+            // 
+            // btngencasebreak
+            // 
+            this.btngencasebreak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btngencasebreak.Location = new System.Drawing.Point(267, 330);
+            this.btngencasebreak.Name = "btngencasebreak";
+            this.btngencasebreak.Size = new System.Drawing.Size(120, 58);
+            this.btngencasebreak.TabIndex = 28;
+            this.btngencasebreak.Text = "Generate Case Break";
+            this.btngencasebreak.UseVisualStyleBackColor = false;
+            this.btngencasebreak.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnconpick
+            // 
+            this.btnconpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnconpick.Location = new System.Drawing.Point(135, 330);
+            this.btnconpick.Name = "btnconpick";
+            this.btnconpick.Size = new System.Drawing.Size(126, 54);
+            this.btnconpick.TabIndex = 28;
+            this.btnconpick.Text = "Generate Confirm Pick List";
+            this.btnconpick.UseVisualStyleBackColor = false;
+            this.btnconpick.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // location_id
+            // 
+            this.location_id.HeaderText = "BIN Location";
+            this.location_id.Name = "location_id";
+            this.location_id.ReadOnly = true;
             // 
             // product
             // 
@@ -125,39 +171,21 @@
             this.status.Name = "status";
             this.status.ReadOnly = true;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.Lime;
-            this.btnAdd.Location = new System.Drawing.Point(9, 564);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(292, 32);
-            this.btnAdd.TabIndex = 28;
-            this.btnAdd.Text = "Generate Bin Replenishment List";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.Yellow;
-            this.button1.Location = new System.Drawing.Point(309, 564);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(243, 32);
-            this.button1.TabIndex = 29;
-            this.button1.Text = "Replenish Bins";
-            this.button1.UseVisualStyleBackColor = false;
-            // 
             // BinReplishmentWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1278, 609);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnAdd);
+            this.ClientSize = new System.Drawing.Size(852, 396);
+            this.Controls.Add(this.btnrepbins);
+            this.Controls.Add(this.btnconpick);
+            this.Controls.Add(this.btngencasebreak);
+            this.Controls.Add(this.btngenpick);
             this.Controls.Add(this.headerGrid);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "BinReplishmentWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bin Replishment";
+            this.Load += new System.EventHandler(this.BinReplishmentWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).EndInit();
             this.ResumeLayout(false);
 
@@ -166,7 +194,11 @@
         #endregion
 
         public System.Windows.Forms.DataGridView headerGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bin_id;
+        private System.Windows.Forms.Button btngenpick;
+        private System.Windows.Forms.Button btnrepbins;
+        private System.Windows.Forms.Button btngencasebreak;
+        private System.Windows.Forms.Button btnconpick;
+        private System.Windows.Forms.DataGridViewTextBoxColumn location_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn product;
         private System.Windows.Forms.DataGridViewTextBoxColumn Uom;
         private System.Windows.Forms.DataGridViewTextBoxColumn lot_no;
@@ -175,7 +207,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn min_qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn qty_to_be_replenished;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.Button btnAdd;
-        private System.Windows.Forms.Button button1;
     }
 }

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.headerGrid = new System.Windows.Forms.DataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.bin_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +40,9 @@
             this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uom_location = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,25 +67,15 @@
             this.location,
             this.uom_location,
             this.status});
-            this.headerGrid.Location = new System.Drawing.Point(28, 68);
+            this.headerGrid.Location = new System.Drawing.Point(19, 44);
+            this.headerGrid.Margin = new System.Windows.Forms.Padding(2);
             this.headerGrid.Name = "headerGrid";
             this.headerGrid.ReadOnly = true;
             this.headerGrid.RowTemplate.Height = 28;
             this.headerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.headerGrid.Size = new System.Drawing.Size(1160, 408);
+            this.headerGrid.Size = new System.Drawing.Size(799, 286);
             this.headerGrid.TabIndex = 24;
             this.headerGrid.TabStop = false;
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.Lime;
-            this.btnAdd.Location = new System.Drawing.Point(28, 501);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(292, 32);
-            this.btnAdd.TabIndex = 29;
-            this.btnAdd.Text = "Proceed to Print Preview";
-            this.btnAdd.UseVisualStyleBackColor = false;
             // 
             // bin_id
             // 
@@ -151,13 +143,50 @@
             this.status.Name = "status";
             this.status.ReadOnly = true;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.Lime;
+            this.btnAdd.Location = new System.Drawing.Point(20, 346);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(195, 21);
+            this.btnAdd.TabIndex = 29;
+            this.btnAdd.Text = "Proceed to Print Preview";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.Red;
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(74, 18);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(50, 22);
+            this.btnDelete.TabIndex = 31;
+            this.btnDelete.TabStop = false;
+            this.btnDelete.Text = "Delete";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.SkyBlue;
+            this.button1.Location = new System.Drawing.Point(20, 18);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(50, 22);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = false;
+            // 
             // GenerateBinReplenishPicklist
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1243, 590);
+            this.ClientSize = new System.Drawing.Size(829, 404);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.headerGrid);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GenerateBinReplenishPicklist";
             this.Text = "GenerateBinReplenishPicklist";
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).EndInit();
@@ -180,5 +209,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn location;
         private System.Windows.Forms.DataGridViewTextBoxColumn uom_location;
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
+        private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button button1;
     }
 }

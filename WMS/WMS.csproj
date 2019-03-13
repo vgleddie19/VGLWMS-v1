@@ -67,10 +67,13 @@
     <ManifestKeyFile>WMS_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <GenerateManifests>true</GenerateManifests>
+    <GenerateManifests>false</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
     <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar.SuperGrid, Version=14.1.0.0, Culture=neutral, PublicKeyToken=7eb7c3a35b91de04, processorArchitecture=MSIL" />
@@ -128,6 +131,12 @@
     </Compile>
     <Compile Include="Transactions\3 Replishment\BinReplishmentWindow.Designer.cs">
       <DependentUpon>BinReplishmentWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\3 Replishment\NewBinReplishmentDetailWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\3 Replishment\NewBinReplishmentDetailWindow.Designer.cs">
+      <DependentUpon>NewBinReplishmentDetailWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanningWindow.cs">
       <SubType>Form</SubType>
@@ -496,6 +505,7 @@
     <Compile Include="Utilities\ORMSupport.cs" />
     <Compile Include="Utilities\SynchroSupport.cs" />
     <Compile Include="Utilities\TaskSupport.cs" />
+    <Compile Include="Utilities\UISetter.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="Utilities\WebControlSupport.cs" />
     <EmbeddedResource Include="SupportForms\AuthenticationForm.resx">
@@ -515,6 +525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\3 Replishment\BinReplishmentWindow.resx">
       <DependentUpon>BinReplishmentWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\3 Replishment\NewBinReplishmentDetailWindow.resx">
+      <DependentUpon>NewBinReplishmentDetailWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanningWindow.resx">
       <DependentUpon>DisposeExpiredStocksScanningWindow.cs</DependentUpon>
@@ -697,6 +710,7 @@
       <DependentUpon>SelectGridWindow.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -706,7 +720,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="WMS_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -760,6 +773,9 @@
     <None Include="Resources\pc_calendar.html" />
     <None Include="Resources\order_cancel.html" />
     <None Include="Resources\incomplete_picklist_report.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MasterFile\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

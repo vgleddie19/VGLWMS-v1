@@ -41,7 +41,7 @@
             this.btnPhysicalCount = new System.Windows.Forms.Button();
             this.btnDeclarePhysicalCou = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnNewCaseBreak = new System.Windows.Forms.Button();
+            this.btnNewBinReplishment = new System.Windows.Forms.Button();
             this.btnConfirmCaseBreak = new System.Windows.Forms.Button();
             this.btnStockCheck = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -191,7 +191,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.btnNewCaseBreak);
+            this.groupBox1.Controls.Add(this.btnNewBinReplishment);
             this.groupBox1.Controls.Add(this.btnConfirmCaseBreak);
             this.groupBox1.Controls.Add(this.btnStockCheck);
             this.groupBox1.Controls.Add(this.btnConfirmPutaway);
@@ -210,18 +210,18 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Regular Operations";
             // 
-            // btnNewCaseBreak
+            // btnNewBinReplishment
             // 
-            this.btnNewCaseBreak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnNewCaseBreak.ForeColor = System.Drawing.Color.White;
-            this.btnNewCaseBreak.Location = new System.Drawing.Point(11, 134);
-            this.btnNewCaseBreak.Margin = new System.Windows.Forms.Padding(2);
-            this.btnNewCaseBreak.Name = "btnNewCaseBreak";
-            this.btnNewCaseBreak.Size = new System.Drawing.Size(114, 33);
-            this.btnNewCaseBreak.TabIndex = 9;
-            this.btnNewCaseBreak.Text = "New Case Break";
-            this.btnNewCaseBreak.UseVisualStyleBackColor = false;
-            this.btnNewCaseBreak.Click += new System.EventHandler(this.btnNewCaseBreak_Click);
+            this.btnNewBinReplishment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.btnNewBinReplishment.ForeColor = System.Drawing.Color.White;
+            this.btnNewBinReplishment.Location = new System.Drawing.Point(11, 134);
+            this.btnNewBinReplishment.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNewBinReplishment.Name = "btnNewBinReplishment";
+            this.btnNewBinReplishment.Size = new System.Drawing.Size(114, 38);
+            this.btnNewBinReplishment.TabIndex = 9;
+            this.btnNewBinReplishment.Text = "New Bin Replenishment";
+            this.btnNewBinReplishment.UseVisualStyleBackColor = false;
+            this.btnNewBinReplishment.Click += new System.EventHandler(this.btnNewCaseBreak_Click);
             // 
             // btnConfirmCaseBreak
             // 
@@ -230,7 +230,7 @@
             this.btnConfirmCaseBreak.Location = new System.Drawing.Point(11, 171);
             this.btnConfirmCaseBreak.Margin = new System.Windows.Forms.Padding(2);
             this.btnConfirmCaseBreak.Name = "btnConfirmCaseBreak";
-            this.btnConfirmCaseBreak.Size = new System.Drawing.Size(114, 33);
+            this.btnConfirmCaseBreak.Size = new System.Drawing.Size(114, 40);
             this.btnConfirmCaseBreak.TabIndex = 10;
             this.btnConfirmCaseBreak.Text = "Confirm Case Break";
             this.btnConfirmCaseBreak.UseVisualStyleBackColor = false;
@@ -482,7 +482,7 @@
         private System.Windows.Forms.Button btnViewReport;
         private System.Windows.Forms.Button btnStockCheck;
         private DevComponents.DotNetBar.SuperGrid.SuperGridControl grid;
-        private System.Windows.Forms.Button btnNewCaseBreak;
+        private System.Windows.Forms.Button btnNewBinReplishment;
         private System.Windows.Forms.Button btnConfirmCaseBreak;
     }
 }
