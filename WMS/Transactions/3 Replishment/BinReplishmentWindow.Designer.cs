@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.headerGrid = new System.Windows.Forms.DataGridView();
-            this.btngenpick = new System.Windows.Forms.Button();
-            this.btnrepbins = new System.Windows.Forms.Button();
-            this.btngencasebreak = new System.Windows.Forms.Button();
-            this.btnconpick = new System.Windows.Forms.Button();
             this.location_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +38,10 @@
             this.min_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qty_to_be_replenished = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btngenpick = new System.Windows.Forms.Button();
+            this.btnrepbins = new System.Windows.Forms.Button();
+            this.btngencasebreak = new System.Windows.Forms.Button();
+            this.btnconpick = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -73,49 +73,6 @@
             this.headerGrid.Size = new System.Drawing.Size(827, 304);
             this.headerGrid.TabIndex = 23;
             this.headerGrid.TabStop = false;
-            // 
-            // btngenpick
-            // 
-            this.btngenpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btngenpick.Location = new System.Drawing.Point(12, 330);
-            this.btngenpick.Name = "btngenpick";
-            this.btngenpick.Size = new System.Drawing.Size(117, 58);
-            this.btngenpick.TabIndex = 28;
-            this.btngenpick.Text = "Generate Pick List";
-            this.btngenpick.UseVisualStyleBackColor = false;
-            this.btngenpick.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnrepbins
-            // 
-            this.btnrepbins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
-            this.btnrepbins.Location = new System.Drawing.Point(393, 330);
-            this.btnrepbins.Name = "btnrepbins";
-            this.btnrepbins.Size = new System.Drawing.Size(125, 54);
-            this.btnrepbins.TabIndex = 29;
-            this.btnrepbins.Text = "Replenish Bins";
-            this.btnrepbins.UseVisualStyleBackColor = false;
-            // 
-            // btngencasebreak
-            // 
-            this.btngencasebreak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.btngencasebreak.Location = new System.Drawing.Point(267, 330);
-            this.btngencasebreak.Name = "btngencasebreak";
-            this.btngencasebreak.Size = new System.Drawing.Size(120, 58);
-            this.btngencasebreak.TabIndex = 28;
-            this.btngencasebreak.Text = "Generate Case Break";
-            this.btngencasebreak.UseVisualStyleBackColor = false;
-            this.btngencasebreak.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // btnconpick
-            // 
-            this.btnconpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnconpick.Location = new System.Drawing.Point(135, 330);
-            this.btnconpick.Name = "btnconpick";
-            this.btnconpick.Size = new System.Drawing.Size(126, 54);
-            this.btnconpick.TabIndex = 28;
-            this.btnconpick.Text = "Generate Confirm Pick List";
-            this.btnconpick.UseVisualStyleBackColor = false;
-            this.btnconpick.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // location_id
             // 
@@ -170,6 +127,49 @@
             this.status.HeaderText = "Status";
             this.status.Name = "status";
             this.status.ReadOnly = true;
+            // 
+            // btngenpick
+            // 
+            this.btngenpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btngenpick.Location = new System.Drawing.Point(12, 330);
+            this.btngenpick.Name = "btngenpick";
+            this.btngenpick.Size = new System.Drawing.Size(117, 58);
+            this.btngenpick.TabIndex = 28;
+            this.btngenpick.Text = "Generate Pick List";
+            this.btngenpick.UseVisualStyleBackColor = false;
+            this.btngenpick.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnrepbins
+            // 
+            this.btnrepbins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
+            this.btnrepbins.Location = new System.Drawing.Point(393, 330);
+            this.btnrepbins.Name = "btnrepbins";
+            this.btnrepbins.Size = new System.Drawing.Size(125, 58);
+            this.btnrepbins.TabIndex = 29;
+            this.btnrepbins.Text = "Replenish Bins";
+            this.btnrepbins.UseVisualStyleBackColor = false;
+            // 
+            // btngencasebreak
+            // 
+            this.btngencasebreak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btngencasebreak.Location = new System.Drawing.Point(267, 330);
+            this.btngencasebreak.Name = "btngencasebreak";
+            this.btngencasebreak.Size = new System.Drawing.Size(120, 58);
+            this.btngencasebreak.TabIndex = 28;
+            this.btngencasebreak.Text = "Generate Case Break";
+            this.btngencasebreak.UseVisualStyleBackColor = false;
+            this.btngencasebreak.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnconpick
+            // 
+            this.btnconpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnconpick.Location = new System.Drawing.Point(135, 330);
+            this.btnconpick.Name = "btnconpick";
+            this.btnconpick.Size = new System.Drawing.Size(126, 58);
+            this.btnconpick.TabIndex = 28;
+            this.btnconpick.Text = "Generate Confirm Pick List";
+            this.btnconpick.UseVisualStyleBackColor = false;
+            this.btnconpick.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // BinReplishmentWindow
             // 

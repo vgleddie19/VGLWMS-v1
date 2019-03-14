@@ -40,9 +40,12 @@
             this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uom_location = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.btnrepbins = new System.Windows.Forms.Button();
+            this.btnconpick = new System.Windows.Forms.Button();
+            this.btngencasebreak = new System.Windows.Forms.Button();
+            this.btngenpick = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,16 +146,6 @@
             this.status.Name = "status";
             this.status.ReadOnly = true;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.Lime;
-            this.btnAdd.Location = new System.Drawing.Point(20, 346);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(195, 21);
-            this.btnAdd.TabIndex = 29;
-            this.btnAdd.Text = "Proceed to Print Preview";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            // 
             // btnDelete
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Red;
@@ -177,14 +170,57 @@
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = false;
             // 
+            // btnrepbins
+            // 
+            this.btnrepbins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
+            this.btnrepbins.Location = new System.Drawing.Point(398, 335);
+            this.btnrepbins.Name = "btnrepbins";
+            this.btnrepbins.Size = new System.Drawing.Size(125, 58);
+            this.btnrepbins.TabIndex = 35;
+            this.btnrepbins.Text = "Replenish Bins";
+            this.btnrepbins.UseVisualStyleBackColor = false;
+            // 
+            // btnconpick
+            // 
+            this.btnconpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            this.btnconpick.Location = new System.Drawing.Point(140, 335);
+            this.btnconpick.Name = "btnconpick";
+            this.btnconpick.Size = new System.Drawing.Size(126, 58);
+            this.btnconpick.TabIndex = 32;
+            this.btnconpick.Text = "Generate Confirm Pick List";
+            this.btnconpick.UseVisualStyleBackColor = false;
+            // 
+            // btngencasebreak
+            // 
+            this.btngencasebreak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btngencasebreak.Location = new System.Drawing.Point(272, 335);
+            this.btngencasebreak.Name = "btngencasebreak";
+            this.btngencasebreak.Size = new System.Drawing.Size(120, 58);
+            this.btngencasebreak.TabIndex = 33;
+            this.btngencasebreak.Text = "Generate Case Break";
+            this.btngencasebreak.UseVisualStyleBackColor = false;
+            // 
+            // btngenpick
+            // 
+            this.btngenpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btngenpick.Location = new System.Drawing.Point(17, 335);
+            this.btngenpick.Name = "btngenpick";
+            this.btngenpick.Size = new System.Drawing.Size(117, 58);
+            this.btngenpick.TabIndex = 34;
+            this.btngenpick.Text = "Generate Pick List";
+            this.btngenpick.UseVisualStyleBackColor = false;
+            // 
             // GenerateBinReplenishPicklist
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(829, 404);
+            this.Controls.Add(this.btnrepbins);
+            this.Controls.Add(this.btnconpick);
+            this.Controls.Add(this.btngencasebreak);
+            this.Controls.Add(this.btngenpick);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.headerGrid);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "GenerateBinReplenishPicklist";
@@ -197,7 +233,6 @@
         #endregion
 
         public System.Windows.Forms.DataGridView headerGrid;
-        private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn bin_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn product;
         private System.Windows.Forms.DataGridViewTextBoxColumn Uom;
@@ -211,5 +246,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnrepbins;
+        private System.Windows.Forms.Button btnconpick;
+        private System.Windows.Forms.Button btngencasebreak;
+        private System.Windows.Forms.Button btngenpick;
     }
 }
