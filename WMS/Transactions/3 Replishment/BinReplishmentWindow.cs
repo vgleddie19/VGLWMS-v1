@@ -32,5 +32,73 @@ namespace WMS
             headerGrid.DataSource = dt;
             UISetter.SetButtonAppearance(false, btnrepbins, btngencasebreak, btngenpick, btnconpick);
         }
+
+        private void btngenpick_Click(object sender, EventArgs e)
+        {
+            TabPage genpickbin = new TabPage();
+            genpickbin.Location = new System.Drawing.Point(4, 54);
+            genpickbin.Name = "genpickbin";
+            genpickbin.Padding = new System.Windows.Forms.Padding(3);
+            genpickbin.Size = new System.Drawing.Size(1262, 642);
+            genpickbin.TabIndex = 1;
+            genpickbin.Text = "Generate Picklist\nBin Replenishment";
+            genpickbin.UseVisualStyleBackColor = true;
+            if (!tabcontrol.Controls.ContainsKey("genpickbin"))
+            {
+                this.tabcontrol.Controls.Add(genpickbin);
+            }
+            this.tabcontrol.SelectedIndex = 1;
+        }
+
+        private void btnconpick_Click(object sender, EventArgs e)
+        {
+            TabPage confitmpickbin = new TabPage();
+            confitmpickbin.Location = new System.Drawing.Point(4, 54);
+            confitmpickbin.Name = "conpickbin";
+            confitmpickbin.Padding = new System.Windows.Forms.Padding(3);
+            confitmpickbin.Size = new System.Drawing.Size(1262, 642);
+            confitmpickbin.TabIndex = 3;
+            confitmpickbin.Text = "Confirm Picklist\nBin Replenishment";
+            confitmpickbin.UseVisualStyleBackColor = true;
+            if (!tabcontrol.Controls.ContainsKey("conpickbin"))
+            {
+                this.tabcontrol.Controls.Add(confitmpickbin);
+            }
+            this.tabcontrol.SelectedIndex = 3;
+        }
+
+        private void btngencasebreak_Click(object sender, EventArgs e)
+        {
+            TabPage casebreak = new TabPage();
+            casebreak.Location = new System.Drawing.Point(4, 54);
+            casebreak.Name = "casebreak";
+            casebreak.Padding = new System.Windows.Forms.Padding(3);
+            casebreak.Size = new System.Drawing.Size(1262, 642);
+            casebreak.TabIndex = 2;
+            casebreak.Text = "Case Break";
+            casebreak.UseVisualStyleBackColor = true;
+            if (!tabcontrol.Controls.ContainsKey("casebreak"))
+            {
+                this.tabcontrol.Controls.Add(casebreak);
+            }
+            this.tabcontrol.SelectedIndex = 2;
+        }
+
+        private void btnrepbins_Click(object sender, EventArgs e)
+        {
+            TabPage confirmbinrep = new TabPage();
+            confirmbinrep.Location = new System.Drawing.Point(4, 54);
+            confirmbinrep.Name = "confirmbinrep";
+            confirmbinrep.Padding = new System.Windows.Forms.Padding(3);
+            confirmbinrep.Size = new System.Drawing.Size(1262, 642);
+            confirmbinrep.TabIndex = 4;
+            confirmbinrep.Text = "Confirm Bin Replenishment";
+            confirmbinrep.UseVisualStyleBackColor = true;
+            if (!tabcontrol.Controls.ContainsKey("confirmbinrep"))
+            {
+                this.tabcontrol.Controls.Add(confirmbinrep);
+            }
+            this.tabcontrol.SelectedIndex = 4;
+        }
     }
 }

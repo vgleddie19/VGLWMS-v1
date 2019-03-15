@@ -777,6 +777,12 @@
   <ItemGroup>
     <Folder Include="MasterFile\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VGLHelper\VGLHelper.csproj">
+      <Project>{74B10D25-B102-4936-B6FC-9BF8785DEF93}</Project>
+      <Name>VGLHelper</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

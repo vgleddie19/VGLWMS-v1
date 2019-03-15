@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.tabcontrol = new VGLHelper.CustomControls.vglTabControl();
+            this.tabMain = new System.Windows.Forms.TabPage();
             this.headerGrid = new System.Windows.Forms.DataGridView();
             this.location_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,20 +40,51 @@
             this.min_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.qty_to_be_replenished = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btngenpick = new System.Windows.Forms.Button();
             this.btnrepbins = new System.Windows.Forms.Button();
-            this.btngencasebreak = new System.Windows.Forms.Button();
             this.btnconpick = new System.Windows.Forms.Button();
+            this.btngencasebreak = new System.Windows.Forms.Button();
+            this.btngenpick = new System.Windows.Forms.Button();
+            this.tabcontrol.SuspendLayout();
+            this.tabMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
             this.SuspendLayout();
+            // 
+            // tabcontrol
+            // 
+            this.tabcontrol.AllowDrop = true;
+            this.tabcontrol.BorderColor = System.Drawing.Color.Empty;
+            this.tabcontrol.Controls.Add(this.tabMain);
+            this.tabcontrol.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabcontrol.InactiveTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(160)))));
+            this.tabcontrol.ItemSize = new System.Drawing.Size(150, 50);
+            this.tabcontrol.Location = new System.Drawing.Point(0, 0);
+            this.tabcontrol.Name = "tabcontrol";
+            this.tabcontrol.SelectedIndex = 0;
+            this.tabcontrol.SelectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(118)))), ((int)(((byte)(210)))));
+            this.tabcontrol.Size = new System.Drawing.Size(1270, 700);
+            this.tabcontrol.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabcontrol.TabBackColor = System.Drawing.Color.White;
+            this.tabcontrol.TabIndex = 0;
+            // 
+            // tabMain
+            // 
+            this.tabMain.Controls.Add(this.btnrepbins);
+            this.tabMain.Controls.Add(this.btnconpick);
+            this.tabMain.Controls.Add(this.btngencasebreak);
+            this.tabMain.Controls.Add(this.btngenpick);
+            this.tabMain.Controls.Add(this.headerGrid);
+            this.tabMain.Location = new System.Drawing.Point(4, 54);
+            this.tabMain.Name = "tabMain";
+            this.tabMain.Padding = new System.Windows.Forms.Padding(3);
+            this.tabMain.Size = new System.Drawing.Size(1262, 642);
+            this.tabMain.TabIndex = 0;
+            this.tabMain.Text = "Bin Replenishment";
+            this.tabMain.UseVisualStyleBackColor = true;
             // 
             // headerGrid
             // 
             this.headerGrid.AllowUserToAddRows = false;
             this.headerGrid.AllowUserToDeleteRows = false;
-            this.headerGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.headerGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.headerGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.headerGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -64,14 +97,15 @@
             this.min_qty,
             this.qty_to_be_replenished,
             this.status});
-            this.headerGrid.Location = new System.Drawing.Point(11, 11);
+            this.headerGrid.Dock = System.Windows.Forms.DockStyle.Top;
+            this.headerGrid.Location = new System.Drawing.Point(3, 3);
             this.headerGrid.Margin = new System.Windows.Forms.Padding(2);
             this.headerGrid.Name = "headerGrid";
             this.headerGrid.ReadOnly = true;
             this.headerGrid.RowTemplate.Height = 28;
             this.headerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.headerGrid.Size = new System.Drawing.Size(827, 304);
-            this.headerGrid.TabIndex = 23;
+            this.headerGrid.Size = new System.Drawing.Size(1256, 570);
+            this.headerGrid.TabIndex = 30;
             this.headerGrid.TabStop = false;
             // 
             // location_id
@@ -128,64 +162,63 @@
             this.status.Name = "status";
             this.status.ReadOnly = true;
             // 
-            // btngenpick
-            // 
-            this.btngenpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btngenpick.Location = new System.Drawing.Point(12, 330);
-            this.btngenpick.Name = "btngenpick";
-            this.btngenpick.Size = new System.Drawing.Size(117, 58);
-            this.btngenpick.TabIndex = 28;
-            this.btngenpick.Text = "Generate Pick List";
-            this.btngenpick.UseVisualStyleBackColor = false;
-            this.btngenpick.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // btnrepbins
             // 
             this.btnrepbins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
-            this.btnrepbins.Location = new System.Drawing.Point(393, 330);
+            this.btnrepbins.Location = new System.Drawing.Point(392, 578);
             this.btnrepbins.Name = "btnrepbins";
             this.btnrepbins.Size = new System.Drawing.Size(125, 58);
-            this.btnrepbins.TabIndex = 29;
-            this.btnrepbins.Text = "Replenish Bins";
+            this.btnrepbins.TabIndex = 34;
+            this.btnrepbins.Text = "Confirm Replenish Bins";
             this.btnrepbins.UseVisualStyleBackColor = false;
-            // 
-            // btngencasebreak
-            // 
-            this.btngencasebreak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.btngencasebreak.Location = new System.Drawing.Point(267, 330);
-            this.btngencasebreak.Name = "btngencasebreak";
-            this.btngencasebreak.Size = new System.Drawing.Size(120, 58);
-            this.btngencasebreak.TabIndex = 28;
-            this.btngencasebreak.Text = "Generate Case Break";
-            this.btngencasebreak.UseVisualStyleBackColor = false;
-            this.btngencasebreak.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnrepbins.Click += new System.EventHandler(this.btnrepbins_Click);
             // 
             // btnconpick
             // 
             this.btnconpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnconpick.Location = new System.Drawing.Point(135, 330);
+            this.btnconpick.Location = new System.Drawing.Point(260, 578);
             this.btnconpick.Name = "btnconpick";
             this.btnconpick.Size = new System.Drawing.Size(126, 58);
-            this.btnconpick.TabIndex = 28;
+            this.btnconpick.TabIndex = 31;
             this.btnconpick.Text = "Generate Confirm Pick List";
             this.btnconpick.UseVisualStyleBackColor = false;
-            this.btnconpick.Click += new System.EventHandler(this.btnAdd_Click);
+            this.btnconpick.Click += new System.EventHandler(this.btnconpick_Click);
+            // 
+            // btngencasebreak
+            // 
+            this.btngencasebreak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btngencasebreak.Location = new System.Drawing.Point(134, 578);
+            this.btngencasebreak.Name = "btngencasebreak";
+            this.btngencasebreak.Size = new System.Drawing.Size(120, 58);
+            this.btngencasebreak.TabIndex = 32;
+            this.btngencasebreak.Text = "Generate Case Break";
+            this.btngencasebreak.UseVisualStyleBackColor = false;
+            this.btngencasebreak.Click += new System.EventHandler(this.btngencasebreak_Click);
+            // 
+            // btngenpick
+            // 
+            this.btngenpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.btngenpick.Location = new System.Drawing.Point(11, 578);
+            this.btngenpick.Name = "btngenpick";
+            this.btngenpick.Size = new System.Drawing.Size(117, 58);
+            this.btngenpick.TabIndex = 33;
+            this.btngenpick.Text = "Generate Pick List";
+            this.btngenpick.UseVisualStyleBackColor = false;
+            this.btngenpick.Click += new System.EventHandler(this.btngenpick_Click);
             // 
             // BinReplishmentWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(852, 396);
-            this.Controls.Add(this.btnrepbins);
-            this.Controls.Add(this.btnconpick);
-            this.Controls.Add(this.btngencasebreak);
-            this.Controls.Add(this.btngenpick);
-            this.Controls.Add(this.headerGrid);
+            this.ClientSize = new System.Drawing.Size(1270, 700);
+            this.Controls.Add(this.tabcontrol);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "BinReplishmentWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bin Replishment";
             this.Load += new System.EventHandler(this.BinReplishmentWindow_Load);
+            this.tabcontrol.ResumeLayout(false);
+            this.tabMain.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).EndInit();
             this.ResumeLayout(false);
 
@@ -193,11 +226,13 @@
 
         #endregion
 
-        public System.Windows.Forms.DataGridView headerGrid;
-        private System.Windows.Forms.Button btngenpick;
+        private VGLHelper.CustomControls.vglTabControl tabcontrol;
+        private System.Windows.Forms.TabPage tabMain;
         private System.Windows.Forms.Button btnrepbins;
-        private System.Windows.Forms.Button btngencasebreak;
         private System.Windows.Forms.Button btnconpick;
+        private System.Windows.Forms.Button btngencasebreak;
+        private System.Windows.Forms.Button btngenpick;
+        public System.Windows.Forms.DataGridView headerGrid;
         private System.Windows.Forms.DataGridViewTextBoxColumn location_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn product;
         private System.Windows.Forms.DataGridViewTextBoxColumn Uom;

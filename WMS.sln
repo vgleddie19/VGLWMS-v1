@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WMS", "WMS\WMS.csproj", "{97CE55D9-6225-4652-9D13-B39EC13A5F27}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VGLHelper", "VGLHelper\VGLHelper.csproj", "{74B10D25-B102-4936-B6FC-9BF8785DEF93}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{97CE55D9-6225-4652-9D13-B39EC13A5F27}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{97CE55D9-6225-4652-9D13-B39EC13A5F27}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{97CE55D9-6225-4652-9D13-B39EC13A5F27}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74B10D25-B102-4936-B6FC-9BF8785DEF93}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74B10D25-B102-4936-B6FC-9BF8785DEF93}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74B10D25-B102-4936-B6FC-9BF8785DEF93}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74B10D25-B102-4936-B6FC-9BF8785DEF93}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

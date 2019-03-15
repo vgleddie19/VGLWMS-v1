@@ -76,7 +76,7 @@
             this.headerGrid.ReadOnly = true;
             this.headerGrid.RowTemplate.Height = 28;
             this.headerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.headerGrid.Size = new System.Drawing.Size(799, 286);
+            this.headerGrid.Size = new System.Drawing.Size(1079, 516);
             this.headerGrid.TabIndex = 24;
             this.headerGrid.TabStop = false;
             // 
@@ -214,7 +214,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(829, 404);
+            this.ClientSize = new System.Drawing.Size(1109, 634);
             this.Controls.Add(this.btnrepbins);
             this.Controls.Add(this.btnconpick);
             this.Controls.Add(this.btngencasebreak);
