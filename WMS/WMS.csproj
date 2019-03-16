@@ -132,6 +132,12 @@
     <Compile Include="Transactions\3 Replishment\BinReplishmentWindow.Designer.cs">
       <DependentUpon>BinReplishmentWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions\3 Replishment\controls\genpick_caserep.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Transactions\3 Replishment\controls\genpick_caserep.Designer.cs">
+      <DependentUpon>genpick_caserep.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\3 Replishment\NewBinReplishmentDetailWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -525,6 +531,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\3 Replishment\BinReplishmentWindow.resx">
       <DependentUpon>BinReplishmentWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\3 Replishment\controls\genpick_caserep.resx">
+      <DependentUpon>genpick_caserep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\3 Replishment\NewBinReplishmentDetailWindow.resx">
       <DependentUpon>NewBinReplishmentDetailWindow.cs</DependentUpon>

@@ -37,7 +37,7 @@ namespace VGLHelper.CustomControls
         /// <summary>
         ///     The color of the active tab header
         /// </summary>
-        private Color selectedTabColor = ColorTranslator.FromHtml(Etcetera.PRIMARY_COLOR);
+        private Color selectedTabColor = ColorTranslator.FromHtml(Etcetera.PRIMARY_COLOR_LIGHT);
 
         [DefaultValue(typeof(Color), "White")]
         public Color SelectedTabColor

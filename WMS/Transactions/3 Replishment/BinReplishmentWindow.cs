@@ -45,6 +45,9 @@ namespace WMS
             genpickbin.UseVisualStyleBackColor = true;
             if (!tabcontrol.Controls.ContainsKey("genpickbin"))
             {
+                genpick_caserep pick = new genpick_caserep();
+                pick.Dock = DockStyle.Fill;
+                genpickbin.Controls.Add(pick);                
                 this.tabcontrol.Controls.Add(genpickbin);
             }
             this.tabcontrol.SelectedIndex = 1;
