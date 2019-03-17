@@ -57,17 +57,19 @@ namespace WMS.Utilities
         {
             foreach (DataGridView datagridview in dataGridViews)
             {
-                //datagridview.BorderStyle = BorderStyle.None;
+                datagridview.BorderStyle = BorderStyle.None;
                 datagridview.BackColor = SystemColors.Control;
                 datagridview.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
-                datagridview.DefaultCellStyle.Font = new Font("Courier New", 10);
+                datagridview.DefaultCellStyle.Font = new Font("Courier New", 12);
+                datagridview.DefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80);
                 datagridview.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml(SECONDARY_COLOR);
                 datagridview.DefaultCellStyle.SelectionForeColor = Color.White;
+                datagridview.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 datagridview.RowsDefaultCellStyle.Padding = new Padding(5, 1, 5, 1);
-                //datagridview.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+                datagridview.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
                 datagridview.ColumnHeadersDefaultCellStyle.Font = new Font("Courier New", 12, FontStyle.Bold);
                 datagridview.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                datagridview.RowTemplate.Height = 50;
+                datagridview.RowTemplate.Height = 30;
                 datagridview.BackgroundColor = SystemColors.Control;
                 datagridview.RowPostPaint += DataGridView_RowPostPaint;
                 datagridview.DoubleBuffered(true);
@@ -77,15 +79,16 @@ namespace WMS.Utilities
 
         public static void SetGridAppearance(this DataGridView dataGridView)
         {
-            //datagridview.BorderStyle = BorderStyle.None;
+            dataGridView.BorderStyle = BorderStyle.None;
             dataGridView.BackColor = SystemColors.Control;
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.DefaultCellStyle.Font = new Font("Courier New", 10);
             dataGridView.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml(SECONDARY_COLOR);
             dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
             dataGridView.RowsDefaultCellStyle.Padding = new Padding(5, 1, 5, 1);
-            //datagridview.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            dataGridView.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Courier New", 12, FontStyle.Bold);
+            dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80);
             dataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dataGridView.RowTemplate.Height = 50;
             dataGridView.BackgroundColor = SystemColors.Control;
@@ -95,7 +98,7 @@ namespace WMS.Utilities
 
         private static void DataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridView grd = sender as DataGridView;
+            DataGridView grd = sender as DataGridView;            
             if (e.IsLastVisibleRow)
                 grd.Rows[0].Selected = false;
         }

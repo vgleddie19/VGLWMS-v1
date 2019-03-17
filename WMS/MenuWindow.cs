@@ -233,7 +233,7 @@ namespace WMS
         }
         private void btnAddReceipt_Click(object sender, EventArgs e)
         {
-            NewReceiptsWindow dialog = new NewReceiptsWindow();
+            NewReceiptsWindow dialog = new NewReceiptsWindow();          
             dialog.ShowDialog();
             LoadInventory();
         }

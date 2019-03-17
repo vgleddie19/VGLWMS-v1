@@ -65,7 +65,7 @@
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPrintPreview.BackColor = System.Drawing.Color.Lime;
             this.btnPrintPreview.Location = new System.Drawing.Point(17, 394);
-            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(180, 22);
             this.btnPrintPreview.TabIndex = 26;
@@ -85,7 +85,7 @@
             // txtReceivedOn
             // 
             this.txtReceivedOn.Location = new System.Drawing.Point(108, 45);
-            this.txtReceivedOn.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtReceivedOn.Margin = new System.Windows.Forms.Padding(2);
             this.txtReceivedOn.Name = "txtReceivedOn";
             this.txtReceivedOn.Size = new System.Drawing.Size(147, 20);
             this.txtReceivedOn.TabIndex = 24;
@@ -96,7 +96,7 @@
             this.btnDelete.BackColor = System.Drawing.Color.Red;
             this.btnDelete.ForeColor = System.Drawing.Color.White;
             this.btnDelete.Location = new System.Drawing.Point(74, 75);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(50, 22);
             this.btnDelete.TabIndex = 23;
@@ -109,7 +109,7 @@
             // 
             this.btnAdd.BackColor = System.Drawing.Color.SkyBlue;
             this.btnAdd.Location = new System.Drawing.Point(20, 75);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(50, 22);
             this.btnAdd.TabIndex = 21;
@@ -135,7 +135,7 @@
             this.expiry,
             this.remarks});
             this.headerGrid.Location = new System.Drawing.Point(19, 101);
-            this.headerGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.headerGrid.Margin = new System.Windows.Forms.Padding(2);
             this.headerGrid.Name = "headerGrid";
             this.headerGrid.ReadOnly = true;
             this.headerGrid.RowTemplate.Height = 28;
@@ -189,7 +189,7 @@
             // txtReferenceDocument
             // 
             this.txtReferenceDocument.Location = new System.Drawing.Point(350, 45);
-            this.txtReferenceDocument.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtReferenceDocument.Margin = new System.Windows.Forms.Padding(2);
             this.txtReferenceDocument.Name = "txtReferenceDocument";
             this.txtReferenceDocument.Size = new System.Drawing.Size(147, 20);
             this.txtReferenceDocument.TabIndex = 19;
@@ -206,7 +206,7 @@
             // txtReceivedFrom
             // 
             this.txtReceivedFrom.Location = new System.Drawing.Point(108, 23);
-            this.txtReceivedFrom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtReceivedFrom.Margin = new System.Windows.Forms.Padding(2);
             this.txtReceivedFrom.Name = "txtReceivedFrom";
             this.txtReceivedFrom.Size = new System.Drawing.Size(147, 20);
             this.txtReceivedFrom.TabIndex = 16;
@@ -225,7 +225,7 @@
             this.btnLoad.BackColor = System.Drawing.Color.Yellow;
             this.btnLoad.ForeColor = System.Drawing.Color.Black;
             this.btnLoad.Location = new System.Drawing.Point(128, 75);
-            this.btnLoad.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLoad.Margin = new System.Windows.Forms.Padding(2);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(50, 22);
             this.btnLoad.TabIndex = 29;
@@ -264,8 +264,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtReceivedFrom);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "NewReceiptsWindow";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Receive Stocks...";
             this.Load += new System.EventHandler(this.NewReceiptsWindow_Load);

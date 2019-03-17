@@ -70,7 +70,7 @@
             this.location,
             this.uom_location,
             this.status});
-            this.headerGrid.Location = new System.Drawing.Point(19, 44);
+            this.headerGrid.Location = new System.Drawing.Point(17, 44);
             this.headerGrid.Margin = new System.Windows.Forms.Padding(2);
             this.headerGrid.Name = "headerGrid";
             this.headerGrid.ReadOnly = true;
@@ -173,7 +173,7 @@
             // btnrepbins
             // 
             this.btnrepbins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
-            this.btnrepbins.Location = new System.Drawing.Point(398, 335);
+            this.btnrepbins.Location = new System.Drawing.Point(393, 565);
             this.btnrepbins.Name = "btnrepbins";
             this.btnrepbins.Size = new System.Drawing.Size(125, 58);
             this.btnrepbins.TabIndex = 35;
@@ -183,7 +183,7 @@
             // btnconpick
             // 
             this.btnconpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnconpick.Location = new System.Drawing.Point(140, 335);
+            this.btnconpick.Location = new System.Drawing.Point(135, 565);
             this.btnconpick.Name = "btnconpick";
             this.btnconpick.Size = new System.Drawing.Size(126, 58);
             this.btnconpick.TabIndex = 32;
@@ -193,7 +193,7 @@
             // btngencasebreak
             // 
             this.btngencasebreak.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.btngencasebreak.Location = new System.Drawing.Point(272, 335);
+            this.btngencasebreak.Location = new System.Drawing.Point(267, 565);
             this.btngencasebreak.Name = "btngencasebreak";
             this.btngencasebreak.Size = new System.Drawing.Size(120, 58);
             this.btngencasebreak.TabIndex = 33;
@@ -203,7 +203,7 @@
             // btngenpick
             // 
             this.btngenpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btngenpick.Location = new System.Drawing.Point(17, 335);
+            this.btngenpick.Location = new System.Drawing.Point(12, 565);
             this.btngenpick.Name = "btngenpick";
             this.btngenpick.Size = new System.Drawing.Size(117, 58);
             this.btngenpick.TabIndex = 34;

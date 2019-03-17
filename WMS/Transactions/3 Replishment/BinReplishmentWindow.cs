@@ -1,4 +1,7 @@
-﻿using Framework;
+﻿using DevComponents.DotNetBar;
+using DevComponents.DotNetBar.Controls;
+using DevComponents.DotNetBar.Rendering;
+using Framework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,78 +30,222 @@ namespace WMS
 
         private void BinReplishmentWindow_Load(object sender, EventArgs e)
         {
-            DataTable dt = DataSupport.RunDataSet("SELECT order_id[ORDER ID], client[CLIENT], reference[DOCUMENT REF ID], recipient[RECIPIENT], 'NO' [ADDED]  FROM ReleaseOrders WHERE status = 'FOR PICKING' ORDER BY order_date ASC").Tables[0];
-            headerGrid.SetGridAppearance();
-            headerGrid.DataSource = dt;
-            UISetter.SetButtonAppearance(false, btnrepbins, btngencasebreak, btngenpick, btnconpick);
+            //DataTable dt = DataSupport.RunDataSet("SELECT location, productcode, uom, lotno, expiry, qty, min_qty, qty_to_be_rep, status FROM [LocationProductsLedger]").Tables[0];
+            UISetter.SetGridAppearance(genpickgrid, headerGrid, genproductpickgrid);
+            UISetter.SetButtonAppearance(false, btnrepbins, btngenpick, btnconpick);
+            LoadProductGrid();
+        }
+
+
+
+        private void LoadProductGrid()
+        {           
+            genpickgrid.Columns.Clear();
+            genpickgrid.Rows.Clear();
+
+            DataGridViewComboBoxExColumn cbo = new DataGridViewComboBoxExColumn();
+            cbo.DropDownStyle = ComboBoxStyle.DropDown;
+            cbo.DataSource = DataSupport.RunDataSet("SELECT * FROM PRODUCTS").Tables[0];
+            cbo.DisplayMember = "product_id";
+            cbo.ValueMember = "product_id";
+            cbo.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbo.DropDownHeight = 100;
+            cbo.Name = "gridcol_product";
+            cbo.HeaderText = "Product";
+            genpickgrid.Columns.Add(cbo);
+
+            DataGridViewComboBoxColumn cbo1 = new DataGridViewComboBoxColumn();
+            cbo1.Name = "gridcol_uom";
+            cbo1.HeaderText = "UOM";
+            cbo1.DefaultCellStyle.BackColor = Color.White;
+            cbo1.DefaultCellStyle.SelectionBackColor = Color.White;
+            cbo1.FlatStyle = FlatStyle.Popup;
+            genpickgrid.Columns.Add(cbo1);
+
+            cbo1 = new DataGridViewComboBoxColumn();
+            cbo1.Name = "gridcol_lotno";
+            cbo1.HeaderText = "Lot Number";
+            cbo1.DefaultCellStyle.BackColor = Color.White;
+            cbo1.DefaultCellStyle.SelectionBackColor = Color.White;
+            cbo1.FlatStyle = FlatStyle.Popup;
+            genpickgrid.Columns.Add(cbo1);
+
+            cbo1 = new DataGridViewComboBoxColumn();
+            cbo1.Name = "gridcol_expiry";
+            cbo1.HeaderText = "Expiry Date";
+            cbo1.DefaultCellStyle.BackColor = Color.White;
+            cbo1.DefaultCellStyle.SelectionBackColor = Color.White;
+            cbo1.FlatStyle = FlatStyle.Popup;
+            genpickgrid.Columns.Add(cbo1);
+
+            DataGridViewTextBoxColumn cbo2 = new DataGridViewTextBoxColumn();
+            cbo2.Name = "gridcol_qty";
+            cbo2.HeaderText = "Quantity";
+            cbo2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            genpickgrid.Columns.Add(cbo2);
+
+            DataGridViewButtonColumn grdbtn = new DataGridViewButtonColumn();
+            grdbtn.Name = "gridcol_btn";
+            grdbtn.HeaderText = " ";
+            grdbtn.DefaultCellStyle.BackColor = Color.OrangeRed;
+            grdbtn.DefaultCellStyle.SelectionBackColor = Color.OrangeRed;
+            grdbtn.FlatStyle = FlatStyle.Popup;
+            grdbtn.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            genpickgrid.Columns.Add(grdbtn);
+
+            genproductpickgrid.Columns.Clear();
+            genproductpickgrid.Rows.Clear();
+
+             cbo = new DataGridViewComboBoxExColumn();
+            cbo.DropDownStyle = ComboBoxStyle.DropDown;
+            cbo.DataSource = DataSupport.RunDataSet("SELECT * FROM PRODUCTS").Tables[0];
+            cbo.DisplayMember = "product_id";
+            cbo.ValueMember = "product_id";
+            cbo.AutoCompleteSource = AutoCompleteSource.ListItems;
+            cbo.AutoCompleteMode = AutoCompleteMode.SuggestAppend;
+            cbo.DropDownHeight = 100;
+            cbo.Name = "gridcol_product";
+            cbo.HeaderText = "Product";
+            genproductpickgrid.Columns.Add(cbo);
+
+            cbo1 = new DataGridViewComboBoxColumn();
+            cbo1.Name = "gridcol_uom";
+            cbo1.HeaderText = "UOM";
+            genproductpickgrid.Columns.Add(cbo1);
+
+            cbo1 = new DataGridViewComboBoxColumn();
+            cbo1.Name = "gridcol_lotno";
+            cbo1.HeaderText = "Lot Number";
+            genproductpickgrid.Columns.Add(cbo1);
+
+            cbo1 = new DataGridViewComboBoxColumn();
+            cbo1.Name = "gridcol_expiry";
+            cbo1.HeaderText = "Expiry Date";
+            genproductpickgrid.Columns.Add(cbo1);
+
+            cbo2 = new DataGridViewTextBoxColumn();
+            cbo2.Name = "gridcol_qty";
+            cbo2.HeaderText = "Quantity";
+            cbo2.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            genproductpickgrid.Columns.Add(cbo2);
+
         }
 
         private void btngenpick_Click(object sender, EventArgs e)
         {
-            TabPage genpickbin = new TabPage();
-            genpickbin.Location = new System.Drawing.Point(4, 54);
-            genpickbin.Name = "genpickbin";
-            genpickbin.Padding = new System.Windows.Forms.Padding(3);
-            genpickbin.Size = new System.Drawing.Size(1262, 642);
-            genpickbin.TabIndex = 1;
-            genpickbin.Text = "Generate Picklist\nBin Replenishment";
-            genpickbin.UseVisualStyleBackColor = true;
-            if (!tabcontrol.Controls.ContainsKey("genpickbin"))
-            {
-                this.tabcontrol.Controls.Add(genpickbin);
-            }
-            this.tabcontrol.SelectedIndex = 1;
+            //if(!utabControl1.Tabs.Contains(genpick))
+            //    utabControl1.Tabs.Add(genpick);
+            utabControl1.Tabs["genpick"].Visible = true;
+            utabControl1.SelectedTabIndex = 1;
         }
 
         private void btnconpick_Click(object sender, EventArgs e)
-        {
-            TabPage confitmpickbin = new TabPage();
-            confitmpickbin.Location = new System.Drawing.Point(4, 54);
-            confitmpickbin.Name = "conpickbin";
-            confitmpickbin.Padding = new System.Windows.Forms.Padding(3);
-            confitmpickbin.Size = new System.Drawing.Size(1262, 642);
-            confitmpickbin.TabIndex = 3;
-            confitmpickbin.Text = "Confirm Picklist\nBin Replenishment";
-            confitmpickbin.UseVisualStyleBackColor = true;
-            if (!tabcontrol.Controls.ContainsKey("conpickbin"))
-            {
-                this.tabcontrol.Controls.Add(confitmpickbin);
-            }
-            this.tabcontrol.SelectedIndex = 3;
+        {            
+            utabControl1.Tabs["confirmpick"].Visible = true;
+            utabControl1.SelectedTabIndex = 2;
         }
 
-        private void btngencasebreak_Click(object sender, EventArgs e)
+        private void InitMyCaseBreakPickingList()
         {
-            TabPage casebreak = new TabPage();
-            casebreak.Location = new System.Drawing.Point(4, 54);
-            casebreak.Name = "casebreak";
-            casebreak.Padding = new System.Windows.Forms.Padding(3);
-            casebreak.Size = new System.Drawing.Size(1262, 642);
-            casebreak.TabIndex = 2;
-            casebreak.Text = "Case Break";
-            casebreak.UseVisualStyleBackColor = true;
-            if (!tabcontrol.Controls.ContainsKey("casebreak"))
+            foreach (DataGridViewRow gRow in genpickgrid.Rows)
             {
-                this.tabcontrol.Controls.Add(casebreak);
+                if (gRow.Index == genpickgrid.Rows.Count - 1)
+                    break;
+
+
+                int orderqty = Convert.ToInt32(gRow.Cells["gridcol_qty"].Value);
+                DataTable dt = FAQ.GetRecord(String.Format(@"SELECT * FROM LocationProductsLedger WHERE product = '{0}' AND lot_no = '{1}' AND expiry = '{2}' AND UOM = '{3}' AND available_qty > 0"
+                                              , gRow.Cells["gridcol_product"].Value
+                                              , gRow.Cells["gridcol_lotno"].Value
+                                              , Convert.ToDateTime(gRow.Cells["gridcol_expiry"].Value).ToShortDateString()
+                                              , gRow.Cells["gridcol_uom"].Value
+                                              ));
+                foreach (DataRow dRow in dt.Rows)
+                {
+                    if (orderqty == 0)
+                        break;
+
+                    if (Convert.ToInt32(dRow["available_qty"]) <= Convert.ToInt32(gRow.Cells["gridcol_qty"].Value))
+                    {
+                        //genproductpickgrid.Rows.Add(gRow.Cells["gridcol_product"].Value, dRow["available_qty"], gRow.Cells["gridcol_uom"].Value, dRow["lot_no"], dRow["expiry"], dRow["location"], gRow.Cells["gridcol_whatuom"].Value);
+                        orderqty = -Convert.ToInt32(dRow["available_qty"]);
+                    }
+                    else
+                    {
+                        //genproductpickgrid.Rows.Add(gRow.Cells["gridcol_product"].Value, orderqty, gRow.Cells["gridcol_uom"].Value, dRow["lot_no"], dRow["expiry"], dRow["location"], gRow.Cells["gridcol_whatuom"].Value);
+                        orderqty = 0;
+                    }
+                }
+
             }
-            this.tabcontrol.SelectedIndex = 2;
         }
 
-        private void btnrepbins_Click(object sender, EventArgs e)
+        private void utabControl1_TabItemClose(object sender, SuperTabStripTabItemCloseEventArgs e)
         {
-            TabPage confirmbinrep = new TabPage();
-            confirmbinrep.Location = new System.Drawing.Point(4, 54);
-            confirmbinrep.Name = "confirmbinrep";
-            confirmbinrep.Padding = new System.Windows.Forms.Padding(3);
-            confirmbinrep.Size = new System.Drawing.Size(1262, 642);
-            confirmbinrep.TabIndex = 4;
-            confirmbinrep.Text = "Confirm Bin Replenishment";
-            confirmbinrep.UseVisualStyleBackColor = true;
-            if (!tabcontrol.Controls.ContainsKey("confirmbinrep"))
+            genpickgrid.Rows.Clear();
+            e.Tab.Visible = false;
+            e.Cancel = true;
+        }
+
+        private void genpickgrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            //genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Style. = Color.White;
+            genpickgrid.Rows[e.RowIndex].Cells["gridcol_btn"].Value = "Remove";            
+            if (e.ColumnIndex == genpickgrid.Columns["gridcol_product"].Index)
             {
-                this.tabcontrol.Controls.Add(confirmbinrep);
+                DataGridViewComboBoxCell dgvcc = new DataGridViewComboBoxCell();
+                DataGridViewCell dgvc = new DataGridViewComboBoxExCell();
+                dgvcc.AutoComplete = true;
+                dgvcc.DataSource = DataSupport.RunDataSet(String.Format("SELECT * FROM productuoms where product = '{0}'", genpickgrid.Rows[e.RowIndex].Cells["gridcol_product"].Value)).Tables[0];
+                dgvcc.DisplayMember = "uom";
+                dgvcc.ValueMember = "uom";
+                dgvc = dgvcc;
+                genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"] = dgvc;
+
+                //dgvcc = new DataGridViewComboBoxCell();
+                //dgvc = new DataGridViewComboBoxExCell();
+                //dgvcc.AutoComplete = true;
+                //dgvcc.DataSource = DataSupport.RunDataSet(String.Format("SELECT * FROM productuoms where product = '{0}'", genpickgrid.Rows[e.RowIndex].Cells["gridcol_product"].Value)).Tables[0];
+                //dgvcc.DisplayMember = "uom";
+                //dgvcc.ValueMember = "uom";
+                //dgvc = dgvcc;
+                //genpickgrid.Rows[e.RowIndex].Cells["gridcol_whatuom"] = dgvc;
             }
-            this.tabcontrol.SelectedIndex = 4;
+            else if (e.ColumnIndex == genpickgrid.Columns["gridcol_uom"].Index)
+            {
+                genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Style.BackColor = Color.White;
+                if (genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Value == null)
+                    return;
+
+                ComboBox c = new ComboBox();
+
+                DataGridViewComboBoxCell dgvcc = new DataGridViewComboBoxCell();
+                DataGridViewCell dgvc = new DataGridViewComboBoxExCell();
+                dgvcc.AutoComplete = true;
+                dgvcc.DataSource = DataSupport.RunDataSet(String.Format("SELECT DISTINCT lot_no FROM LocationProductsLedger where product = '{0}' and uom = '{1}'", genpickgrid.Rows[e.RowIndex].Cells["gridcol_product"].Value, genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Value)).Tables[0];
+                dgvcc.DisplayMember = "lot_no";
+                dgvcc.ValueMember = "lot_no";
+                dgvc = dgvcc;
+                genpickgrid.Rows[e.RowIndex].Cells["gridcol_lotno"] = dgvc;
+            }
+            else if (e.ColumnIndex == genpickgrid.Columns["gridcol_lotno"].Index)
+            {
+                if (genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Value == null)
+                    return;
+
+                DataGridViewComboBoxCell dgvcc = new DataGridViewComboBoxCell();
+                DataGridViewCell dgvc = new DataGridViewComboBoxExCell();
+                dgvcc.AutoComplete = true;
+                dgvcc.DataSource = DataSupport.RunDataSet(String.Format("SELECT DISTINCT expiry FROM LocationProductsLedger where product = '{0}' and uom = '{1}' and lot_no = '{2}'", genpickgrid.Rows[e.RowIndex].Cells["gridcol_product"].Value, genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Value, genpickgrid.Rows[e.RowIndex].Cells["gridcol_lotno"].Value)).Tables[0];
+                dgvcc.DisplayMember = "expiry";
+                dgvcc.ValueMember = "expiry";
+                dgvc = dgvcc;
+                dgvc.Style.BackColor = Color.White;
+                dgvc.Style.SelectionBackColor = Color.White;
+                genpickgrid.Rows[e.RowIndex].Cells["gridcol_expiry"] = dgvc;               
+            }
+            
         }
     }
 }
