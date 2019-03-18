@@ -30,13 +30,12 @@ namespace WMS
 
         private void BinReplishmentWindow_Load(object sender, EventArgs e)
         {
-            //DataTable dt = DataSupport.RunDataSet("SELECT location, productcode, uom, lotno, expiry, qty, min_qty, qty_to_be_rep, status FROM [LocationProductsLedger]").Tables[0];
+            DataTable dt = DataSupport.RunDataSet("SELECT * FROM binproductledger").Tables[0];
+            headerGrid.DataSource = dt;
             UISetter.SetGridAppearance(genpickgrid, headerGrid, genproductpickgrid);
             UISetter.SetButtonAppearance(false, btnrepbins, btngenpick, btnconpick);
             LoadProductGrid();
         }
-
-
 
         private void LoadProductGrid()
         {           
@@ -134,8 +133,6 @@ namespace WMS
 
         private void btngenpick_Click(object sender, EventArgs e)
         {
-            //if(!utabControl1.Tabs.Contains(genpick))
-            //    utabControl1.Tabs.Add(genpick);
             utabControl1.Tabs["genpick"].Visible = true;
             utabControl1.SelectedTabIndex = 1;
         }
@@ -244,8 +241,7 @@ namespace WMS
                 dgvc.Style.BackColor = Color.White;
                 dgvc.Style.SelectionBackColor = Color.White;
                 genpickgrid.Rows[e.RowIndex].Cells["gridcol_expiry"] = dgvc;               
-            }
-            
+            }            
         }
     }
 }

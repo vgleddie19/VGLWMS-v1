@@ -29,15 +29,6 @@
         private void InitializeComponent()
         {
             this.headerGrid = new System.Windows.Forms.DataGridView();
-            this.location_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lot_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.actual_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.min_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qty_to_be_replenished = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.utabControl1 = new VGLHelper.CustomControls.utabControl();
             this.superTabControlPanel5 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -59,6 +50,15 @@
             this.confirmpick = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lot_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.actual_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.min_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.qty_to_be_replenished = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.utabControl1)).BeginInit();
             this.utabControl1.SuspendLayout();
@@ -80,7 +80,7 @@
             this.headerGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.headerGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.headerGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.location_id,
+            this.location,
             this.product,
             this.Uom,
             this.lot_no,
@@ -100,60 +100,6 @@
             this.headerGrid.StandardTab = true;
             this.headerGrid.TabIndex = 35;
             this.headerGrid.TabStop = false;
-            // 
-            // location_id
-            // 
-            this.location_id.HeaderText = "BIN Location";
-            this.location_id.Name = "location_id";
-            this.location_id.ReadOnly = true;
-            // 
-            // product
-            // 
-            this.product.HeaderText = "Product";
-            this.product.Name = "product";
-            this.product.ReadOnly = true;
-            // 
-            // Uom
-            // 
-            this.Uom.HeaderText = "Uom";
-            this.Uom.Name = "Uom";
-            this.Uom.ReadOnly = true;
-            // 
-            // lot_no
-            // 
-            this.lot_no.HeaderText = "Lot No";
-            this.lot_no.Name = "lot_no";
-            this.lot_no.ReadOnly = true;
-            // 
-            // Expiry
-            // 
-            this.Expiry.HeaderText = "expiry";
-            this.Expiry.Name = "Expiry";
-            this.Expiry.ReadOnly = true;
-            // 
-            // actual_qty
-            // 
-            this.actual_qty.HeaderText = "Actual Qty";
-            this.actual_qty.Name = "actual_qty";
-            this.actual_qty.ReadOnly = true;
-            // 
-            // min_qty
-            // 
-            this.min_qty.HeaderText = "Minimum Qty";
-            this.min_qty.Name = "min_qty";
-            this.min_qty.ReadOnly = true;
-            // 
-            // qty_to_be_replenished
-            // 
-            this.qty_to_be_replenished.HeaderText = "Qty To Be Replenished";
-            this.qty_to_be_replenished.Name = "qty_to_be_replenished";
-            this.qty_to_be_replenished.ReadOnly = true;
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Status";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
             // 
             // utabControl1
             // 
@@ -175,14 +121,14 @@
             this.utabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.utabControl1.ControlBox.MenuBox,
             this.utabControl1.ControlBox.CloseBox});
-            this.utabControl1.Controls.Add(this.superTabControlPanel5);
             this.utabControl1.Controls.Add(this.superTabControlPanel1);
+            this.utabControl1.Controls.Add(this.superTabControlPanel5);
             this.utabControl1.Controls.Add(this.superTabControlPanel3);
             this.utabControl1.Controls.Add(this.superTabControlPanel4);
             this.utabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.utabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.utabControl1.FixedTabSize = new System.Drawing.Size(250, 50);
-            this.utabControl1.Font = new System.Drawing.Font("Roboto", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.utabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.utabControl1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.utabControl1.InactiveTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(75)))), ((int)(((byte)(160)))));
             this.utabControl1.ItemPadding.Bottom = 10;
@@ -193,12 +139,12 @@
             this.utabControl1.Name = "utabControl1";
             this.utabControl1.ReorderTabsEnabled = true;
             this.utabControl1.SelectedTabColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.utabControl1.SelectedTabFont = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.utabControl1.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.utabControl1.SelectedTabIndex = 0;
             this.utabControl1.ShowFocusRectangle = true;
             this.utabControl1.Size = new System.Drawing.Size(1221, 765);
             this.utabControl1.TabBackColor = System.Drawing.Color.White;
-            this.utabControl1.TabFont = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.utabControl1.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.utabControl1.TabIndex = 41;
             this.utabControl1.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.maintab,
@@ -258,7 +204,7 @@
             // button1
             // 
             this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.button1.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Location = new System.Drawing.Point(19, 8);
             this.button1.Name = "button1";
@@ -303,7 +249,7 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
-            this.button2.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.White;
             this.button2.Location = new System.Drawing.Point(7, 6);
             this.button2.Name = "button2";
@@ -345,7 +291,7 @@
             // btngenpick
             // 
             this.btngenpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
-            this.btngenpick.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btngenpick.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btngenpick.ForeColor = System.Drawing.Color.White;
             this.btngenpick.Location = new System.Drawing.Point(19, 8);
             this.btngenpick.Name = "btngenpick";
@@ -358,7 +304,7 @@
             // btnrepbins
             // 
             this.btnrepbins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
-            this.btnrepbins.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnrepbins.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnrepbins.ForeColor = System.Drawing.Color.White;
             this.btnrepbins.Location = new System.Drawing.Point(400, 8);
             this.btnrepbins.Name = "btnrepbins";
@@ -370,7 +316,7 @@
             // btnconpick
             // 
             this.btnconpick.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            this.btnconpick.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnconpick.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnconpick.ForeColor = System.Drawing.Color.White;
             this.btnconpick.Location = new System.Drawing.Point(205, 8);
             this.btnconpick.Name = "btnconpick";
@@ -391,11 +337,11 @@
             this.maintab.ImagePadding.Top = 10;
             this.maintab.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
             this.maintab.Name = "maintab";
-            this.maintab.SelectedTabFont = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maintab.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maintab.Symbol = "";
             this.maintab.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(76)))), ((int)(((byte)(60)))));
             this.maintab.SymbolSize = 25F;
-            this.maintab.TabFont = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maintab.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maintab.Text = "Main Panel";
             this.maintab.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
             // 
@@ -433,6 +379,60 @@
             this.superTabControlPanel2.Size = new System.Drawing.Size(1221, 52);
             this.superTabControlPanel2.TabIndex = 0;
             // 
+            // location
+            // 
+            this.location.HeaderText = "BIN Location";
+            this.location.Name = "location";
+            this.location.ReadOnly = true;
+            // 
+            // product
+            // 
+            this.product.HeaderText = "Product";
+            this.product.Name = "product";
+            this.product.ReadOnly = true;
+            // 
+            // Uom
+            // 
+            this.Uom.HeaderText = "Uom";
+            this.Uom.Name = "Uom";
+            this.Uom.ReadOnly = true;
+            // 
+            // lot_no
+            // 
+            this.lot_no.HeaderText = "Lot No";
+            this.lot_no.Name = "lot_no";
+            this.lot_no.ReadOnly = true;
+            // 
+            // Expiry
+            // 
+            this.Expiry.HeaderText = "expiry";
+            this.Expiry.Name = "Expiry";
+            this.Expiry.ReadOnly = true;
+            // 
+            // actual_qty
+            // 
+            this.actual_qty.HeaderText = "Actual Qty";
+            this.actual_qty.Name = "actual_qty";
+            this.actual_qty.ReadOnly = true;
+            // 
+            // min_qty
+            // 
+            this.min_qty.HeaderText = "Minimum Qty";
+            this.min_qty.Name = "min_qty";
+            this.min_qty.ReadOnly = true;
+            // 
+            // qty_to_be_replenished
+            // 
+            this.qty_to_be_replenished.HeaderText = "Qty To Be Replenished";
+            this.qty_to_be_replenished.Name = "qty_to_be_replenished";
+            this.qty_to_be_replenished.ReadOnly = true;
+            // 
+            // status
+            // 
+            this.status.HeaderText = "Status";
+            this.status.Name = "status";
+            this.status.ReadOnly = true;
+            // 
             // BinReplishmentWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -462,15 +462,6 @@
 
         #endregion
         public System.Windows.Forms.DataGridView headerGrid;
-        private System.Windows.Forms.DataGridViewTextBoxColumn location_id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn product;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Uom;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lot_no;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Expiry;
-        private System.Windows.Forms.DataGridViewTextBoxColumn actual_qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn min_qty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qty_to_be_replenished;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
         private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel1;
         private DevComponents.DotNetBar.SuperTabItem maintab;
         public VGLHelper.CustomControls.utabControl utabControl1;
@@ -492,5 +483,14 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn location;
+        private System.Windows.Forms.DataGridViewTextBoxColumn product;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Uom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lot_no;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Expiry;
+        private System.Windows.Forms.DataGridViewTextBoxColumn actual_qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn min_qty;
+        private System.Windows.Forms.DataGridViewTextBoxColumn qty_to_be_replenished;
+        private System.Windows.Forms.DataGridViewTextBoxColumn status;
     }
 }
