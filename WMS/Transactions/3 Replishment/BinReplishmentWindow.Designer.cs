@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.headerGrid = new System.Windows.Forms.DataGridView();
             this.utabControl1 = new VGLHelper.CustomControls.utabControl();
             this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
@@ -36,6 +39,8 @@
             this.btnrepbins = new System.Windows.Forms.Button();
             this.btnconpick = new System.Windows.Forms.Button();
             this.maintab = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.confirmpick = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel5 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.genproductpickgrid = new System.Windows.Forms.DataGridView();
@@ -46,15 +51,21 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.genpick = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel3 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.confirmpick = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel4 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.button3 = new System.Windows.Forms.Button();
+            this.confirmcasebreak = new DevComponents.DotNetBar.SuperTabItem();
+            this.superTabControlPanel6 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.utabControl1)).BeginInit();
             this.utabControl1.SuspendLayout();
             this.superTabControlPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.superTabControlPanel3.SuspendLayout();
             this.superTabControlPanel5.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.genproductpickgrid)).BeginInit();
@@ -62,6 +73,9 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.genpickgrid)).BeginInit();
             this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // headerGrid
@@ -102,9 +116,10 @@
             this.utabControl1.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.utabControl1.ControlBox.MenuBox,
             this.utabControl1.ControlBox.CloseBox});
-            this.utabControl1.Controls.Add(this.superTabControlPanel1);
             this.utabControl1.Controls.Add(this.superTabControlPanel3);
             this.utabControl1.Controls.Add(this.superTabControlPanel5);
+            this.utabControl1.Controls.Add(this.superTabControlPanel6);
+            this.utabControl1.Controls.Add(this.superTabControlPanel1);
             this.utabControl1.Controls.Add(this.superTabControlPanel4);
             this.utabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.utabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -130,7 +145,8 @@
             this.utabControl1.Tabs.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.maintab,
             this.genpick,
-            this.confirmpick});
+            this.confirmpick,
+            this.confirmcasebreak});
             this.utabControl1.TabStyle = DevComponents.DotNetBar.eSuperTabStyle.OfficeMobile2014;
             this.utabControl1.TabTextColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
             this.utabControl1.Text = "utabControl1";
@@ -150,6 +166,7 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.btngenpick);
+            this.panel1.Controls.Add(this.button3);
             this.panel1.Controls.Add(this.btnrepbins);
             this.panel1.Controls.Add(this.btnconpick);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -176,7 +193,7 @@
             this.btnrepbins.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(126)))), ((int)(((byte)(34)))));
             this.btnrepbins.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnrepbins.ForeColor = System.Drawing.Color.White;
-            this.btnrepbins.Location = new System.Drawing.Point(400, 8);
+            this.btnrepbins.Location = new System.Drawing.Point(594, 8);
             this.btnrepbins.Name = "btnrepbins";
             this.btnrepbins.Size = new System.Drawing.Size(188, 58);
             this.btnrepbins.TabIndex = 39;
@@ -214,6 +231,25 @@
             this.maintab.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.maintab.Text = "Main Panel";
             this.maintab.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            // 
+            // superTabControlPanel3
+            // 
+            this.superTabControlPanel3.Controls.Add(this.panel6);
+            this.superTabControlPanel3.Controls.Add(this.panel7);
+            this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 52);
+            this.superTabControlPanel3.Name = "superTabControlPanel3";
+            this.superTabControlPanel3.Size = new System.Drawing.Size(1147, 675);
+            this.superTabControlPanel3.TabIndex = 0;
+            this.superTabControlPanel3.TabItem = this.confirmpick;
+            // 
+            // confirmpick
+            // 
+            this.confirmpick.AttachedControl = this.superTabControlPanel3;
+            this.confirmpick.GlobalItem = false;
+            this.confirmpick.Name = "confirmpick";
+            this.confirmpick.Text = "Confirm PickList";
+            this.confirmpick.Visible = false;
             // 
             // superTabControlPanel5
             // 
@@ -326,23 +362,6 @@
             this.genpick.Text = "Generate PickList";
             this.genpick.Visible = false;
             // 
-            // superTabControlPanel3
-            // 
-            this.superTabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel3.Location = new System.Drawing.Point(0, 52);
-            this.superTabControlPanel3.Name = "superTabControlPanel3";
-            this.superTabControlPanel3.Size = new System.Drawing.Size(1147, 675);
-            this.superTabControlPanel3.TabIndex = 0;
-            this.superTabControlPanel3.TabItem = this.confirmpick;
-            // 
-            // confirmpick
-            // 
-            this.confirmpick.AttachedControl = this.superTabControlPanel3;
-            this.confirmpick.GlobalItem = false;
-            this.confirmpick.Name = "confirmpick";
-            this.confirmpick.Text = "Confirm PickList";
-            this.confirmpick.Visible = false;
-            // 
             // superTabControlPanel4
             // 
             this.superTabControlPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -360,6 +379,103 @@
             this.superTabControlPanel2.Size = new System.Drawing.Size(1221, 52);
             this.superTabControlPanel2.TabIndex = 0;
             // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.White;
+            this.button3.Location = new System.Drawing.Point(400, 8);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(188, 58);
+            this.button3.TabIndex = 39;
+            this.button3.Text = "Confirm Case Break";
+            this.button3.UseVisualStyleBackColor = false;
+            // 
+            // confirmcasebreak
+            // 
+            this.confirmcasebreak.AttachedControl = this.superTabControlPanel6;
+            this.confirmcasebreak.GlobalItem = false;
+            this.confirmcasebreak.Name = "confirmcasebreak";
+            this.confirmcasebreak.Text = "Confirm CaseBreak";
+            // 
+            // superTabControlPanel6
+            // 
+            this.superTabControlPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel6.Location = new System.Drawing.Point(0, 52);
+            this.superTabControlPanel6.Name = "superTabControlPanel6";
+            this.superTabControlPanel6.Size = new System.Drawing.Size(1147, 675);
+            this.superTabControlPanel6.TabIndex = 0;
+            this.superTabControlPanel6.TabItem = this.confirmcasebreak;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.dataGridView1);
+            this.panel6.Location = new System.Drawing.Point(10, 11);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1125, 265);
+            this.panel6.TabIndex = 43;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle8;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
+            this.dataGridView1.Name = "dataGridView1";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            this.dataGridView1.RowTemplate.Height = 28;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridView1.Size = new System.Drawing.Size(1125, 265);
+            this.dataGridView1.StandardTab = true;
+            this.dataGridView1.TabIndex = 37;
+            this.dataGridView1.TabStop = false;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.button4);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(0, 605);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1147, 70);
+            this.panel7.TabIndex = 44;
+            // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(174)))), ((int)(((byte)(96)))));
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.White;
+            this.button4.Location = new System.Drawing.Point(19, 5);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(180, 58);
+            this.button4.TabIndex = 38;
+            this.button4.Text = "Generate Pick List";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
             // BinReplishmentWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -376,6 +492,7 @@
             this.utabControl1.ResumeLayout(false);
             this.superTabControlPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.superTabControlPanel3.ResumeLayout(false);
             this.superTabControlPanel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.genproductpickgrid)).EndInit();
@@ -383,6 +500,9 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.genpickgrid)).EndInit();
             this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.panel7.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -410,5 +530,12 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private DevComponents.DotNetBar.SuperTabControlPanel superTabControlPanel6;
+        private DevComponents.DotNetBar.SuperTabItem confirmcasebreak;
+        private System.Windows.Forms.Panel panel6;
+        public System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button button4;
     }
 }

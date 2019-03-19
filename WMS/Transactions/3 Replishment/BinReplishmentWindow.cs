@@ -59,7 +59,7 @@ namespace WMS
             cbo1.HeaderText = "UOM";
             cbo1.DefaultCellStyle.BackColor = Color.White;
             cbo1.DefaultCellStyle.SelectionBackColor = Color.White;
-            cbo1.FlatStyle = FlatStyle.Popup;
+            cbo1.FlatStyle = FlatStyle.Flat;
             genpickgrid.Columns.Add(cbo1);
 
             cbo1 = new DataGridViewComboBoxColumn();
