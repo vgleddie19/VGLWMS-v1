@@ -13,6 +13,8 @@ namespace WMS
 {
     public partial class SearchProductStocks : Form
     {
+        public BinReplishmentWindow parentform { get; set; }
+        bool formload = false;
         #region Initialize Form
         public SearchProductStocks()
         {
@@ -21,7 +23,8 @@ namespace WMS
 
         private void SearchProductStocks_Load(object sender, EventArgs e)
         {
-            InitGridColumns(grid.PrimaryGrid);
+            LoadData();
+            formload = true;
         }
         #endregion
 
@@ -43,35 +46,63 @@ namespace WMS
         #endregion
 
         #region Initialize Grid
-        private void InitGridColumns(GridPanel panel)
-        {
-            panel.Columns.Clear();
-            panel.Rows.Clear();
-            GridColumn col = new GridColumn();
-            col.HeaderText = "Product ID";
-            col.Name = "product_id";
-            col.EditorType = typeof(GridLabelXEditControl);
-            panel.Columns.Add(col);
-
-            col = new GridColumn();
-            col.HeaderText = "Description";
-            col.Name = "description";
-            col.EditorType = typeof(GridLabelXEditControl);
-            panel.Columns.Add(col);
-        }
         private void LoadData()
         {
-            StringBuilder search = new StringBuilder();
-            //if (cbosearchby.SelectedIndex == 0)
-            //    search.AppendFormat("SELECT * FROM LocationProductsLedger WHERE product = '{0}' order by product,location", txtsearch.Text);
-            //else if (cbosearchby.SelectedIndex == 0)
-            //    search.AppendFormat("SELECT * FROM LocationProductsLedger WHERE product = '{0}' order by product,location", txtsearch.Text);
-
-            foreach (DataRow dRow_locprod in DataSupport.RunDataSet(search.ToString()).Tables[0].Rows)
+            foreach (DataRow item in DataSupport.RunDataSet("SELECT lp.* FROM[LocationProductsLedger] lp JOIN Locations l on lp.location = l.location_id where l.type = 'STORAGE' AND lp.available_qty >= 1").Tables[0].Rows)
             {
+                bool found = false;
+                foreach (DataGridViewRow item1 in parentform.genpickgrid.Rows)
+                {
+                    if (item["location"].ToString() == item1.Cells["gridcolloc"].Value.ToString() &&
+                        item["product"].ToString() == item1.Cells["gridcolprod"].Value.ToString() &&
+                        item["uom"].ToString() == item1.Cells["gridcoluom"].Value.ToString() &&
+                        item["lot_no"].ToString() == item1.Cells["gridcollot"].Value.ToString() &&
+                        item["expiry"].ToString() == item1.Cells["gridcolexpiry"].Value.ToString())
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if(found)
+                    grid.PrimaryGrid.Rows.Add(new GridRow(true, item["location"], item["product"], item["uom"], item["lot_no"], item["expiry"], item["available_qty"]));
+                else
+                    grid.PrimaryGrid.Rows.Add(new GridRow(false, item["location"], item["product"], item["uom"], item["lot_no"], item["expiry"], item["available_qty"]));
+            }  
+        }
+        #endregion
+
+        private void grid_CellValueChanged(object sender, GridCellValueChangedEventArgs e)
+        {
+            if (!formload)
+                return;
+            if (e.GridCell.ColumnIndex == grid.PrimaryGrid.Columns["gridcolchk"].ColumnIndex)
+            {
+                if ((bool)e.NewValue)
+                {
+                    parentform.genpickgrid.Rows.Add(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolloc"].ColumnIndex).Value,
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value,
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value,
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value,
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value,
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolqty"].ColumnIndex).Value,
+                        "REMOVE");
+                }
+                else
+                {
+                    foreach (DataGridViewRow item in parentform.genpickgrid.Rows)
+                    {
+                        if(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolloc"].ColumnIndex).Value == item.Cells["gridcolloc"].Value &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value == item.Cells["gridcolprod"].Value &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value == item.Cells["gridcoluom"].Value &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value == item.Cells["gridcollot"].Value &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value == item.Cells["gridcolexpiry"].Value)
+                        {
+                            parentform.genpickgrid.Rows.Remove(item);
+                        }
+                    }
+                }
 
             }
         }
-            #endregion
-        }
+    }
 }

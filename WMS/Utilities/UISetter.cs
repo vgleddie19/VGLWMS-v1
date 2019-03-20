@@ -65,11 +65,11 @@ namespace WMS.Utilities
                 datagridview.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml(SECONDARY_COLOR);
                 datagridview.DefaultCellStyle.SelectionForeColor = Color.White;
                 datagridview.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                datagridview.RowsDefaultCellStyle.Padding = new Padding(5, 1, 5, 1);
-                datagridview.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+                datagridview.RowsDefaultCellStyle.Padding = new Padding(8, 1, 8, 1);
+                datagridview.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 datagridview.ColumnHeadersDefaultCellStyle.Font = new Font("Courier New", 12, FontStyle.Bold);
                 datagridview.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                datagridview.RowTemplate.Height = 30;
+                datagridview.RowTemplate.Height = 60;
                 datagridview.BackgroundColor = SystemColors.Control;
                 datagridview.RowPostPaint += DataGridView_RowPostPaint;
                 datagridview.DoubleBuffered(true);
@@ -86,7 +86,7 @@ namespace WMS.Utilities
             dataGridView.DefaultCellStyle.SelectionBackColor = ColorTranslator.FromHtml(SECONDARY_COLOR);
             dataGridView.DefaultCellStyle.SelectionForeColor = Color.White;
             dataGridView.RowsDefaultCellStyle.Padding = new Padding(5, 1, 5, 1);
-            dataGridView.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
+            //dataGridView.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.False;
             dataGridView.ColumnHeadersDefaultCellStyle.Font = new Font("Courier New", 12, FontStyle.Bold);
             dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(44, 62, 80);
             dataGridView.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -98,9 +98,12 @@ namespace WMS.Utilities
 
         private static void DataGridView_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            DataGridView grd = sender as DataGridView;            
+            DataGridView grd = sender as DataGridView;
             if (e.IsLastVisibleRow)
+            {
                 grd.Rows[0].Selected = false;
+            }
+
         }
 
         public static void SetComboBox(this ComboBox cbo, DataTable dt, string DisplayMember, string ValueMember, AutoCompleteSource AutoSource = AutoCompleteSource.ListItems,

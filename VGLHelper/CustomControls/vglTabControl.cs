@@ -140,7 +140,7 @@ namespace VGLHelper.CustomControls
         /// <summary>
         ///     A random page will be used to store a tab that will be deplaced in the run-time
         /// </summary>
-        private TabPage predraggedTab;
+        //private TabPage predraggedTab;
 
         /// <summary>
         ///     The color of the text

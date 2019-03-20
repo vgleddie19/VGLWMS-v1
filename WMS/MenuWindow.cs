@@ -30,12 +30,12 @@ namespace WMS
         {
             if (e.KeyCode == Keys.F1)
             {
-                SearchProductStocks sp = new SearchProductStocks();
-                sp.Icon = this.Icon;
-                sp.StartPosition = FormStartPosition.CenterScreen;
-                if (sp.ShowDialog() == DialogResult.OK)
-                {
-                }
+                //SearchProductStocks sp = new SearchProductStocks();
+                //sp.Icon = this.Icon;
+                //sp.StartPosition = FormStartPosition.CenterScreen;
+                //if (sp.ShowDialog() == DialogResult.OK)
+                //{
+                //}
             }
 
         }
