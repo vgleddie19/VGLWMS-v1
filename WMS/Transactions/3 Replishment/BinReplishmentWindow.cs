@@ -19,7 +19,7 @@ namespace WMS
         public BinReplishmentWindow()
         {
             InitializeComponent();
-            UISetter.SetGridAppearance(genpickgrid, headerGrid, genproductpickgrid);
+            UISetter.SetGridAppearance(genpickgrid, headerGrid, gencasebreakgrid);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

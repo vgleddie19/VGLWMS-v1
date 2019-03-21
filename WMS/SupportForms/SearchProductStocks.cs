@@ -79,23 +79,35 @@ namespace WMS
             {
                 if ((bool)e.NewValue)
                 {
-                    parentform.genpickgrid.Rows.Add(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolloc"].ColumnIndex).Value,
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value,
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value,
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value,
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value,
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolqty"].ColumnIndex).Value,
+                    parentform.genpickgrid.Rows.Add(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolloc"].ColumnIndex).Value.ToString().Trim(),
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value.ToString().Trim(),
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim(),
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value.ToString().Trim(),
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value.ToString().Trim(),
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolqty"].ColumnIndex).Value.ToString().Trim(),
                         "REMOVE");
+                    if (grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim() == "CASE" ||
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim() == "CASES")
+                    {
+                        parentform.gencasebreakgrid.Rows.Add(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolloc"].ColumnIndex).Value.ToString().Trim(),
+                            grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value.ToString().Trim(),
+                            grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim(),
+                            grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value.ToString().Trim(),
+                            grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value.ToString().Trim(),
+                            grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolqty"].ColumnIndex).Value.ToString().Trim(),
+                            "REMOVE");
+                    }
+
                 }
                 else
                 {
                     foreach (DataGridViewRow item in parentform.genpickgrid.Rows)
                     {
-                        if(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolloc"].ColumnIndex).Value == item.Cells["gridcolloc"].Value &&
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value == item.Cells["gridcolprod"].Value &&
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value == item.Cells["gridcoluom"].Value &&
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value == item.Cells["gridcollot"].Value &&
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value == item.Cells["gridcolexpiry"].Value)
+                        if (grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolloc"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolloc"].Value.ToString().Trim() &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolprod"].Value.ToString().Trim() &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcoluom"].Value.ToString().Trim() &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcollot"].Value.ToString().Trim() &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolexpiry"].Value.ToString().Trim())
                         {
                             parentform.genpickgrid.Rows.Remove(item);
                         }
