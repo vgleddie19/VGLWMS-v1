@@ -16,37 +16,46 @@ namespace WMS
 {
     public partial class BinReplishmentWindow : Form
     {
+        public List<String> process_bin { get; set; }
+
         public BinReplishmentWindow()
         {
             InitializeComponent();
             UISetter.SetGridAppearance(genpickgrid, headerGrid, gencasebreakgrid);
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
-        {
-            GenerateBinReplenishPicklist dialog = new GenerateBinReplenishPicklist();
-            dialog.Icon = this.Icon;
-            dialog.ShowDialog();
-        }
-
         private void BinReplishmentWindow_Load(object sender, EventArgs e)
         {
-            DataTable dt = DataSupport.RunDataSet("SELECT * FROM binproductledger").Tables[0];
+            DataTable dt = DataSupport.RunDataSet("SELECT [Location], [Product], [uom], [lot_no], [expiry], [actualqty], [min_qty], [max_qty], [qty_to_replenished], [status], 'REPLENISH THIS BIN'[btn] FROM binproductledger").Tables[0];
             headerGrid.DataSource = dt;
+            headerGrid.Columns["uom"].HeaderText = "UOM";
+            headerGrid.Columns["lot_no"].HeaderText = "Lot Number";
+            headerGrid.Columns["expiry"].HeaderText = "Expiry Date";
+            headerGrid.Columns["actualqty"].HeaderText = "Actual Qty.";
+            headerGrid.Columns["min_qty"].HeaderText = "Minimum Qty.";
+            headerGrid.Columns["max_qty"].HeaderText = "Maximum Qty.";
+            headerGrid.Columns["qty_to_replenished"].HeaderText = "Qty. to Replenished";
+            headerGrid.Columns["status"].HeaderText = "Status";
+
+            var cbox = new DataGridViewButtonColumn // Modify column type
+            {
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells,
+                Width = 200,
+                DataPropertyName = headerGrid.Columns["btn"].Name,
+                HeaderText = "Action"
+            };
+            cbox.Name = "btnx";
+            cbox.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            headerGrid.Columns.Add(cbox); // Add new 
+            var r = headerGrid.Columns.OfType<DataGridViewTextBoxColumn>().Where(x => x.Name == "btn").FirstOrDefault();
+            headerGrid.Columns.Remove(r); // Remove the original column
             UISetter.SetButtonAppearance(false, btnrepbins, btngenpick, btnconpick);
             UISetter.SetLabelAppearance(label1);
-            LoadProductGrid();
-        }
-
-        private void LoadProductGrid()
-        {  
-
         }
 
         private void btngenpick_Click(object sender, EventArgs e)
         {
-            utabControl1.Tabs["genpick"].Visible = true;
-            utabControl1.SelectedTabIndex = 1;
+
         }
 
         private void btnconpick_Click(object sender, EventArgs e)
@@ -57,37 +66,37 @@ namespace WMS
 
         private void InitMyCaseBreakPickingList()
         {
-            foreach (DataGridViewRow gRow in genpickgrid.Rows)
-            {
-                if (gRow.Index == genpickgrid.Rows.Count - 1)
-                    break;
+            //foreach (DataGridViewRow gRow in genpickgrid.Rows)
+            //{
+            //    if (gRow.Index == genpickgrid.Rows.Count - 1)
+            //        break;
 
 
-                int orderqty = Convert.ToInt32(gRow.Cells["gridcol_qty"].Value);
-                DataTable dt = FAQ.GetRecord(String.Format(@"SELECT * FROM LocationProductsLedger WHERE product = '{0}' AND lot_no = '{1}' AND expiry = '{2}' AND UOM = '{3}' AND available_qty > 0"
-                                              , gRow.Cells["gridcol_product"].Value
-                                              , gRow.Cells["gridcol_lotno"].Value
-                                              , Convert.ToDateTime(gRow.Cells["gridcol_expiry"].Value).ToShortDateString()
-                                              , gRow.Cells["gridcol_uom"].Value
-                                              ));
-                foreach (DataRow dRow in dt.Rows)
-                {
-                    if (orderqty == 0)
-                        break;
+            //    int orderqty = Convert.ToInt32(gRow.Cells["gridcol_qty"].Value);
+            //    DataTable dt = FAQ.GetRecord(String.Format(@"SELECT * FROM LocationProductsLedger WHERE product = '{0}' AND lot_no = '{1}' AND expiry = '{2}' AND UOM = '{3}' AND available_qty > 0"
+            //                                  , gRow.Cells["gridcol_product"].Value
+            //                                  , gRow.Cells["gridcol_lotno"].Value
+            //                                  , Convert.ToDateTime(gRow.Cells["gridcol_expiry"].Value).ToShortDateString()
+            //                                  , gRow.Cells["gridcol_uom"].Value
+            //                                  ));
+            //    foreach (DataRow dRow in dt.Rows)
+            //    {
+            //        if (orderqty == 0)
+            //            break;
 
-                    if (Convert.ToInt32(dRow["available_qty"]) <= Convert.ToInt32(gRow.Cells["gridcol_qty"].Value))
-                    {
-                        //genproductpickgrid.Rows.Add(gRow.Cells["gridcol_product"].Value, dRow["available_qty"], gRow.Cells["gridcol_uom"].Value, dRow["lot_no"], dRow["expiry"], dRow["location"], gRow.Cells["gridcol_whatuom"].Value);
-                        orderqty = -Convert.ToInt32(dRow["available_qty"]);
-                    }
-                    else
-                    {
-                        //genproductpickgrid.Rows.Add(gRow.Cells["gridcol_product"].Value, orderqty, gRow.Cells["gridcol_uom"].Value, dRow["lot_no"], dRow["expiry"], dRow["location"], gRow.Cells["gridcol_whatuom"].Value);
-                        orderqty = 0;
-                    }
-                }
+            //        if (Convert.ToInt32(dRow["available_qty"]) <= Convert.ToInt32(gRow.Cells["gridcol_qty"].Value))
+            //        {
+            //            //genproductpickgrid.Rows.Add(gRow.Cells["gridcol_product"].Value, dRow["available_qty"], gRow.Cells["gridcol_uom"].Value, dRow["lot_no"], dRow["expiry"], dRow["location"], gRow.Cells["gridcol_whatuom"].Value);
+            //            orderqty = -Convert.ToInt32(dRow["available_qty"]);
+            //        }
+            //        else
+            //        {
+            //            //genproductpickgrid.Rows.Add(gRow.Cells["gridcol_product"].Value, orderqty, gRow.Cells["gridcol_uom"].Value, dRow["lot_no"], dRow["expiry"], dRow["location"], gRow.Cells["gridcol_whatuom"].Value);
+            //            orderqty = 0;
+            //        }
+            //    }
 
-            }
+            //}
         }
 
         private void utabControl1_TabItemClose(object sender, SuperTabStripTabItemCloseEventArgs e)
@@ -165,6 +174,18 @@ namespace WMS
             if (sp.ShowDialog() == DialogResult.OK)
             {
 
+            }
+        }
+
+        private void headerGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == headerGrid.Columns["btnx"].Index)
+            {
+                process_bin = new List<string>();
+                process_bin.Add(headerGrid.Rows[e.RowIndex].Cells["location"].Value.ToString());
+                process_bin.Add(headerGrid.Rows[e.RowIndex].Cells["product"].Value.ToString());
+                utabControl1.Tabs["genpick"].Visible = true;
+                utabControl1.SelectedTabIndex = 1;
             }
         }
     }

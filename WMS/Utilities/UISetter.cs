@@ -69,8 +69,9 @@ namespace WMS.Utilities
                 datagridview.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
                 datagridview.ColumnHeadersDefaultCellStyle.Font = new Font("Courier New", 12, FontStyle.Bold);
                 datagridview.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                datagridview.ColumnHeadersHeight = 80;
                 datagridview.RowTemplate.Height = 60;
-                datagridview.BackgroundColor = SystemColors.Control;
+                //datagridview.BackgroundColor = SystemColors.Control;
                 datagridview.RowPostPaint += DataGridView_RowPostPaint;
                 datagridview.DoubleBuffered(true);
                 datagridview.ClearSelection();
