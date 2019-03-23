@@ -95,5 +95,61 @@ namespace VGLHelper
                 return new Font("Microsoft Sans Serif", 12);
             }
         }
+
+        public static void modify_coltype(DataGridView _dgv,String coltype, DataGridViewAutoSizeColumnMode _AutoSizeMode, int _colwidth,
+                                                  String _colname,String _headerame, int _displayindex)
+        {
+            DataGridView result = new DataGridView();
+            DataGridViewColumn col = new DataGridViewColumn();
+            switch (coltype.ToLower())
+            {
+                case "button":
+                    var btn = new DataGridViewButtonColumn // Modify column type
+                    {
+                        AutoSizeMode = _AutoSizeMode,
+                        Width = _colwidth,
+                        DataPropertyName = _dgv.Columns[_colname].Name,
+                        HeaderText = _headerame
+                    };
+                    col = btn;
+                    break;
+                case "textbox":
+                    var txt = new DataGridViewTextBoxColumn // Modify column type
+                    {
+                        AutoSizeMode = _AutoSizeMode,
+                        Width = _colwidth,
+                        DataPropertyName = _dgv.Columns[_colname].Name,
+                        HeaderText = _headerame
+                    };
+                    col = txt;
+                    break;
+                case "combo":
+                    var cbo = new DataGridViewComboBoxColumn // Modify column type
+                    {
+                        AutoSizeMode = _AutoSizeMode,
+                        Width = _colwidth,
+                        DataPropertyName = _dgv.Columns[_colname].Name,
+                        HeaderText = _headerame
+                    };
+                    col = cbo;
+                    break;
+                case "check":
+                    var chk = new DataGridViewCheckBoxColumn // Modify column type
+                    {
+                        AutoSizeMode = _AutoSizeMode,
+                        Width = _colwidth,
+                        DataPropertyName = _dgv.Columns[_colname].Name,
+                        HeaderText = _headerame
+                    };
+                    col = chk;
+                    break;
+            }
+            col.Name = String.Format("{0}-x",_colname);
+            col.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            col.DisplayIndex = _displayindex;
+            _dgv.Columns.Add(col); // Add new 
+            var r = _dgv.Columns.OfType<DataGridViewTextBoxColumn>().Where(x => x.Name == _colname).FirstOrDefault();
+            _dgv.Columns.Remove(r); // Remove the original column
+        }
     }
 }

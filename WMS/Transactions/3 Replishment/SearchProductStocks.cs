@@ -28,27 +28,16 @@ namespace WMS
         }
         #endregion
 
-        #region Search procedure
-        private void txtSearch_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnsearch_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void cbosearchby_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        #endregion
-
         #region Initialize Grid
         private void LoadData()
         {
-            foreach (DataRow item in DataSupport.RunDataSet(String.Format("SELECT lp.* FROM[LocationProductsLedger] lp JOIN Locations l on lp.location = l.location_id where l.type = 'STORAGE' AND lp.available_qty >= 1 AND product = '{0}'",parentform.process_bin[1])).Tables[0].Rows)
+            String sql;
+            if (parentform.process_bin[1] != "")
+                sql=String.Format("SELECT lp.* FROM[LocationProductsLedger] lp JOIN Locations l on lp.location = l.location_id where l.type = 'STORAGE' AND lp.available_qty >= 1 AND product = '{0}'", parentform.process_bin[1]);
+            else
+                sql = "SELECT lp.* FROM[LocationProductsLedger] lp JOIN Locations l on lp.location = l.location_id where l.type = 'STORAGE' AND lp.available_qty >= 1";
+
+            foreach (DataRow item in DataSupport.RunDataSet(sql).Tables[0].Rows)
             {
                 bool found = false;
                 foreach (DataGridViewRow item1 in parentform.genpickgrid.Rows)
@@ -57,17 +46,17 @@ namespace WMS
                         item["product"].ToString() == item1.Cells["gridcolprod"].Value.ToString() &&
                         item["uom"].ToString() == item1.Cells["gridcoluom"].Value.ToString() &&
                         item["lot_no"].ToString() == item1.Cells["gridcollot"].Value.ToString() &&
-                        item["expiry"].ToString() == item1.Cells["gridcolexpiry"].Value.ToString())
+                        Convert.ToDateTime(item["expiry"]).ToShortDateString() == Convert.ToDateTime(item1.Cells["gridcolexpiry"].Value).ToShortDateString())
                     {
                         found = true;
                         break;
                     }
                 }
-                if(found)
-                    grid.PrimaryGrid.Rows.Add(new GridRow(true, item["location"], item["product"], item["uom"], item["lot_no"], item["expiry"], item["available_qty"]));
+                if (found)
+                    grid.PrimaryGrid.Rows.Add(new GridRow(true, item["location"], item["product"], item["uom"], item["lot_no"], Convert.ToDateTime(item["expiry"]).ToShortDateString(), item["available_qty"]));
                 else
-                    grid.PrimaryGrid.Rows.Add(new GridRow(false, item["location"], item["product"], item["uom"], item["lot_no"], item["expiry"], item["available_qty"]));
-            }  
+                    grid.PrimaryGrid.Rows.Add(new GridRow(false, item["location"], item["product"], item["uom"], item["lot_no"], Convert.ToDateTime(item["expiry"]).ToShortDateString(), item["available_qty"]));
+            }
         }
         #endregion
 
@@ -83,17 +72,17 @@ namespace WMS
                         grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value.ToString().Trim(),
                         grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim(),
                         grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value.ToString().Trim(),
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value.ToString().Trim(),
+                        Convert.ToDateTime(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value).ToShortDateString(),
                         grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolqty"].ColumnIndex).Value.ToString().Trim(),
                         "REMOVE");
                     if (grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim() == "CASE" ||
                         grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim() == "CASES")
                     {
-                        parentform.gencasebreakgrid.Rows.Add(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolloc"].ColumnIndex).Value.ToString().Trim(),
+                        parentform.gencasebreakgrid.Rows.Add(parentform.process_bin[0],
                             grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value.ToString().Trim(),
                             grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim(),
                             grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value.ToString().Trim(),
-                            grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value.ToString().Trim(),
+                            Convert.ToDateTime(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value).ToShortDateString(),
                             grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolqty"].ColumnIndex).Value.ToString().Trim(),
                             "REMOVE");
                     }
@@ -106,25 +95,30 @@ namespace WMS
                         grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolprod"].Value.ToString().Trim() &&
                         grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcoluom"].Value.ToString().Trim() &&
                         grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcollot"].Value.ToString().Trim() &&
-                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolexpiry"].Value.ToString().Trim())
+                        Convert.ToDateTime(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value).ToShortDateString() == Convert.ToDateTime(item.Cells["gridcolexpiry"].Value).ToShortDateString())
                         {
                             parentform.genpickgrid.Rows.Remove(item);
                         }
                     }
-                    //foreach (DataGridViewRow item in parentform.gencasebreakgrid.Rows)
-                    //{
-                    //    if (grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolloc"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolloc"].Value.ToString().Trim() &&
-                    //    grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolprod"].Value.ToString().Trim() &&
-                    //    grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcoluom"].Value.ToString().Trim() &&
-                    //    grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcollot"].Value.ToString().Trim() &&
-                    //    grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolexpiry"].Value.ToString().Trim())
-                    //    {
-                    //        parentform.gencasebreakgrid.Rows.Remove(item);
-                    //    }
-                    //}
+                    foreach (DataGridViewRow item in parentform.gencasebreakgrid.Rows)
+                    {
+                        if (parentform.process_bin[0] == item.Cells["gridcolcasebreak_loc"].Value.ToString().Trim() &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolprod"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolcasebreak_prod"].Value.ToString().Trim() &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcoluom"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolcasebreak_uom"].Value.ToString().Trim() &&
+                        grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcollot"].ColumnIndex).Value.ToString().Trim() == item.Cells["gridcolcasebreak_lot"].Value.ToString().Trim() &&
+                        Convert.ToDateTime(grid.PrimaryGrid.GetCell(e.GridCell.RowIndex, grid.PrimaryGrid.Columns["gridcolexpiry"].ColumnIndex).Value).ToShortDateString() == Convert.ToDateTime(item.Cells["gridcolcasebreak_expiry"].Value).ToShortDateString())
+                        {
+                            parentform.gencasebreakgrid.Rows.Remove(item);
+                        }
+                    }
                 }
 
             }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

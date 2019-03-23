@@ -10,6 +10,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using VGLHelper;
 using WMS.Utilities;
 
 namespace WMS
@@ -17,7 +18,7 @@ namespace WMS
     public partial class BinReplishmentWindow : Form
     {
         public List<String> process_bin { get; set; }
-
+        #region Form Initialization
         public BinReplishmentWindow()
         {
             InitializeComponent();
@@ -26,8 +27,12 @@ namespace WMS
 
         private void BinReplishmentWindow_Load(object sender, EventArgs e)
         {
-            DataTable dt = DataSupport.RunDataSet("SELECT [Location], [Product], [uom], [lot_no], [expiry], [actualqty], [min_qty], [max_qty], [qty_to_replenished], [status], 'REPLENISH THIS BIN'[btn] FROM binproductledger").Tables[0];
+            DataTable dt = DataSupport.RunDataSet("SELECT [Location], [Product], [uom], [lot_no], convert(varchar, [expiry], 11)[expiry], [actualqty], [min_qty], [max_qty], [qty_to_replenished], [status], 'REPLENISH THIS BIN'[btn] FROM binproductledger").Tables[0];
             headerGrid.DataSource = dt;
+            headerGrid.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            headerGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            headerGrid.ColumnHeadersDefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            headerGrid.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             headerGrid.Columns["uom"].HeaderText = "UOM";
             headerGrid.Columns["lot_no"].HeaderText = "Lot Number";
             headerGrid.Columns["expiry"].HeaderText = "Expiry Date";
@@ -37,66 +42,8 @@ namespace WMS
             headerGrid.Columns["qty_to_replenished"].HeaderText = "Qty. to Replenished";
             headerGrid.Columns["status"].HeaderText = "Status";
 
-            var cbox = new DataGridViewButtonColumn // Modify column type
-            {
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells,
-                Width = 200,
-                DataPropertyName = headerGrid.Columns["btn"].Name,
-                HeaderText = "Action"
-            };
-            cbox.Name = "btnx";
-            cbox.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            headerGrid.Columns.Add(cbox); // Add new 
-            var r = headerGrid.Columns.OfType<DataGridViewTextBoxColumn>().Where(x => x.Name == "btn").FirstOrDefault();
-            headerGrid.Columns.Remove(r); // Remove the original column
-            UISetter.SetButtonAppearance(false, btnrepbins, btngenpick, btnconpick);
+            Etcetera.modify_coltype(headerGrid, "button", DataGridViewAutoSizeColumnMode.DisplayedCells, 200, "btn", "Action",headerGrid.Columns.Count-1);
             UISetter.SetLabelAppearance(label1);
-        }
-
-        private void btngenpick_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnconpick_Click(object sender, EventArgs e)
-        {            
-            utabControl1.Tabs["confirmpick"].Visible = true;
-            utabControl1.SelectedTabIndex = 2;
-        }
-
-        private void InitMyCaseBreakPickingList()
-        {
-            //foreach (DataGridViewRow gRow in genpickgrid.Rows)
-            //{
-            //    if (gRow.Index == genpickgrid.Rows.Count - 1)
-            //        break;
-
-
-            //    int orderqty = Convert.ToInt32(gRow.Cells["gridcol_qty"].Value);
-            //    DataTable dt = FAQ.GetRecord(String.Format(@"SELECT * FROM LocationProductsLedger WHERE product = '{0}' AND lot_no = '{1}' AND expiry = '{2}' AND UOM = '{3}' AND available_qty > 0"
-            //                                  , gRow.Cells["gridcol_product"].Value
-            //                                  , gRow.Cells["gridcol_lotno"].Value
-            //                                  , Convert.ToDateTime(gRow.Cells["gridcol_expiry"].Value).ToShortDateString()
-            //                                  , gRow.Cells["gridcol_uom"].Value
-            //                                  ));
-            //    foreach (DataRow dRow in dt.Rows)
-            //    {
-            //        if (orderqty == 0)
-            //            break;
-
-            //        if (Convert.ToInt32(dRow["available_qty"]) <= Convert.ToInt32(gRow.Cells["gridcol_qty"].Value))
-            //        {
-            //            //genproductpickgrid.Rows.Add(gRow.Cells["gridcol_product"].Value, dRow["available_qty"], gRow.Cells["gridcol_uom"].Value, dRow["lot_no"], dRow["expiry"], dRow["location"], gRow.Cells["gridcol_whatuom"].Value);
-            //            orderqty = -Convert.ToInt32(dRow["available_qty"]);
-            //        }
-            //        else
-            //        {
-            //            //genproductpickgrid.Rows.Add(gRow.Cells["gridcol_product"].Value, orderqty, gRow.Cells["gridcol_uom"].Value, dRow["lot_no"], dRow["expiry"], dRow["location"], gRow.Cells["gridcol_whatuom"].Value);
-            //            orderqty = 0;
-            //        }
-            //    }
-
-            //}
         }
 
         private void utabControl1_TabItemClose(object sender, SuperTabStripTabItemCloseEventArgs e)
@@ -105,67 +52,24 @@ namespace WMS
             e.Tab.Visible = false;
             e.Cancel = true;
         }
+        #endregion
 
-        private void genpickgrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        #region DashBoardGrid and Controls
+        private void headerGrid_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            //genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Style. = Color.White;
-            //genpickgrid.Rows[e.RowIndex].Cells["gridcol_btn"].Value = "Remove";            
-            //if (e.ColumnIndex == genpickgrid.Columns["gridcol_product"].Index)
-            //{
-            //    DataGridViewComboBoxCell dgvcc = new DataGridViewComboBoxCell();
-            //    DataGridViewCell dgvc = new DataGridViewComboBoxExCell();
-            //    dgvcc.AutoComplete = true;
-            //    dgvcc.DataSource = DataSupport.RunDataSet(String.Format("SELECT * FROM productuoms where product = '{0}'", genpickgrid.Rows[e.RowIndex].Cells["gridcol_product"].Value)).Tables[0];
-            //    dgvcc.DisplayMember = "uom";
-            //    dgvcc.ValueMember = "uom";
-            //    dgvc = dgvcc;                
-            //    genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"] = dgvc;
-
-            //    //dgvcc = new DataGridViewComboBoxCell();
-            //    //dgvc = new DataGridViewComboBoxExCell();
-            //    //dgvcc.AutoComplete = true;
-            //    //dgvcc.DataSource = DataSupport.RunDataSet(String.Format("SELECT * FROM productuoms where product = '{0}'", genpickgrid.Rows[e.RowIndex].Cells["gridcol_product"].Value)).Tables[0];
-            //    //dgvcc.DisplayMember = "uom";
-            //    //dgvcc.ValueMember = "uom";
-            //    //dgvc = dgvcc;
-            //    //genpickgrid.Rows[e.RowIndex].Cells["gridcol_whatuom"] = dgvc;
-            //}
-            //else if (e.ColumnIndex == genpickgrid.Columns["gridcol_uom"].Index)
-            //{
-            //    genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Style.BackColor = Color.White;
-            //    if (genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Value == null)
-            //        return;
-
-            //    ComboBox c = new ComboBox();
-
-            //    DataGridViewComboBoxCell dgvcc = new DataGridViewComboBoxCell();
-            //    DataGridViewCell dgvc = new DataGridViewComboBoxExCell();
-            //    dgvcc.AutoComplete = true;
-            //    dgvcc.DataSource = DataSupport.RunDataSet(String.Format("SELECT DISTINCT lot_no FROM LocationProductsLedger where product = '{0}' and uom = '{1}'", genpickgrid.Rows[e.RowIndex].Cells["gridcol_product"].Value, genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Value)).Tables[0];
-            //    dgvcc.DisplayMember = "lot_no";
-            //    dgvcc.ValueMember = "lot_no";
-            //    dgvc = dgvcc;
-            //    genpickgrid.Rows[e.RowIndex].Cells["gridcol_lotno"] = dgvc;
-            //}
-            //else if (e.ColumnIndex == genpickgrid.Columns["gridcol_lotno"].Index)
-            //{
-            //    if (genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Value == null)
-            //        return;
-
-            //    DataGridViewComboBoxCell dgvcc = new DataGridViewComboBoxCell();
-            //    DataGridViewCell dgvc = new DataGridViewComboBoxExCell();
-            //    dgvcc.AutoComplete = true;
-            //    dgvcc.DataSource = DataSupport.RunDataSet(String.Format("SELECT DISTINCT expiry FROM LocationProductsLedger where product = '{0}' and uom = '{1}' and lot_no = '{2}'", genpickgrid.Rows[e.RowIndex].Cells["gridcol_product"].Value, genpickgrid.Rows[e.RowIndex].Cells["gridcol_uom"].Value, genpickgrid.Rows[e.RowIndex].Cells["gridcol_lotno"].Value)).Tables[0];
-            //    dgvcc.DisplayMember = "expiry";
-            //    dgvcc.ValueMember = "expiry";
-            //    dgvc = dgvcc;
-            //    dgvc.Style.BackColor = Color.White;
-            //    dgvc.Style.SelectionBackColor = Color.White;
-            //    genpickgrid.Rows[e.RowIndex].Cells["gridcol_expiry"] = dgvc;               
-            //}            
+            if (e.ColumnIndex == headerGrid.Columns["btn-x"].Index)
+            {
+                process_bin = new List<string>();
+                process_bin.Add(headerGrid.Rows[e.RowIndex].Cells["location"].Value.ToString());
+                process_bin.Add(headerGrid.Rows[e.RowIndex].Cells["product"].Value.ToString());
+                tabcontrol.Tabs["tabgenpick"].Visible = true;
+                tabcontrol.SelectedTabIndex = 4;
+            }
         }
+        #endregion
 
-        private void button2_Click(object sender, EventArgs e)
+        #region Generate Replenishment and Controls
+        private void btnaddprod_Click(object sender, EventArgs e)
         {
             SearchProductStocks sp = new SearchProductStocks();
             sp.Icon = this.Icon;
@@ -176,17 +80,16 @@ namespace WMS
 
             }
         }
+        #endregion
 
-        private void headerGrid_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void btngendocs_Click(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == headerGrid.Columns["btnx"].Index)
-            {
-                process_bin = new List<string>();
-                process_bin.Add(headerGrid.Rows[e.RowIndex].Cells["location"].Value.ToString());
-                process_bin.Add(headerGrid.Rows[e.RowIndex].Cells["product"].Value.ToString());
-                utabControl1.Tabs["genpick"].Visible = true;
-                utabControl1.SelectedTabIndex = 1;
-            }
+
+        }
+
+        private void headerGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+ 
         }
     }
 }

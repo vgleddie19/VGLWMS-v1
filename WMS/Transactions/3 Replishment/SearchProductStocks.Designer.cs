@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.button2 = new System.Windows.Forms.Button();
             this.grid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.gridcolchk = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridcolloc = new DevComponents.DotNetBar.SuperGrid.GridColumn();
@@ -38,28 +36,10 @@
             this.gridcollot = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridcolexpiry = new DevComponents.DotNetBar.SuperGrid.GridColumn();
             this.gridcolqty = new DevComponents.DotNetBar.SuperGrid.GridColumn();
+            this.button2 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Location = new System.Drawing.Point(0, 348);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(940, 154);
-            this.panel1.TabIndex = 0;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.White;
-            this.button2.Location = new System.Drawing.Point(8, 7);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(129, 39);
-            this.button2.TabIndex = 45;
-            this.button2.Text = "Add";
-            this.button2.UseVisualStyleBackColor = false;
             // 
             // grid
             // 
@@ -73,6 +53,7 @@
             // 
             // 
             // 
+            this.grid.PrimaryGrid.ColumnAutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.Fill;
             this.grid.PrimaryGrid.Columns.Add(this.gridcolchk);
             this.grid.PrimaryGrid.Columns.Add(this.gridcolloc);
             this.grid.PrimaryGrid.Columns.Add(this.gridcolprod);
@@ -140,6 +121,27 @@
             this.gridcolqty.Name = "gridcolqty";
             this.gridcolqty.Width = 80;
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(77)))), ((int)(((byte)(75)))));
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.White;
+            this.button2.Location = new System.Drawing.Point(8, 7);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(129, 39);
+            this.button2.TabIndex = 45;
+            this.button2.Text = "&Close";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.button2);
+            this.panel1.Location = new System.Drawing.Point(8, 348);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(826, 53);
+            this.panel1.TabIndex = 0;
+            // 
             // SearchProductStocks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -158,8 +160,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button2;
         private DevComponents.DotNetBar.SuperGrid.SuperGridControl grid;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridcolloc;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridcolprod;
@@ -168,5 +168,7 @@
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridcolexpiry;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridcolqty;
         private DevComponents.DotNetBar.SuperGrid.GridColumn gridcolchk;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel panel1;
     }
 }

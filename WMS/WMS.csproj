@@ -114,10 +114,10 @@
     <Compile Include="SupportForms\ConnectionSettings.Designer.cs">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </Compile>
-    <Compile Include="SupportForms\SearchProductStocks.cs">
+    <Compile Include="Transactions\3 Replishment\SearchProductStocks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SupportForms\SearchProductStocks.Designer.cs">
+    <Compile Include="Transactions\3 Replishment\SearchProductStocks.Designer.cs">
       <DependentUpon>SearchProductStocks.cs</DependentUpon>
     </Compile>
     <Compile Include="SupportForms\StockCheckingWindow.cs">
@@ -517,7 +517,7 @@
     <EmbeddedResource Include="SupportForms\ConnectionSettings.resx">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SupportForms\SearchProductStocks.resx">
+    <EmbeddedResource Include="Transactions\3 Replishment\SearchProductStocks.resx">
       <DependentUpon>SearchProductStocks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SupportForms\StockCheckingWindow.resx">
