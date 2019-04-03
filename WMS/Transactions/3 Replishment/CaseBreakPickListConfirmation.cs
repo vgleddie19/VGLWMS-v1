@@ -7,11 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
-namespace WMS
+namespace WMS.Transactions._3_Replishment
 {
-    public partial class GenerateBinReplenishPicklist : Form
+    public partial class CaseBreakPickListConfirmation : Form
     {
-        public GenerateBinReplenishPicklist()
+        public BinReplishmentWindow parent = null;
+        public CaseBreakPickListConfirmation()
         {
             InitializeComponent();
         }

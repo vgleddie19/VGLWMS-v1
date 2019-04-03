@@ -114,6 +114,12 @@
     <Compile Include="SupportForms\ConnectionSettings.Designer.cs">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions\3 Replishment\CaseBreakPickListConfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\3 Replishment\CaseBreakPickListConfirmation.Designer.cs">
+      <DependentUpon>CaseBreakPickListConfirmation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\3 Replishment\SearchProductStocks.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,12 +138,6 @@
     <Compile Include="Transactions\3 Replishment\BinReplishmentWindow.Designer.cs">
       <DependentUpon>BinReplishmentWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\3 Replishment\NewBinReplishmentDetailWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\3 Replishment\NewBinReplishmentDetailWindow.Designer.cs">
-      <DependentUpon>NewBinReplishmentDetailWindow.cs</DependentUpon>
-    </Compile>
     <Compile Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanningWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,12 +149,6 @@
     </Compile>
     <Compile Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanPicklistWindow.Designer.cs">
       <DependentUpon>DisposeExpiredStocksScanPicklistWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\3 Replishment\GenerateBinReplenishPicklist.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\3 Replishment\GenerateBinReplenishPicklist.Designer.cs">
-      <DependentUpon>GenerateBinReplenishPicklist.cs</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.cs">
       <SubType>Form</SubType>
@@ -517,6 +511,9 @@
     <EmbeddedResource Include="SupportForms\ConnectionSettings.resx">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\3 Replishment\CaseBreakPickListConfirmation.resx">
+      <DependentUpon>CaseBreakPickListConfirmation.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\3 Replishment\SearchProductStocks.resx">
       <DependentUpon>SearchProductStocks.cs</DependentUpon>
     </EmbeddedResource>
@@ -526,17 +523,11 @@
     <EmbeddedResource Include="Transactions\3 Replishment\BinReplishmentWindow.resx">
       <DependentUpon>BinReplishmentWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\3 Replishment\NewBinReplishmentDetailWindow.resx">
-      <DependentUpon>NewBinReplishmentDetailWindow.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanningWindow.resx">
       <DependentUpon>DisposeExpiredStocksScanningWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanPicklistWindow.resx">
       <DependentUpon>DisposeExpiredStocksScanPicklistWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\3 Replishment\GenerateBinReplenishPicklist.resx">
-      <DependentUpon>GenerateBinReplenishPicklist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>

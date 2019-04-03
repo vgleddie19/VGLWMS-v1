@@ -1,6 +1,6 @@
-﻿namespace WMS
+﻿namespace WMS.Transactions._3_Replishment
 {
-    partial class NewPicklistConfirmationWindow
+    partial class CaseBreakPickListConfirmation
     {
         /// <summary>
         /// Required designer variable.
@@ -37,11 +37,11 @@
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.Color.Orange;
-            this.btnCancel.Location = new System.Drawing.Point(697, 104);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancel.Location = new System.Drawing.Point(697, 84);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(92, 73);
-            this.btnCancel.TabIndex = 19;
+            this.btnCancel.TabIndex = 22;
             this.btnCancel.Text = "Back";
             this.btnCancel.UseVisualStyleBackColor = false;
             // 
@@ -50,13 +50,12 @@
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.BackColor = System.Drawing.Color.Lime;
             this.btnPrintPreview.Location = new System.Drawing.Point(697, 11);
-            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(92, 69);
-            this.btnPrintPreview.TabIndex = 18;
+            this.btnPrintPreview.TabIndex = 21;
             this.btnPrintPreview.Text = "Save";
             this.btnPrintPreview.UseVisualStyleBackColor = false;
-            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // webBrowser1
             // 
@@ -64,13 +63,13 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowser1.Location = new System.Drawing.Point(11, 11);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(2);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(13, 13);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(682, 428);
-            this.webBrowser1.TabIndex = 17;
+            this.webBrowser1.TabIndex = 20;
             // 
-            // NewPicklistConfirmationWindow
+            // CaseBreakPickListConfirmation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -78,11 +77,8 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.webBrowser1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.Name = "NewPicklistConfirmationWindow";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Please Confirm...";
-            this.Load += new System.EventHandler(this.NewPicklistConfirmationWindow_Load);
+            this.Name = "CaseBreakPickListConfirmation";
+            this.Text = "CaseBreak - PickList Confirmation";
             this.ResumeLayout(false);
 
         }

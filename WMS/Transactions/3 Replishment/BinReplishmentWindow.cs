@@ -84,7 +84,7 @@ namespace WMS
 
         private void btngendocs_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         private void headerGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
