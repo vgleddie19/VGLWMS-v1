@@ -79,6 +79,7 @@
             this.Controls.Add(this.webBrowser1);
             this.Name = "CaseBreakPickListConfirmation";
             this.Text = "CaseBreak - PickList Confirmation";
+            this.Load += new System.EventHandler(this.CaseBreakPickListConfirmation_Load);
             this.ResumeLayout(false);
 
         }
