@@ -84,7 +84,13 @@ namespace WMS
 
         private void btngendocs_Click(object sender, EventArgs e)
         {
-            
+            CaseBreakPickListConfirmation dialog = new CaseBreakPickListConfirmation();
+            dialog.parent = this;
+            dialog.ShowDialog();
+            //if (dialog.ShowDialog() == DialogResult.OK)
+            //    DialogResult = DialogResult.OK;
+            //if (dialog.btnCancel.Visible == false)
+            //    DialogResult = DialogResult.OK;
         }
 
         private void headerGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)

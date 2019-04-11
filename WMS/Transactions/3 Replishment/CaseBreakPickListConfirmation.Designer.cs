@@ -1,4 +1,4 @@
-﻿namespace WMS.Transactions._3_Replishment
+﻿namespace WMS
 {
     partial class CaseBreakPickListConfirmation
     {
@@ -44,6 +44,7 @@
             this.btnCancel.TabIndex = 22;
             this.btnCancel.Text = "Back";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnPrintPreview
             // 
@@ -56,6 +57,7 @@
             this.btnPrintPreview.TabIndex = 21;
             this.btnPrintPreview.Text = "Save";
             this.btnPrintPreview.UseVisualStyleBackColor = false;
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // webBrowser1
             // 
