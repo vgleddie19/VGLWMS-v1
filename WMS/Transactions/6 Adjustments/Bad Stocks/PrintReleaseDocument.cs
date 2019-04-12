@@ -91,5 +91,14 @@ SELECT * FROM ReleaseTrips WHERE trip_id =(SELECT trip FROM Releases WHERE relea
 
                 ;
         }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            if (btnPrintPreview.Text == "Print")
+                //SaveData();
+            {
+                webBrowser1.ShowPrintPreviewDialog();
+            }
+        }
     }
 }

@@ -45,7 +45,7 @@ public class FAQ
         Utils.SetConnectionDetails();
         dbConnectionSettings = Utils.DBConnection;
         DataSupport oms_dh = new DataSupport("Initial Catalog=" + Utils.DBConnection["OMS"]["DBNAME"] + ";Data Source=" + Utils.DBConnection["OMS"]["SERVER"] + ";User Id = " + Utils.DBConnection["OMS"]["USERNAME"] + "; Password = " + Utils.DBConnection["OMS"]["PASSWORD"]);
-        DataSet set = oms_dh.ExecuteDataSet(@"SELECT * FROM IncomingShipmentRequests WHERE status = 'FOR RECEIVING' AND warehouse = '"+DataSupport.GetWarehouseCode()+"' ;");
+        DataSet set = oms_dh.ExecuteDataSet(@"SELECT shipment_id[Shipment ID],Client[Client Name],authorized_shipper[Authorize Shipper],document_reference[Document Reference #],shippedvia[Shipped Via],convert(varchar, document_reference_date, 107)[Doc. Ref. Date]  FROM IncomingShipmentRequests WHERE status = 'FOR RECEIVING' AND warehouse = '" + DataSupport.GetWarehouseCode()+"' ;");
         return set.Tables[0];
     }
 
@@ -64,7 +64,7 @@ public class FAQ
         Utils.SetConnectionDetails();
         dbConnectionSettings = Utils.DBConnection;
         DataSupport oms_dh = new DataSupport("Initial Catalog=" + Utils.DBConnection["OMS"]["DBNAME"] + ";Data Source=" + Utils.DBConnection["OMS"]["SERVER"] + ";User Id = " + Utils.DBConnection["OMS"]["USERNAME"] + "; Password = " + Utils.DBConnection["OMS"]["PASSWORD"]);
-        DataSet set = oms_dh.ExecuteDataSet(@"SELECT Product, Uom, lot_no, expiry, expected_qty  FROM IncomingShipmentRequestDetails WHERE shipment = '"+shipment_id+"'");
+        DataSet set = oms_dh.ExecuteDataSet(@"SELECT Product, description,Uom, lot_no, expiry, expected_qty  FROM IncomingShipmentRequestDetails i JOIN products p ON p.product_id = i.product WHERE shipment = '"+shipment_id+"'");
         return set.Tables[0];
     }
 
@@ -223,12 +223,13 @@ public class FAQ
         //         [IN_PIECES]
         //        FROM Products L
         //        WHERE product_id = @product";
-        String sql = @"SELECT qty [IN_PIECES]
+        String sql = @"SELECT isnull(qty,0) [IN_PIECES]
                 FROM ProductUOMs 
                 WHERE product = @product AND uom = @uom";
 
         DataTable dt = DataSupport.RunDataSet(sql, "product", product, "uom", uom).Tables[0];
-        result = int.Parse(dt.Rows[0]["IN_PIECES"].ToString()) * qty;
+        if(dt.Rows[0]["IN_PIECES"] != DBNull.Value)
+            result = int.Parse(dt.Rows[0]["IN_PIECES"].ToString()) * qty;
         return result;
     }
 
@@ -250,11 +251,9 @@ public class FAQ
         //                WHERE product= @product
         //                AND available_qty >0 AND expiry_status IS NULL"; //AND expiry > GETDATE()";
         String sql = @"SELECT *
-                        ,CASE WHEN uom='CASES'
+                        ,CASE WHEN uom='CASES' OR uom='CASE' OR uom='CS'
                            THEN (SELECT qty FROM ProductUOMs PU WHERE PU.product = L.product AND PU.uom = L.uom ) * available_qty
-                           WHEN uom='PIECES'
-                           THEN available_qty
-                           WHEN uom='PCS'
+                           WHEN uom='PIECES' OR uom='PCS' OR uom='PIECE'
                            THEN available_qty
                          END
                          [IN_PIECES]
@@ -263,7 +262,9 @@ public class FAQ
                         AND available_qty >0 AND expiry_status IS NULL"; //AND expiry > GETDATE()";
         DataTable dt = DataSupport.RunDataSet(sql, "product", product_id).Tables[0];
         foreach (DataRow row in dt.Rows)
-            result += int.Parse(row["IN_PIECES"].ToString());
+            if(row["IN_PIECES"] != DBNull .Value)
+                result += int.Parse(row["IN_PIECES"].ToString());
+        
         return result;
     }
 

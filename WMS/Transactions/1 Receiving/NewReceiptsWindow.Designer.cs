@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label4 = new System.Windows.Forms.Label();
             this.btnPrintPreview = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -35,6 +36,12 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.headerGrid = new System.Windows.Forms.DataGridView();
+            this.txtReferenceDocument = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.txtReceivedFrom = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnLoad = new System.Windows.Forms.Button();
+            this.cboReceivedBy = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.product_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,12 +49,6 @@
             this.lot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.txtReferenceDocument = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtReceivedFrom = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnLoad = new System.Windows.Forms.Button();
-            this.cboReceivedBy = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +65,7 @@
             // 
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPrintPreview.BackColor = System.Drawing.Color.Lime;
-            this.btnPrintPreview.Location = new System.Drawing.Point(17, 394);
+            this.btnPrintPreview.Location = new System.Drawing.Point(17, 448);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(180, 22);
@@ -120,11 +121,20 @@
             // headerGrid
             // 
             this.headerGrid.AllowUserToAddRows = false;
-            this.headerGrid.AllowUserToDeleteRows = false;
             this.headerGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.headerGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.headerGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.headerGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.headerGrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.headerGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.headerGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.product_id,
@@ -137,54 +147,12 @@
             this.headerGrid.Location = new System.Drawing.Point(19, 101);
             this.headerGrid.Margin = new System.Windows.Forms.Padding(2);
             this.headerGrid.Name = "headerGrid";
-            this.headerGrid.ReadOnly = true;
             this.headerGrid.RowTemplate.Height = 28;
             this.headerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.headerGrid.Size = new System.Drawing.Size(677, 289);
+            this.headerGrid.ShowRowErrors = false;
+            this.headerGrid.Size = new System.Drawing.Size(996, 343);
             this.headerGrid.TabIndex = 22;
             this.headerGrid.TabStop = false;
-            // 
-            // product_id
-            // 
-            this.product_id.HeaderText = "ID";
-            this.product_id.Name = "product_id";
-            this.product_id.ReadOnly = true;
-            // 
-            // product
-            // 
-            this.product.HeaderText = "Product";
-            this.product.Name = "product";
-            this.product.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // uom
-            // 
-            this.uom.HeaderText = "UOM";
-            this.uom.Name = "uom";
-            this.uom.ReadOnly = true;
-            // 
-            // lot
-            // 
-            this.lot.HeaderText = "Lot #";
-            this.lot.Name = "lot";
-            this.lot.ReadOnly = true;
-            // 
-            // expiry
-            // 
-            this.expiry.HeaderText = "Expiry";
-            this.expiry.Name = "expiry";
-            this.expiry.ReadOnly = true;
-            // 
-            // remarks
-            // 
-            this.remarks.HeaderText = "Remarks";
-            this.remarks.Name = "remarks";
-            this.remarks.ReadOnly = true;
             // 
             // txtReferenceDocument
             // 
@@ -246,11 +214,51 @@
             this.cboReceivedBy.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cboReceivedBy.TabIndex = 30;
             // 
+            // product_id
+            // 
+            this.product_id.HeaderText = "ID";
+            this.product_id.Name = "product_id";
+            // 
+            // product
+            // 
+            this.product.HeaderText = "Product Description";
+            this.product.Name = "product";
+            this.product.Width = 300;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Width = 80;
+            // 
+            // uom
+            // 
+            this.uom.HeaderText = "UOM";
+            this.uom.Name = "uom";
+            this.uom.Width = 80;
+            // 
+            // lot
+            // 
+            this.lot.HeaderText = "Lot #";
+            this.lot.Name = "lot";
+            // 
+            // expiry
+            // 
+            this.expiry.HeaderText = "Expiry";
+            this.expiry.Name = "expiry";
+            this.expiry.Width = 80;
+            // 
+            // remarks
+            // 
+            this.remarks.HeaderText = "Remarks";
+            this.remarks.Name = "remarks";
+            this.remarks.Width = 200;
+            // 
             // NewReceiptsWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(713, 424);
+            this.ClientSize = new System.Drawing.Size(1032, 478);
             this.Controls.Add(this.cboReceivedBy);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.label4);
@@ -285,6 +293,12 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnAdd;
         public System.Windows.Forms.DataGridView headerGrid;
+        public System.Windows.Forms.TextBox txtReferenceDocument;
+        private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.TextBox txtReceivedFrom;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnLoad;
+        public DevComponents.DotNetBar.Controls.ComboBoxEx cboReceivedBy;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn product;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
@@ -292,11 +306,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lot;
         private System.Windows.Forms.DataGridViewTextBoxColumn expiry;
         private System.Windows.Forms.DataGridViewTextBoxColumn remarks;
-        public System.Windows.Forms.TextBox txtReferenceDocument;
-        private System.Windows.Forms.Label label3;
-        public System.Windows.Forms.TextBox txtReceivedFrom;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnLoad;
-        public DevComponents.DotNetBar.Controls.ComboBoxEx cboReceivedBy;
     }
 }

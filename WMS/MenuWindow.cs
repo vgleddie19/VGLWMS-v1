@@ -39,8 +39,42 @@ namespace WMS
             }
 
         }
-
         private void LoadInventory()
+        {
+            if (comboBox1.Text == "Items per Location")
+            {
+                DataTable dt = DataSupport.RunDataSet(@"SELECT Location, Product + ' - ' + (SELECT description FROM Products WHERE product = product_id)[Product],  Uom, 
+                        SUM(Qty) [Physical Qty], SUM(reserved_qty)[Reserved Qty], SUM(to_be_picked_qty)[For Picking Qty], SUM(available_qty) [Available Qty]
+                        FROM LocationProductsLedger
+                        WHERE qty > 0
+                        GROUP BY location, product, uom").Tables[0];
+
+
+                dataGridView1.DataSource = dt;
+                dataGridView1.Columns["Physical Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.Columns["Reserved Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.Columns["For Picking Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dataGridView1.Columns["Available Qty"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            }
+
+            if (comboBox1.Text == "Detailed Items per Location")
+            {
+                DataTable dt = DataSupport.RunDataSet(@"SELECT Location, Product + ' - ' + (SELECT description FROM Products WHERE product = product_id)[Product],  Uom, lot_no[Lot No], Expiry, 
+                        Qty [Physical Qty], reserved_qty[Reserved Qty], to_be_picked_qty[For Picking Qty]
+                        FROM LocationProductsLedger
+                        WHERE qty > 0").Tables[0];
+                foreach (DataRow row in dt.Rows)
+                {
+                    row["Expiry"] = DateTime.Parse(row["Expiry"].ToString()).ToShortDateString();
+                }
+
+                dataGridView1.DataSource = dt;
+            }
+
+
+
+        }
+        private void LoadInventorySuperGrid()
         {
             Products = Utils.BuildIndex("SELECT * FROM [Products]", "product_id");
             GridPanel manipanel = grid.PrimaryGrid;
@@ -336,6 +370,13 @@ namespace WMS
                 StocksAgeReport dialog = new StocksAgeReport();
                 dialog.ShowDialog();
             }
+
+            if (cmbReports.Text == "ACTUAL STOCK REPORT")
+            {
+                ActualStockReport dialog = new ActualStockReport();
+                dialog.ShowDialog();
+            }
+
         }
 
         private void btnStockCheck_Click(object sender, EventArgs e)
@@ -367,5 +408,14 @@ namespace WMS
             LoadInventory();
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BinMasterFile dialog = new BinMasterFile();
+            dialog.ShowIcon = false;
+            dialog.ShowInTaskbar = false;
+            dialog.Icon = this.Icon;
+            dialog.ShowDialog();
+        }
     }
 }

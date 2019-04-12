@@ -34,7 +34,7 @@ namespace WMS
                 if (!FAQ.DoesReleasingExist(txtBarcode.Text))
                 {
 
-                    String release_id = DataSupport.GetNextMenuCode("RL", "RL");
+                    String release_id = DataSupport.GetNextMenuCodeInt("RL").ToString();
                     String trip_id = txtBarcode.Text;
                     String now = DateTime.Now.ToString();
                     String sql = "";

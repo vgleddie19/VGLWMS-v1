@@ -13,6 +13,7 @@ namespace WMS
     public partial class CaseBreakPickListConfirmation : Form
     {
         public BinReplishmentWindow parent = null;
+        public string reportname = null;
         public CaseBreakPickListConfirmation()
         {
             InitializeComponent();
@@ -143,14 +144,21 @@ namespace WMS
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
             if (btnPrintPreview.Text != "Print")
-                SaveData();
+            {
+                if(reportname == "picklist")
+                    SavePicklistData();
+                else if(reportname == "casebreak")
+                    SaveCaseBreakData();
+                else if (reportname == "putaway")
+                    SavePutAwayData();
+            }
             else
             {
                 webBrowser1.ShowPrintPreviewDialog();
             }
         }
 
-        private void SaveData()
+        private void SavePicklistData()
         {
             String id = DataSupport.GetNextMenuCodeInt("PL");
 
@@ -161,11 +169,11 @@ namespace WMS
                , "status", "TO BE PICKED"
                 ));
 
-            foreach (DataGridViewRow row in parent.picklist_grid.Rows)
+            foreach (DataGridViewRow row in parent.genpickgrid.Rows)
             {
                 sql += DataSupport.GetInsert("CaseBreakDetails", Utils.ToDict(
                       "picklist", id
-                     , "line", parent.picklist_grid.Rows.IndexOf(row) + 1
+                     , "line", parent.genpickgrid.Rows.IndexOf(row) + 1
                      , "order_id", row.Cells["order_id"].Value.ToString()
                      , "product", row.Cells["product"].Value.ToString()
                      , "qty", row.Cells["qty"].Value.ToString()
@@ -176,16 +184,14 @@ namespace WMS
                     ));
             }
 
-            foreach (DataGridViewRow row in parent. picklist_grid.Rows)
+            foreach (DataGridViewRow row in parent.genpickgrid.Rows)
             {
                 sql += " UPDATE LocationProductsLedger SET to_be_picked_qty = to_be_picked_qty + " + row.Cells["qty"].Value.ToString() + " WHERE location='" + row.Cells["location"].Value.ToString() + "' AND product='" + row.Cells["product"].Value.ToString() + "' AND uom='" + row.Cells["uom"].Value.ToString() + "' AND lot_no='" + row.Cells["lot_no"].Value.ToString() + "' AND expiry='" + row.Cells["expiry"].Value.ToString() + "'; ";
             }
-            foreach (DataGridViewRow row in parent.picklist_grid.Rows)
+            foreach (DataGridViewRow row in parent.genpickgrid.Rows)
             {
                 sql += " UPDATE ReleaseOrders SET status='FOR PICKING' WHERE order_id='" + row.Cells["order_id"].Value.ToString() + "'; ";
             }
-
-
 
             DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);
             MessageBox.Show("Success");
@@ -193,6 +199,16 @@ namespace WMS
             webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", id);
             btnPrintPreview.Text = "Print";
             btnCancel.Visible = false;
+        }
+
+        private void SaveCaseBreakData()
+        {
+
+        }
+
+        private void SavePutAwayData()
+        {
+
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

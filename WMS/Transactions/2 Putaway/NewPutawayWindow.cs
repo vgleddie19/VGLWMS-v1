@@ -78,8 +78,8 @@ namespace WMS
             dialog.parent = this;
             if (dialog.ShowDialog() == DialogResult.OK)
                 DialogResult = DialogResult.OK;
-            if(dialog.btnCancel.Visible == false)
-                DialogResult = DialogResult.OK;
+            //if(dialog.btnCancel.Visible == false)
+            //    DialogResult = DialogResult.OK;
         }
 
         private void NewPutawayWindow_Load(object sender, EventArgs e)

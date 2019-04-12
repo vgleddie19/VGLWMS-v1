@@ -154,7 +154,6 @@ namespace WMS
             }
         }
 
-
         private void SaveData()
         {
             String id = DataSupport.GetNextMenuCodeInt("PL");
@@ -200,6 +199,5 @@ namespace WMS
             btnPrintPreview.Text = "Print";
             btnCancel.Visible = false;
         }
-
     }
 }

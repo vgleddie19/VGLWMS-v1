@@ -63,7 +63,7 @@ namespace WMS
 
                 // Update TMS
                 {
-                    DataSupport tms_dh = new DataSupport(String.Format(@"Initial Catalog={0};Data Source= {1};User Id = {2}; Password = {3}", Utils.DBConnection["TMS"]["DBNAME"], Utils.DBConnection["TMS"]["SERVER"], Utils.DBConnection["TMS"]["USERNAME"], Utils.DBConnection["TMS"]["PASSWORD"]));
+                    DataSupport tms_dh = new DataSupport(String.Format("Initial Catalog={0};Data Source= {1};User Id = {2}; Password = {3}", Utils.DBConnection["TMS"]["DBNAME"], Utils.DBConnection["TMS"]["SERVER"], Utils.DBConnection["TMS"]["USERNAME"], Utils.DBConnection["TMS"]["PASSWORD"]));
 
                     String sql = "";
                     foreach (DataRow order_row in ordersDT.Rows)
@@ -88,8 +88,6 @@ namespace WMS
 
                 }
 
-
-
                 PrintReleaseDocument dialog = new PrintReleaseDocument();
                 dialog.release_id = release_id;
                 dialog.ShowDialog();
@@ -106,11 +104,8 @@ namespace WMS
 
         private void ReleasesWindow_Load(object sender, EventArgs e)
         {
-
             release_id = FAQ.GetReleaseID(txtTrip.Text);
-            LoadData();
-
-            
+            LoadData();            
         }
 
         

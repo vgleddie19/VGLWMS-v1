@@ -117,53 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="declare_physical_count_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\declare_physical_count_report.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="resolution_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\resolution_report.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="picklist_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\picklist_report.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="pc_calendar" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pc_calendar.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="wms_badge" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\wms_badge.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="incomplete_picklist_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\incomplete_picklist_report.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="releasing_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\releasing_report.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="order_cancel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\order_cancel.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="putaway_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\putaway_report.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="dispose_picklist_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\dispose_picklist_report.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="receiving_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\receiving_report.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="bad_stock_declaration_form" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\bad_stock_declaration_form.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="physical_count_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\physical_count_report.html;System.String, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="secrecy-icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\secrecy-icon.png;System.Drawing.Bitmap, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="case_break_report" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resources\case_break_report.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
-  <data name="actualstockreport" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\actualstockreport.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
-  </data>
+  <metadata name="bin.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="product.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="uom.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="min.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="max.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="update.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

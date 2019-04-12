@@ -36,31 +36,35 @@
             // 
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.BackColor = System.Drawing.Color.Lime;
-            this.btnPrintPreview.Location = new System.Drawing.Point(680, 60);
+            this.btnPrintPreview.Location = new System.Drawing.Point(453, 39);
+            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(138, 106);
+            this.btnPrintPreview.Size = new System.Drawing.Size(92, 69);
             this.btnPrintPreview.TabIndex = 21;
             this.btnPrintPreview.Text = "Print";
             this.btnPrintPreview.UseVisualStyleBackColor = false;
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
             // webBrowser1
             // 
             this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(26, 44);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Location = new System.Drawing.Point(17, 29);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(13, 13);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(625, 544);
+            this.webBrowser1.Size = new System.Drawing.Size(417, 354);
             this.webBrowser1.TabIndex = 20;
             // 
             // PrintReleaseDocument
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 625);
+            this.ClientSize = new System.Drawing.Size(570, 406);
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.webBrowser1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "PrintReleaseDocument";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Print Release Document...";

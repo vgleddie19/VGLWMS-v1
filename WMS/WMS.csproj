@@ -96,6 +96,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MasterFile\addnewbin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterFile\addnewbin.Designer.cs">
+      <DependentUpon>addnewbin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterFile\BinMasterFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterFile\BinMasterFile.Designer.cs">
+      <DependentUpon>BinMasterFile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ActualStockReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\ActualStockReport.Designer.cs">
+      <DependentUpon>ActualStockReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="SupportForms\AuthenticationForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -502,6 +520,15 @@
     <Compile Include="Utilities\UISetter.cs" />
     <Compile Include="Utilities\Utils.cs" />
     <Compile Include="Utilities\WebControlSupport.cs" />
+    <EmbeddedResource Include="MasterFile\addnewbin.resx">
+      <DependentUpon>addnewbin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterFile\BinMasterFile.resx">
+      <DependentUpon>BinMasterFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\ActualStockReport.resx">
+      <DependentUpon>ActualStockReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SupportForms\AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -756,6 +783,7 @@
   <ItemGroup>
     <Content Include="db_create.sql" />
     <None Include="Resources\secrecy-icon.png" />
+    <Content Include="Resources\actualstockreport.html" />
     <Content Include="Resources\case_break_report.html" />
     <Content Include="WMS.ico" />
     <None Include="Resources\wms_badge.png" />
@@ -766,7 +794,7 @@
     <None Include="Resources\incomplete_picklist_report.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="MasterFile\" />
+    <Folder Include="Crystal Report\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VGLHelper\VGLHelper.csproj">

@@ -11,24 +11,37 @@
                 border-collapse:collapse;
                 border: 1px solid black;
              }
+             P{
+                 font-family:Courier New;
+                 font-size:12px;
+                 font-weight:bold;
+             }
          </style>
     </head>
-	<body> 
-		<strong>Receiving Report #</strong> (issued on save) <br/>
+    <body>
+        <strong>Receiving Report #</strong> (issued on save) <br />
         [run_datetime]
-         <br/> <br/>
-		
-		Received From: [received_from] <br/>  
+        <br /> <br />
+
+        Received From: [received_from] <br />
         Received On: [received_on] <br />
         Reference Document: [reference_document] <br />
 
         [header_table]
 
-        <br/>
         <br />
-        
-        <strong>RECEIVED BY</strong>  <br/> <br/>
+        <br />
+
+        <strong>RECEIVED BY</strong>  <br /> <br />
+
 
         <div style="display:inline-block; border-top: 2px solid black; width:50px;">[received_by]</div>
-	</body>
+
+        <br /> <br />
+        <strong>PRINT FULLNAME AND SIGNATURE AND DATE</strong>  <br /> <br />
+
+        <P>DELIVERED BY</P>  <br /> <br />
+        <div style="display:inline-block; border-top: 2px solid black; width:50px;">                 </div>
+
+    </body>
 </html>

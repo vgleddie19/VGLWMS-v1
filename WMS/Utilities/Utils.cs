@@ -217,6 +217,9 @@ public static class Utils
                 case "WMS":
                     conn.Add("WMS", details);
                     break;
+                case "TMS":
+                    conn.Add("TMS", details);
+                    break;
                 case "ABBOT":
                     conn.Add("ABBOT", details);
                     break;

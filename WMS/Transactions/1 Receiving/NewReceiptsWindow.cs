@@ -79,8 +79,8 @@ namespace WMS
                 // Load Header
                 var header_row = dialog.dataGridView1.SelectedRows[0];
 
-                txtReceivedFrom.Text = header_row.Cells["client"].Value.ToString();
-                txtReferenceDocument.Text = header_row.Cells["document_reference"].Value.ToString();
+                txtReceivedFrom.Text = header_row.Cells["Client Name"].Value.ToString();
+                txtReferenceDocument.Text = header_row.Cells["Document Reference #"].Value.ToString();
 
 
                 // Load Details
@@ -89,10 +89,11 @@ namespace WMS
 
                     foreach (DataRow row in detail_dt.Rows)
                     {
-                        headerGrid.Rows.Add(row["Product"], row["Product"], row["expected_qty"], row["Uom"], row["lot_no"], row["expiry"], "");
+                        headerGrid.Rows.Add(row["Product"], row["description"], row["expected_qty"], row["Uom"], row["lot_no"], row["expiry"], "");
                     }
                 }
 
+                //headerGrid
                 oms_shipment_id = dialog.dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
             }
         }

@@ -86,7 +86,19 @@ namespace WMS
         {
             CaseBreakPickListConfirmation dialog = new CaseBreakPickListConfirmation();
             dialog.parent = this;
-            dialog.ShowDialog();
+            dialog.reportname = "picklist";
+            dialog.Show();
+
+            CaseBreakPickListConfirmation dialog1  = new CaseBreakPickListConfirmation();
+            dialog1.parent = this;
+            dialog1.reportname = "casebreak";
+            dialog1.Show();
+
+            //CaseBreakPickListConfirmation dialog2 = new CaseBreakPickListConfirmation();
+            //dialog2.parent = this;
+            //dialog2.reportname = "putaway";
+            //dialog2.ShowDialog();
+
             //if (dialog.ShowDialog() == DialogResult.OK)
             //    DialogResult = DialogResult.OK;
             //if (dialog.btnCancel.Visible == false)

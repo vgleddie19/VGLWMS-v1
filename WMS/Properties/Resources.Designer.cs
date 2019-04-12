@@ -76,11 +76,38 @@ namespace WMS.Properties {
         ///             }
         ///         &lt;/style&gt;
         ///    &lt;/head&gt;
+        ///    &lt;body&gt;
+        ///        &lt;strong&gt;ACTUAL STOCKS REPORT&lt;/strong&gt;&lt;br /&gt;
+        ///        [run_datetime]
+        ///       
+        ///        &lt;br /&gt; &lt;br [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string actualstockreport {
+            get {
+                return ResourceManager.GetString("actualstockreport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///    &lt;head&gt;
+        ///         &lt;style type=&quot;text/css&quot;&gt;
+        ///             body {
+        ///                font-family:Arial;
+        ///                line-height:15px;
+        ///                font-size:12px;
+        ///             }
+        ///             .table, .table tr td, .table tr th {
+        ///                border-collapse:collapse;
+        ///                border: 1px solid black;
+        ///             }
+        ///         &lt;/style&gt;
+        ///    &lt;/head&gt;
         ///	&lt;body&gt; 
         ///		&lt;strong&gt;Bad Stock Declaration #&lt;/strong&gt; (issued on save) 
         ///		&lt;br/&gt;
-        ///		&lt;strong&gt;Declared by:&lt;/strong&gt; [declared_by]
-        ///		&lt;br/&gt; [rest of string was truncated]&quot;;.
+        ///		&lt;strong&gt;Declared by:&lt;/strong&gt; [de [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string bad_stock_declaration_form {
             get {
@@ -104,13 +131,10 @@ namespace WMS.Properties {
         ///             }
         ///         &lt;/style&gt;
         ///    &lt;/head&gt;
-        ///	&lt;body&gt; 
-        ///		&lt;strong&gt;Case Break #&lt;/strong&gt; (issued on save) &lt;br/&gt;
+        ///    &lt;body&gt;
+        ///        &lt;strong&gt;PickList #&lt;/strong&gt; (issued on save) &lt;br /&gt;
         ///        [run_datetime]
-        ///         &lt;br/&gt; &lt;br/&gt;
-        ///		 &lt;h1&gt;ORDERS&lt;/h1&gt;
-        ///		 
-        /// [rest of string was truncated]&quot;;.
+        ///        &lt;br /&gt; &lt;br  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string case_break_report {
             get {
@@ -138,8 +162,7 @@ namespace WMS.Properties {
         ///		&lt;strong&gt;Count Sheet #&lt;/strong&gt; (issued on save) 
         ///		&lt;br/&gt;
         ///		&lt;strong&gt;Counted by:&lt;/strong&gt; [counted_by]
-        ///		&lt;br/&gt;
-        ///		&lt;strong&gt;C [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string declare_physical_count_report {
             get {
@@ -166,9 +189,7 @@ namespace WMS.Properties {
         ///	&lt;body&gt; 
         ///		&lt;strong&gt;Diposal Pick List #&lt;/strong&gt; (issued on save) &lt;br/&gt;
         ///        [run_datetime]
-        ///         &lt;br/&gt; &lt;br/&gt;
-        ///		
-        ///		 &lt;h1&gt;DISPOS [rest of string was truncated]&quot;;.
+        ///         &lt;br/&gt; &lt;br/ [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string dispose_picklist_report {
             get {
@@ -196,7 +217,7 @@ namespace WMS.Properties {
         ///		&lt;strong&gt;Pick List #&lt;/strong&gt; (issued on save) &lt;br/&gt;
         ///        [run_datetime]
         ///         &lt;br/&gt; &lt;br/&gt;
-        ///		 &lt;h1&gt;PRODUCTS PICKED&lt;/ [rest of string was truncated]&quot;;.
+        ///		 &lt;h [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string incomplete_picklist_report {
             get {
@@ -223,7 +244,7 @@ namespace WMS.Properties {
         ///	&lt;body&gt; 
         ///		&lt;strong&gt;  Order Cancellation #&lt;/strong&gt; (issued on save)  &lt;br/&gt;
         ///        Cancelled On: [cancelled_on]
-        ///         &lt;br/&gt; &lt;br/ [rest of string was truncated]&quot;;.
+        ///  [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string order_cancel {
             get {
@@ -253,8 +274,7 @@ namespace WMS.Properties {
         ///         &lt;br/&gt; &lt;br/&gt;
         ///		
         ///
-        ///        [header_table]
-        /// [rest of string was truncated]&quot;;.
+        ///   [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string pc_calendar {
             get {
@@ -282,8 +302,7 @@ namespace WMS.Properties {
         ///		&lt;strong&gt;Count Sheet #&lt;/strong&gt; (issued on save) 
         ///		&lt;br/&gt;
         ///		&lt;strong&gt;Counted by:&lt;/strong&gt; [counted_by]
-        ///		&lt;br/&gt;
-        ///        &lt;st [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string physical_count_report {
             get {
@@ -311,9 +330,7 @@ namespace WMS.Properties {
         ///		&lt;strong&gt;Pick List #&lt;/strong&gt; (issued on save) &lt;br/&gt;
         ///        [run_datetime]
         ///         &lt;br/&gt; &lt;br/&gt;
-        ///		 &lt;h1&gt;ORDERS&lt;/h1&gt;
-        ///		 
-        ///	 [rest of string was truncated]&quot;;.
+        ///		 &lt;h [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string picklist_report {
             get {
@@ -341,7 +358,7 @@ namespace WMS.Properties {
         ///		&lt;strong&gt;Putaway List #&lt;/strong&gt; (issued on save) &lt;br/&gt;
         ///        [run_datetime]
         ///         &lt;br/&gt; &lt;br/&gt;
-        ///        Container ID: [rest of string was truncated]&quot;;.
+        ///   [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string putaway_report {
             get {
@@ -368,9 +385,7 @@ namespace WMS.Properties {
         ///	&lt;body&gt; 
         ///		&lt;strong&gt;Receiving Report #&lt;/strong&gt; (issued on save) &lt;br/&gt;
         ///        [run_datetime]
-        ///         &lt;br/&gt; &lt;br/&gt;
-        ///		
-        ///		Received Fro [rest of string was truncated]&quot;;.
+        ///         &lt;br/&gt; &lt;br/&gt; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string receiving_report {
             get {
@@ -397,9 +412,7 @@ namespace WMS.Properties {
         ///	&lt;body&gt; 
         ///		&lt;strong&gt;Warehouse Releasing Report #&lt;/strong&gt; (issued on save) &lt;br/&gt;
         ///        [run_datetime]
-        ///         &lt;br/&gt; &lt;br/&gt;
-        ///		
-        ///     [rest of string was truncated]&quot;;.
+        ///         &lt; [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string releasing_report {
             get {
@@ -426,7 +439,7 @@ namespace WMS.Properties {
         ///	&lt;body&gt; 
         ///		&lt;strong&gt; [variance] Resolution #&lt;/strong&gt; (issued on save)  &lt;br/&gt;
         ///        Resolved On: [run_datetime]
-        ///         &lt;br/&gt; &lt;br [rest of string was truncated]&quot;;.
+        /// [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string resolution_report {
             get {
