@@ -138,11 +138,7 @@ namespace WMS
                     insDT.Rows.Add(parent.cboContainer.SelectedValue.ToStringNull(), row.Cells["product"].Value, row.Cells["Quantity"].Value, row.Cells["uom"].Value, row.Cells["lot"].Value, row.Cells["expiry"].Value);
                 sql += LedgerSupport.UpdateLocationProductsLedger(insDT);
 
-            }
-
-
-
-           
+            }         
 
             try
             {

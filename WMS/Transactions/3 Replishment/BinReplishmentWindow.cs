@@ -27,7 +27,7 @@ namespace WMS
 
         private void BinReplishmentWindow_Load(object sender, EventArgs e)
         {
-            DataTable dt = DataSupport.RunDataSet("SELECT [Location], [Product], [uom], [lot_no], convert(varchar, [expiry], 11)[expiry], [actualqty], [min_qty], [max_qty], [qty_to_replenished], [status], 'REPLENISH THIS BIN'[btn] FROM binproductledger").Tables[0];
+            DataTable dt = DataSupport.RunDataSet("SELECT [Location], [Product], [uom], [lot_no], convert(varchar, [expiry], 11)[expiry], [actualqty], [min_qty], [max_qty], [qty_to_replenished], [status] FROM binproductledger").Tables[0];
             headerGrid.DataSource = dt;
             headerGrid.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             headerGrid.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
@@ -42,7 +42,7 @@ namespace WMS
             headerGrid.Columns["qty_to_replenished"].HeaderText = "Qty. to Replenished";
             headerGrid.Columns["status"].HeaderText = "Status";
 
-            Etcetera.modify_coltype(headerGrid, "button", DataGridViewAutoSizeColumnMode.DisplayedCells, 200, "btn", "Action",headerGrid.Columns.Count-1);
+            //Etcetera.modify_coltype(headerGrid, "button", DataGridViewAutoSizeColumnMode.DisplayedCells, 200, "btn", "Action",headerGrid.Columns.Count-1);
             UISetter.SetLabelAppearance(label1);
         }
 
@@ -54,31 +54,17 @@ namespace WMS
         }
         #endregion
 
-        #region DashBoardGrid and Controls
-        private void headerGrid_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.ColumnIndex == headerGrid.Columns["btn-x"].Index)
-            {
-                process_bin = new List<string>();
-                process_bin.Add(headerGrid.Rows[e.RowIndex].Cells["location"].Value.ToString());
-                process_bin.Add(headerGrid.Rows[e.RowIndex].Cells["product"].Value.ToString());
-                tabcontrol.Tabs["tabgenpick"].Visible = true;
-                tabcontrol.SelectedTabIndex = 4;
-            }
-        }
-        #endregion
-
         #region Generate Replenishment and Controls
         private void btnaddprod_Click(object sender, EventArgs e)
         {
-            SearchProductStocks sp = new SearchProductStocks();
-            sp.Icon = this.Icon;
-            sp.StartPosition = FormStartPosition.CenterScreen;
-            sp.parentform = this;
-            if (sp.ShowDialog() == DialogResult.OK)
-            {
+            //SearchProductStocks sp = new SearchProductStocks();
+            //sp.Icon = this.Icon;
+            //sp.StartPosition = FormStartPosition.CenterScreen;
+            //sp.parentform = this;
+            //if (sp.ShowDialog() == DialogResult.OK)
+            //{
 
-            }
+            //}
         }
         #endregion
 
@@ -86,13 +72,19 @@ namespace WMS
         {
             CaseBreakPickListConfirmation dialog = new CaseBreakPickListConfirmation();
             dialog.parent = this;
-            dialog.reportname = "picklist";
             dialog.Show();
 
-            CaseBreakPickListConfirmation dialog1  = new CaseBreakPickListConfirmation();
-            dialog1.parent = this;
-            dialog1.reportname = "casebreak";
-            dialog1.Show();
+            //CaseBreakPickListConfirmation dialog1  = new CaseBreakPickListConfirmation();
+            //dialog1.parent = this;
+            //dialog1.Text = "Case Break Confirmation";
+            //dialog1.reportname = "casebreak";
+            //dialog1.Show();
+
+            //CaseBreakPickListConfirmation dialog2 = new CaseBreakPickListConfirmation();
+            //dialog2.parent = this;
+            //dialog2.Text = "BIN Put-Away Confirmation";
+            //dialog2.reportname = "putaway";
+            //dialog2.Show();
 
             //CaseBreakPickListConfirmation dialog2 = new CaseBreakPickListConfirmation();
             //dialog2.parent = this;
@@ -108,6 +100,22 @@ namespace WMS
         private void headerGrid_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
  
+        }
+
+        private void btnNewPutaway_Click(object sender, EventArgs e)
+        {
+            foreach (DataRow dRow in FAQ.Whatareproductstobereplenish().Rows)
+            {
+                genpickgrid.Rows.Add(dRow["binid"],dRow["location"], dRow["product"], dRow["uom"], dRow["lot"], dRow["expiry"], dRow["qty"]);
+                if(dRow["uom"].ToString() == "CS" || dRow["uom"].ToString() == "CASES")
+                {
+                    gencasebreakgrid.Rows.Add(dRow["binid"],dRow["location"], dRow["product"], dRow["uom"], dRow["lot"], dRow["expiry"], dRow["qty"]);
+                }
+            }
+
+            process_bin = new List<string>();
+            tabcontrol.Tabs["tabgenpick"].Visible = true;
+            tabcontrol.SelectedTabIndex = 4;
         }
     }
 }

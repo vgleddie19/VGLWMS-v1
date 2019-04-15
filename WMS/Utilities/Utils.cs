@@ -34,6 +34,13 @@ public static class Utils
         { index[Row[ColumnName].ToString()] = Row; }
         return index;
     }
+    public static Dictionary<String, DataRow> BuildIndex_DataTable(DataTable table, String ColumnName)
+    {
+        Dictionary<String, DataRow> index = new Dictionary<String, DataRow>(table.Rows.Count);
+        foreach (DataRow Row in table.Rows)
+        { index[Row[ColumnName].ToString()] = Row; }
+        return index;
+    }
     public static Dictionary<String, DataRow> BuildIndex(String SQLCommand, List<String> ColumnName, String seperator)
     {
         DataTable table = DataSupport.RunDataSet(SQLCommand).Tables[0];

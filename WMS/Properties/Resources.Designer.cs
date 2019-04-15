@@ -132,9 +132,60 @@ namespace WMS.Properties {
         ///         &lt;/style&gt;
         ///    &lt;/head&gt;
         ///    &lt;body&gt;
-        ///        &lt;strong&gt;PickList #&lt;/strong&gt; (issued on save) &lt;br /&gt;
-        ///        [run_datetime]
-        ///        &lt;br /&gt; &lt;br  [rest of string was truncated]&quot;;.
+        ///        &lt;strong&gt;PICKLIST #&lt;/strong&gt; (issued on save) &lt;br /&gt;
+        ///        &lt;strong&gt;CASEBREAK #&lt;/strong&gt; (issue [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string case_break_picklist {
+            get {
+                return ResourceManager.GetString("case_break_picklist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///    &lt;head&gt;
+        ///         &lt;style type=&quot;text/css&quot;&gt;
+        ///             body {
+        ///                font-family:Arial;
+        ///                line-height:15px;
+        ///                font-size:12px;
+        ///             }
+        ///             .table, .table tr td, .table tr th {
+        ///                border-collapse:collapse;
+        ///                border: 1px solid black;
+        ///             }
+        ///         &lt;/style&gt;
+        ///    &lt;/head&gt;
+        ///    &lt;body&gt;
+        ///        &lt;strong&gt;PUTAWAY #&lt;/strong&gt; (issued on save) &lt;br /&gt;
+        ///        &lt;strong&gt;PICKLIST #&lt;/strong&gt; (issued  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string case_break_putaway {
+            get {
+                return ResourceManager.GetString("case_break_putaway", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///    &lt;head&gt;
+        ///         &lt;style type=&quot;text/css&quot;&gt;
+        ///             body {
+        ///                font-family:Arial;
+        ///                line-height:15px;
+        ///                font-size:12px;
+        ///             }
+        ///             .table, .table tr td, .table tr th {
+        ///                border-collapse:collapse;
+        ///                border: 1px solid black;
+        ///             }
+        ///         &lt;/style&gt;
+        ///    &lt;/head&gt;
+        ///    &lt;body&gt;
+        ///        &lt;strong&gt;CASE BREAK #&lt;/strong&gt; (issued on save) &lt;br /&gt;
+        ///        &lt;strong&gt;PICKLIST #&lt;/strong&gt; (issu [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string case_break_report {
             get {
@@ -380,12 +431,12 @@ namespace WMS.Properties {
         ///                border-collapse:collapse;
         ///                border: 1px solid black;
         ///             }
-        ///         &lt;/style&gt;
-        ///    &lt;/head&gt;
-        ///	&lt;body&gt; 
-        ///		&lt;strong&gt;Receiving Report #&lt;/strong&gt; (issued on save) &lt;br/&gt;
-        ///        [run_datetime]
-        ///         &lt;br/&gt; &lt;br/&gt; [rest of string was truncated]&quot;;.
+        ///             P{
+        ///                 font-family:Courier New;
+        ///                 font-size:12px;
+        ///                 font-weight:bold;
+        ///             }
+        ///   [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string receiving_report {
             get {

@@ -19,6 +19,9 @@ namespace WMS
 
         private void btnStockCheck_Click(object sender, EventArgs e)
         {
+            if (headerGrid.Rows.Count == 0)
+                return;
+
             try
             {
                 var row = headerGrid.SelectedRows[0];
@@ -60,6 +63,9 @@ namespace WMS
                 DataSupport.RunNonQuery(sql.ToString(), IsolationLevel.ReadCommitted);
                 LedgerSupport.StockCheck();
                 MessageBox.Show("Stock Check Complete");
+
+                dt = FAQ.GetOMSOutgoing();
+                headerGrid.DataSource = dt;
             }
             catch (Exception ex)
             {

@@ -116,7 +116,7 @@ namespace WMS.Utilities
             cbo.AutoCompleteMode = AutoMode;
             cbo.DropDownStyle = DropStyle;
             cbo.DataSource = dt;
-            cbo.SelectedIndex = -1;
+            //cbo.SelectedIndex = -1;
         }
 
         public static void TabControl_DrawItem(object sender, DrawItemEventArgs e)

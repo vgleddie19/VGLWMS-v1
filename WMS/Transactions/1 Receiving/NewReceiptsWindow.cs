@@ -41,8 +41,8 @@ namespace WMS
             dialog.parent = this;
             if (dialog.ShowDialog() == DialogResult.OK)
                 DialogResult = DialogResult.OK;
-            if (dialog.btnCancel.Visible == false)
-                DialogResult = DialogResult.OK;
+            //if (dialog.btnCancel.Visible == false)
+            //    DialogResult = DialogResult.OK;
         }
 
         private void NewReceiptWindow_Load(object sender, EventArgs e)
@@ -59,6 +59,8 @@ namespace WMS
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            if (headerGrid.Rows.Count == 0)
+                return;
             var row = headerGrid.SelectedRows[0];
             headerGrid.Rows.Remove(row);
         }

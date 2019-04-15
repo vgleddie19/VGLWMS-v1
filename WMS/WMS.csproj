@@ -210,6 +210,7 @@
     <Compile Include="Transactions\7 CaseBreak\NewCaseBreakConfirm.Designer.cs">
       <DependentUpon>NewCaseBreakConfirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\KeyBoardSupport.cs" />
     <Compile Include="Utilities\RegistrationSupport.cs" />
     <Compile Include="Reports\PhysicalCountCalendarReport.cs">
       <SubType>Form</SubType>
@@ -784,6 +785,8 @@
     <Content Include="db_create.sql" />
     <None Include="Resources\secrecy-icon.png" />
     <Content Include="Resources\actualstockreport.html" />
+    <None Include="Resources\case_break_picklist.html" />
+    <None Include="Resources\case_break_putaway.html" />
     <Content Include="Resources\case_break_report.html" />
     <Content Include="WMS.ico" />
     <None Include="Resources\wms_badge.png" />

@@ -166,4 +166,10 @@
   <data name="actualstockreport" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\actualstockreport.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
   </data>
+  <data name="case_break_picklist" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\case_break_picklist.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;iso-8859-1</value>
+  </data>
+  <data name="case_break_putaway" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\case_break_putaway.html;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;Windows-1252</value>
+  </data>
 </root>

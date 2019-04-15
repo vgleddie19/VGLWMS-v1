@@ -41,13 +41,14 @@ namespace WMS
                     )
                 {
                     ui_row.Cells[Quantity.Name].Value = int.Parse(ui_row.Cells[Quantity.Name].Value.ToString()) + 1;
-
+                    btnAdd_Click(sender, e);
                     return;
                 }
             }
 
-
             headerGrid.Rows.Add(row["PRODUCT"].ToString(), "1", row["MATCHED_UOM"].ToString(), lot_row.Cells["lot_no"].Value.ToString(), lot_row.Cells["expiry"].Value.ToString(), txtLocation.Text);
+
+            btnAdd_Click(sender, e);
         }
 
         private void btnSplit_Click(object sender, EventArgs e)
@@ -90,7 +91,7 @@ namespace WMS
                 if (row["location_id"].ToString() != "STAGING-IN")
                     txtLocation.Items.Add(row["location_id"].ToString());
 
-            dt = FAQ.GetRecord("SELECT * FROM containers");
+            dt = FAQ.GetRecord("SELECT * FROM containers WHERE status = 'ACTIVE'");
             cboContainer.DataSource = dt;
             cboContainer.DisplayMember = "type";
             cboContainer.ValueMember = "container_id";

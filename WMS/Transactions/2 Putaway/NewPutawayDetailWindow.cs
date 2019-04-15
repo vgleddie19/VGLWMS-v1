@@ -87,7 +87,7 @@ namespace WMS
                     return;
 
                 lot_row = dialog.dataGridView1.SelectedRows[0];
-                DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;                
             }
         }
 

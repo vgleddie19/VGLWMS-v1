@@ -20,6 +20,9 @@ namespace WMS
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (order_details_grid.Rows.Count == 0)
+                return;
+
              if (order_details_grid.SelectedRows[0].Cells["ADDED"].Value.ToString() == "YES")
             {
                 MessageBox.Show("Order is already Added");
@@ -71,6 +74,9 @@ namespace WMS
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            if (order_details_grid.Rows.Count == 0)
+                return;
+
             if (order_details_grid.SelectedRows[0].Cells["ADDED"].Value.ToString() == "NO")
             {
                 MessageBox.Show("Order is not Added");

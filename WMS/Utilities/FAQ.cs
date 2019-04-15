@@ -39,7 +39,7 @@ public class FAQ
         DataSet set = oms_dh.ExecuteDataSet(@"SELECT * FROM OutgoingShipmentRequests WHERE status = 'FOR STOCK CHECKING' AND warehouse = '" + DataSupport.GetWarehouseCode() + "' ;");
         return set.Tables[0];
     }
-
+    
     public static DataTable GetOMSIncoming()
     {
         Utils.SetConnectionDetails();
@@ -314,7 +314,7 @@ public class FAQ
 
     public static DataTable GetLocations()
     {
-        return DataSupport.RunDataSet("SELECT * FROM Locations").Tables[0];
+        return DataSupport.RunDataSet("SELECT * FROM Locations WHERE status = 'ACTIVE'").Tables[0];
     }
 
     public static DataTable GetEmployees(String SQL)
@@ -355,7 +355,6 @@ public class FAQ
 
     }
 
-
     public static DataTable GetPutawayDetails(String putaway_id)
     {
         return DataSupport.RunDataSet("SELECT * FROM PutawayDetails WHERE putaway = '" + putaway_id + "'; ").Tables[0];
@@ -369,4 +368,77 @@ public class FAQ
 
         return false;
     }
+    public static Boolean isbinproductledgerexist(String location, String product, String uom, String lot, String expiry)
+    {
+        foreach (DataRow drow in DataSupport.RunDataSet(String.Format("SELECT * FROM binproductledger WHERE location = '{0}' AND product = '{1}' AND uom = '{2}' AND  lot_no = '{3}' AND expiry = '{4}'", location, product, uom, lot, expiry)).Tables[0].Rows)
+            return true;
+
+        return false;
+    }
+
+    public static DataTable Getbintobereplenish()
+    {
+        return DataSupport.RunDataSet("SELECT l.* FROM binproductledger l join binproducts b on b.product = l.product and b.location = l.location and b.uom = l.uom and l.actualqty <= l.min_qty").Tables[0];
+    }
+    public static DataTable Whatareproductstobereplenish()
+    {
+        DataTable result = new DataTable();
+        result.Columns.Add("binid");
+        result.Columns.Add("location");
+        result.Columns.Add("product");
+        result.Columns.Add("uom");
+        result.Columns.Add("lot");
+        result.Columns.Add("expiry");
+        result.Columns.Add("qty");
+
+        foreach (DataRow dRow in Getbintobereplenish().Rows)
+        {
+            foreach(KeyValuePair<String,int> kvp in stocksinwarehouse(dRow["product"].ToString(), dRow["lot_no"].ToString(), dRow["expiry"].ToString(), Convert.ToInt32(dRow["max_qty"]) - Convert.ToInt32(dRow["actualqty"])))
+            {
+                string[] locuom = kvp.Key.ToString().Split(new String[] { "<limit>" }, StringSplitOptions.RemoveEmptyEntries);
+                result.Rows.Add(dRow["location"],locuom[0], dRow["product"], locuom[1],dRow["lot_no"],Convert.ToDateTime(dRow["expiry"]).ToShortDateString(), kvp.Value);
+            }
+        }
+        return result;
+    }
+    public static Dictionary<String,int> stocksinwarehouse(String product, String lot, String expiry,int qty)
+    {
+        Dictionary<String,int> result = new Dictionary<string, int>();
+        int totalqty = qty;
+        foreach (DataRow dRow in DataSupport.RunDataSet(String.Format("SELECT pl.*, (available_qty * u.qty)[qty],u.qty[uom_qty] FROM LocationProductsLedger pl join ProductUOMs u ON pl.product = u.product AND  pl.uom = u.uom WHERE pl.product = '{0}' and pl.lot_no = '{1}' and pl.expiry = '{2}' and available_qty >= 1", product, lot, expiry)).Tables[0].Rows)
+        {
+            if (Convert.ToInt32(dRow["uom_qty"]) == 1)
+            {
+                if (totalqty < Convert.ToInt32(dRow["qty"]))
+                {
+                    totalqty -= Convert.ToInt32(dRow["qty"]);
+                    result.Add(String.Format("{0}<limit>{1}",dRow["location"].ToString(), dRow["uom"].ToString()), Convert.ToInt32(dRow["qty"]));
+                }
+                else
+                {
+                    result.Add(String.Format("{0}<limit>{1}", dRow["location"].ToString(), dRow["uom"].ToString()), totalqty);
+                    totalqty = 0;
+                    break;
+                }
+            }
+            else
+            {
+                if (totalqty < Convert.ToInt32(dRow["qty"]))
+                {
+                    totalqty -= Convert.ToInt32(dRow["qty"]);
+                    result.Add(String.Format("{0}<limit>{1}", dRow["location"].ToString(), dRow["uom"].ToString()), Convert.ToInt32(dRow["qty"]));
+                }
+                else
+                {
+                    decimal conv = Convert.ToDecimal(dRow["uom_qty"]);
+                    decimal s = Convert.ToDecimal((decimal)totalqty / conv); 
+                    result.Add(String.Format("{0}<limit>{1}", dRow["location"].ToString(), dRow["uom"].ToString()), (int)Math.Ceiling(s));
+                    totalqty = 0;
+                    break;
+                }
+            }
+        }
+        return result;
+    }
+
 }
