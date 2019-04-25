@@ -225,16 +225,11 @@ namespace WMS
 
             ds.CommitData();
 
+           MessageBox.Show("Success");
 
-
-            MessageBox.Show("Success");
-
-
-          //  webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", id);
+            //  webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", id);
             btnPrintPreview.Text = "Print";
-            btnCancel.Visible = false;
-
-
+            btnCancel.Text = "Closed";
         }
     }
 }

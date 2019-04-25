@@ -148,7 +148,7 @@ namespace WMS
 
                 webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", putaway_id);
                 btnPrintPreview.Text = "Print";
-                btnCancel.Visible = false;
+                btnCancel.Text = "Closed";
             }
             catch (Exception ex)
             {
@@ -158,7 +158,13 @@ namespace WMS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            this.Close();
+        }
 
+        private void NewPutawayConfirmationWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (btnPrintPreview.Text == "Print")
+                this.DialogResult = DialogResult.OK;
         }
     }
 }

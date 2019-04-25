@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -46,7 +47,7 @@ namespace WMS
                 }
             }
 
-            headerGrid.Rows.Add(row["PRODUCT"].ToString(), "1", row["MATCHED_UOM"].ToString(), lot_row.Cells["lot_no"].Value.ToString(), lot_row.Cells["expiry"].Value.ToString(), txtLocation.Text);
+            headerGrid.Rows.Add(row["PRODUCT"].ToString(), DataSupport.RunDataSet("SELECT top 1 description FROM Products WHERE product_id = '" + row["PRODUCT"].ToString() + "'").Tables[0].Rows[0]["description"], "1", row["MATCHED_UOM"].ToString(), lot_row.Cells["lot_no"].Value.ToString(), lot_row.Cells["expiry"].Value.ToString(), txtLocation.Text);
 
             btnAdd_Click(sender, e);
         }
@@ -74,13 +75,13 @@ namespace WMS
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
-            
-            NewPutawayConfirmationWindow dialog = new NewPutawayConfirmationWindow();
-            dialog.parent = this;
-            if (dialog.ShowDialog() == DialogResult.OK)
-                DialogResult = DialogResult.OK;
-            //if(dialog.btnCancel.Visible == false)
-            //    DialogResult = DialogResult.OK;
+            if (headerGrid.Rows.Count >= 1)
+            {
+                NewPutawayConfirmationWindow dialog = new NewPutawayConfirmationWindow();
+                dialog.parent = this;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                    DialogResult = DialogResult.OK;
+            }
         }
 
         private void NewPutawayWindow_Load(object sender, EventArgs e)
@@ -88,7 +89,7 @@ namespace WMS
             var dt = FAQ.GetLocations();
             txtLocation.Items.Clear();
             foreach (DataRow row in dt.Rows)
-                if (row["location_id"].ToString() != "STAGING-IN")
+                if (row["TYPE"].ToString() != "PROCESSING")
                     txtLocation.Items.Add(row["location_id"].ToString());
 
             dt = FAQ.GetRecord("SELECT * FROM containers WHERE status = 'ACTIVE'");
@@ -106,6 +107,11 @@ namespace WMS
         {
             var row = headerGrid.SelectedRows[0];
             headerGrid.Rows.Remove(row);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

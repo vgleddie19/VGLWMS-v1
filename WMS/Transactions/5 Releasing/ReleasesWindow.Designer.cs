@@ -49,10 +49,10 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Lime;
-            this.btnSave.Location = new System.Drawing.Point(17, 458);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Location = new System.Drawing.Point(17, 511);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(263, 39);
+            this.btnSave.Size = new System.Drawing.Size(162, 56);
             this.btnSave.TabIndex = 49;
             this.btnSave.Text = "Declare Incomplete";
             this.btnSave.UseVisualStyleBackColor = false;
@@ -60,8 +60,8 @@
             // 
             // txtScan
             // 
-            this.txtScan.Location = new System.Drawing.Point(87, 95);
-            this.txtScan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtScan.Location = new System.Drawing.Point(87, 74);
+            this.txtScan.Margin = new System.Windows.Forms.Padding(2);
             this.txtScan.Name = "txtScan";
             this.txtScan.Size = new System.Drawing.Size(193, 20);
             this.txtScan.TabIndex = 48;
@@ -71,7 +71,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 97);
+            this.label3.Location = new System.Drawing.Point(26, 76);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(58, 13);
@@ -82,7 +82,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(18, 316);
+            this.label2.Location = new System.Drawing.Point(18, 332);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(153, 20);
@@ -93,7 +93,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(18, 115);
+            this.label5.Location = new System.Drawing.Point(18, 105);
             this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 20);
@@ -116,13 +116,13 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.items_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.items_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.items_grid.Location = new System.Drawing.Point(17, 338);
-            this.items_grid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.items_grid.Location = new System.Drawing.Point(17, 354);
+            this.items_grid.Margin = new System.Windows.Forms.Padding(2);
             this.items_grid.Name = "items_grid";
             this.items_grid.ReadOnly = true;
             this.items_grid.RowTemplate.Height = 28;
             this.items_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.items_grid.Size = new System.Drawing.Size(696, 116);
+            this.items_grid.Size = new System.Drawing.Size(696, 153);
             this.items_grid.TabIndex = 44;
             // 
             // orders_grid
@@ -142,13 +142,13 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.orders_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.orders_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.orders_grid.Location = new System.Drawing.Point(17, 137);
-            this.orders_grid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.orders_grid.Location = new System.Drawing.Point(17, 127);
+            this.orders_grid.Margin = new System.Windows.Forms.Padding(2);
             this.orders_grid.Name = "orders_grid";
             this.orders_grid.ReadOnly = true;
             this.orders_grid.RowTemplate.Height = 28;
             this.orders_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.orders_grid.Size = new System.Drawing.Size(696, 163);
+            this.orders_grid.Size = new System.Drawing.Size(696, 193);
             this.orders_grid.TabIndex = 43;
             // 
             // txtTrip
@@ -174,7 +174,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 72);
+            this.label4.Location = new System.Drawing.Point(18, 51);
             this.label4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 13);
@@ -183,7 +183,7 @@
             // 
             // txtreleaseto
             // 
-            this.txtreleaseto.Location = new System.Drawing.Point(87, 71);
+            this.txtreleaseto.Location = new System.Drawing.Point(87, 50);
             this.txtreleaseto.Margin = new System.Windows.Forms.Padding(2);
             this.txtreleaseto.Name = "txtreleaseto";
             this.txtreleaseto.Size = new System.Drawing.Size(193, 20);
@@ -195,7 +195,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 508);
+            this.ClientSize = new System.Drawing.Size(729, 571);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.txtreleaseto);
             this.Controls.Add(this.label4);
@@ -207,7 +207,7 @@
             this.Controls.Add(this.orders_grid);
             this.Controls.Add(this.txtTrip);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "ReleasesWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "ReleasesWindow";

@@ -12,10 +12,11 @@ namespace WMS
 {
     public partial class NewPicklistWindow : Form
     {
-        DataTable dt = null;
+        DataTable dt = null;        
         public NewPicklistWindow()
         {
             InitializeComponent();
+            picklist_grid.Rows.Clear();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -48,7 +49,9 @@ namespace WMS
                          && picklist_row.Cells["expiry"].Value.ToString() == reserved_row["expiry"].ToString()
                          && picklist_row.Cells["order_id"].Value.ToString() == row["release_order"].ToString()
                             )
+                        {
                             reserved_row["reserved_qty"] = int.Parse(reserved_row["reserved_qty"].ToString()) - int.Parse(picklist_row.Cells["qty"].Value.ToString());
+                        }
                     }
 
                     if (int.Parse(reserved_row["reserved_qty"].ToString()) <= 0)
@@ -59,14 +62,11 @@ namespace WMS
                         reserved_qty = qty_to_be_picked;
 
 
-                    picklist_grid.Rows.Add(order_id, row["product"].ToString(), reserved_qty, row["uom"], reserved_row["lot_no"], reserved_row["expiry"], reserved_row["location"]);
+                    picklist_grid.Rows.Add(order_id, row["product"].ToString(), DataSupport.RunDataSet("SELECT TOP 1 * FROM Products WHERE product_id = @product_id", "product_id", row["product"].ToString()).Tables[0].Rows[0]["description"],  row["uom"], reserved_qty, reserved_row["lot_no"], reserved_row["expiry"], reserved_row["location"]);
                     qty_to_be_picked -= reserved_qty;
                     if (qty_to_be_picked <= 0)
                         break;
-                }
-
-
-               
+                }               
             }
             order_details_grid.SelectedRows[0].Cells["ADDED"].Value = "YES";
             picklist_grid.Select();
@@ -108,13 +108,15 @@ namespace WMS
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
-            NewPicklistConfirmationWindow dialog = new NewPicklistConfirmationWindow();
-            dialog.parent = this;
-            if (dialog.ShowDialog() == DialogResult.OK)
-                DialogResult = DialogResult.OK;
-            if (dialog.btnCancel.Visible == false)
-                DialogResult = DialogResult.OK;
-
+            if (picklist_grid.Rows.Count >= 1)
+            {
+                NewPicklistConfirmationWindow dialog = new NewPicklistConfirmationWindow();
+                dialog.parent = this;
+                if (dialog.ShowDialog() == DialogResult.OK)
+                    DialogResult = DialogResult.OK;
+            }
+            //if (dialog.btnCancel.Visible == false)
+            //    DialogResult = DialogResult.OK;
         }
 
         private void order_details_grid_KeyDown(object sender, KeyEventArgs e)
@@ -127,6 +129,11 @@ namespace WMS
             {
                 btnAdd_Click(null, null);
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

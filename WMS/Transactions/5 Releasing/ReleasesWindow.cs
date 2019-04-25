@@ -71,6 +71,7 @@ namespace WMS
                         String order_id = order_row["order_id"].ToString();
                         sql += " UPDATE TripOrders SET status='FOR DELIVERY' WHERE order_id='" + order_id + "'; ";
                     }
+                    sql += String.Format("UPDATE [ReleaseTrips] SET releaseto='{0}' WHERE trip_id='{1}';",txtreleaseto.Text, txtTrip.Text);
                     tms_dh.ExecuteNonQuery(sql, IsolationLevel.ReadCommitted);
                 }
 
@@ -84,8 +85,6 @@ namespace WMS
                         sql += " UPDATE ReleaseOrders SET status='RELEASED' WHERE order_id='" + order_id + "'; ";
                     }
                     DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);
-
-
                 }
 
                 PrintReleaseDocument dialog = new PrintReleaseDocument();
@@ -154,27 +153,22 @@ namespace WMS
 
                     insDT.Rows.Add("RELEASED", now, "IN", "PICKLIST_DECLARE_COMPLETE", release_id);
                     sql += LedgerSupport.UpdateLocationLedger(insDT);
-
-
                 }
                 // Update Location Products Ledger
                 {
-
-
                     // Out with the staging out 
-                    DataTable outsDT = LedgerSupport.GetLocationProductsLedgerDT();
-                    
+                    DataTable outsDT = LedgerSupport.GetLocationProductsLedgerDT();                  
                     outsDT.Rows.Add("STAGING-OUT", product,  -1, uom, lot_no, expiry);
-
-
                     sql += LedgerSupport.UpdateLocationProductsLedger(outsDT);
 
                     DataTable insDT = LedgerSupport.GetLocationProductsLedgerDT();
                     insDT.Rows.Add("RELEASED", product, 1, uom, lot_no, expiry);
-
-
                     sql += LedgerSupport.UpdateLocationProductsLedger(insDT);
 
+
+                    //insDT = LedgerSupport.GetLocationBinProductsLedgerDT();
+                    //insDT.Rows.Add("RELEASED", product, 1, uom, lot_no, expiry);
+                    //sql += LedgerSupport.UpdateLocationProductsLedger(insDT);
                 }
 
                 DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);

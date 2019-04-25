@@ -31,6 +31,12 @@ namespace WMS
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
         {
+            if(headerGrid.Rows.Count <= 0)
+            {
+                MessageBox.Show("Grid can't be blank");
+                return;
+            }
+
             if (cboReceivedBy.Text == "")
             {
                 MessageBox.Show("Received By can't be blank");
@@ -84,20 +90,24 @@ namespace WMS
                 txtReceivedFrom.Text = header_row.Cells["Client Name"].Value.ToString();
                 txtReferenceDocument.Text = header_row.Cells["Document Reference #"].Value.ToString();
 
-
                 // Load Details
                 {
                     DataTable detail_dt = FAQ.GetOMSIncomingDetails(dialog.dataGridView1.SelectedRows[0].Cells[0].Value.ToString());
 
                     foreach (DataRow row in detail_dt.Rows)
                     {
-                        headerGrid.Rows.Add(row["Product"], row["description"], row["expected_qty"], row["Uom"], row["lot_no"], row["expiry"], "");
+                        headerGrid.Rows.Add(row["Product"], row["description"],  row["Uom"], row["expected_qty"],row["lot_no"], row["expiry"], "");
                     }
                 }
 
                 //headerGrid
                 oms_shipment_id = dialog.dataGridView1.SelectedRows[0].Cells[0].Value.ToString();
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

@@ -127,6 +127,10 @@ namespace WMS
             if (dialog.btnCancel.Visible == false)
                 DialogResult = DialogResult.OK;
         }
-        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -13,7 +13,6 @@ public class LedgerSupport
 
     public static void StockCheck()
     {
-
         DataSupport oms_dh = new DataSupport(String.Format(@"Initial Catalog={0};Data Source= {1};User Id = {2}; Password = {3}", Utils.DBConnection["OMS"]["DBNAME"], Utils.DBConnection["OMS"]["SERVER"], Utils.DBConnection["OMS"]["USERNAME"], Utils.DBConnection["OMS"]["PASSWORD"]));
         DataTable ordersDT = DataSupport.RunDataSet(String.Format("SELECT * FROM ReleaseOrders WHERE status = 'FOR STOCK CHECKING'")).Tables[0];
 
@@ -45,8 +44,6 @@ public class LedgerSupport
                     if (qty_to_be_reserved < qty_in_location)
                         qty_reserved = qty_to_be_reserved;
 
-
-
                     sql += " UPDATE LocationProductsLedger SET reserved_qty = reserved_qty + " + qty_reserved +
                            " WHERE product = '" + detail["product"].ToString() + "' AND uom = '" + detail["uom"].ToString() + "' " +
                            " AND lot_no = '" + selected_row["lot_no"].ToString() + "' AND expiry = '" + selected_row["expiry"].ToString() + "' " +
@@ -55,10 +52,7 @@ public class LedgerSupport
                     qty_to_be_reserved -= qty_reserved;
                     if (qty_to_be_reserved <= 0)
                         break;
-
                 }
-
-
             }
 
             DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);
@@ -68,8 +62,35 @@ public class LedgerSupport
         }
     }
 
+    public static bool CheckBin(String product, String uom, String qty)
+    {
+        bool result = true;
+
+        if (uom.ToUpper() == "PC" || uom.ToUpper() == "PCS")
+        {
+            DataTable dt = DataSupport.RunDataSet(@"SELECT SUM(available_qty)
+                        FROM LocationProductsLedger 
+                        WHERE  product = @product AND uom = @uom
+                        AND available_qty >0
+                        ", "product", product, "uom", uom).Tables[0];
 
 
+            int totalqty = dt.Rows[0][0].Equals(DBNull.Value) ? 0 : Convert.ToInt32(dt.Rows[0][0]);
+
+            //if (Convert.ToInt32(qty) > totalqty)
+            //    result = false;
+
+            if (!dt.Rows[0][0].Equals(DBNull.Value))
+            {
+                int pieces_in_warehouse = int.Parse(dt.Rows[0][0].ToString());
+                int pieces_in_order = FAQ.HowManyPiecesInUOM(product, uom, int.Parse(qty));
+                if (pieces_in_warehouse < pieces_in_order)
+                    result = false;
+            }
+        }
+        return result;        
+    }
+    
     public static DataTable GetLocationLedgerDT()
     {
         DataTable result = new DataTable();

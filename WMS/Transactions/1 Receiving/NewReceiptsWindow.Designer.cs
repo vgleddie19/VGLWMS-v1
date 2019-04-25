@@ -42,10 +42,11 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnLoad = new System.Windows.Forms.Button();
             this.cboReceivedBy = new DevComponents.DotNetBar.Controls.ComboBoxEx();
+            this.button1 = new System.Windows.Forms.Button();
             this.product_id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lot = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.remarks = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,10 +66,10 @@
             // 
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPrintPreview.BackColor = System.Drawing.Color.Lime;
-            this.btnPrintPreview.Location = new System.Drawing.Point(17, 448);
+            this.btnPrintPreview.Location = new System.Drawing.Point(17, 447);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(180, 22);
+            this.btnPrintPreview.Size = new System.Drawing.Size(120, 55);
             this.btnPrintPreview.TabIndex = 26;
             this.btnPrintPreview.Text = "Proceed to Print Preview";
             this.btnPrintPreview.UseVisualStyleBackColor = false;
@@ -139,8 +140,8 @@
             this.headerGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.product_id,
             this.product,
-            this.Quantity,
             this.uom,
+            this.Quantity,
             this.lot,
             this.expiry,
             this.remarks});
@@ -150,7 +151,7 @@
             this.headerGrid.RowTemplate.Height = 28;
             this.headerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.headerGrid.ShowRowErrors = false;
-            this.headerGrid.Size = new System.Drawing.Size(996, 343);
+            this.headerGrid.Size = new System.Drawing.Size(996, 342);
             this.headerGrid.TabIndex = 22;
             this.headerGrid.TabStop = false;
             // 
@@ -214,6 +215,20 @@
             this.cboReceivedBy.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cboReceivedBy.TabIndex = 30;
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(141, 447);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(120, 55);
+            this.button1.TabIndex = 26;
+            this.button1.Text = "Closed";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // product_id
             // 
             this.product_id.HeaderText = "ID";
@@ -225,17 +240,17 @@
             this.product.Name = "product";
             this.product.Width = 300;
             // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.Width = 80;
-            // 
             // uom
             // 
             this.uom.HeaderText = "UOM";
             this.uom.Name = "uom";
             this.uom.Width = 80;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.Width = 80;
             // 
             // lot
             // 
@@ -258,10 +273,11 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1032, 478);
+            this.ClientSize = new System.Drawing.Size(1032, 510);
             this.Controls.Add(this.cboReceivedBy);
             this.Controls.Add(this.btnLoad);
             this.Controls.Add(this.label4);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtReceivedOn);
@@ -299,10 +315,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnLoad;
         public DevComponents.DotNetBar.Controls.ComboBoxEx cboReceivedBy;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn product_id;
         private System.Windows.Forms.DataGridViewTextBoxColumn product;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn uom;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn lot;
         private System.Windows.Forms.DataGridViewTextBoxColumn expiry;
         private System.Windows.Forms.DataGridViewTextBoxColumn remarks;

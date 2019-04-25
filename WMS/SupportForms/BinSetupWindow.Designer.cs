@@ -59,12 +59,13 @@
             this.Expiry,
             this.min_qty,
             this.capacity});
-            this.headerGrid.Location = new System.Drawing.Point(12, 76);
+            this.headerGrid.Location = new System.Drawing.Point(8, 60);
+            this.headerGrid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.headerGrid.Name = "headerGrid";
             this.headerGrid.ReadOnly = true;
             this.headerGrid.RowTemplate.Height = 28;
             this.headerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.headerGrid.Size = new System.Drawing.Size(1039, 468);
+            this.headerGrid.Size = new System.Drawing.Size(693, 304);
             this.headerGrid.TabIndex = 24;
             this.headerGrid.TabStop = false;
             // 
@@ -113,10 +114,9 @@
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.Lime;
-            this.btnAdd.Location = new System.Drawing.Point(12, 37);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAdd.Location = new System.Drawing.Point(8, 9);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(113, 32);
+            this.btnAdd.Size = new System.Drawing.Size(78, 46);
             this.btnAdd.TabIndex = 30;
             this.btnAdd.Text = "Add";
             this.btnAdd.UseVisualStyleBackColor = false;
@@ -124,10 +124,9 @@
             // btnEdit
             // 
             this.btnEdit.BackColor = System.Drawing.Color.Yellow;
-            this.btnEdit.Location = new System.Drawing.Point(133, 37);
-            this.btnEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnEdit.Location = new System.Drawing.Point(89, 9);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(113, 32);
+            this.btnEdit.Size = new System.Drawing.Size(78, 46);
             this.btnEdit.TabIndex = 30;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
@@ -136,23 +135,23 @@
             // 
             this.btnDelete.BackColor = System.Drawing.Color.Red;
             this.btnDelete.ForeColor = System.Drawing.Color.White;
-            this.btnDelete.Location = new System.Drawing.Point(254, 37);
-            this.btnDelete.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDelete.Location = new System.Drawing.Point(169, 9);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(113, 32);
+            this.btnDelete.Size = new System.Drawing.Size(78, 46);
             this.btnDelete.TabIndex = 31;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = false;
             // 
             // BinSetupWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1063, 570);
+            this.ClientSize = new System.Drawing.Size(709, 370);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnEdit);
             this.Controls.Add(this.btnAdd);
             this.Controls.Add(this.headerGrid);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "BinSetupWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BinSetupWindow";

@@ -38,19 +38,21 @@
             this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(27, 49);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Location = new System.Drawing.Point(18, 32);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(13, 13);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(693, 612);
+            this.webBrowser1.Size = new System.Drawing.Size(462, 398);
             this.webBrowser1.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.BackColor = System.Drawing.Color.Orange;
-            this.btnCancel.Location = new System.Drawing.Point(760, 215);
+            this.btnCancel.Location = new System.Drawing.Point(507, 140);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(138, 113);
+            this.btnCancel.Size = new System.Drawing.Size(92, 73);
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "Back";
             this.btnCancel.UseVisualStyleBackColor = false;
@@ -60,9 +62,10 @@
             // 
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.BackColor = System.Drawing.Color.Lime;
-            this.btnPrintPreview.Location = new System.Drawing.Point(760, 73);
+            this.btnPrintPreview.Location = new System.Drawing.Point(507, 47);
+            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(138, 106);
+            this.btnPrintPreview.Size = new System.Drawing.Size(92, 69);
             this.btnPrintPreview.TabIndex = 15;
             this.btnPrintPreview.Text = "Save";
             this.btnPrintPreview.UseVisualStyleBackColor = false;
@@ -70,15 +73,17 @@
             // 
             // NewReceiptConfirmationWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(946, 680);
+            this.ClientSize = new System.Drawing.Size(631, 442);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.webBrowser1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "NewReceiptConfirmationWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Please Confirm...";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NewReceiptConfirmationWindow_FormClosed);
             this.Load += new System.EventHandler(this.NewReceiptConfirmationWindow_Load);
             this.ResumeLayout(false);
 

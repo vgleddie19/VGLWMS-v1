@@ -29,8 +29,6 @@
         private void InitializeComponent()
         {
             this.header_grid = new System.Windows.Forms.DataGridView();
-            this.btnDeclareUnexpectedProduct = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +36,9 @@
             this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.actual_qty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.expected = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDeclareUnexpectedProduct = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.header_grid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -58,34 +59,13 @@
             this.Expiry,
             this.actual_qty,
             this.expected});
-            this.header_grid.Location = new System.Drawing.Point(23, 77);
+            this.header_grid.Location = new System.Drawing.Point(15, 50);
+            this.header_grid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.header_grid.Name = "header_grid";
             this.header_grid.RowTemplate.Height = 28;
             this.header_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.header_grid.Size = new System.Drawing.Size(923, 504);
+            this.header_grid.Size = new System.Drawing.Size(615, 359);
             this.header_grid.TabIndex = 2;
-            // 
-            // btnDeclareUnexpectedProduct
-            // 
-            this.btnDeclareUnexpectedProduct.BackColor = System.Drawing.Color.Cyan;
-            this.btnDeclareUnexpectedProduct.Location = new System.Drawing.Point(23, 36);
-            this.btnDeclareUnexpectedProduct.Name = "btnDeclareUnexpectedProduct";
-            this.btnDeclareUnexpectedProduct.Size = new System.Drawing.Size(222, 35);
-            this.btnDeclareUnexpectedProduct.TabIndex = 3;
-            this.btnDeclareUnexpectedProduct.Text = "Declare Unexpected Product";
-            this.btnDeclareUnexpectedProduct.UseVisualStyleBackColor = false;
-            this.btnDeclareUnexpectedProduct.Click += new System.EventHandler(this.btnDeclareUnexpectedProduct_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.BackColor = System.Drawing.Color.Lime;
-            this.btnSave.Location = new System.Drawing.Point(23, 587);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(207, 42);
-            this.btnSave.TabIndex = 4;
-            this.btnSave.Text = "Proceed to Print Preview";
-            this.btnSave.UseVisualStyleBackColor = false;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // location
             // 
@@ -127,14 +107,53 @@
             this.expected.Name = "expected";
             this.expected.ReadOnly = true;
             // 
+            // btnDeclareUnexpectedProduct
+            // 
+            this.btnDeclareUnexpectedProduct.BackColor = System.Drawing.Color.Cyan;
+            this.btnDeclareUnexpectedProduct.Location = new System.Drawing.Point(15, 23);
+            this.btnDeclareUnexpectedProduct.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeclareUnexpectedProduct.Name = "btnDeclareUnexpectedProduct";
+            this.btnDeclareUnexpectedProduct.Size = new System.Drawing.Size(148, 23);
+            this.btnDeclareUnexpectedProduct.TabIndex = 3;
+            this.btnDeclareUnexpectedProduct.Text = "Declare Unexpected Product";
+            this.btnDeclareUnexpectedProduct.UseVisualStyleBackColor = false;
+            this.btnDeclareUnexpectedProduct.Click += new System.EventHandler(this.btnDeclareUnexpectedProduct_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.BackColor = System.Drawing.Color.Lime;
+            this.btnSave.Location = new System.Drawing.Point(15, 413);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(131, 46);
+            this.btnSave.TabIndex = 4;
+            this.btnSave.Text = "Proceed to Print Preview";
+            this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(150, 413);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 46);
+            this.button1.TabIndex = 4;
+            this.button1.Text = "Closed";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // DeclarePhysicalCountWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(958, 641);
+            this.ClientSize = new System.Drawing.Size(639, 463);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDeclareUnexpectedProduct);
             this.Controls.Add(this.header_grid);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DeclarePhysicalCountWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeclarePhysicalCountWindow";
@@ -156,5 +175,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Expiry;
         private System.Windows.Forms.DataGridViewTextBoxColumn actual_qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn expected;
+        private System.Windows.Forms.Button button1;
     }
 }

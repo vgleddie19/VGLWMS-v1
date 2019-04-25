@@ -158,7 +158,6 @@ namespace WMS
         {
             String id = DataSupport.GetNextMenuCodeInt("PL");
 
-
             // Save Transaction
             String sql = DataSupport.GetInsert("Picklists", Utils.ToDict(
                 "picklist_id", id
@@ -197,7 +196,18 @@ namespace WMS
 
             webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", id);
             btnPrintPreview.Text = "Print";
-            btnCancel.Visible = false;
+            btnCancel.Text = "Closed";
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void NewPicklistConfirmationWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (btnPrintPreview.Text == "Print")
+                this.DialogResult = DialogResult.OK;
         }
     }
 }

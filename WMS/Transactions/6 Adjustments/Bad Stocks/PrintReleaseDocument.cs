@@ -85,7 +85,7 @@ SELECT * FROM ReleaseTrips WHERE trip_id =(SELECT trip FROM Releases WHERE relea
                 .Replace("[run_datetime]", DateTime.Now.ToString())
                 .Replace("[header_table]", sb.ToString())
                 .Replace("[released_to_person]", set.Tables[2].Rows[0]["authorized_receiver"].ToString())
-                .Replace("[released_to]", set.Tables[2].Rows[0]["tms_name"].ToString())
+                .Replace("[released_to]", set.Tables[2].Rows[0]["releaseto"].ToString())
                 .Replace("[trip_id]", set.Tables[2].Rows[0]["trip_id"].ToString())
                 .Replace("[released_by]", RegistrationSupport.username)
 

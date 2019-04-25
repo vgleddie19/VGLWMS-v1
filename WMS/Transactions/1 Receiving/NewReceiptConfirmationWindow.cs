@@ -111,7 +111,7 @@ namespace WMS
 
             webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", id);
             btnPrintPreview.Text = "Print";
-            btnCancel.Visible = false;
+            btnCancel.Text = "Closed";
         }
 
        
@@ -169,6 +169,12 @@ namespace WMS
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void NewReceiptConfirmationWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (btnPrintPreview.Text == "Print")
+                DialogResult = DialogResult.OK;
         }
     }
 }

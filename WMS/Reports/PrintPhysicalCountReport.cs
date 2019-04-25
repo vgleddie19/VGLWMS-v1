@@ -69,5 +69,10 @@ namespace WMS
         {
             webBrowser1.ShowPrintPreviewDialog();
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

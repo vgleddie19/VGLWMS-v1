@@ -400,12 +400,12 @@ namespace WMS
 
         private void btnConfirmCaseBreak_Click(object sender, EventArgs e)
         {
-            DeclareCaseBreakPickListScanID dialog = new DeclareCaseBreakPickListScanID();
-            dialog.ShowIcon = false;
-            dialog.ShowInTaskbar = false;
-            dialog.Icon = this.Icon;
-            dialog.ShowDialog();
-            LoadInventory();
+            //DeclareCaseBreakPickListScanID dialog = new DeclareCaseBreakPickListScanID();
+            //dialog.ShowIcon = false;
+            //dialog.ShowInTaskbar = false;
+            //dialog.Icon = this.Icon;
+            //dialog.ShowDialog();
+            //LoadInventory();
         }
         #endregion
 

@@ -34,28 +34,31 @@
             // 
             // txtPutawayCode
             // 
-            this.txtPutawayCode.Location = new System.Drawing.Point(213, 39);
+            this.txtPutawayCode.Location = new System.Drawing.Point(142, 25);
+            this.txtPutawayCode.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtPutawayCode.Name = "txtPutawayCode";
-            this.txtPutawayCode.Size = new System.Drawing.Size(219, 26);
+            this.txtPutawayCode.Size = new System.Drawing.Size(147, 20);
             this.txtPutawayCode.TabIndex = 19;
             this.txtPutawayCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtPutawayCode_KeyDown);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(47, 41);
+            this.label2.Location = new System.Drawing.Point(31, 27);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(156, 20);
+            this.label2.Size = new System.Drawing.Size(93, 13);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Scan Putaway Code:";
+            this.label2.Text = "Scan Putaway ID:";
             // 
             // DeclarePutawayScanIDWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(465, 116);
+            this.ClientSize = new System.Drawing.Size(310, 75);
             this.Controls.Add(this.txtPutawayCode);
             this.Controls.Add(this.label2);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DeclarePutawayScanIDWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Please Scan PA Document...";

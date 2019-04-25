@@ -30,6 +30,7 @@
         {
             this.header_grid = new System.Windows.Forms.DataGridView();
             this.btnDeclareExpiredStocks = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.header_grid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -55,20 +56,35 @@
             // 
             this.btnDeclareExpiredStocks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeclareExpiredStocks.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnDeclareExpiredStocks.Location = new System.Drawing.Point(598, 390);
+            this.btnDeclareExpiredStocks.Location = new System.Drawing.Point(523, 390);
             this.btnDeclareExpiredStocks.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeclareExpiredStocks.Name = "btnDeclareExpiredStocks";
-            this.btnDeclareExpiredStocks.Size = new System.Drawing.Size(191, 49);
+            this.btnDeclareExpiredStocks.Size = new System.Drawing.Size(131, 49);
             this.btnDeclareExpiredStocks.TabIndex = 47;
             this.btnDeclareExpiredStocks.Text = "Print";
             this.btnDeclareExpiredStocks.UseVisualStyleBackColor = false;
             this.btnDeclareExpiredStocks.Click += new System.EventHandler(this.btnDeclareExpiredStocks_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(658, 390);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 49);
+            this.button1.TabIndex = 47;
+            this.button1.Text = "Closed";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ActualStockReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnDeclareExpiredStocks);
             this.Controls.Add(this.header_grid);
             this.Name = "ActualStockReport";
@@ -83,5 +99,6 @@
 
         public System.Windows.Forms.DataGridView header_grid;
         private System.Windows.Forms.Button btnDeclareExpiredStocks;
+        private System.Windows.Forms.Button button1;
     }
 }

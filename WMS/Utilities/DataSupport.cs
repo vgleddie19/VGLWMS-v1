@@ -411,7 +411,7 @@ namespace Framework
             {
                 ex.ToString();
                 result = null;
-                throw;
+                throw; 
             }
             finally
             {

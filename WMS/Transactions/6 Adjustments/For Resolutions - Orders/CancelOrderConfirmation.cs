@@ -159,7 +159,7 @@ namespace WMS
 
             webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", id);
             btnPrintPreview.Text = "Print";
-            btnCancel.Visible = false;
+            btnCancel.Text = "Closed";
         }
     }
 }

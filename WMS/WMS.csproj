@@ -108,6 +108,11 @@
     <Compile Include="MasterFile\BinMasterFile.Designer.cs">
       <DependentUpon>BinMasterFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Reports\ActualStockReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -138,10 +143,10 @@
     <Compile Include="Transactions\3 Replishment\CaseBreakPickListConfirmation.Designer.cs">
       <DependentUpon>CaseBreakPickListConfirmation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Transactions\3 Replishment\SearchProductStocks.cs">
+    <Compile Include="SupportForms\SearchProductStocks.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Transactions\3 Replishment\SearchProductStocks.Designer.cs">
+    <Compile Include="SupportForms\SearchProductStocks.Designer.cs">
       <DependentUpon>SearchProductStocks.cs</DependentUpon>
     </Compile>
     <Compile Include="SupportForms\StockCheckingWindow.cs">
@@ -185,30 +190,6 @@
     </Compile>
     <Compile Include="Transactions\6 Adjustments\Bad Stocks\PrintReleaseDocument.Designer.cs">
       <DependentUpon>PrintReleaseDocument.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPCS.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPCS.Designer.cs">
-      <DependentUpon>DeclareCaseBreakPCS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPickListScanID.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPickListScanID.Designer.cs">
-      <DependentUpon>DeclareCaseBreakPickListScanID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPicklistScanningWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\DeclareCaseBreakPicklistScanningWindow.Designer.cs">
-      <DependentUpon>DeclareCaseBreakPicklistScanningWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\NewCaseBreakConfirm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\NewCaseBreakConfirm.Designer.cs">
-      <DependentUpon>NewCaseBreakConfirm.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\KeyBoardSupport.cs" />
     <Compile Include="Utilities\RegistrationSupport.cs" />
@@ -344,12 +325,6 @@
     </Compile>
     <Compile Include="Transactions\6 Adjustments\For Resolutions\ForResolutionsWindow.Designer.cs">
       <DependentUpon>ForResolutionsWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\NewCaseBreakWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Transactions\7 CaseBreak\NewCaseBreakWindow.designer.cs">
-      <DependentUpon>NewCaseBreakWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\RegistrySupport.cs" />
     <Compile Include="Utilities\RollbackDataSupport.cs" />
@@ -500,11 +475,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Utilities\JSONSupport.cs" />
     <Compile Include="Utilities\SelectGridWindow.cs">
       <SubType>Form</SubType>
@@ -542,7 +512,7 @@
     <EmbeddedResource Include="Transactions\3 Replishment\CaseBreakPickListConfirmation.resx">
       <DependentUpon>CaseBreakPickListConfirmation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\3 Replishment\SearchProductStocks.resx">
+    <EmbeddedResource Include="SupportForms\SearchProductStocks.resx">
       <DependentUpon>SearchProductStocks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SupportForms\StockCheckingWindow.resx">
@@ -665,21 +635,6 @@
     <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\NewPhysicalCountWindow.resx">
       <DependentUpon>NewPhysicalCountWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\7 CaseBreak\DeclareCaseBreakPCS.resx">
-      <DependentUpon>DeclareCaseBreakPCS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\7 CaseBreak\DeclareCaseBreakPickListScanID.resx">
-      <DependentUpon>DeclareCaseBreakPickListScanID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\7 CaseBreak\DeclareCaseBreakPicklistScanningWindow.resx">
-      <DependentUpon>DeclareCaseBreakPicklistScanningWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\7 CaseBreak\NewCaseBreakConfirm.resx">
-      <DependentUpon>NewCaseBreakConfirm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Transactions\7 CaseBreak\NewCaseBreakWindow.resx">
-      <DependentUpon>NewCaseBreakWindow.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\API\MakeReleaseOrderWindow.resx">
       <DependentUpon>MakeReleaseOrderWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -788,6 +743,7 @@
     <None Include="Resources\case_break_picklist.html" />
     <None Include="Resources\case_break_putaway.html" />
     <Content Include="Resources\case_break_report.html" />
+    <None Include="Resources\discrepancy_report.html" />
     <Content Include="WMS.ico" />
     <None Include="Resources\wms_badge.png" />
     <None Include="Resources\releasing_report.html" />

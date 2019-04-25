@@ -144,22 +144,24 @@ namespace WMS.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
         ///&lt;html&gt;
-        ///    &lt;head&gt;
-        ///         &lt;style type=&quot;text/css&quot;&gt;
-        ///             body {
-        ///                font-family:Arial;
-        ///                line-height:15px;
-        ///                font-size:12px;
-        ///             }
-        ///             .table, .table tr td, .table tr th {
-        ///                border-collapse:collapse;
-        ///                border: 1px solid black;
-        ///             }
-        ///         &lt;/style&gt;
-        ///    &lt;/head&gt;
-        ///    &lt;body&gt;
-        ///        &lt;strong&gt;PUTAWAY #&lt;/strong&gt; (issued on save) &lt;br /&gt;
-        ///        &lt;strong&gt;PICKLIST #&lt;/strong&gt; (issued  [rest of string was truncated]&quot;;.
+        ///&lt;head&gt;
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///        body {
+        ///            font-family: Arial;
+        ///            line-height: 15px;
+        ///            font-size: 12px;
+        ///        }
+        ///
+        ///        .table, .table tr td, .table tr th {
+        ///            border-collapse: collapse;
+        ///            border: 1px solid black;
+        ///        }
+        ///    &lt;/style&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;strong&gt;PUTAWAY #&lt;/strong&gt; (issued on save) &lt;br /&gt;
+        ///    &lt;strong&gt;PICKLIST #&lt;/strong&gt; (issued on save picklist) &lt;br /&gt;
+        ///    &lt;strong&gt;CASEBREAK #&lt;/strong&gt; (issu [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string case_break_putaway {
             get {
@@ -218,6 +220,37 @@ namespace WMS.Properties {
         internal static string declare_physical_count_report {
             get {
                 return ResourceManager.GetString("declare_physical_count_report", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;!DOCTYPE html&gt;
+        ///&lt;html&gt;
+        ///&lt;head&gt;
+        ///    &lt;style type=&quot;text/css&quot;&gt;
+        ///        body {
+        ///            font-family: Arial;
+        ///            line-height: 15px;
+        ///            font-size: 12px;
+        ///        }
+        ///
+        ///        .table, .table tr td, .table tr th {
+        ///            border-collapse: collapse;
+        ///            border: 1px solid black;
+        ///        }
+        ///    &lt;/style&gt;
+        ///&lt;/head&gt;
+        ///&lt;body&gt;
+        ///    &lt;strong&gt;DISCREPANCY ID #&lt;/strong&gt; (issued on save) &lt;br /&gt;
+        ///    [run_datetime]
+        ///    &lt;br /&gt; &lt;br /&gt;
+        ///
+        ///    Approved From: [approved_from] &lt;br /&gt;
+        ///    Approved  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string discrepancy_report {
+            get {
+                return ResourceManager.GetString("discrepancy_report", resourceCulture);
             }
         }
         
@@ -406,10 +439,10 @@ namespace WMS.Properties {
         ///         &lt;/style&gt;
         ///    &lt;/head&gt;
         ///	&lt;body&gt; 
-        ///		&lt;strong&gt;Putaway List #&lt;/strong&gt; (issued on save) &lt;br/&gt;
+        ///		&lt;strong&gt;Putaway ID:&lt;/strong&gt; (issued on save) &lt;br/&gt;
         ///        [run_datetime]
         ///         &lt;br/&gt; &lt;br/&gt;
-        ///   [rest of string was truncated]&quot;;.
+        ///      [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string putaway_report {
             get {

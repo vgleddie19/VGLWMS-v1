@@ -26,6 +26,12 @@ public class BarcodeSupport
 
         // Search Other UOMs
         {
+            //DataTable productsDT = DataSupport.RunDataSet("SELECT product[PRODUCT], uom[MATCHED_UOM], * FROM ProductUOMs WHERE barcode = '" + barcode + "' ").Tables[0];
+            //if (productsDT.Rows.Count > 0)
+            //{
+            //    var row = productsDT.Rows[0];
+            //    return row;
+            //}
             DataTable productsDT = DataSupport.RunDataSet("SELECT product[PRODUCT], uom[MATCHED_UOM], * FROM ProductUOMs WHERE barcode = '" + barcode + "' ").Tables[0];
             if (productsDT.Rows.Count > 0)
             {

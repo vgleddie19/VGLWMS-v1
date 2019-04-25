@@ -23,7 +23,7 @@ namespace WMS
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (container != txtContainer.Text)
+                if (container != txtContainer.Text.ToUpper())
                 {
                     MessageBox.Show("Container does not match");
                     return;
