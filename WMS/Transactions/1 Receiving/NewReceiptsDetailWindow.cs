@@ -137,7 +137,6 @@ namespace WMS
             {
                 txtProducts.DisplayMember = "display";
                 lblShowProduct.Text = "Hide IDs";
-
             }
             else
             {

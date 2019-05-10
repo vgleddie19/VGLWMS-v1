@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuWindow));
             this.btnAddReceipt = new System.Windows.Forms.Button();
             this.btnNewPutaway = new System.Windows.Forms.Button();
@@ -59,11 +59,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cmbReports = new System.Windows.Forms.ComboBox();
             this.btnViewReport = new System.Windows.Forms.Button();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.LocationInventoryTab.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddReceipt
@@ -314,31 +316,38 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.LocationInventoryTab);
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImageList = this.imageList1;
             this.tabControl1.Location = new System.Drawing.Point(8, 14);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
+            this.tabControl1.Padding = new System.Drawing.Point(8, 4);
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1131, 421);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.FillToRight;
             this.tabControl1.TabIndex = 14;
             // 
             // LocationInventoryTab
             // 
+            this.LocationInventoryTab.BackColor = System.Drawing.Color.Transparent;
+            this.LocationInventoryTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.LocationInventoryTab.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.LocationInventoryTab.Controls.Add(this.dataGridView1);
-            this.LocationInventoryTab.Controls.Add(this.grid);
             this.LocationInventoryTab.Controls.Add(this.btnLoad);
             this.LocationInventoryTab.Controls.Add(this.comboBox1);
             this.LocationInventoryTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LocationInventoryTab.ImageKey = "shelf.png";
-            this.LocationInventoryTab.Location = new System.Drawing.Point(4, 47);
+            this.LocationInventoryTab.Location = new System.Drawing.Point(4, 52);
             this.LocationInventoryTab.Margin = new System.Windows.Forms.Padding(2);
             this.LocationInventoryTab.Name = "LocationInventoryTab";
-            this.LocationInventoryTab.Size = new System.Drawing.Size(1123, 370);
+            this.LocationInventoryTab.Size = new System.Drawing.Size(1123, 365);
             this.LocationInventoryTab.TabIndex = 0;
             this.LocationInventoryTab.Text = "My Inventory";
-            this.LocationInventoryTab.UseVisualStyleBackColor = true;
             // 
             // dataGridView1
             // 
@@ -348,15 +357,15 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 41);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
@@ -364,7 +373,7 @@
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 28;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1105, 326);
+            this.dataGridView1.Size = new System.Drawing.Size(1101, 317);
             this.dataGridView1.TabIndex = 5;
             // 
             // grid
@@ -374,7 +383,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.grid.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
             this.grid.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.grid.Location = new System.Drawing.Point(7, 41);
+            this.grid.Location = new System.Drawing.Point(6, 6);
             this.grid.Name = "grid";
             // 
             // 
@@ -385,15 +394,14 @@
             this.grid.PrimaryGrid.ShowTreeLines = true;
             this.grid.PrimaryGrid.UseAlternateColumnStyle = true;
             this.grid.PrimaryGrid.UseAlternateRowStyle = true;
-            this.grid.Size = new System.Drawing.Size(1105, 326);
+            this.grid.Size = new System.Drawing.Size(1107, 349);
             this.grid.TabIndex = 4;
             this.grid.Text = "superGridControl1";
-            this.grid.Visible = false;
             // 
             // btnLoad
             // 
             this.btnLoad.BackColor = System.Drawing.Color.Cyan;
-            this.btnLoad.Location = new System.Drawing.Point(228, 16);
+            this.btnLoad.Location = new System.Drawing.Point(228, 11);
             this.btnLoad.Margin = new System.Windows.Forms.Padding(2);
             this.btnLoad.Name = "btnLoad";
             this.btnLoad.Size = new System.Drawing.Size(71, 23);
@@ -409,7 +417,7 @@
             this.comboBox1.Items.AddRange(new object[] {
             "Items per Location",
             "Detailed Items per Location"});
-            this.comboBox1.Location = new System.Drawing.Point(9, 18);
+            this.comboBox1.Location = new System.Drawing.Point(9, 13);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(2);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(217, 21);
@@ -460,6 +468,19 @@
             this.btnViewReport.UseVisualStyleBackColor = false;
             this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage1.Controls.Add(this.grid);
+            this.tabPage1.Location = new System.Drawing.Point(4, 52);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1123, 365);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Pending Trip";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
             // MenuWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -484,6 +505,7 @@
             this.tabControl1.ResumeLayout(false);
             this.LocationInventoryTab.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -503,7 +525,6 @@
         private System.Windows.Forms.Button btnDeclarePhysicalCou;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage LocationInventoryTab;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btnLoad;
@@ -519,5 +540,7 @@
         private System.Windows.Forms.Button btnNewBinReplishment;
         public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TabPage tabPage1;
+        public System.Windows.Forms.TabControl tabControl1;
     }
 }

@@ -33,19 +33,19 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.headerGrid = new System.Windows.Forms.DataGridView();
+            this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.description = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lot = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnSplit = new System.Windows.Forms.Button();
             this.txtLocation = new System.Windows.Forms.ComboBox();
             this.cboContainer = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.button1 = new System.Windows.Forms.Button();
-            this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lot = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.description = new DevComponents.DotNetBar.Controls.DataGridViewLabelXColumn();
-            this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -122,6 +122,48 @@
             this.headerGrid.TabIndex = 21;
             this.headerGrid.TabStop = false;
             // 
+            // product
+            // 
+            this.product.HeaderText = "Product";
+            this.product.Name = "product";
+            this.product.ReadOnly = true;
+            // 
+            // description
+            // 
+            this.description.HeaderText = "Description";
+            this.description.Name = "description";
+            this.description.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // uom
+            // 
+            this.uom.HeaderText = "UOM";
+            this.uom.Name = "uom";
+            this.uom.ReadOnly = true;
+            // 
+            // lot
+            // 
+            this.lot.HeaderText = "Lot #";
+            this.lot.Name = "lot";
+            this.lot.ReadOnly = true;
+            // 
+            // expiry
+            // 
+            this.expiry.HeaderText = "Expiry";
+            this.expiry.Name = "expiry";
+            this.expiry.ReadOnly = true;
+            // 
+            // location
+            // 
+            this.location.HeaderText = "Location";
+            this.location.Name = "location";
+            this.location.ReadOnly = true;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -189,48 +231,6 @@
             this.button1.Text = "Closed";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // location
-            // 
-            this.location.HeaderText = "Location";
-            this.location.Name = "location";
-            this.location.ReadOnly = true;
-            // 
-            // expiry
-            // 
-            this.expiry.HeaderText = "Expiry";
-            this.expiry.Name = "expiry";
-            this.expiry.ReadOnly = true;
-            // 
-            // lot
-            // 
-            this.lot.HeaderText = "Lot #";
-            this.lot.Name = "lot";
-            this.lot.ReadOnly = true;
-            // 
-            // uom
-            // 
-            this.uom.HeaderText = "UOM";
-            this.uom.Name = "uom";
-            this.uom.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // description
-            // 
-            this.description.HeaderText = "Description";
-            this.description.Name = "description";
-            this.description.ReadOnly = true;
-            // 
-            // product
-            // 
-            this.product.HeaderText = "Product";
-            this.product.Name = "product";
-            this.product.ReadOnly = true;
             // 
             // NewPutawayWindow
             // 

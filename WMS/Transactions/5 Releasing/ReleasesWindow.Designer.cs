@@ -189,7 +189,6 @@
             this.txtreleaseto.Size = new System.Drawing.Size(193, 20);
             this.txtreleaseto.TabIndex = 48;
             this.txtreleaseto.TextChanged += new System.EventHandler(this.txtScan_TextChanged);
-            this.txtreleaseto.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtScan_KeyDown);
             // 
             // ReleasesWindow
             // 

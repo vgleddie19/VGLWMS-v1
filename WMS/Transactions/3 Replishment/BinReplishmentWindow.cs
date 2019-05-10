@@ -131,14 +131,33 @@ namespace WMS
 
         private void grdreplenishmentconfirm_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == grdreplenishmentconfirm.Columns["btn-x"].Index)
+            if (e.ColumnIndex == grdreplenishmentconfirm.Columns["btn-x"].Index)
             {
+                declarebincomplete picklist = new declarebincomplete();
+                picklist.type = "pick";
+                if (picklist.ShowDialog() != DialogResult.OK)
+                    return;
+
+                declarebincomplete casebreak = new declarebincomplete();
+                casebreak.type = "casebreak";
+                casebreak.picklistid = picklist.picklistid;
+                casebreak.label2.Text = "Scan CaseBreak ID:";
+                if (casebreak.ShowDialog() != DialogResult.OK)
+                    return;
+
+                declarebincomplete putaway = new declarebincomplete();
+                putaway.type = "putaway";
+                putaway.label2.Text = "Scan PutAway ID:";
+                putaway.picklistid = picklist.picklistid;
+                putaway.casebreakid = casebreak.casebreakid;
+                if (putaway.ShowDialog() != DialogResult.OK)
+                    return;
+
                 confirm_picklistcasebreakputaway(grdreplenishmentconfirm.Rows[e.RowIndex].Cells["picklist_id"].Value.ToString(), grdreplenishmentconfirm.Rows[e.RowIndex].Cells["casebreak_id"].Value.ToString(), grdreplenishmentconfirm.Rows[e.RowIndex].Cells["putaway_id"].Value.ToString());
             }
         }
         private void confirm_picklistcasebreakputaway(String picklist_id, String casebreak_id, String putaway_id)
         {
-            //MessageBox.Show(String.Format("pick-{0}\ncase-{1}\nputaway-{2}", picklist_id, casebreak_id, putaway_id));
             DataTable picklistdetails = DataSupport.RunDataSet(String.Format("SELECT * FROM [PicklistDetails] WHERE picklist = '{0}'", picklist_id)).Tables[0];
             DataTable casebreakdetails = DataSupport.RunDataSet(String.Format("SELECT * FROM [CaseBreakDetails] WHERE casebreak = '{0}'", casebreak_id)).Tables[0];
             DataTable putawaydetails = DataSupport.RunDataSet(String.Format("SELECT * FROM [PutawayDetails] WHERE putaway = '{0}'", putaway_id)).Tables[0];
@@ -271,12 +290,17 @@ namespace WMS
                                      , "qty_to_replenished", 0
                                     ),new List<string> { "location", "product", "uom", "lot_no","expiry" }));
                         }
+                        String S = String.Format(@"UPDATE LocationProductsLedger SET casebreak_qty = casebreak_qty - {0} WHERE product = '{1}' and location = '{2}' and lot_no = '{3}' and expiry ='{4}' and uom = '{5}'"
+                        , int.Parse(row["expected_qty"].ToString()), row["product"], row["location"], row["lot_no"], row["expiry"], row["uom"]);
+                        sql.Append(S);
                     }
                     sql.Append(LedgerSupport.UpdateLocationProductsLedger(insDT));
 
                     DataTable outsDT = LedgerSupport.GetLocationProductsLedgerDT();
                     foreach (DataRow row in casebreakdetails.Rows)
+                    {
                         outsDT.Rows.Add(row["location"], row["product"], int.Parse(row["expected_qty"].ToString()) * -1, row["breakto_uom"], row["lot_no"], row["expiry"], 0, 0);
+                    }
                     sql.Append(LedgerSupport.UpdateLocationProductsLedger(outsDT));
                 }
                 try

@@ -12,6 +12,9 @@ namespace WMS
 {
     public partial class CaseBreakPickListConfirmation : Form
     {
+        DataTable producttopick = null;
+        DataTable casebreak = null;
+        DataTable putaway = null;
         public BinReplishmentWindow parent = null;
         public String[] ids = null;
         public CaseBreakPickListConfirmation()
@@ -21,213 +24,131 @@ namespace WMS
 
         private void CaseBreakPickListConfirmation_Load(object sender, EventArgs e)
         {
-            //picklist
 
-            StringBuilder picklist_builder = new StringBuilder();
-
-            DataTable dt = new DataTable();
-            dt.Columns.Add("Location");
-            dt.Columns.Add("Product");
-            dt.Columns.Add("Description");
-            dt.Columns.Add("Qty1");
-            dt.Columns.Add("Uom1");
-            dt.Columns.Add("Lot no");
-            dt.Columns.Add("Expiry");
-            if (parent.genpickgrid.Rows.Count >= 1)
             {
-                foreach (DataGridViewRow row in parent.genpickgrid.Rows)
+                //picklist
+                StringBuilder picklist_builder = new StringBuilder();
+
+                producttopick = new DataTable();
+                producttopick.Columns.Add("Location");
+                producttopick.Columns.Add("Product");
+                producttopick.Columns.Add("Description");
+                producttopick.Columns.Add("Qty1");
+                producttopick.Columns.Add("Uom1");
+                producttopick.Columns.Add("Lot no");
+                producttopick.Columns.Add("Expiry");
+                producttopick.Columns.Add("putawayid");
+                producttopick.Columns.Add("casebreakid");
+                producttopick.Columns.Add("picklistid");
+                if (parent.genpickgrid.Rows.Count >= 1)
                 {
-                    Boolean is_found = false;
-                    foreach (DataRow existing_row in dt.Rows)
+                    foreach (DataGridViewRow row in parent.genpickgrid.Rows)
                     {
-                        if (
-                               existing_row["Location"].ToString() == row.Cells["gridcolloc"].Value.ToString()
-                            && existing_row["Product"].ToString() == row.Cells["gridcolprod"].Value.ToString()
-                            && existing_row["Lot no"].ToString() == row.Cells["gridcollot"].Value.ToString()
-                            && existing_row["Uom1"].ToString() == row.Cells["gridcoluom"].Value.ToString()
-                            && DateTime.Parse(existing_row["Expiry"].ToString()).ToShortDateString() == DateTime.Parse(row.Cells["gridcolexpiry"].Value.ToString()).ToShortDateString()
-                            )
+                        Boolean is_found = false;
+                        foreach (DataRow existing_row in producttopick.Rows)
                         {
-                            existing_row["Qty1"] = int.Parse(row.Cells["gridcolqty"].Value.ToString()) + int.Parse(existing_row["Qty1"].ToString());
-                            is_found = true;
-                            break;
+                            if (
+                                   existing_row["Location"].ToString() == row.Cells["gridcolloc"].Value.ToString()
+                                && existing_row["Product"].ToString() == row.Cells["gridcolprod"].Value.ToString()
+                                && existing_row["Lot no"].ToString() == row.Cells["gridcollot"].Value.ToString()
+                                && existing_row["Uom1"].ToString() == row.Cells["gridcoluom"].Value.ToString()
+                                && DateTime.Parse(existing_row["Expiry"].ToString()).ToShortDateString() == DateTime.Parse(row.Cells["gridcolexpiry"].Value.ToString()).ToShortDateString()
+                                )
+                            {
+                                existing_row["Qty1"] = int.Parse(row.Cells["gridcolqty"].Value.ToString()) + int.Parse(existing_row["Qty1"].ToString());
+                                is_found = true;
+                                break;
+                            }
+                        }
+                        if (!is_found)
+                        {
+                            producttopick.Rows.Add(row.Cells["gridcolloc"].Value.ToString()
+                                        , row.Cells["gridcolprod"].Value.ToString()
+                                        , row.Cells["gridcoldesc"].Value.ToString()
+                                        , row.Cells["gridcolqty"].Value.ToString()
+                                        , row.Cells["gridcoluom"].Value.ToString()
+                                        , row.Cells["gridcollot"].Value.ToString()
+                                        , DateTime.Parse(row.Cells["gridcolexpiry"].Value.ToString()).ToShortDateString()
+                                        , "(issued on save)"
+                                        , "(issued on save)"
+                                        , "(issued on save)"
+                                      );
                         }
                     }
-                    if (!is_found)
+                }
+                //Casebreak
+                if (parent.gencasebreakgrid.Rows.Count >= 1)
+                {
+                    picklist_builder = new StringBuilder();
+
+                    casebreak = new DataTable();
+                    casebreak.Columns.Add("Product");
+                    casebreak.Columns.Add("Description");
+                    casebreak.Columns.Add("Qty1");
+                    casebreak.Columns.Add("Uom1");
+                    casebreak.Columns.Add("Qty2");
+                    casebreak.Columns.Add("Uom2");
+                    casebreak.Columns.Add("Lot no");
+                    casebreak.Columns.Add("Expiry");
+                    casebreak.Columns.Add("putawayid");
+                    casebreak.Columns.Add("casebreakid");
+                    casebreak.Columns.Add("picklistid");
+                    foreach (DataGridViewRow row in parent.gencasebreakgrid.Rows)
                     {
-                        dt.Rows.Add(row.Cells["gridcolloc"].Value.ToString()
-                                    , row.Cells["gridcolprod"].Value.ToString()
-                                    , row.Cells["gridcoldesc"].Value.ToString()
-                                    , row.Cells["gridcolqty"].Value.ToString()
-                                    , row.Cells["gridcoluom"].Value.ToString()
-                                    , row.Cells["gridcollot"].Value.ToString()
-                                    , DateTime.Parse(row.Cells["gridcolexpiry"].Value.ToString()).ToShortDateString()
+                        casebreak.Rows.Add(row.Cells["gridcolcasebreak_prod"].Value.ToString()
+                                    , row.Cells["gridcolcasebreak_desc"].Value.ToString()
+                                    , row.Cells["gridcolcasebreak_locqty"].Value.ToString()
+                                    , row.Cells["gridcolcasebreak_locuom"].Value.ToString()
+                                    , row.Cells["gridcolcasebreak_binqty"].Value.ToString()
+                                    , row.Cells["gridcolcasebreak_binuom"].Value.ToString()
+                                    , row.Cells["gridcolcasebreak_lot"].Value.ToString()
+                                    , DateTime.Parse(row.Cells["gridcolcasebreak_expiry"].Value.ToString()).ToShortDateString()
+                                    , "(issued on save)"
+                                    , "(issued on save)"
+                                    , "(issued on save)"
                                     );
                     }
                 }
-                picklist_builder.Append("<table class='table'>");
-
-                picklist_builder.Append("<thead>");
-                picklist_builder.Append("<tr>");
-
+                //Put Away
+                if (parent.putawaygrid.Rows.Count >= 1)
                 {
-                    foreach (DataColumn col in dt.Columns)
+                    picklist_builder = new StringBuilder();
+
+                    putaway = new DataTable();
+                    putaway.Columns.Add("Product");
+                    putaway.Columns.Add("Description");
+                    putaway.Columns.Add("Qty2");
+                    putaway.Columns.Add("Uom2");
+                    putaway.Columns.Add("Lot no");
+                    putaway.Columns.Add("Expiry");
+                    putaway.Columns.Add("Location");
+                    putaway.Columns.Add("putawayid");
+                    putaway.Columns.Add("casebreakid");
+                    putaway.Columns.Add("picklistid");
+                    foreach (DataGridViewRow row in parent.putawaygrid.Rows)
                     {
-                        picklist_builder.Append("<th>");
-                        picklist_builder.Append(col.ColumnName);
-                        picklist_builder.Append("</th>");
+                        putaway.Rows.Add(row.Cells["gridcolputaway_prod"].Value.ToString()
+                                              , row.Cells["gridcolputaway_desc"].Value.ToString()
+                                              , row.Cells["gridcolputaway_qty"].Value.ToString()
+                                              , row.Cells["gridcolputaway_binuom"].Value.ToString()
+                                              , row.Cells["gridcolputaway_lot"].Value.ToString()
+                                              , DateTime.Parse(row.Cells["gridcolputaway_expiry"].Value.ToString()).ToShortDateString()
+                                              , row.Cells["gridcolputaway_bin"].Value.ToString()
+                                              , "(issued on save)"
+                                              , "(issued on save)"
+                                              , "(issued on save)"
+                                              );
+
                     }
                 }
+                CrystalDecisions.CrystalReports.Engine.ReportDocument rviewer = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                rviewer = new WMS.crtpicklistforcasebreak();
+                rviewer.SetDataSource(producttopick);
+                rviewer.Subreports["crtcasebreak.rpt"].SetDataSource(casebreak);
+                rviewer.Subreports["crtputawaycasebreak.rpt"].SetDataSource(putaway);
 
-                picklist_builder.Append("</tr>");
-                picklist_builder.Append("</thead>");
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    picklist_builder.Append("<tr>");
-                    foreach (DataColumn col in dt.Columns)
-                    {
-
-                        picklist_builder.Append("<td>");
-                        picklist_builder.Append(row[col].ToString());
-                        picklist_builder.Append("</td>");
-                    }
-
-                    picklist_builder.Append("</tr>");
-                }
-
-                picklist_builder.Append("</table>");
-
-                webBrowser1.DocumentText = Properties.Resources.case_break_picklist
-                    .Replace("[run_datetime]", DateTime.Now.ToString())
-                    .Replace("[casebreak_table]", picklist_builder.ToString())
-                    ;
-            }
-            //Casebreak
-            if (parent.gencasebreakgrid.Rows.Count >= 1)
-            {               
-                picklist_builder = new StringBuilder();
-
-                dt = new DataTable();
-                dt.Columns.Add("Product");
-                dt.Columns.Add("Description");
-                dt.Columns.Add("Qty1");
-                dt.Columns.Add("Uom1");
-                dt.Columns.Add("Qty2");
-                dt.Columns.Add("Uom2");
-                dt.Columns.Add("Lot no");
-                dt.Columns.Add("Expiry");
-                foreach (DataGridViewRow row in parent.gencasebreakgrid.Rows)
-                {
-                    dt.Rows.Add(row.Cells["gridcolcasebreak_prod"].Value.ToString()
-                                , row.Cells["gridcolcasebreak_desc"].Value.ToString()
-                                , row.Cells["gridcolcasebreak_locqty"].Value.ToString()
-                                , row.Cells["gridcolcasebreak_locuom"].Value.ToString()
-                                , row.Cells["gridcolcasebreak_binqty"].Value.ToString()
-                                , row.Cells["gridcolcasebreak_binuom"].Value.ToString()
-                                , row.Cells["gridcolcasebreak_lot"].Value.ToString()
-                                , DateTime.Parse(row.Cells["gridcolcasebreak_expiry"].Value.ToString()).ToShortDateString()
-                                );
-                }
-                picklist_builder.Append("<table class='table'>");
-                picklist_builder.Append("<thead>");
-                picklist_builder.Append("<tr>");
-
-                {
-                    foreach (DataColumn col in dt.Columns)
-                    {
-                        picklist_builder.Append("<th>");
-                        picklist_builder.Append(col.ColumnName);
-                        picklist_builder.Append("</th>");
-                    }
-                }
-
-                picklist_builder.Append("</tr>");
-                picklist_builder.Append("</thead>");
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    picklist_builder.Append("<tr>");
-                    foreach (DataColumn col in dt.Columns)
-                    {
-
-                        picklist_builder.Append("<td>");
-                        picklist_builder.Append(row[col].ToString());
-                        picklist_builder.Append("</td>");
-                    }
-
-                    picklist_builder.Append("</tr>");
-                }
-
-                picklist_builder.Append("</table>");
-
-                webBrowser2.DocumentText = Properties.Resources.case_break_report
-                    .Replace("[run_datetime]", DateTime.Now.ToString())
-                    .Replace("[casebreak_table]", picklist_builder.ToString())
-                    ;
-            }
-            //Put Away
-            if (parent.putawaygrid.Rows.Count >= 1)
-            {
-                picklist_builder = new StringBuilder();
-
-                dt = new DataTable();
-                dt.Columns.Add("Product");
-                dt.Columns.Add("Description");
-                dt.Columns.Add("Qty2");
-                dt.Columns.Add("Uom2");
-                dt.Columns.Add("Lot no");
-                dt.Columns.Add("Expiry");
-                dt.Columns.Add("Location/Bin");
-                foreach (DataGridViewRow row in parent.putawaygrid.Rows)
-                {
-                    dt.Rows.Add(row.Cells["gridcolputaway_prod"].Value.ToString()
-                                          , row.Cells["gridcolputaway_desc"].Value.ToString()
-                                          , row.Cells["gridcolputaway_qty"].Value.ToString()
-                                          , row.Cells["gridcolputaway_binuom"].Value.ToString()
-                                          , row.Cells["gridcolputaway_lot"].Value.ToString()
-                                          , DateTime.Parse(row.Cells["gridcolputaway_expiry"].Value.ToString()).ToShortDateString()
-                                          , row.Cells["gridcolputaway_bin"].Value.ToString()
-                                          );
-
-                }
-                picklist_builder.Append("<table class='table'>");
-
-                picklist_builder.Append("<thead>");
-                picklist_builder.Append("<tr>");
-
-                {
-                    foreach (DataColumn col in dt.Columns)
-                    {
-                        picklist_builder.Append("<th>");
-                        picklist_builder.Append(col.ColumnName);
-                        picklist_builder.Append("</th>");
-                    }
-                }
-
-                picklist_builder.Append("</tr>");
-                picklist_builder.Append("</thead>");
-
-                foreach (DataRow row in dt.Rows)
-                {
-                    picklist_builder.Append("<tr>");
-                    foreach (DataColumn col in dt.Columns)
-                    {
-
-                        picklist_builder.Append("<td>");
-                        picklist_builder.Append(row[col].ToString());
-                        picklist_builder.Append("</td>");
-                    }
-
-                    picklist_builder.Append("</tr>");
-                }
-
-                picklist_builder.Append("</table>");
-
-                webBrowser3.DocumentText = Properties.Resources.case_break_putaway
-                    .Replace("[run_datetime]", DateTime.Now.ToString())
-                    .Replace("[casebreak_table]", picklist_builder.ToString())
-                    ;
+                viewer.ReportSource = rviewer;
+                viewer.Zoom(110);
             }
         }
 
@@ -249,25 +170,91 @@ namespace WMS
                     try
                     {
                         DataSupport.RunNonQuery(sql.ToString(), IsolationLevel.ReadCommitted);
-
                         MessageBox.Show("Success");
-                        webBrowser1.DocumentText = webBrowser1.DocumentText
-                                                  .Replace("(issued on save bin putaway)", ids[2])
-                                                  .Replace("(issued on save casebreak)", ids[1])
-                                                  .Replace("(issued on save)", ids[0]);
 
-                        webBrowser2.DocumentText = webBrowser2.DocumentText
-                                                  .Replace("(issued on save bin putaway)", ids[2])
-                                                  .Replace("(issued on save picklist)", ids[0])
-                                                  .Replace("(issued on save)", ids[1]);
+                        CrystalDecisions.CrystalReports.Engine.ReportDocument rviewer = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+                        rviewer = new WMS.crtpicklistforcasebreak();
 
-                        webBrowser3.DocumentText = webBrowser3.DocumentText
-                                                  .Replace("(issued on save bin picklist)", ids[0])
-                                                  .Replace("(issued on save casebreak)", ids[1])
-                                                  .Replace("(issued on save)", ids[2]);
+                        BarcodeLib.Barcode barcode = new BarcodeLib.Barcode();
+                        barcode.BarWidth = 5;
+                        DataColumn pick = new DataColumn("picklistbarcode", System.Type.GetType("System.Byte[]"));
+                        pick.DefaultValue = Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, ids[0]), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        DataColumn caseb = new DataColumn("casebreakbarcode", System.Type.GetType("System.Byte[]"));
+                        caseb.DefaultValue = Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, ids[1]), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        DataColumn putbar = new DataColumn("putawaybarcode", System.Type.GetType("System.Byte[]"));
+                        putbar.DefaultValue = Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, ids[2]), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        producttopick.Columns.Add(pick);
+                        producttopick.Columns.Add(caseb);
+                        producttopick.Columns.Add(putbar);
+
+                        pick = new DataColumn("picklistbarcode", System.Type.GetType("System.Byte[]"));
+                        pick.DefaultValue = Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, ids[0]), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        caseb = new DataColumn("casebreakbarcode", System.Type.GetType("System.Byte[]"));
+                        caseb.DefaultValue = Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, ids[1]), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        putbar = new DataColumn("putawaybarcode", System.Type.GetType("System.Byte[]"));
+                        putbar.DefaultValue = Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, ids[2]), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        casebreak.Columns.Add(pick);
+                        casebreak.Columns.Add(caseb);
+                        casebreak.Columns.Add(putbar);
+
+                        pick = new DataColumn("picklistbarcode", System.Type.GetType("System.Byte[]"));
+                        pick.DefaultValue = Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, ids[0]), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        caseb = new DataColumn("casebreakbarcode", System.Type.GetType("System.Byte[]"));
+                        caseb.DefaultValue = Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, ids[1]), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        putbar = new DataColumn("putawaybarcode", System.Type.GetType("System.Byte[]"));
+                        putbar.DefaultValue = Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, ids[2]), System.Drawing.Imaging.ImageFormat.Jpeg);
+                        putaway.Columns.Add(pick);
+                        putaway.Columns.Add(caseb);
+                        putaway.Columns.Add(putbar);
+
+                        producttopick.Columns.Remove("picklistid");
+                        producttopick.Columns.Remove("casebreakid");
+                        producttopick.Columns.Remove("putawayid");
+                        DataColumn dc = new DataColumn("picklistid");
+                        dc.DefaultValue = ids[0];
+                        producttopick.Columns.Add(dc);
+                        dc = new DataColumn("casebreakid");
+                        dc.DefaultValue = ids[1];
+                        producttopick.Columns.Add(dc);
+                        dc = new DataColumn("putawayid");
+                        dc.DefaultValue = ids[2];
+                        producttopick.Columns.Add(dc);
+                        rviewer.SetDataSource(producttopick);
+
+                        casebreak.Columns.Remove("picklistid");
+                        casebreak.Columns.Remove("casebreakid");
+                        casebreak.Columns.Remove("putawayid");
+                        dc = new DataColumn("picklistid");
+                        dc.DefaultValue = ids[0];
+                        casebreak.Columns.Add(dc);
+                        dc = new DataColumn("casebreakid");
+                        dc.DefaultValue = ids[1];
+                        casebreak.Columns.Add(dc);
+                        dc = new DataColumn("putawayid");
+                        dc.DefaultValue = ids[2];
+                        casebreak.Columns.Add(dc);
+                        rviewer.Subreports["crtcasebreak.rpt"].SetDataSource(casebreak);
+
+                        putaway.Columns.Remove("picklistid");
+                        putaway.Columns.Remove("casebreakid");
+                        putaway.Columns.Remove("putawayid");
+                        dc = new DataColumn("picklistid");
+                        dc.DefaultValue = ids[0];
+                        putaway.Columns.Add(dc);
+                        dc = new DataColumn("casebreakid");
+                        dc.DefaultValue = ids[1];
+                        putaway.Columns.Add(dc);
+                        dc = new DataColumn("putawayid");
+                        dc.DefaultValue = ids[2];
+                        putaway.Columns.Add(dc);
+                        rviewer.Subreports["crtputawaycasebreak.rpt"].SetDataSource(putaway);
+
+                        viewer.ReportSource = rviewer;
+                        viewer.Zoom(110);
+
 
                         btnPrintPreview.Text = "Print";
-                        btnCancel.Text = "Closed";
+                        btnCancel.Text = "Close";
                     }
                     catch (Exception ex)
                     {
@@ -277,9 +264,7 @@ namespace WMS
                 }
                 else
                 {
-                    webBrowser1.Print();
-                    webBrowser2.Print();
-                    webBrowser3.Print();
+                    viewer.PrintReport();
                 }
             }
         }

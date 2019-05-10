@@ -28,71 +28,93 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnPrintPreview = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.viewer = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.webBrowser1.Location = new System.Drawing.Point(18, 32);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(13, 13);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(462, 398);
-            this.webBrowser1.TabIndex = 0;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.BackColor = System.Drawing.Color.Orange;
-            this.btnCancel.Location = new System.Drawing.Point(507, 140);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(92, 73);
-            this.btnCancel.TabIndex = 16;
-            this.btnCancel.Text = "Back";
-            this.btnCancel.UseVisualStyleBackColor = false;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnPrintPreview
             // 
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.BackColor = System.Drawing.Color.Lime;
-            this.btnPrintPreview.Location = new System.Drawing.Point(507, 47);
-            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrintPreview.Location = new System.Drawing.Point(7, 11);
+            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrintPreview.Name = "btnPrintPreview";
-            this.btnPrintPreview.Size = new System.Drawing.Size(92, 69);
-            this.btnPrintPreview.TabIndex = 15;
+            this.btnPrintPreview.Size = new System.Drawing.Size(92, 52);
+            this.btnPrintPreview.TabIndex = 18;
             this.btnPrintPreview.Text = "Save";
             this.btnPrintPreview.UseVisualStyleBackColor = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.BackColor = System.Drawing.Color.Orange;
+            this.btnCancel.Location = new System.Drawing.Point(7, 67);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(92, 56);
+            this.btnCancel.TabIndex = 19;
+            this.btnCancel.Text = "Back";
+            this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // viewer
+            // 
+            this.viewer.ActiveViewIndex = -1;
+            this.viewer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.viewer.Cursor = System.Windows.Forms.Cursors.Default;
+            this.viewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.viewer.Location = new System.Drawing.Point(0, 0);
+            this.viewer.Name = "viewer";
+            this.viewer.ShowCopyButton = false;
+            this.viewer.ShowGotoPageButton = false;
+            this.viewer.ShowGroupTreeButton = false;
+            this.viewer.ShowLogo = false;
+            this.viewer.ShowParameterPanelButton = false;
+            this.viewer.ShowPrintButton = false;
+            this.viewer.ShowRefreshButton = false;
+            this.viewer.ShowTextSearchButton = false;
+            this.viewer.Size = new System.Drawing.Size(782, 614);
+            this.viewer.TabIndex = 53;
+            this.viewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnPrintPreview);
+            this.panel1.Controls.Add(this.btnCancel);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(782, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(110, 614);
+            this.panel1.TabIndex = 52;
             // 
             // NewReceiptConfirmationWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(631, 442);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnPrintPreview);
-            this.Controls.Add(this.webBrowser1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.ClientSize = new System.Drawing.Size(892, 614);
+            this.Controls.Add(this.viewer);
+            this.Controls.Add(this.panel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "NewReceiptConfirmationWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Please Confirm...";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.NewReceiptConfirmationWindow_FormClosed);
             this.Load += new System.EventHandler(this.NewReceiptConfirmationWindow_Load);
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.Button btnPrintPreview;
         public System.Windows.Forms.Button btnCancel;
+        private CrystalDecisions.Windows.Forms.CrystalReportViewer viewer;
+        private System.Windows.Forms.Panel panel1;
     }
 }

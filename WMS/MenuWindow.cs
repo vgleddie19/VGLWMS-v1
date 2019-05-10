@@ -25,6 +25,7 @@ namespace WMS
         {
             comboBox1.SelectedIndex = 0;
             LoadInventory();
+            LoadInventorySuperGrid();
         }
         private void MenuWindow_KeyDown(object sender, KeyEventArgs e)
         {
@@ -46,7 +47,7 @@ namespace WMS
                 DataTable dt = DataSupport.RunDataSet(@"SELECT Location, Product + ' - ' + (SELECT description FROM Products WHERE product = product_id)[Product],  Uom, 
                         SUM(Qty) [Physical Qty], SUM(reserved_qty)[Reserved Qty], SUM(to_be_picked_qty)[For Picking Qty], SUM(available_qty) [Available Qty]
                         FROM LocationProductsLedger
-                        WHERE qty > 0
+                        WHERE available_qty > 0
                         GROUP BY location, product, uom").Tables[0];
 
 
@@ -62,7 +63,7 @@ namespace WMS
                 DataTable dt = DataSupport.RunDataSet(@"SELECT Location, Product + ' - ' + (SELECT description FROM Products WHERE product = product_id)[Product],  Uom, lot_no[Lot No], Expiry, 
                         Qty [Physical Qty], reserved_qty[Reserved Qty], to_be_picked_qty[For Picking Qty]
                         FROM LocationProductsLedger
-                        WHERE qty > 0").Tables[0];
+                        WHERE available_qty > 0").Tables[0];
                 foreach (DataRow row in dt.Rows)
                 {
                     row["Expiry"] = DateTime.Parse(row["Expiry"].ToString()).ToShortDateString();
@@ -383,6 +384,7 @@ namespace WMS
         {
             StockCheckingWindow dialog = new StockCheckingWindow();
             dialog.ShowDialog();
+            LoadInventory();
         }
         private void btnNewCaseBreak_Click(object sender, EventArgs e)
         {
@@ -391,6 +393,7 @@ namespace WMS
             dialog.ShowInTaskbar = false;
             dialog.Icon = this.Icon;
             dialog.ShowDialog();
+            LoadInventory();
             //NewCaseBreakWindow dialog = new NewCaseBreakWindow();
             //dialog.ShowIcon = false;
             //dialog.ShowInTaskbar = false;
@@ -416,6 +419,7 @@ namespace WMS
             dialog.ShowInTaskbar = false;
             dialog.Icon = this.Icon;
             dialog.ShowDialog();
+            LoadInventory();
         }
     }
 }

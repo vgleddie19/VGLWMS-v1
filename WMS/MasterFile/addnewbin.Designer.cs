@@ -44,12 +44,13 @@
             this.cbolot = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.cboexpiry = new DevComponents.DotNetBar.Controls.ComboBoxEx();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblShowProduct = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtmin_qty
             // 
             this.txtmin_qty.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtmin_qty.Location = new System.Drawing.Point(163, 152);
+            this.txtmin_qty.Location = new System.Drawing.Point(163, 177);
             this.txtmin_qty.Name = "txtmin_qty";
             this.txtmin_qty.Size = new System.Drawing.Size(132, 22);
             this.txtmin_qty.TabIndex = 5;
@@ -58,7 +59,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(27, 155);
+            this.label4.Location = new System.Drawing.Point(27, 180);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(132, 16);
             this.label4.TabIndex = 43;
@@ -67,7 +68,7 @@
             // btnAdd
             // 
             this.btnAdd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(160)))), ((int)(((byte)(133)))));
-            this.btnAdd.Location = new System.Drawing.Point(30, 225);
+            this.btnAdd.Location = new System.Drawing.Point(34, 231);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(98, 68);
             this.btnAdd.TabIndex = 7;
@@ -107,7 +108,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(111, 70);
+            this.label2.Location = new System.Drawing.Point(111, 95);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(46, 16);
             this.label2.TabIndex = 49;
@@ -117,7 +118,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(23, 180);
+            this.label5.Location = new System.Drawing.Point(23, 205);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(136, 16);
             this.label5.TabIndex = 43;
@@ -126,7 +127,7 @@
             // txtmax_qty
             // 
             this.txtmax_qty.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtmax_qty.Location = new System.Drawing.Point(163, 178);
+            this.txtmax_qty.Location = new System.Drawing.Point(163, 203);
             this.txtmax_qty.Name = "txtmax_qty";
             this.txtmax_qty.Size = new System.Drawing.Size(132, 22);
             this.txtmax_qty.TabIndex = 6;
@@ -135,7 +136,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(100, 100);
+            this.label6.Location = new System.Drawing.Point(100, 125);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 16);
             this.label6.TabIndex = 49;
@@ -145,7 +146,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(102, 130);
+            this.label7.Location = new System.Drawing.Point(102, 155);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(55, 16);
             this.label7.TabIndex = 49;
@@ -172,7 +173,7 @@
             this.cbouom.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbouom.FormattingEnabled = true;
             this.cbouom.ItemHeight = 17;
-            this.cbouom.Location = new System.Drawing.Point(163, 65);
+            this.cbouom.Location = new System.Drawing.Point(163, 90);
             this.cbouom.Name = "cbouom";
             this.cbouom.Size = new System.Drawing.Size(137, 23);
             this.cbouom.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -186,7 +187,7 @@
             this.cbolot.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbolot.FormattingEnabled = true;
             this.cbolot.ItemHeight = 17;
-            this.cbolot.Location = new System.Drawing.Point(163, 93);
+            this.cbolot.Location = new System.Drawing.Point(163, 118);
             this.cbolot.Name = "cbolot";
             this.cbolot.Size = new System.Drawing.Size(137, 23);
             this.cbolot.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -200,7 +201,7 @@
             this.cboexpiry.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboexpiry.FormattingEnabled = true;
             this.cboexpiry.ItemHeight = 17;
-            this.cboexpiry.Location = new System.Drawing.Point(163, 123);
+            this.cboexpiry.Location = new System.Drawing.Point(163, 148);
             this.cboexpiry.Name = "cboexpiry";
             this.cboexpiry.Size = new System.Drawing.Size(137, 23);
             this.cboexpiry.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -211,7 +212,7 @@
             // 
             this.button1.BackColor = System.Drawing.Color.Red;
             this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(134, 225);
+            this.button1.Location = new System.Drawing.Point(138, 231);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 68);
             this.button1.TabIndex = 7;
@@ -219,11 +220,24 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lblShowProduct
+            // 
+            this.lblShowProduct.AutoSize = true;
+            this.lblShowProduct.Font = new System.Drawing.Font("Arial Narrow", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowProduct.Location = new System.Drawing.Point(160, 69);
+            this.lblShowProduct.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblShowProduct.Name = "lblShowProduct";
+            this.lblShowProduct.Size = new System.Drawing.Size(59, 17);
+            this.lblShowProduct.TabIndex = 50;
+            this.lblShowProduct.Text = "Show IDs";
+            this.lblShowProduct.Click += new System.EventHandler(this.lblShowProduct_Click);
+            // 
             // addnewbin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(494, 305);
+            this.ClientSize = new System.Drawing.Size(494, 310);
+            this.Controls.Add(this.lblShowProduct);
             this.Controls.Add(this.cboexpiry);
             this.Controls.Add(this.cbolot);
             this.Controls.Add(this.cbouom);
@@ -265,5 +279,6 @@
         private DevComponents.DotNetBar.Controls.ComboBoxEx cbolot;
         private DevComponents.DotNetBar.Controls.ComboBoxEx cboexpiry;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lblShowProduct;
     }
 }

@@ -59,14 +59,17 @@ namespace WMS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            StringBuilder sql = new StringBuilder();
-            sql.Append(DataSupport.GetDelete("[BinProductLedger]",Utils.ToDictionary("location", grd.CurrentRow.Cells[bin.Name].Value.ToString())));
-            sql.Append(DataSupport.GetDelete("[BinProducts]", Utils.ToDictionary("location", grd.CurrentRow.Cells[bin.Name].Value.ToString())));
-            sql.Append(DataSupport.GetDelete("[Locations]", Utils.ToDictionary("location_id", grd.CurrentRow.Cells[bin.Name].Value.ToString())));
+            if (grd.Rows.Count >= 1)
+            {
+                StringBuilder sql = new StringBuilder();
+                sql.Append(DataSupport.GetDelete("[BinProductLedger]", Utils.ToDictionary("location", grd.CurrentRow.Cells[bin.Name].Value.ToString())));
+                sql.Append(DataSupport.GetDelete("[BinProducts]", Utils.ToDictionary("location", grd.CurrentRow.Cells[bin.Name].Value.ToString())));
+                sql.Append(DataSupport.GetDelete("[Locations]", Utils.ToDictionary("location_id", grd.CurrentRow.Cells[bin.Name].Value.ToString())));
 
 
-            DataSupport.RunNonQuery(sql.ToString(), IsolationLevel.ReadCommitted);
-            LoadData();
+                DataSupport.RunNonQuery(sql.ToString(), IsolationLevel.ReadCommitted);
+                LoadData();
+            }
         }
     }
 }

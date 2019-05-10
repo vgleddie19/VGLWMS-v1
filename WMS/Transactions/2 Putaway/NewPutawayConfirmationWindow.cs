@@ -1,9 +1,11 @@
-﻿using Framework;
+﻿using CrystalDecisions.CrystalReports.Engine;
+using Framework;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -21,51 +23,36 @@ namespace WMS
 
         private void NewPutawayConfirmationWindow_Load(object sender, EventArgs e)
         {
-            btnPrintPreview.Select();
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<table class='table'>");
-
-            sb.Append("<thead>");
-            sb.Append("<tr>");
-
-            {
-                foreach (DataGridViewColumn col in parent.headerGrid.Columns)
-                {
-                    sb.Append("<th>");
-                    sb.Append(col.HeaderText);
-                    sb.Append("</th>");
-                }
-            }
-
-            sb.Append("</tr>");
-            sb.Append("</thead>");
-
+            btnPrintPreview.Select();           
+            DataTable dt = new DataTable();
+            dt.Columns.Add("putawayid");
+            dt.Columns.Add("containerid");
+            dt.Columns.Add("product");
+            dt.Columns.Add("desc");
+            dt.Columns.Add("qty");
+            dt.Columns.Add("uom");
+            dt.Columns.Add("lot");
+            dt.Columns.Add("expiry");
+            dt.Columns.Add("location");
             foreach (DataGridViewRow row in parent.headerGrid.Rows)
             {
-                sb.Append("<tr>");
-                foreach (DataGridViewColumn col in parent.headerGrid.Columns)
-                {
-                    sb.Append("<td>");
-                    sb.Append(row.Cells[col.Name].Value.ToString());
-                    sb.Append("</td>");
-                }
 
-                sb.Append("</tr>");
+                dt.Rows.Add("(issued on save)", "(issued on save)"
+                    , row.Cells["product"].Value.ToString()
+                    , row.Cells["description"].Value.ToString()
+                    , row.Cells["quantity"].Value.ToString()
+                    , row.Cells["uom"].Value.ToString()
+                    , row.Cells["lot"].Value.ToString()
+                    , row.Cells["expiry"].Value.ToString()
+                    , row.Cells["location"].Value.ToString()
+                    );
             }
 
-            sb.Append("</table>");
-
-
-
-            webBrowser1.DocumentText = Properties.Resources.putaway_report
-                .Replace("[container_type]", parent.cboContainer.Text)
-                .Replace("[container_id]", parent.cboContainer.SelectedValue.ToStringNull())
-                .Replace("[run_datetime]", DateTime.Now.ToString())
-                .Replace("[header_table]", sb.ToString())
-
-                ;
-
-
+            ReportDocument rviewer = new ReportDocument();
+            rviewer = new crtputaway();
+            rviewer.SetDataSource(dt);
+            viewer.ReportSource = rviewer;
+            viewer.Zoom(110);
         }
 
         private void btnPrintPreview_Click(object sender, EventArgs e)
@@ -74,7 +61,8 @@ namespace WMS
                 SaveData();
             else
             {
-                webBrowser1.ShowPrintPreviewDialog();
+                viewer.PrintReport();
+                //webBrowser1.ShowPrintPreviewDialog();
             }
         }
 
@@ -144,11 +132,48 @@ namespace WMS
             {
                 DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);
 
-                MessageBox.Show("Success");
+                DataTable dt = new DataTable();
+                dt.Columns.Add("putawayid");
+                dt.Columns.Add("containerid");
+                dt.Columns.Add("product");
+                dt.Columns.Add("desc");
+                dt.Columns.Add("qty");
+                dt.Columns.Add("uom");
+                dt.Columns.Add("lot");
+                dt.Columns.Add("expiry");
+                dt.Columns.Add("location");
+                dt.Columns.Add("putawaybarcode", System.Type.GetType("System.Byte[]"));
+                dt.Columns.Add("containerbarcode", System.Type.GetType("System.Byte[]"));
 
-                webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", putaway_id);
+                BarcodeLib.Barcode barcode = new BarcodeLib.Barcode();
+                barcode.BarWidth = 5;
+
+                foreach (DataGridViewRow row in parent.headerGrid.Rows)
+                {
+
+                    dt.Rows.Add(putaway_id, parent.cboContainer.SelectedValue.ToStringNull()
+                        , row.Cells["product"].Value.ToString()
+                        , row.Cells["description"].Value.ToString()
+                        , row.Cells["quantity"].Value.ToString()
+                        , row.Cells["uom"].Value.ToString()
+                        , row.Cells["lot"].Value.ToString()
+                        , row.Cells["expiry"].Value.ToString()
+                        , row.Cells["location"].Value.ToString()
+                        , Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, putaway_id), System.Drawing.Imaging.ImageFormat.Jpeg)
+                        , Utils.ConvertImageToByteArray(barcode.Encode(BarcodeLib.TYPE.CODE39, parent.cboContainer.SelectedValue.ToStringNull()), System.Drawing.Imaging.ImageFormat.Jpeg)
+                        );
+                }
+
+                ReportDocument rviewer = new ReportDocument();
+                rviewer = new crtputaway();
+                rviewer.SetDataSource(dt);
+                viewer.ReportSource = rviewer;
+                viewer.RefreshReport();
+                viewer.Zoom(110);
+
+                MessageBox.Show("Success");
                 btnPrintPreview.Text = "Print";
-                btnCancel.Text = "Closed";
+                btnCancel.Text = "Close";
             }
             catch (Exception ex)
             {

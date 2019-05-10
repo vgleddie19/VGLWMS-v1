@@ -165,9 +165,6 @@ namespace WMS
                 sql += LedgerSupport.UpdateLocationLedger(outsDT);
             }
 
-
-
-
             // Update Location Products Ledger
             {
                 DataTable insDT = LedgerSupport.GetLocationProductsLedgerDT();
@@ -182,12 +179,7 @@ namespace WMS
                     outsDT.Rows.Add(row.Cells["original_location"].Value, row.Cells["product"].Value, int.Parse( row.Cells["qty"].Value.ToString()) *-1, row.Cells["uom"].Value, row.Cells["lot_no"].Value, row.Cells["expiry"].Value, int.Parse(row.Cells["qty"].Value.ToString()) * -1, int.Parse(row.Cells["qty"].Value.ToString()) * -1);
                 sql += LedgerSupport.UpdateLocationProductsLedger(outsDT);
             }
-
-
-           
-
-
-
+       
             DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);
             MessageBox.Show("Success");
             this.Close();

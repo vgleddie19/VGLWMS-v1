@@ -100,7 +100,7 @@ namespace WMS
 
             webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", putaway_id);
             btnPrintPreview.Text = "Print";
-            btnCancel.Text = "Closed";
+            btnCancel.Text = "Close";
             
         }
 

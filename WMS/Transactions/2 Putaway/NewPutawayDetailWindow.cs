@@ -40,10 +40,11 @@ namespace WMS
                 }
 
                 // If it's recognized, get staging area items
-                DataTable dt = DataSupport.RunDataSet("SELECT UOM,lot_no,Expiry,qty FROM LocationProductsLedger WHERE location = 'STAGING-IN' AND product = '" + product_row["PRODUCT"] + "' AND uom = '" + product_row["MATCHED_UOM"] + "' AND qty > 0").Tables[0];
+                DataTable dt = DataSupport.RunDataSet("SELECT product,UOM,lot_no,Expiry,qty FROM LocationProductsLedger WHERE location = 'STAGING-IN' AND product = '" + product_row["PRODUCT"] + "' AND uom = '" + product_row["MATCHED_UOM"] + "' AND qty > 0").Tables[0];
 
                 if (dt.Rows.Count == 0)
                 {
+                    txtContainer.SelectAll();
                     MessageBox.Show("Item is not declared in the STAGING-IN area");
                     return;
                 }
@@ -55,7 +56,8 @@ namespace WMS
                     foreach (DataGridViewRow existing_row in header_grid.Rows)
                     {
                         if (
-                        existing_row.Cells["uom"].Value.ToString() == row["uom"].ToString()
+                           existing_row.Cells["product"].Value.ToString() == row["product"].ToString()
+                        && existing_row.Cells["uom"].Value.ToString() == row["uom"].ToString()
                         && existing_row.Cells["lot"].Value.ToString() == row["lot_no"].ToString()
                         && existing_row.Cells["expiry"].Value.ToString() == row["expiry"].ToString()
                         )
@@ -79,6 +81,7 @@ namespace WMS
                 dialog.dataGridView1.DataSource = dt;
                 if (dt.Rows.Count == 0)
                 {
+                    txtContainer.SelectAll();
                     MessageBox.Show("Items is already scanned in the STAGING-IN area");
                     return;
                 }
@@ -93,6 +96,11 @@ namespace WMS
         private void NewPutawayDetailWindow_Load(object sender, EventArgs e)
         {
             txtContainer.Select();
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -90,7 +90,7 @@ namespace VGLHelper
                         return new Font("Microsoft Sans Serif", 12);
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return new Font("Microsoft Sans Serif", 12);
             }

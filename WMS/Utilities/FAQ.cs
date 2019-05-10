@@ -183,7 +183,7 @@ public class FAQ
         //result.Columns.Add("lot_no", typeof(String));
         //result.Columns.Add("expiry", typeof(String));
         //result.Columns.Add("available_qty", typeof(int));
-        
+
         //foreach(DataRow dRow in DataSupport.RunDataSet(String.Format(@"SELECT LPL.location, LPL.lot_no, LPL.expiry, (LPL.[available_qty]*PU.qty)available_qty,PU.qty
         //                FROM [LocationProductsLedger] LPL INNER JOIN [productuoms] PU ON PU.product = LPL.product AND  PU.uom = LPL.uom
         //                WHERE LPL.product = '{0}' AND available_qty > 0", product)).Tables[0].Rows)
@@ -192,23 +192,23 @@ public class FAQ
         //    result.Rows.Add(dRow);
         //}
 
-        //return DataSupport.RunDataSet(String.Format(@"SELECT LPL.location, LPL.lot_no, LPL.expiry, (LPL.[available_qty]*PU.qty)available_qty, PU.qty
+        //return DataSupport.RunDataSet(String.Format(@"SELECT LPL.location, LPL.lot_no, LPL.expiry, (LPL.[available_qty]*PU.qty)available_qty, PU.qty[uomconv]
         //                FROM [LocationProductsLedger] LPL INNER JOIN [productuoms] PU ON PU.product = LPL.product AND  PU.uom = LPL.uom
         //                WHERE LPL.product = '{0}' AND available_qty > 0", product)).Tables[0];
 
-        //return DataSupport.RunDataSet(@"SELECT location, lot_no, expiry, available_qty
-        //                FROM LocationProductsLedger 
-        //                WHERE  product = @product AND uom = @uom
-        //                AND available_qty >0
-        //                ORDER BY expiry DESC
-        //                ", "product", product, "uom", uom).Tables[0];
-
-       return DataSupport.RunDataSet(@"SELECT location, lot_no, expiry, available_qty
+        return DataSupport.RunDataSet(@"SELECT location, lot_no, expiry, available_qty
                         FROM LocationProductsLedger 
                         WHERE  product = @product AND uom = @uom
                         AND available_qty >0
                         ORDER BY expiry DESC
                         ", "product", product, "uom", uom).Tables[0];
+
+        //return DataSupport.RunDataSet(@"SELECT location, lot_no, expiry, available_qty
+        //                 FROM LocationProductsLedger 
+        //                 WHERE  product = @product AND uom = @uom
+        //                 AND available_qty >0
+        //                 ORDER BY expiry DESC
+        //                 ", "product", product, "uom", uom).Tables[0];
     }
 
     public static int HowManyPiecesInUOM(String product, String uom, int qty)
@@ -300,7 +300,7 @@ public class FAQ
 
     public static DataTable GetOrderDetails(String order_id)
     {
-        return DataSupport.RunDataSet(@"SELECT ROD.*,PU.qty[conversion] FROM ReleaseOrderDetails ROD INNER JOIN 
+        return DataSupport.RunDataSet(@"SELECT ROD.*,PU.qty[uomconv] FROM ReleaseOrderDetails ROD INNER JOIN 
                                         ProductUOMs PU ON ROD.product = PU .product and ROD.uom = PU.uom  
                                         WHERE release_order = @id", "id", order_id).Tables[0]; ;
     }
@@ -405,16 +405,7 @@ public class FAQ
         {
             foreach(KeyValuePair<String,int> kvp in stocksinwarehouse(dRow["product"].ToString(), dRow["lot_no"].ToString(), dRow["expiry"].ToString(), Convert.ToInt32(dRow["max_qty"]) - Convert.ToInt32(dRow["actualqty"])))
             {
-                string[] locuom = kvp.Key.ToString().Split(new String[] { "<limit>" }, StringSplitOptions.RemoveEmptyEntries);
-                //System.Windows.Forms.MessageBox.Show(dRow["location"].ToString());
-                //System.Windows.Forms.MessageBox.Show(locuom[0].ToString());
-                //System.Windows.Forms.MessageBox.Show(dRow["product"].ToString());
-                //System.Windows.Forms.MessageBox.Show(locuom[1].ToString());
-                //System.Windows.Forms.MessageBox.Show(dRow["lot_no"].ToString());
-                //System.Windows.Forms.MessageBox.Show(kvp.Value.ToString());
-                //System.Windows.Forms.MessageBox.Show(dRow["uom"].ToString());
-                //System.Windows.Forms.MessageBox.Show(locuom[2].ToString());
-                //System.Windows.Forms.MessageBox.Show(dRow["uomconv"].ToString());
+                string[] locuom = kvp.Key.ToString().Split(new String[] { "<limit>" }, StringSplitOptions.RemoveEmptyEntries);                
                 result.Rows.Add(dRow["location"],locuom[0], dRow["product"], locuom[1],dRow["lot_no"],Convert.ToDateTime(dRow["expiry"]).ToShortDateString(), kvp.Value,dRow["uom"], locuom[2],dRow["uomconv"]);
             }
         }

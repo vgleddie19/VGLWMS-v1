@@ -127,6 +127,7 @@
             this.grd.PrimaryGrid.FilterLevel = ((DevComponents.DotNetBar.SuperGrid.FilterLevel)((DevComponents.DotNetBar.SuperGrid.FilterLevel.Root | DevComponents.DotNetBar.SuperGrid.FilterLevel.Expanded)));
             this.grd.PrimaryGrid.FilterMatchType = DevComponents.DotNetBar.SuperGrid.FilterMatchType.RegularExpressions;
             this.grd.PrimaryGrid.GridLines = DevComponents.DotNetBar.SuperGrid.GridLines.Vertical;
+            this.grd.PrimaryGrid.MultiSelect = false;
             this.grd.PrimaryGrid.RowDoubleClickBehavior = DevComponents.DotNetBar.SuperGrid.RowDoubleClickBehavior.ExpandCollapse;
             this.grd.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
             this.grd.PrimaryGrid.ShowTreeButtons = true;
@@ -165,6 +166,6 @@
         public System.Windows.Forms.DataGridView headerGrid;
         private System.Windows.Forms.Button btnStockCheck;
         private System.Windows.Forms.Button button1;
-        private DevComponents.DotNetBar.SuperGrid.SuperGridControl grd;
+        public DevComponents.DotNetBar.SuperGrid.SuperGridControl grd;
     }
 }

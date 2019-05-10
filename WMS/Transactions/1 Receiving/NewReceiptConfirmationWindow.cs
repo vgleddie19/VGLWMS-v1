@@ -14,7 +14,7 @@ namespace WMS
     public partial class NewReceiptConfirmationWindow : Form
     {
         public NewReceiptsWindow parent = null;
-
+        DataTable receivingreport = null;
         public NewReceiptConfirmationWindow()
         {
             InitializeComponent();
@@ -26,7 +26,7 @@ namespace WMS
                 SaveData();
             else
             {
-                webBrowser1.ShowPrintPreviewDialog();
+                viewer.PrintReport();
             }
         }
 
@@ -109,9 +109,18 @@ namespace WMS
             }
             MessageBox.Show("Success");
 
-            webBrowser1.DocumentText = webBrowser1.DocumentText.Replace("(issued on save)", id);
+            receivingreport.Columns.Remove("receivedid");
+            DataColumn dc = new DataColumn("receivedid");
+            dc.DefaultValue = id;
+            receivingreport.Columns.Add(dc);
+            CrystalDecisions.CrystalReports.Engine.ReportDocument rviewer = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+            rviewer = new crtreceivingreport();
+            rviewer.SetDataSource(receivingreport);
+
+            viewer.ReportSource = rviewer;
+            viewer.RefreshReport();
             btnPrintPreview.Text = "Print";
-            btnCancel.Text = "Closed";
+            btnCancel.Text = "Close";
         }
 
        
@@ -120,50 +129,32 @@ namespace WMS
 
             btnPrintPreview.Select();
 
-            StringBuilder sb = new StringBuilder();
-            sb.Append("<table class='table'>");
-
-            sb.Append("<thead>");
-            sb.Append("<tr>");
-
-            {
-                foreach (DataGridViewColumn col in parent.headerGrid.Columns)
-                {
-                    sb.Append("<th>");
-                    sb.Append(col.HeaderText);
-                    sb.Append("</th>");
-                }
-            }
-
-            sb.Append("</tr>");
-            sb.Append("</thead>");
+            receivingreport = new DataTable();
+            receivingreport.Columns.Add("receivedid");
+            receivingreport.Columns.Add("receivedby");
+            receivingreport.Columns.Add("receivedon");
+            receivingreport.Columns.Add("receivedfrom");
+            receivingreport.Columns.Add("refno");
+            receivingreport.Columns.Add("Product");
+            receivingreport.Columns.Add("desc");
+            receivingreport.Columns.Add("Qty");
+            receivingreport.Columns.Add("Uom");
+            receivingreport.Columns.Add("Lot");
+            receivingreport.Columns.Add("Expiry");
+            receivingreport.Columns.Add("remarks");
 
             foreach (DataGridViewRow row in parent.headerGrid.Rows)
             {
-                sb.Append("<tr>");
-                foreach (DataGridViewColumn col in parent.headerGrid.Columns)
-                {
-                    sb.Append("<td>");
-                    sb.Append(row.Cells[col.Name].Value.ToString());
-                    sb.Append("</td>");
-                }
-
-                sb.Append("</tr>");
+                receivingreport.Rows.Add("(issued on save)",parent.cboReceivedBy.Text,parent.txtReceivedOn.Value.ToShortDateString(),parent.txtReceivedFrom.Text,parent.txtReferenceDocument.Text
+                                         ,row.Cells["product_id"].Value, row.Cells["product"].Value, row.Cells["uom"].Value, row.Cells["quantity"].Value
+                                         , row.Cells["lot"].Value, Convert.ToDateTime(row.Cells["expiry"].Value).ToShortDateString(), row.Cells["remarks"].Value);
             }
 
-            sb.Append("</table>");
+            CrystalDecisions.CrystalReports.Engine.ReportDocument rviewer = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
+            rviewer = new crtreceivingreport();
+            rviewer.SetDataSource(receivingreport);
 
-
-
-            webBrowser1.DocumentText = Properties.Resources.receiving_report
-                .Replace("[received_from]",parent.txtReceivedFrom.Text)
-                .Replace("[received_on]", parent.txtReceivedOn.Value.ToShortDateString())
-                .Replace("[reference_document]", parent.txtReferenceDocument.Text)
-                .Replace("[received_by]", parent.cboReceivedBy.Text)
-                .Replace("[run_datetime]", DateTime.Now.ToString())
-                .Replace("[header_table]", sb.ToString())
-                ;
-
+            viewer.ReportSource = rviewer;
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

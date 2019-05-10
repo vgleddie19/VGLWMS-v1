@@ -23,14 +23,16 @@ namespace WMS
             if (headerGrid.Rows.Count == 0)
                 return;
 
-            try
-            {
+            //try
+            //{
+                bool isselected = false;
+                
                 //bool isbinok = true;
                 //foreach (GridRow row in grd.PrimaryGrid.GetSelectedRows())
                 //{
                 //    foreach (DataRow dRow in FAQ.GetOMSOutgoingDetails(row.Cells["out_shipment_id"].Value.ToString()).Rows)
                 //    {
-                //        isbinok = LedgerSupport.CheckBin(dRow["product"].ToString(), dRow["uom"].ToString(),dRow["expected_qty"].ToString());
+                //        isbinok = LedgerSupport.CheckBin(dRow["product"].ToString(), dRow["uom"].ToString(), dRow["expected_qty"].ToString());
                 //        if (!isbinok)
                 //            break;
                 //    }
@@ -39,13 +41,13 @@ namespace WMS
                 //}
                 //if (!isbinok)
                 //{
-                //    MessageBox.Show("Replenish the bin first before proceeding to stocks check!","Unable to stock check");
+                //    MessageBox.Show("Replenish the bin first before proceeding to stocks check!", "Unable to stock check");
                 //    return;
                 //}
 
-
                 foreach (GridRow row in grd.PrimaryGrid.GetSelectedRows())
                 {
+                    isselected = true;
                     StringBuilder sql = new StringBuilder();
                     Dictionary<String, Object> header = new Dictionary<string, object>();
                     DataTable dt = FAQ.GetOMSOutgoingDetails(row.Cells["out_shipment_id"].Value.ToString());
@@ -82,15 +84,18 @@ namespace WMS
                     DataSupport.RunNonQuery(sql.ToString(), IsolationLevel.ReadCommitted);
                     LedgerSupport.StockCheck();
                 }
-                MessageBox.Show("Stock Check Complete");
+                if(isselected)
+                    MessageBox.Show("Stock Check Complete");
+                else
+                    MessageBox.Show("Please select Order!");
                 initializegrid();
                 //dt = FAQ.GetOMSOutgoing();
                 //headerGrid.DataSource = dt;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
         }
 
         private void StockCheckingWindow_Load(object sender, EventArgs e)
@@ -122,6 +127,7 @@ namespace WMS
                 mainRow.Cells.Add(new GridCell(dRow["customer_invoice_address"]));
                 mainRow.Cells.Add(new GridCell(dRow["authorized_tms"]));
                 mainRow.Cells.Add(new GridCell(dRow["customer_id"]));
+                mainRow.Cells.Add(new GridCell(dRow["totalA"]));
 
                 GridPanel productpanel = new GridPanel();
                 productpanel.DefaultVisualStyles.CellStyles.Default.Alignment = DevComponents.DotNetBar.SuperGrid.Style.Alignment.MiddleCenter;
@@ -241,6 +247,13 @@ namespace WMS
             col.Name = "customer_id";
             col.EditorType = typeof(GridLabelXEditControl);
             col.Visible = false;
+            panel.Columns.Add(col);
+
+            col = new GridColumn();
+            col.HeaderText = "Invoice Amount";
+            col.Name = "invoiceamount";
+            col.EditorType = typeof(GridLabelXEditControl);
+            col.Width = 250;
             panel.Columns.Add(col);
         }
 

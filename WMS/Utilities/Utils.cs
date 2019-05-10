@@ -7,6 +7,7 @@ using System.Data;
 using System.Collections.Specialized;
 using System.Text.RegularExpressions;
 using Utility.ModifyRegistry;
+using System.Drawing;
 
 public static class Utils
 {
@@ -241,6 +242,26 @@ public static class Utils
         DBConnection = conn;
     }
 
+    public static byte[] ConvertImageToByteArray(System.Drawing.Image imageToConvert,
+                               System.Drawing.Imaging.ImageFormat formatOfImage)
+    {
+        byte[] Ret;
+        try
+        {
+            using (System.IO.MemoryStream ms = new System.IO.MemoryStream())
+            {
+                imageToConvert.Save(ms, formatOfImage);
+                Ret = ms.ToArray();
+            }
+        }
+        catch (Exception) { throw; }
+        return Ret;
+    }
+
+    internal static object ConvertImageToByteArray(Image image)
+    {
+        throw new NotImplementedException();
+    }
 }
 
 

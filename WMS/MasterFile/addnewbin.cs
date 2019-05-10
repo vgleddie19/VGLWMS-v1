@@ -25,13 +25,17 @@ namespace WMS
 
             //if (entrytype != "update")
             //{
-            DataTable dt = DataSupport.RunDataSet(@"SELECT * FROM PRODUCTS ORDER BY product_id").Tables[0];
+            DataTable dt = DataSupport.RunDataSet(@"SELECT *,(product_id+' - '+description)display FROM PRODUCTS ORDER BY product_id").Tables[0];
             products = Utils.BuildIndex_DataTable(dt, "product_id");
             locations = Utils.BuildIndex("SELECT * FROM Locations ORDER BY location_id", "location_id");
-            UISetter.SetComboBox(cboproduct, dt, "description", "product_id", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDown);
+            UISetter.SetComboBox(cboproduct, DataSupport.RunDataSet(@"SELECT *,(product_id+' - '+description)display FROM PRODUCTS ORDER BY product_id").Tables[0], "description", "product_id", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDown);
             dt = DataSupport.RunDataSet(String.Format("SELECT * FROM PRODUCTuoms WHERE product = '{0}'", dt.Rows[0]["product_id"])).Tables[0];
             if (dt.Rows.Count != 0)
+            {
                 UISetter.SetComboBox(cbouom, dt, "uom", "uom", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDownList);
+                if (Utils.BuildIndex_DataTable(dt, "uom").ContainsKey("PC"))
+                    cbouom.SelectedValue = "PC";
+            }
             dt = DataSupport.RunDataSet(String.Format("SELECT * FROM LocationProductsLedger WHERE product = '{0}' and uom = '{1}'", cboproduct.Text, cbouom.Text)).Tables[0];
             if (dt.Rows.Count != 0)
                 UISetter.SetComboBox(cbolot, dt, "lot_no", "lot_no", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDown);
@@ -168,9 +172,13 @@ namespace WMS
         {
             if (!formload)
                 return;
-            DataTable dt = DataSupport.RunDataSet(String.Format("SELECT DISTINCT uom FROM PRODUCTuoms WHERE product = '{0}'", cboproduct.SelectedValue)).Tables[0];
+            DataTable dt = DataSupport.RunDataSet(String.Format("SELECT DISTINCT uom FROM PRODUCTuoms WHERE product = '{0}' ORDER BY uom", cboproduct.SelectedValue)).Tables[0];
             if (dt.Rows.Count != 0)
+            {
                 UISetter.SetComboBox(cbouom, dt, "uom", "uom", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDownList);
+                if (Utils.BuildIndex_DataTable(dt, "uom").ContainsKey("PC"))
+                    cbouom.SelectedValue = "PC";
+            }
         }
 
         private void cbouom_SelectedIndexChanged(object sender, EventArgs e)
@@ -180,7 +188,7 @@ namespace WMS
             
             DataTable dt = DataSupport.RunDataSet(String.Format("SELECT DISTINCT lot_no FROM LocationProductsLedger WHERE product = '{0}' and uom = '{1}'", cboproduct.SelectedValue, cbouom.Text)).Tables[0];
             if (dt.Rows.Count != 0)
-                UISetter.SetComboBox(cbolot, dt, "lot_no", "lot_no", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDownList);
+                UISetter.SetComboBox(cbolot, dt, "lot_no", "lot_no", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDown);
         }
 
         private void cbolot_SelectedIndexChanged(object sender, EventArgs e)
@@ -201,6 +209,20 @@ namespace WMS
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void lblShowProduct_Click(object sender, EventArgs e)
+        {
+            if (lblShowProduct.Text == "Show IDs")
+            {                
+                cboproduct.DisplayMember = "display";
+                lblShowProduct.Text = "Hide IDs";
+            }
+            else
+            {
+                cboproduct.DisplayMember = "description";
+                lblShowProduct.Text = "Show IDs";
+            }
         }
     }
 }

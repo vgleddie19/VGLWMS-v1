@@ -38,6 +38,7 @@ namespace WMS
 
         private void LoadData()
         {
+
             ordersDT = DataSupport.RunDataSet(@"SELECT RD.ORDER_ID[Order], RD.drop_sequence[Drop], RD.Status, RO.status [Order Status], CASE WHEN RO.holding_transaction IS NULL  THEN 'YES' ELSE 'NO' END [Forced]
                                                 FROM ReleaseDetails RD 
                                                 LEFT OUTER JOIN ReleaseOrders RO ON RO.order_id = RD.order_id
@@ -71,19 +72,18 @@ namespace WMS
                         String order_id = order_row["order_id"].ToString();
                         sql += " UPDATE TripOrders SET status='FOR DELIVERY' WHERE order_id='" + order_id + "'; ";
                     }
-                    sql += String.Format("UPDATE [ReleaseTrips] SET releaseto='{0}' WHERE trip_id='{1}';",txtreleaseto.Text, txtTrip.Text);
                     tms_dh.ExecuteNonQuery(sql, IsolationLevel.ReadCommitted);
                 }
 
                 // Update WMS
                 {
-
                     String sql = "";
                     foreach (DataRow order_row in ordersDT.Rows)
                     {
                         String order_id = order_row["order_id"].ToString();
                         sql += " UPDATE ReleaseOrders SET status='RELEASED' WHERE order_id='" + order_id + "'; ";
                     }
+                    sql += String.Format("UPDATE [ReleaseTrips] SET releaseto='{0}' WHERE trip_id='{1}';", txtreleaseto.Text, txtTrip.Text);
                     DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);
                 }
 
@@ -94,8 +94,8 @@ namespace WMS
                 return;
             }
 
-            itemsDT = DataSupport.RunDataSet("SELECT order_id[Order], Product, Expiry, lot_no[Lot No], order_qty[Order Qty], Uom, Scanned_qty[Scanned Qty], scanned_on [Scanned On] FROM ReleaseDetailItems WHERE release = @release AND order_id = @order_id", "release", release_id, "order_id", current_order).Tables[0];
-
+            //itemsDT = DataSupport.RunDataSet("SELECT order_id[Order], Product, Expiry, lot_no[Lot No], order_qty[Order Qty], Uom, Scanned_qty[Scanned Qty], scanned_on [Scanned On] FROM ReleaseDetailItems WHERE release = @release AND order_id = @order_id", "release", release_id, "order_id", current_order).Tables[0];
+            itemsDT = DataSupport.RunDataSet("SELECT order_id[Order], Product, Expiry, lot_no[Lot No], order_qty[Order Qty], Uom, Scanned_qty[Scanned Qty], scanned_on [Scanned On] FROM ReleaseDetailItems WHERE release = @release", "release", release_id).Tables[0];
             orders_grid.DataSource = ordersDT;
             items_grid.DataSource = itemsDT;
         }
@@ -112,21 +112,35 @@ namespace WMS
         {
             if (e.KeyCode == Keys.Enter)
             {
+
+
                 var product_row = BarcodeSupport.GetProductFromBarcode(txtScan.Text);
                 if (product_row == null)
                 {
                     MessageBox.Show("Barcode Not Recognized");
                     return;
                 }
+
                 String product = product_row["PRODUCT"].ToString();
                 String uom = product_row["MATCHED_UOM"].ToString();
 
                 DataTable dt = DataSupport.RunDataSet("SELECT order_id[Order], Product, Expiry, lot_no[Lot No], order_qty[Order Qty], Uom, Scanned_qty[Scanned Qty], scanned_on [Scanned On] FROM ReleaseDetailItems WHERE release = @release AND order_id = @order_id AND product=@product AND @uom = @uom", "release", release_id, "order_id", current_order, "product", product, "uom", uom).Tables[0];
 
+                int order_qty = 0;
+                int scan_qty = 0;
+                foreach(DataRow dRow in dt.Rows)
+                {
+                    order_qty += Convert.ToInt32(dRow["Order Qty"]);//int.Parse(dRow["Order Qty"].ToString());
+                    if(dRow["Scanned On"] != DBNull.Value)
+                        scan_qty += Convert.ToInt32(dRow["Scanned On"]);//int.Parse(dRow["Scanned On"].ToString());
+                }
+                if (order_qty <= scan_qty)
+                    return;
+
                 SelectGridWindow dialog = new SelectGridWindow();
                 dialog.dataGridView1.DataSource = dt;
                 if (dialog.ShowDialog() != DialogResult.OK)
-                    return;
+                    return;                
 
                 var selected_row = dialog.dataGridView1.SelectedRows[0];
 
@@ -175,6 +189,7 @@ namespace WMS
 
                 SynchroSupport.UpdateOrderStatus(release_id);
                 LoadData();
+                txtScan.SelectAll();
             }
         }
      
