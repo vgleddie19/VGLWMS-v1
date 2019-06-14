@@ -52,23 +52,24 @@
             this.pictureBox2.Image = global::WMS.Properties.Resources.wms_badge;
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(190, 215);
+            this.pictureBox2.Size = new System.Drawing.Size(191, 199);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 211;
             this.pictureBox2.TabStop = false;
             // 
             // GroupPanel1
             // 
-            this.GroupPanel1.BackColor = System.Drawing.Color.White;
+            this.GroupPanel1.BackColor = System.Drawing.Color.Bisque;
             this.GroupPanel1.CanvasColor = System.Drawing.SystemColors.Control;
             this.GroupPanel1.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.Office2007;
             this.GroupPanel1.Controls.Add(this.panel2);
             this.GroupPanel1.DisabledBackColor = System.Drawing.Color.Empty;
+            this.GroupPanel1.Font = new System.Drawing.Font("Broadway", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.GroupPanel1.IsShadowEnabled = true;
             this.GroupPanel1.Location = new System.Drawing.Point(12, 14);
             this.GroupPanel1.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.GroupPanel1.Name = "GroupPanel1";
-            this.GroupPanel1.Size = new System.Drawing.Size(465, 231);
+            this.GroupPanel1.Size = new System.Drawing.Size(432, 310);
             // 
             // 
             // 
@@ -98,10 +99,11 @@
             // 
             this.GroupPanel1.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.GroupPanel1.TabIndex = 1;
+            this.GroupPanel1.Text = "Log In";
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.LabelX1);
             this.panel2.Controls.Add(this.txtUsername);
             this.panel2.Controls.Add(this.txtPassword);
@@ -110,9 +112,10 @@
             this.panel2.Controls.Add(this.btnClose);
             this.panel2.Controls.Add(this.LabelX2);
             this.panel2.Controls.Add(this.lblversion);
-            this.panel2.Location = new System.Drawing.Point(4, 4);
+            this.panel2.Controls.Add(this.pictureBox2);
+            this.panel2.Location = new System.Drawing.Point(4, 26);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(447, 215);
+            this.panel2.Size = new System.Drawing.Size(419, 199);
             this.panel2.TabIndex = 1;
             // 
             // LabelX1
@@ -122,8 +125,8 @@
             // 
             // 
             this.LabelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.LabelX1.ForeColor = System.Drawing.Color.SteelBlue;
-            this.LabelX1.Location = new System.Drawing.Point(196, 48);
+            this.LabelX1.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.LabelX1.Location = new System.Drawing.Point(178, 32);
             this.LabelX1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LabelX1.Name = "LabelX1";
             this.LabelX1.Size = new System.Drawing.Size(22, 28);
@@ -138,12 +141,13 @@
             this.txtUsername.Border.Class = "TextBoxBorder";
             this.txtUsername.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtUsername.DisabledBackColor = System.Drawing.Color.Black;
+            this.txtUsername.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highlighter1.SetHighlightOnFocus(this.txtUsername, true);
-            this.txtUsername.Location = new System.Drawing.Point(224, 50);
+            this.txtUsername.Location = new System.Drawing.Point(202, 32);
             this.txtUsername.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.PreventEnterBeep = true;
-            this.txtUsername.Size = new System.Drawing.Size(209, 20);
+            this.txtUsername.Size = new System.Drawing.Size(209, 26);
             this.txtUsername.TabIndex = 2;
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtUsername.WatermarkBehavior = DevComponents.DotNetBar.eWatermarkBehavior.HideNonEmpty;
@@ -157,13 +161,14 @@
             this.txtPassword.Border.Class = "TextBoxBorder";
             this.txtPassword.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.txtPassword.DisabledBackColor = System.Drawing.Color.Black;
+            this.txtPassword.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highlighter1.SetHighlightOnFocus(this.txtPassword, true);
-            this.txtPassword.Location = new System.Drawing.Point(224, 80);
+            this.txtPassword.Location = new System.Drawing.Point(202, 62);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.PreventEnterBeep = true;
-            this.txtPassword.Size = new System.Drawing.Size(209, 20);
+            this.txtPassword.Size = new System.Drawing.Size(209, 26);
             this.txtPassword.TabIndex = 3;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtPassword.UseSystemPasswordChar = true;
@@ -182,8 +187,9 @@
             this.chkRemember.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkRemember.CheckValue = "Y";
             this.chkRemember.FocusCuesEnabled = false;
+            this.chkRemember.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highlighter1.SetHighlightOnFocus(this.chkRemember, true);
-            this.chkRemember.Location = new System.Drawing.Point(224, 102);
+            this.chkRemember.Location = new System.Drawing.Point(202, 96);
             this.chkRemember.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.chkRemember.Name = "chkRemember";
             this.chkRemember.Size = new System.Drawing.Size(178, 27);
@@ -197,13 +203,15 @@
             this.btnLogin.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
             this.btnLogin.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnLogin.FocusCuesEnabled = false;
+            this.btnLogin.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highlighter1.SetHighlightOnFocus(this.btnLogin, true);
-            this.btnLogin.Location = new System.Drawing.Point(237, 149);
+            this.btnLogin.Location = new System.Drawing.Point(311, 131);
             this.btnLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(86, 36);
             this.btnLogin.Style = DevComponents.DotNetBar.eDotNetBarStyle.Office2010;
             this.btnLogin.Symbol = "";
+            this.btnLogin.SymbolColor = System.Drawing.Color.Green;
             this.btnLogin.TabIndex = 5;
             this.btnLogin.Text = "Login";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -214,13 +222,15 @@
             this.btnClose.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FocusCuesEnabled = false;
+            this.btnClose.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.highlighter1.SetHighlightOnFocus(this.btnClose, true);
-            this.btnClose.Location = new System.Drawing.Point(329, 149);
+            this.btnClose.Location = new System.Drawing.Point(219, 131);
             this.btnClose.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(86, 36);
             this.btnClose.Style = DevComponents.DotNetBar.eDotNetBarStyle.OfficeMobile2014;
             this.btnClose.Symbol = "";
+            this.btnClose.SymbolColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.btnClose.TabIndex = 6;
             this.btnClose.Text = "Exit";
             this.btnClose.Click += new System.EventHandler(this.button1_Click);
@@ -232,8 +242,8 @@
             // 
             // 
             this.LabelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.LabelX2.ForeColor = System.Drawing.Color.SteelBlue;
-            this.LabelX2.Location = new System.Drawing.Point(196, 79);
+            this.LabelX2.ForeColor = System.Drawing.Color.DodgerBlue;
+            this.LabelX2.Location = new System.Drawing.Point(178, 63);
             this.LabelX2.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.LabelX2.Name = "LabelX2";
             this.LabelX2.Size = new System.Drawing.Size(22, 28);
@@ -245,7 +255,7 @@
             this.lblversion.BackColor = System.Drawing.Color.Transparent;
             this.lblversion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblversion.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblversion.Location = new System.Drawing.Point(224, 32);
+            this.lblversion.Location = new System.Drawing.Point(202, 32);
             this.lblversion.Name = "lblversion";
             this.lblversion.Size = new System.Drawing.Size(209, 23);
             this.lblversion.TabIndex = 210;
@@ -264,7 +274,7 @@
             this.AutoSize = true;
             this.BackColor = System.Drawing.Color.Bisque;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(486, 259);
+            this.ClientSize = new System.Drawing.Size(457, 341);
             this.Controls.Add(this.GroupPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

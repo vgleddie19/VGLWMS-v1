@@ -55,6 +55,13 @@ FROM PhysicalCounts INNER JOIN PhysicalCountDetails ON phcount = phcount_id
                     String datetime = DateTime.Parse(header_grid.Columns[i].HeaderText).ToShortDateString();
                     foreach (DataRow pc_row in physicalCountDT.Rows)
                     {
+
+                        if (pc_row["finished_on"].ToString() == "")
+                        {
+                            MessageBox.Show("there is an ongoing physical count, please finish it first");
+                            return;
+                        }
+
                         if ( pc_row["location"].ToString() == location_id && DateTime.Parse( pc_row["finished_on"].ToString()).ToShortDateString()== datetime)
                         {
                             new_row.Cells[i].Value = pc_row["cycle"].ToString();

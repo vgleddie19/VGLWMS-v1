@@ -36,7 +36,7 @@
             // txtContainer
             // 
             this.txtContainer.Location = new System.Drawing.Point(94, 12);
-            this.txtContainer.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtContainer.Margin = new System.Windows.Forms.Padding(2);
             this.txtContainer.Name = "txtContainer";
             this.txtContainer.Size = new System.Drawing.Size(203, 20);
             this.txtContainer.TabIndex = 19;
@@ -56,6 +56,7 @@
             // btnPrintPreview
             // 
             this.btnPrintPreview.BackColor = System.Drawing.Color.Lime;
+            this.btnPrintPreview.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPrintPreview.Location = new System.Drawing.Point(203, 41);
             this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrintPreview.Name = "btnPrintPreview";
@@ -71,10 +72,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnPrintPreview;
             this.ClientSize = new System.Drawing.Size(308, 91);
+            this.ControlBox = false;
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.txtContainer);
             this.Controls.Add(this.label2);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "NewPutawayDetailWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Scan for Putaway...";

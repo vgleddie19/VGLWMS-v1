@@ -120,7 +120,7 @@ namespace WMS
             {
                 genpickgrid.Rows.Add(dRow["location"], dRow["product"], products[dRow["product"].ToString()]["description"], dRow["qty"], dRow["uom"], dRow["lot"], dRow["expiry"]);
                 putawaygrid.Rows.Add(dRow["product"], products[dRow["product"].ToString()]["description"], (Convert.ToDecimal(dRow["qty"]) * Convert.ToDecimal(dRow["locuomconv"])) / Convert.ToDecimal(dRow["binuomconv"]), dRow["binuom"], dRow["lot"], dRow["expiry"],dRow["binid"]);
-                if (dRow["uom"].ToString() == "CS" || dRow["uom"].ToString() == "CASES")
+                if (dRow["uom"].ToString() != "PC")
                 {
                     gencasebreakgrid.Rows.Add(dRow["product"], products[dRow["product"].ToString()]["description"], dRow["qty"], dRow["uom"], (Convert.ToDecimal(dRow["qty"]) * Convert.ToDecimal(dRow["locuomconv"])) / Convert.ToDecimal(dRow["binuomconv"]), dRow["binuom"], dRow["lot"], dRow["expiry"]);
                 }
@@ -134,11 +134,13 @@ namespace WMS
             if (e.ColumnIndex == grdreplenishmentconfirm.Columns["btn-x"].Index)
             {
                 declarebincomplete picklist = new declarebincomplete();
+                picklist.param = grdreplenishmentconfirm.Rows[e.RowIndex].Cells["picklist_id"].Value.ToString();
                 picklist.type = "pick";
                 if (picklist.ShowDialog() != DialogResult.OK)
                     return;
 
                 declarebincomplete casebreak = new declarebincomplete();
+                casebreak.param = grdreplenishmentconfirm.Rows[e.RowIndex].Cells["casebreak_id"].Value.ToString();
                 casebreak.type = "casebreak";
                 casebreak.picklistid = picklist.picklistid;
                 casebreak.label2.Text = "Scan CaseBreak ID:";
@@ -146,6 +148,7 @@ namespace WMS
                     return;
 
                 declarebincomplete putaway = new declarebincomplete();
+                putaway.param = grdreplenishmentconfirm.Rows[e.RowIndex].Cells["putaway_id"].Value.ToString();
                 putaway.type = "putaway";
                 putaway.label2.Text = "Scan PutAway ID:";
                 putaway.picklistid = picklist.picklistid;
@@ -212,6 +215,7 @@ namespace WMS
             {
                 sql = new StringBuilder();
                 sql.Append(String.Format("UPDATE CaseBreak SET status = 'DECLARED COMPLETE' WHERE casebreak_id= '{0}'; ", casebreak_id));
+                sql.Append(String.Format("DELETE FROM pendingCaseBreak WHERE casebreakid= '{0}'; ", casebreak_id));
                 // Update Transaction Ledger
                 {
                     DataTable insDT = LedgerSupport.GetLocationLedgerDT();
@@ -283,12 +287,13 @@ namespace WMS
                             sql.Append(DataSupport.GetUpdate("BinProductLedger", Utils.ToDict(
                                       "location", row["location"].ToString()
                                      , "product", row["product"].ToString()
-                                     , "actualqty", Convert.ToInt32(search_row["actualqty"]) + Convert.ToInt32(row["expected_qty"])
                                      , "uom", row["uom"].ToString()
                                      , "lot_no", row["lot_no"].ToString()
                                      , "expiry", row["expiry"].ToString()
-                                     , "qty_to_replenished", 0
-                                    ),new List<string> { "location", "product", "uom", "lot_no","expiry" }));
+                                     , "actualqty", Convert.ToInt32(search_row["actualqty"]) + Convert.ToInt32(row["expected_qty"])
+                                     , "max_qty", Convert.ToInt32(search_row["actualqty"]) + Convert.ToInt32(row["expected_qty"])
+                                     , "min_qty", 1
+                                    ), new List<string> { "location", "product", "uom", "lot_no","expiry" }));
                         }
                         String S = String.Format(@"UPDATE LocationProductsLedger SET casebreak_qty = casebreak_qty - {0} WHERE product = '{1}' and location = '{2}' and lot_no = '{3}' and expiry ='{4}' and uom = '{5}'"
                         , int.Parse(row["expected_qty"].ToString()), row["product"], row["location"], row["lot_no"], row["expiry"], row["uom"]);

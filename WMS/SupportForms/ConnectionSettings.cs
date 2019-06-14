@@ -62,7 +62,8 @@ namespace WMS
                     String user = dRow.Cells["gridcoluser"].Value.ToString();
                     String password = dRow.Cells["gridcolpassword"].Value.ToString();
                     String dbname = dRow.Cells["gridcoldbname"].Value.ToString();
-                    program += String.Format("{0}<limiter>{1}<limiter>{2}<limiter>{3}<limiter>{4}<limiter1>", name, server,  user, password, dbname);
+                    String wname = dRow.Cells["wname"].Value.ToString();
+                    program += String.Format("{0}<limiter>{1}<limiter>{2}<limiter>{3}<limiter>{4}<limiter>{5}<limiter1>", name, server, user, password, dbname, wname);
                 }
 
                 StreamWriter writer = new StreamWriter(fs1);
@@ -110,7 +111,8 @@ namespace WMS
                 String user = row.Cells["gridcoluser"].Value.ToString();
                 String password = row.Cells["gridcolpassword"].Value.ToString();
                 String dbname = row.Cells["gridcoldbname"].Value.ToString();
-                data += String.Format("{0}<limiter>{1}<limiter>{2}<limiter>{3}<limiter>{4}<limiter1>", name, server, user, password, dbname);
+                String wname = row.Cells["wname"].Value.ToString();
+                data += String.Format("{0}<limiter>{1}<limiter>{2}<limiter>{3}<limiter>{4}<limiter>{5}<limiter1>", name, server, user, password, dbname, wname);
             }
             RegistrySupport registry = new RegistrySupport();
             if (registry.Write(Settings.PROGRAM_GRID_KEY, data))

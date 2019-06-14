@@ -65,8 +65,7 @@ namespace WMS
                     insDT.Rows.Add(row["location"].ToString(), row["product"].ToString(), row["expected_qty"].ToString(), row["uom"].ToString(), row["lot_no"].ToString(), row["expiry"].ToString());
                 sql += LedgerSupport.UpdateLocationProductsLedger(insDT);
 
-            }
-           
+            }         
 
             DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);
             MessageBox.Show("Success");

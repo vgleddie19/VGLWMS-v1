@@ -44,7 +44,7 @@
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(92, 52);
             this.btnPrintPreview.TabIndex = 18;
-            this.btnPrintPreview.Text = "Save";
+            this.btnPrintPreview.Text = "Print";
             this.btnPrintPreview.UseVisualStyleBackColor = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
@@ -57,7 +57,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(92, 56);
             this.btnCancel.TabIndex = 19;
-            this.btnCancel.Text = "Back";
+            this.btnCancel.Text = "Close";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 

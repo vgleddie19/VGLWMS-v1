@@ -21,6 +21,7 @@ namespace WMS
         {
             DataTable dt = DataSupport.RunDataSet("SELECT Product, qty[Quantity], Uom, lot_no [Lot No], Expiry , Location  FROM PicklistDetails WHERE picklist = '" + txtPicklist.Text + "'").Tables[0];
             picklist_details_grid.DataSource = dt;
+            txtScan.Select();
         }
 
         private void SyncSaveButton()
@@ -28,7 +29,10 @@ namespace WMS
             if (picklist_details_grid.Rows.Count > 0)
                 btnSave.Text = "Declare Incomplete";
             else
+            {
+                btnSave.Enabled = true;
                 btnSave.Text = "Declare Complete";
+            }
         }
 
         private void txtScan_KeyDown(object sender, KeyEventArgs e)
@@ -117,6 +121,7 @@ namespace WMS
                     }
 
                     txtScan.Text = "";
+                    txtScan.SelectAll();
                     txtScan.Focus();
                     SyncSaveButton();
                 }

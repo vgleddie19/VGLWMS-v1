@@ -34,31 +34,35 @@
             // 
             // txtScan
             // 
-            this.txtScan.Location = new System.Drawing.Point(221, 40);
+            this.txtScan.Location = new System.Drawing.Point(147, 26);
+            this.txtScan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txtScan.Name = "txtScan";
-            this.txtScan.Size = new System.Drawing.Size(287, 26);
+            this.txtScan.Size = new System.Drawing.Size(193, 20);
             this.txtScan.TabIndex = 3;
             this.txtScan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtScan_KeyDown);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(39, 43);
+            this.label1.Location = new System.Drawing.Point(26, 28);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(176, 20);
+            this.label1.Size = new System.Drawing.Size(119, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Scan Unexpected Item:";
             // 
             // DeclareUnexpectedProductWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 99);
+            this.ClientSize = new System.Drawing.Size(364, 64);
             this.Controls.Add(this.txtScan);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "DeclareUnexpectedProductWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeclareUnexpectedProductWindow";
+            this.Load += new System.EventHandler(this.DeclareUnexpectedProductWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

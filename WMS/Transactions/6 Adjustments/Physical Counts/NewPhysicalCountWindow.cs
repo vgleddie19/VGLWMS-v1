@@ -58,6 +58,18 @@ namespace WMS
 
         private void btnGenerateCountSheet_Click(object sender, EventArgs e)
         {
+            bool found = false;
+            foreach (DataGridViewRow row in header_grid.Rows)
+            {
+                if ((bool)row.Cells[0].Value)
+                { found = true; break; }
+            }
+
+            if (!found)
+            {
+                MessageBox.Show("Please select location to count!");
+                return;
+            }
             GenerateCountSheetWindow dialog = new GenerateCountSheetWindow();
             dialog.parent = this;
             dialog.ShowDialog();

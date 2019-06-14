@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtScan = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,11 +49,12 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Lime;
+            this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(17, 511);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(162, 56);
-            this.btnSave.TabIndex = 49;
+            this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Declare Incomplete";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -64,7 +65,7 @@
             this.txtScan.Margin = new System.Windows.Forms.Padding(2);
             this.txtScan.Name = "txtScan";
             this.txtScan.Size = new System.Drawing.Size(193, 20);
-            this.txtScan.TabIndex = 48;
+            this.txtScan.TabIndex = 1;
             this.txtScan.TextChanged += new System.EventHandler(this.txtScan_TextChanged);
             this.txtScan.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtScan_KeyDown);
             // 
@@ -107,14 +108,14 @@
             this.items_grid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.items_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.items_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.items_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.items_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.items_grid.Location = new System.Drawing.Point(17, 354);
             this.items_grid.Margin = new System.Windows.Forms.Padding(2);
@@ -123,7 +124,7 @@
             this.items_grid.RowTemplate.Height = 28;
             this.items_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.items_grid.Size = new System.Drawing.Size(696, 153);
-            this.items_grid.TabIndex = 44;
+            this.items_grid.TabIndex = 3;
             // 
             // orders_grid
             // 
@@ -133,14 +134,14 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.orders_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.orders_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.orders_grid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.orders_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.orders_grid.Location = new System.Drawing.Point(17, 127);
             this.orders_grid.Margin = new System.Windows.Forms.Padding(2);
@@ -149,7 +150,7 @@
             this.orders_grid.RowTemplate.Height = 28;
             this.orders_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.orders_grid.Size = new System.Drawing.Size(696, 193);
-            this.orders_grid.TabIndex = 43;
+            this.orders_grid.TabIndex = 2;
             // 
             // txtTrip
             // 
@@ -187,7 +188,7 @@
             this.txtreleaseto.Margin = new System.Windows.Forms.Padding(2);
             this.txtreleaseto.Name = "txtreleaseto";
             this.txtreleaseto.Size = new System.Drawing.Size(193, 20);
-            this.txtreleaseto.TabIndex = 48;
+            this.txtreleaseto.TabIndex = 0;
             this.txtreleaseto.TextChanged += new System.EventHandler(this.txtScan_TextChanged);
             // 
             // ReleasesWindow
@@ -221,7 +222,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.TextBox txtScan;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label5;
@@ -230,6 +230,7 @@
         public System.Windows.Forms.Label txtTrip;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtreleaseto;
+        public System.Windows.Forms.TextBox txtScan;
+        public System.Windows.Forms.TextBox txtreleaseto;
     }
 }

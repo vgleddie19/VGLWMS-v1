@@ -12,10 +12,47 @@ public class LedgerSupport
     static DataTable producttopick = null;
     static DataTable casebreak = null;
     static DataTable putaway = null;
+    private static bool binexist = false;
+
     public static bool StockCheck()
     {
         DataSupport oms_dh = new DataSupport(String.Format(@"Initial Catalog={0};Data Source= {1};User Id = {2}; Password = {3}", Utils.DBConnection["OMS"]["DBNAME"], Utils.DBConnection["OMS"]["SERVER"], Utils.DBConnection["OMS"]["USERNAME"], Utils.DBConnection["OMS"]["PASSWORD"]));
         DataTable ordersDT = DataSupport.RunDataSet(String.Format("SELECT * FROM ReleaseOrders WHERE status = 'FOR STOCK CHECKING'")).Tables[0];
+
+        producttopick = new DataTable();
+        producttopick.Columns.Add("Location");
+        producttopick.Columns.Add("Product");
+        producttopick.Columns.Add("Description");
+        producttopick.Columns.Add("Qty1");
+        producttopick.Columns.Add("Uom1");
+        producttopick.Columns.Add("Lot no");
+        producttopick.Columns.Add("Expiry");
+        producttopick.Columns.Add("putawayid");
+        producttopick.Columns.Add("casebreakid");
+        producttopick.Columns.Add("picklistid");
+        casebreak = new DataTable();
+        casebreak.Columns.Add("Product");
+        casebreak.Columns.Add("Description");
+        casebreak.Columns.Add("Qty1");
+        casebreak.Columns.Add("Uom1");
+        casebreak.Columns.Add("Qty2");
+        casebreak.Columns.Add("Uom2");
+        casebreak.Columns.Add("Lot no");
+        casebreak.Columns.Add("Expiry");
+        casebreak.Columns.Add("putawayid");
+        casebreak.Columns.Add("casebreakid");
+        casebreak.Columns.Add("picklistid");
+        putaway = new DataTable();
+        putaway.Columns.Add("Product");
+        putaway.Columns.Add("Description");
+        putaway.Columns.Add("Qty2");
+        putaway.Columns.Add("Uom2");
+        putaway.Columns.Add("Lot no");
+        putaway.Columns.Add("Expiry");
+        putaway.Columns.Add("Location");
+        putaway.Columns.Add("putawayid");
+        putaway.Columns.Add("casebreakid");
+        putaway.Columns.Add("picklistid");
 
         foreach (DataRow row in ordersDT.Rows)
         {
@@ -25,6 +62,7 @@ public class LedgerSupport
             if (result == false)
             {
                 oms_dh.ExecuteNonQuery("UPDATE OutgoingShipmentRequests SET status = 'INSUFFICIENT STOCKS' WHERE out_shipment_id = '" + row["oms_shipment_id"].ToString() + "';", IsolationLevel.ReadCommitted);
+                DataSupport.RunNonQuery("UPDATE ReleaseOrders SET status = 'INSUFFICIENT STOCKS' WHERE order_id = '" + order_id + "'");
                 MessageBox.Show("Can't Reserve order " + order_id);
                 continue;
             }
@@ -72,36 +110,7 @@ public class LedgerSupport
         }
         return true;
     }
-
-    public static bool CheckBin(String product, String uom, String qty)
-    {
-        bool result = true;
-
-        if (uom.ToUpper() == "PC" || uom.ToUpper() == "PCS")
-        {
-            DataTable dt = DataSupport.RunDataSet(@"SELECT SUM(available_qty)
-                        FROM LocationProductsLedger 
-                        WHERE  product = @product AND uom = @uom
-                        AND available_qty >0
-                        ", "product", product, "uom", uom).Tables[0];
-
-
-            int totalqty = dt.Rows[0][0].Equals(DBNull.Value) ? 0 : Convert.ToInt32(dt.Rows[0][0]);
-
-            //if (Convert.ToInt32(qty) > totalqty)
-            //    result = false;
-
-            if (!dt.Rows[0][0].Equals(DBNull.Value))
-            {
-                int pieces_in_warehouse = int.Parse(dt.Rows[0][0].ToString());
-                int pieces_in_order = FAQ.HowManyPiecesInUOM(product, uom, int.Parse(qty));
-                if (pieces_in_warehouse < pieces_in_order)
-                    result = false;
-            }
-        }
-        return result;        
-    }
-    
+       
     public static DataTable GetLocationLedgerDT()
     {
         DataTable result = new DataTable();
@@ -121,10 +130,10 @@ public class LedgerSupport
         {
             sql += DataSupport.GetUpsert("LocationLedger", Utils.ToDict(
                 "location", row["location"]
+                , "transaction_id", row["transaction_id"]
                , "transaction_datetime", row["transaction_datetime"]
                , "transaction_type", row["transaction_type"]
-               , "transaction_name", row["transaction_name"]
-               , "transaction_id", row["transaction_id"]
+               , "transaction_name", row["transaction_name"]               
                 ), "location", "transaction_datetime", "transaction_id") + "\r\n\r\n";
         }
         return sql;
@@ -205,8 +214,7 @@ public class LedgerSupport
             {
                 if (FAQ.IsNewLine(row["location"].ToString(), row["product"].ToString(), row["uom"].ToString(), row["lot_no"].ToString(), row["expiry"].ToString()))
                 {
-                    sql += " UPDATE LocationProductsLedger SET qty = qty + " + row["qty"].ToString() + " WHERE location = '" + row["location"].ToString() + "' AND product='" + row["product"].ToString() + "' AND uom ='" + row["uom"].ToString() + "' AND lot_no = '" + row["lot_no"].ToString() + "' AND expiry='" + row["expiry"].ToString() + "'\r\n\r\n\r\n\r\n";
-                  
+                    sql += " UPDATE LocationProductsLedger SET qty = qty + " + row["qty"].ToString() + " WHERE location = '" + row["location"].ToString() + "' AND product='" + row["product"].ToString() + "' AND uom ='" + row["uom"].ToString() + "' AND lot_no = '" + row["lot_no"].ToString() + "' AND expiry='" + row["expiry"].ToString() + "'\r\n\r\n\r\n\r\n";                  
                 }
                 else
                 {
@@ -240,7 +248,7 @@ public class LedgerSupport
     {
         DataTable Order = DataSupport.RunDataSet(@"SELECT ROD.*,PU.qty[uomconv] FROM ReleaseOrderDetails ROD INNER JOIN 
                                         ProductUOMs PU ON ROD.product = PU .product and ROD.uom = PU.uom  
-                                        WHERE release_order = @id", "id", order_id).Tables[0];
+                                        WHERE release_order = @id and PU.uom != 'CS'", "id", order_id).Tables[0];
         int binstocks = 0;
         int productorder = 0;
         StringBuilder sql = new StringBuilder();
@@ -278,6 +286,7 @@ public class LedgerSupport
                 rviewer.SetDataSource(producttopick);
                 rviewer.Subreports["crtcasebreak.rpt"].SetDataSource(casebreak);
                 rviewer.Subreports["crtputawaycasebreak.rpt"].SetDataSource(putaway);
+                viewer.btnPrintPreview.Text = "Save";
 
                 viewer.viewer.ReportSource = rviewer;
                 viewer.viewer.Zoom(110);
@@ -289,12 +298,14 @@ public class LedgerSupport
                 {
                     string[] transid = new string[3];
                     int count = 0;
-                    foreach (KeyValuePair<String,String> item in saveautomatedcasebreak())
+                    foreach (KeyValuePair<String,String> item in saveautomatedcasebreak(order_id))
                     {
                         sql.Append(item.Value);
                         transid[count] = item.Key;
                         count++;
                     }
+                    DataSupport.RunNonQuery(sql.ToString(), IsolationLevel.ReadCommitted);
+
                     viewer = new WMS.reportviewer();
                     viewer.StartPosition = FormStartPosition.CenterScreen;
                     rviewer = new CrystalDecisions.CrystalReports.Engine.ReportDocument();
@@ -379,9 +390,7 @@ public class LedgerSupport
                     viewer.btnCancel.Text = "Close";
                     viewer.btnPrintPreview.Text = "Print";
                     viewer.ShowDialog();
-
                 }
-                DataSupport.RunNonQuery(sql.ToString(), IsolationLevel.ReadCommitted);
             }
             return true;
         }
@@ -408,10 +417,10 @@ public class LedgerSupport
         result.Columns.Add("binuom");
         result.Columns.Add("locuomconv");
         result.Columns.Add("binuomconv");
-
-        int total_qty_to_be_replenish = int.Parse(qty_to_be_replenish) * int.Parse(uomconv[String.Format("{0}-{1}", product, uom)]["qty"].ToString());
+        int sdfsdfss = int.Parse(uomconv[String.Format("{0}-{1}", product, uom)]["qty"].ToString());
+        int total_qty_to_be_replenish = int.Parse(qty_to_be_replenish) * sdfsdfss;
         DataTable dt = DataSupport.RunDataSet(@"SELECT pl.*,l.type,p.description FROM [LocationProductsLedger] pl join locations l on pl.location = l.location_id join products p on p.product_id = pl.product
-                                        WHERE (type = 'STORAGE' or l.location_id = 'STAGING-IN') and product = @product and uom = 'CS'  ORDER BY expiry DESC", "product", product).Tables[0];
+                                        WHERE (type = 'STORAGE' or l.location_id = 'STAGING-IN') and available_qty >= 1 and pl.product = @product and pl.uom != 'PC'  ORDER BY pl.expiry DESC", "product", product).Tables[0];
         foreach(DataRow dRow in dt.Rows)
         {
             decimal conv = int.Parse(uomconv[String.Format("{0}-{1}", product, dRow["uom"])]["qty"].ToString());
@@ -454,40 +463,6 @@ public class LedgerSupport
     public static String forcasebreak(Dictionary<List<String>,int> product_to_be_reserved)
     {
         StringBuilder result = new StringBuilder();
-        producttopick = new DataTable();
-        producttopick.Columns.Add("Location");
-        producttopick.Columns.Add("Product");
-        producttopick.Columns.Add("Description");
-        producttopick.Columns.Add("Qty1");
-        producttopick.Columns.Add("Uom1");
-        producttopick.Columns.Add("Lot no");
-        producttopick.Columns.Add("Expiry");
-        producttopick.Columns.Add("putawayid");
-        producttopick.Columns.Add("casebreakid");
-        producttopick.Columns.Add("picklistid");
-        casebreak = new DataTable();
-        casebreak.Columns.Add("Product");
-        casebreak.Columns.Add("Description");
-        casebreak.Columns.Add("Qty1");
-        casebreak.Columns.Add("Uom1");
-        casebreak.Columns.Add("Qty2");
-        casebreak.Columns.Add("Uom2");
-        casebreak.Columns.Add("Lot no");
-        casebreak.Columns.Add("Expiry");
-        casebreak.Columns.Add("putawayid");
-        casebreak.Columns.Add("casebreakid");
-        casebreak.Columns.Add("picklistid");
-        putaway = new DataTable();
-        putaway.Columns.Add("Product");
-        putaway.Columns.Add("Description");
-        putaway.Columns.Add("Qty2");
-        putaway.Columns.Add("Uom2");
-        putaway.Columns.Add("Lot no");
-        putaway.Columns.Add("Expiry");
-        putaway.Columns.Add("Location");
-        putaway.Columns.Add("putawayid");
-        putaway.Columns.Add("casebreakid");
-        putaway.Columns.Add("picklistid");
 
         foreach (KeyValuePair<List<String>,int> item in product_to_be_reserved)
         {            
@@ -507,12 +482,11 @@ public class LedgerSupport
                 product.Add("uom", item.Key[7]);
                 product.Add("lot", item.Key[3]);
                 product.Add("expiry", item.Key[4]);
-                result.Append(defaultbin(product));
+                result.Append(defaultbin(product,"BIN-DEF"));
 
                 loc2 = "BIN-DEF";
                 result.Append(String.Format(@"INSERT INTO LocationProductsLedger (Location, Product, qty, uom, lot_no, expiry, reserved_qty, to_be_picked_qty, casebreak_qty) 
                                             VALUES ('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}')", "BIN-DEF", item.Key[1], 0, item.Key[7], item.Key[3], item.Key[4], 0, 0, item.Value * int.Parse(item.Key[6].ToString())));
-
             }
             else
             {
@@ -521,7 +495,6 @@ public class LedgerSupport
                                            WHERE product = '{0}' AND uom = '{1}' 
                                            AND lot_no = '{2}' AND expiry = '{3}' 
                                            AND location='{4}'; ", item.Key[1], item.Key[7], item.Key[3], item.Key[4], dt.Rows[0]["Location"], item.Value * int.Parse(item.Key[6].ToString())));
-
             }
             if (item.Key[2].ToUpper().Trim() == item.Key[7].ToUpper().Trim())
             {
@@ -538,23 +511,24 @@ public class LedgerSupport
         return result.ToString();
     }
 
-    private static String defaultbin(Dictionary<String, String> product)
+    private static String defaultbin(Dictionary<String, String> product, String Location)
     {
         StringBuilder sql = new StringBuilder();
         Dictionary<String, DataRow> locations = Utils.BuildIndex("SELECT * FROM Locations ORDER BY location_id", "location_id");
-        if (locations.ContainsKey("BIN-DEF"))
+        Dictionary<String, DataRow> BinProductLedger = Utils.BuildIndex("SELECT *,([Location]+[product]+[uom]+[lot_no]+convert(nvarchar(30), expiry, 101))[search] FROM BinProductLedger ORDER BY product", "search");
+        if (locations.ContainsKey(Location))
         {
             sql.Append(DataSupport.GetUpdate("[BinProducts]", Utils.ToDict(
-            "location", "BIN-DEF"
+            "location", Location
            , "product", product["product"]
            , "uom", product["uom"]
            , "lot_no", product["lot"]
            , "expiry", product["expiry"]
             ), new List<string> { "location" }));
-            if (FAQ.isbinproductledgerexist("BIN-DEF", product["product"], product["uom"], product["lot"], product["expiry"]))
+            if (FAQ.isbinproductledgerexist(Location, product["product"], product["uom"], product["lot"], product["expiry"]))
             {
                 sql.Append(DataSupport.GetUpdate("[BinProductLedger]", Utils.ToDict(
-                            "location", "BIN-DEF"
+                            "location", "Location"
                            , "product", product["product"]
                            , "uom", product["uom"]
                            , "lot_no", product["lot"]
@@ -564,55 +538,85 @@ public class LedgerSupport
             }
             else
             {
-                sql.Append(DataSupport.GetInsert("[BinProductLedger]", Utils.ToDict(
-                            "location", "BIN-DEF"
-                           , "product", product["product"]
-                           , "uom", product["uom"]
-                           , "lot_no", product["lot"]
-                           , "expiry", product["expiry"]
-                           , "actualqty", 0
-                           , "min_qty", 0
-                           , "max_qty", 0
-                           , "qty_to_replenished", 0
-                           , "status", "ACTIVE"
-                            )));
+                if (!binexist)
+                {
+                    sql.Append(DataSupport.GetInsert("[BinProductLedger]", Utils.ToDict(
+                                "location", Location
+                               , "product", product["product"]
+                               , "uom", product["uom"]
+                               , "lot_no", product["lot"]
+                               , "expiry", product["expiry"]
+                               , "actualqty", 0
+                               , "min_qty", 0
+                               , "max_qty", 0
+                               , "status", "ACTIVE"
+                                )));
+                    binexist = true;
+                }
+                else
+                {
+                    sql.Append(DataSupport.GetUpdate("[BinProductLedger]", Utils.ToDict(
+                                "location", Location
+                               , "product", product["product"]
+                               , "uom", product["uom"]
+                               , "lot_no", product["lot"]
+                               , "expiry", product["expiry"]
+                               , "status", "ACTIVE"
+                                ), new List<string> { "location", "product", "uom", "lot_no", "expiry" }));
+                }
             }
         }
         else
         {
-            sql.Append(DataSupport.GetInsert("[Locations]", Utils.ToDict(
-            "location_id", "BIN-DEF"
-           , "description", "BIN AUTOMATED DEFAULT"
-           , "type", "BIN"
-           , "status", "ACTIVE"
-            )));
+            if (!binexist)
+            {
+                sql.Append(DataSupport.GetUpsert("[Locations]", Utils.ToDict("location_id", Location
+                                                                           , "description", "BIN AUTOMATED DEFAULT"
+                                                                           , "type", "BIN"
+                                                                           , "status", "ACTIVE"
+                                                                            ),new List<String> {"location_id"}));
+                binexist = true;
 
-            sql.Append(DataSupport.GetInsert("[BinProducts]", Utils.ToDict(
-                            "location", "BIN-DEF"
+            }
+            sql.Append(DataSupport.GetUpsert("[BinProducts]", Utils.ToDict(
+                            "location", Location
                            , "product", product["product"]
                            , "uom", product["uom"]
                            , "lot_no", product["lot"]
                            , "expiry", product["expiry"]
                            , "min_qty", 0
                            , "max_qty", 0
-                            )));
-            sql.Append(DataSupport.GetInsert("[BinProductLedger]", Utils.ToDict(
-                            "location", "BIN-DEF"
-                           , "product", product["product"]
-                           , "uom", product["uom"]
-                           , "lot_no", product["lot"]
-                           , "expiry", product["expiry"]
-                           , "actualqty", 0
-                           , "min_qty", 0
-                           , "max_qty", 0
-                           , "qty_to_replenished", 0
-                           , "status", "ACTIVE"
-                            )));
+                            ),new List<String> { "location","product", "lot_no","expiry" }));
+
+            string search = String.Format("{0}{1}{2}{3}{4}", Location, product["product"], product["uom"], product["lot"], Convert.ToDateTime(product["expiry"]).ToString("MM/dd/yyyy"));
+            DataRow drow = null;
+            if (BinProductLedger.TryGetValue(search, out drow))
+            {
+                sql.Append(DataSupport.GetUpdate("[BinProductLedger]", Utils.ToDict(
+                                                "actualqty", drow["actualqty"]
+                                               , "min_qty", drow["min_qty"]
+                                               , "max_qty", drow["max_qty"]
+                                                ), new List<string> { "location", "product", "uom", "lot_no", "expiry" }));
+            }
+            else
+            {
+                sql.Append(DataSupport.GetInsert("[BinProductLedger]", Utils.ToDict(
+                                                "location", Location
+                                               , "product", product["product"]
+                                               , "uom", product["uom"]
+                                               , "lot_no", product["lot"]
+                                               , "expiry", product["expiry"]
+                                               , "actualqty", 0
+                                               , "min_qty", 0
+                                               , "max_qty", 0
+                                               , "status", "ACTIVE"
+                                                )));
+            }
         }
         return sql.ToString();
     }
 
-    private static Dictionary<String,String> saveautomatedcasebreak()
+    private static Dictionary<String,String> saveautomatedcasebreak(string orderid)
     {
         Dictionary<String, String> result = new Dictionary<string, string>();
 
@@ -675,7 +679,7 @@ public class LedgerSupport
         // Save Transaction
         sql = DataSupport.GetInsert("Putaways", Utils.ToDict(
             "putaway_id", putid
-           , "container", "CEB1-BIN"
+           , "container", "BTN1-BIN"
            , "encoded_on", now
             ));
 
@@ -695,6 +699,11 @@ public class LedgerSupport
         sql += String.Format("UPDATE Picklists SET casebreak_id = '{0}', putaway_id = '{1}' WHERE picklist_id ='{2}';", caseid, putid, pickid);
         sql += String.Format("UPDATE casebreak SET putaway_id = '{0}', picklist_id = '{1}' WHERE casebreak_id ='{2}';", putid, pickid, caseid);
         sql += String.Format("UPDATE putaways SET casebreak_id = '{0}', picklist_id = '{1}' WHERE putaway_id ='{2}';", caseid, pickid, putid);
+
+        sql += DataSupport.GetInsert("pendingcasebreak", Utils.ToDict(
+            "order_id", orderid
+            ,"casebreakid", caseid
+            ));
 
         result.Add(putid, sql);
 

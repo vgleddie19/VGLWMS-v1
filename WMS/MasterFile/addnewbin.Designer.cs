@@ -216,7 +216,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(98, 68);
             this.button1.TabIndex = 7;
-            this.button1.Text = "Closed";
+            this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -227,9 +227,9 @@
             this.lblShowProduct.Location = new System.Drawing.Point(160, 69);
             this.lblShowProduct.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblShowProduct.Name = "lblShowProduct";
-            this.lblShowProduct.Size = new System.Drawing.Size(59, 17);
+            this.lblShowProduct.Size = new System.Drawing.Size(52, 17);
             this.lblShowProduct.TabIndex = 50;
-            this.lblShowProduct.Text = "Show IDs";
+            this.lblShowProduct.Text = "Hide IDs";
             this.lblShowProduct.Click += new System.EventHandler(this.lblShowProduct_Click);
             // 
             // addnewbin

@@ -128,6 +128,39 @@ namespace Framework
             return result;
         }
 
+        public String GenerateInsertUsingSelect(Dictionary<String, String> insertList, String SelectTable, params String[] parameters)
+        {
+            CleanDictionaries(insertList);
+
+            Dictionary<String, String> col = new Dictionary<string, string>();
+            foreach (string s in parameters)
+                col.Add(s, s);
+            String result = "INSERT INTO ";
+            char[] delim = { ' ' };
+            result += table.Split(delim)[0] + "(";
+            List<String> insertColumns = insertList.Keys.ToList();
+
+
+            for (int i = 0; i < insertColumns.Count; i++)
+            {
+                char[] delims = { '.' };
+                String cleaned = (insertColumns[i].Contains('.') ? (insertColumns[i].Split(delims))[1] : insertColumns[i]);
+                result += (i == insertColumns.Count - 1) ? cleaned + ")" : cleaned + ",";
+            }
+            result += "SELECT ";
+            for (int i = 0; i < insertColumns.Count; i++)
+            {
+                if (col.ContainsKey(insertColumns[i]))
+                    result += (i == insertColumns.Count - 1) ? "" + insertList[insertColumns[i]].Replace("'", "''") + "" : "" + insertList[insertColumns[i]].Replace("'", "''") + ",";
+                else
+                    result += (i == insertColumns.Count - 1) ? "'" + insertList[insertColumns[i]].Replace("'", "''") + "'" : "'" + insertList[insertColumns[i]].Replace("'", "''") + "',";
+            }
+            result += " FROM " + SelectTable;
+
+            result += "\r\n";
+            return result;
+        }
+
 
         public String GenerateUpdate(Dictionary<String, String> updateList, Dictionary<String, String> primary_values)
         {
@@ -152,7 +185,19 @@ namespace Framework
             {
                 char[] delims = { '.' };
                 String cleaned = (columns[i].Contains('.') ? (columns[i].Split(delims))[1] : columns[i]);
-                result += String.Format(" {0} = '{1}' " + ((i == columns.Count - 1) ? "" : ","), cleaned, updateList[columns[i]].Replace("'","''"));
+                //if(!updateList.Contains(primary_values))
+                bool found = false;
+                foreach (KeyValuePair<String, String> kvp in primary_values)
+                {
+                    if (kvp.Key == columns[i])
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+
+                if(!found)
+                    result += String.Format(" {0} = '{1}' " + ((i == columns.Count - 1) ? "" : ","), cleaned, updateList[columns[i]].Replace("'","''"));
             }
             result += GenerateFilter(primary_values);
             result = compare_sql + result;

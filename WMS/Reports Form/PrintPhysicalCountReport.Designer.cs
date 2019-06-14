@@ -39,7 +39,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.webBrowser1.Location = new System.Drawing.Point(19, 7);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(2);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(13, 13);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.Size = new System.Drawing.Size(615, 398);
@@ -50,7 +50,7 @@
             this.btnPrintPreview.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPrintPreview.BackColor = System.Drawing.Color.Lime;
             this.btnPrintPreview.Location = new System.Drawing.Point(661, 8);
-            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrintPreview.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(92, 69);
             this.btnPrintPreview.TabIndex = 16;
@@ -79,10 +79,11 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.webBrowser1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PrintPhysicalCountReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Print Report...";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.PrintPhysicalCountReport_Load);
             this.ResumeLayout(false);
 

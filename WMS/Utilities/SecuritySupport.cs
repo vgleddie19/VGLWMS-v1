@@ -16,8 +16,6 @@ namespace Framework
      
         public static string GetSHA1Digest(string message)
         {
-
-
             try
             {
                 byte[] data = System.Text.Encoding.ASCII.GetBytes(message);

@@ -341,7 +341,7 @@ namespace WMS
             // Save Transaction
             String sql = DataSupport.GetInsert("Putaways", Utils.ToDict(
                 "putaway_id", putaway_id
-               , "container", "CEB1-BIN"
+               , "container", "BTN1-BIN"
                , "encoded_on", now
                 ));
 

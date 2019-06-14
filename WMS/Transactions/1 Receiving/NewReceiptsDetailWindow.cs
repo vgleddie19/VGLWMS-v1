@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using WMS.Utilities;
 
 namespace WMS
 {
@@ -15,7 +16,7 @@ namespace WMS
     {
         DataSet set = null;
         public NewReceiptsWindow parent = null;
-
+        public String clientcode = "";
 
         public NewReceiptsDetailWindow()
         {
@@ -25,12 +26,21 @@ namespace WMS
 
         private void LoadProducts()
         {
-            String sql = @"SELECT *, product_id + ' - ' + description [display] FROM Products ORDER BY description ; SELECT * FROM ProductUOMs;";
+            String sql = "";
+            if (clientcode == "")
+            {
+                sql = @"SELECT DISTINCT *, product_id + ' - ' + description [display] FROM Products ORDER BY description ; SELECT * FROM ProductUOMs;";
+            }
+            else
+            {
+                sql = @"SELECT DISTINCT *, product_id + ' - ' + description [display] FROM Products WHERE [default_owner] = '" + clientcode + "' ORDER BY description ; SELECT * FROM ProductUOMs;";
+            }
             set = DataSupport.RunDataSet(sql);
 
-            txtProducts.DataSource = set.Tables[0];
-            txtProducts.DisplayMember = "description";
-            txtProducts.ValueMember = "product_id";
+            //txtProducts.DataSource = set.Tables[0];
+            //txtProducts.DisplayMember = "description";
+            //txtProducts.ValueMember = "product_id";
+            UISetter.SetComboBox(txtProducts, set.Tables[0], "description", "product_id", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDown);
         }
 
 
@@ -57,27 +67,21 @@ namespace WMS
             dt.Columns.Add("value");
 
 
-            dt.Rows.Add("CASES" + " (" + product_row["pcs_per_case"] + " PCS) ", "CASES");
-            dt.Rows.Add("PCS" + " ( " + 1 + "  PCS) ", "PCS");
+            //dt.Rows.Add("CS" + " (" + product_row["pcs_per_case"] + " PCS) ", "CASES");
+            //dt.Rows.Add("PC" + " ( " + product_row["pcs_per_case"] + "  PCS) ", "PCS");
 
 
-            foreach (DataRow row in set.Tables[1].Rows)
-                if (product == row["product"].ToString())
-                    dt.Rows.Add(row["uom"].ToString() + " (" + row["qty"] + " PCS) ", row["uom"].ToString());
+            foreach (DataRow row in DataSupport.RunDataSet(String.Format("SELECT * FROM productuoms WHERE product = '{0}'",product)).Tables[0].Rows)
+                dt.Rows.Add(row["uom"].ToString() + " (" + row["qty"] + " PCS) ", row["uom"].ToString());
 
             txtUOM.DataSource = dt;
             txtUOM.DisplayMember = "key";
             txtUOM.ValueMember = "value";
-
-
-
         }
 
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-
-
             if (txtLot.Text == "")
             {
                 MessageBox.Show("Please Encode a Lot No");
@@ -88,7 +92,6 @@ namespace WMS
             DataRow product_row = GetProductRow(product);
 
             String product_id = product_row["product_id"].ToString();
-
 
             foreach (DataGridViewRow row in parent.headerGrid.Rows)
             {
@@ -101,7 +104,6 @@ namespace WMS
                 {
                     row.Cells["quantity"].Value = int.Parse(row.Cells["quantity"].Value.ToString()) + int.Parse(txtQty.Text);
 
-
                     btnAdd.Enabled = false;
                     Thread.Sleep(500);
                     btnAdd.Enabled = true;
@@ -109,8 +111,19 @@ namespace WMS
                 }
             }
 
+            parent.headerGrid.Rows.Add(product_id, product_row["description"].ToString(), txtQty.Text, null, txtLot.Text, txtExpiry.Value.ToShortDateString(), txtRemarks.Text, "");
 
-            parent.headerGrid.Rows.Add(product_id, product_row["description"].ToString(), txtQty.Text, txtUOM.SelectedValue, txtLot.Text, txtExpiry.Value.ToShortDateString(), txtRemarks.Text);
+            string code = parent.headerGrid.Rows[parent.headerGrid.Rows.Count - 1].Cells["product_id"].Value.ToString();
+            var dts = Connection.GetOMSConnection.ExecuteDataSet("Select distinct uom from itemprice where prodcode = '" + product_id + "'").Tables[0];
+            DataGridViewComboBoxCell dgvcc = new DataGridViewComboBoxCell();
+            dgvcc = (DataGridViewComboBoxCell)parent.headerGrid.Rows[parent.headerGrid.Rows.Count - 1].Cells["uom"];
+            dgvcc.DataSource = dts;
+            dgvcc.DisplayMember = "uom";
+            dgvcc.ValueMember = "uom";
+            dgvcc.Value = txtUOM.SelectedValue;
+
+
+
 
             btnAdd.Enabled = false;
             Thread.Sleep(500);

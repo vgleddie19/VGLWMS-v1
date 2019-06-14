@@ -126,7 +126,7 @@ namespace WMS
 
 ""details"":
   [
-    {""product"":""NPC23"",""uom"":""CASES"",""qty"":""2""}
+    {""product"":""NPC23"",""uom"":""CS"",""qty"":""2""}
   ]
 }";
         }

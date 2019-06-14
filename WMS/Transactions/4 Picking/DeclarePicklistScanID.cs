@@ -14,6 +14,7 @@ namespace WMS
         public DeclarePicklistScanID()
         {
             InitializeComponent();
+            txtPicklistCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
         }
 
         private void txtPicklistCode_Click(object sender, KeyEventArgs e)
@@ -23,19 +24,6 @@ namespace WMS
                 if (!FAQ.DoesPicklistExist(txtPicklistCode.Text))
                 {
                     MessageBox.Show("Barcode Not Recognized");
-                    return;
-                }
-
-                bool isbinok = true;
-                foreach (DataRow row in Framework.DataSupport.RunDataSet("SELECT Product, qty, Uom, lot_no [Lot No], Expiry , Location  FROM PicklistDetails WHERE picklist = '" + txtPicklistCode.Text + "'").Tables[0].Rows)
-                {
-                    isbinok = LedgerSupport.CheckBin(row["product"].ToString(), row["uom"].ToString(), row["qty"].ToString());
-                    if (!isbinok)
-                        break;
-                }
-                if (!isbinok)
-                {
-                    MessageBox.Show("Replenish the bin first before proceeding to stocks check!", "Unable to stock check");
                     return;
                 }
 

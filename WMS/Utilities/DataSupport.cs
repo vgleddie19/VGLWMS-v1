@@ -17,23 +17,22 @@ namespace Framework
         public static SqlConnection TestConnection ;
         public static SqlTransaction TestTransaction ;
         private static String connectString = "";
-
+        private SqlConnection conn;
 
         public static String GetWarehouseCode()
         {
-            return "CEB1";
+            return DataSupport.RunDataSet(String.Format("SELECT TOP 1 [warehouse_id] FROM base_warehouses WHERE warehouse_id = '{0}'", Utils.DBConnection["WMS"]["WNAME"])).Tables[0].Rows[0][0].ToString();
         }
 
         public String ConnectionString 
         {
-            //get { return connectString; }  
             get
             {
                 String result = "";
                 Utils.SetConnectionDetails();
                 if (connectString == "")
                 {
-                    result = String.Format(@"Initial Catalog={0};Data Source= {1};User Id = {2}; Password = {3}", Utils.DBConnection["WMS"]["DBNAME"], Utils.DBConnection["WMS"]["SERVER"], Utils.DBConnection["WMS"]["USERNAME"], Utils.DBConnection["WMS"]["PASSWORD"]);
+                    result = WMS.Connection.GetWMSConnectionString();
                 }
                 else
                     result = connectString;
@@ -42,7 +41,7 @@ namespace Framework
             }
             set { connectString = value; }
         }
-        SqlConnection conn;
+
 
         #region SQL SCRIPT GENERATORS
         public static String GetInsert(String table, Dictionary<String, Object> insert_list)
@@ -52,6 +51,14 @@ namespace Framework
             DBTable dbtable = new DBTable(table, converted_list, new List<String>());
             result = dbtable.GenerateInsert(converted_list);
             return result+";\r\n";
+        }
+        public static String GetInsertWithIndex(String table, Dictionary<String, Object> insert_list, String SelectTable, params String[] parameters)
+        {
+            String result = "";
+            var converted_list = ConvertToStringValues(insert_list);
+            DBTable dbtable = new DBTable(table, converted_list, new List<String>());
+            result = dbtable.GenerateInsertUsingSelect(converted_list, SelectTable, parameters);
+            return result + ";\r\n";
         }
 
         public static String GetDelete(String table, params Object[] filters)

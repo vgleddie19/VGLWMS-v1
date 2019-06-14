@@ -15,6 +15,7 @@ namespace WMS
         public NewPutawayDetailWindow()
         {
             InitializeComponent();
+            txtContainer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
         }
 
         private void txtContainer_TextChanged(object sender, EventArgs e)

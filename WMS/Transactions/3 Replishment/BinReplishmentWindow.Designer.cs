@@ -28,14 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabcontrol = new DevComponents.DotNetBar.SuperTabControl();
+            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
+            this.headerGrid = new System.Windows.Forms.DataGridView();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnNewPutaway = new System.Windows.Forms.Button();
+            this.tabdashboard = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel2 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -72,20 +78,17 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btngendocs = new System.Windows.Forms.Button();
             this.tabgenpick = new DevComponents.DotNetBar.SuperTabItem();
-            this.superTabControlPanel1 = new DevComponents.DotNetBar.SuperTabControlPanel();
-            this.headerGrid = new System.Windows.Forms.DataGridView();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btnNewPutaway = new System.Windows.Forms.Button();
-            this.tabdashboard = new DevComponents.DotNetBar.SuperTabItem();
             this.superTabControlPanel5 = new DevComponents.DotNetBar.SuperTabControlPanel();
             this.grdreplenishmentconfirm = new System.Windows.Forms.DataGridView();
             this.gridreplenish = new System.Windows.Forms.DataGridView();
             this.tablistreplenish = new DevComponents.DotNetBar.SuperTabItem();
             this.tablistcasebreak = new DevComponents.DotNetBar.SuperTabItem();
             this.tablistpick = new DevComponents.DotNetBar.SuperTabItem();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tabcontrol)).BeginInit();
             this.tabcontrol.SuspendLayout();
+            this.superTabControlPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
+            this.panel5.SuspendLayout();
             this.superTabControlPanel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -95,9 +98,6 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.genpickgrid)).BeginInit();
             this.panel3.SuspendLayout();
-            this.superTabControlPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).BeginInit();
-            this.panel5.SuspendLayout();
             this.superTabControlPanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdreplenishmentconfirm)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridreplenish)).BeginInit();
@@ -120,9 +120,9 @@
             this.tabcontrol.ControlBox.SubItems.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.tabcontrol.ControlBox.MenuBox,
             this.tabcontrol.ControlBox.CloseBox});
-            this.tabcontrol.Controls.Add(this.superTabControlPanel1);
             this.tabcontrol.Controls.Add(this.superTabControlPanel2);
             this.tabcontrol.Controls.Add(this.superTabControlPanel5);
+            this.tabcontrol.Controls.Add(this.superTabControlPanel1);
             this.tabcontrol.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabcontrol.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabcontrol.FixedTabSize = new System.Drawing.Size(110, 80);
@@ -131,7 +131,7 @@
             this.tabcontrol.ReorderTabsEnabled = true;
             this.tabcontrol.SelectedTabFont = new System.Drawing.Font("Courier New", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabcontrol.SelectedTabIndex = 0;
-            this.tabcontrol.Size = new System.Drawing.Size(1303, 948);
+            this.tabcontrol.Size = new System.Drawing.Size(1303, 749);
             this.tabcontrol.TabAlignment = DevComponents.DotNetBar.eTabStripAlignment.Left;
             this.tabcontrol.TabFont = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabcontrol.TabIndex = 0;
@@ -143,6 +143,84 @@
             this.tabcontrol.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
             this.tabcontrol.TabItemClose += new System.EventHandler<DevComponents.DotNetBar.SuperTabStripTabItemCloseEventArgs>(this.utabControl1_TabItemClose);
             // 
+            // superTabControlPanel1
+            // 
+            this.superTabControlPanel1.Controls.Add(this.headerGrid);
+            this.superTabControlPanel1.Controls.Add(this.panel5);
+            this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.superTabControlPanel1.Location = new System.Drawing.Point(112, 0);
+            this.superTabControlPanel1.Name = "superTabControlPanel1";
+            this.superTabControlPanel1.Size = new System.Drawing.Size(1191, 749);
+            this.superTabControlPanel1.TabIndex = 1;
+            this.superTabControlPanel1.TabItem = this.tabdashboard;
+            // 
+            // headerGrid
+            // 
+            this.headerGrid.AllowUserToAddRows = false;
+            this.headerGrid.AllowUserToDeleteRows = false;
+            this.headerGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.headerGrid.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.headerGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.headerGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
+            this.headerGrid.ColumnHeadersHeight = 80;
+            this.headerGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.headerGrid.Location = new System.Drawing.Point(0, 0);
+            this.headerGrid.Margin = new System.Windows.Forms.Padding(2);
+            this.headerGrid.Name = "headerGrid";
+            this.headerGrid.RowTemplate.Height = 28;
+            this.headerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.headerGrid.Size = new System.Drawing.Size(1191, 678);
+            this.headerGrid.StandardTab = true;
+            this.headerGrid.TabIndex = 38;
+            this.headerGrid.TabStop = false;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Controls.Add(this.btnNewPutaway);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel5.Location = new System.Drawing.Point(0, 678);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1191, 71);
+            this.panel5.TabIndex = 37;
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.BackColor = System.Drawing.Color.Red;
+            this.button1.ForeColor = System.Drawing.Color.White;
+            this.button1.Location = new System.Drawing.Point(1070, 5);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(114, 64);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Close";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnNewPutaway
+            // 
+            this.btnNewPutaway.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewPutaway.BackColor = System.Drawing.Color.LightGreen;
+            this.btnNewPutaway.Location = new System.Drawing.Point(952, 5);
+            this.btnNewPutaway.Margin = new System.Windows.Forms.Padding(2);
+            this.btnNewPutaway.Name = "btnNewPutaway";
+            this.btnNewPutaway.Size = new System.Drawing.Size(114, 64);
+            this.btnNewPutaway.TabIndex = 2;
+            this.btnNewPutaway.Text = "Replenish Bin";
+            this.btnNewPutaway.UseVisualStyleBackColor = false;
+            this.btnNewPutaway.Click += new System.EventHandler(this.btnNewPutaway_Click);
+            // 
+            // tabdashboard
+            // 
+            this.tabdashboard.AttachedControl = this.superTabControlPanel1;
+            this.tabdashboard.GlobalItem = false;
+            this.tabdashboard.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            this.tabdashboard.Name = "tabdashboard";
+            this.tabdashboard.PredefinedColor = DevComponents.DotNetBar.eTabItemColor.OfficeMobile2014Coral;
+            this.tabdashboard.Text = "Dashboard";
+            this.tabdashboard.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
+            // 
             // superTabControlPanel2
             // 
             this.superTabControlPanel2.Controls.Add(this.panel4);
@@ -152,7 +230,7 @@
             this.superTabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel2.Location = new System.Drawing.Point(112, 0);
             this.superTabControlPanel2.Name = "superTabControlPanel2";
-            this.superTabControlPanel2.Size = new System.Drawing.Size(1191, 948);
+            this.superTabControlPanel2.Size = new System.Drawing.Size(1191, 749);
             this.superTabControlPanel2.TabIndex = 0;
             this.superTabControlPanel2.TabItem = this.tabgenpick;
             // 
@@ -183,15 +261,15 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gencasebreakgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.gencasebreakgrid.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gencasebreakgrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gencasebreakgrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gencasebreakgrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gencasebreakgrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gridcolcasebreak_prod,
@@ -202,26 +280,26 @@
             this.gridcolcasebreak_binuom,
             this.gridcolcasebreak_lot,
             this.gridcolcasebreak_expiry});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
-            dataGridViewCellStyle9.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gencasebreakgrid.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(128)))), ((int)(((byte)(185)))));
+            dataGridViewCellStyle2.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gencasebreakgrid.DefaultCellStyle = dataGridViewCellStyle2;
             this.gencasebreakgrid.Location = new System.Drawing.Point(0, 0);
             this.gencasebreakgrid.Margin = new System.Windows.Forms.Padding(2);
             this.gencasebreakgrid.Name = "gencasebreakgrid";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gencasebreakgrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gencasebreakgrid.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gencasebreakgrid.RowHeadersWidth = 40;
             this.gencasebreakgrid.RowTemplate.Height = 150;
             this.gencasebreakgrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -297,7 +375,7 @@
             this.panel6.Controls.Add(this.label3);
             this.panel6.Location = new System.Drawing.Point(12, 594);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1166, 288);
+            this.panel6.Size = new System.Drawing.Size(1166, 89);
             this.panel6.TabIndex = 46;
             // 
             // putawaygrid
@@ -305,15 +383,15 @@
             this.putawaygrid.AllowUserToAddRows = false;
             this.putawaygrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.putawaygrid.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.putawaygrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.putawaygrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.putawaygrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.putawaygrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gridcolputaway_prod,
@@ -328,12 +406,12 @@
             this.putawaygrid.Margin = new System.Windows.Forms.Padding(2);
             this.putawaygrid.Name = "putawaygrid";
             this.putawaygrid.RowHeadersWidth = 40;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.putawaygrid.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.putawaygrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.putawaygrid.RowTemplate.Height = 150;
             this.putawaygrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.putawaygrid.Size = new System.Drawing.Size(1166, 246);
+            this.putawaygrid.Size = new System.Drawing.Size(1166, 47);
             this.putawaygrid.StandardTab = true;
             this.putawaygrid.TabIndex = 37;
             this.putawaygrid.TabStop = false;
@@ -405,7 +483,7 @@
             this.panel2.Controls.Add(this.label2);
             this.panel2.Location = new System.Drawing.Point(12, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1166, 283);
+            this.panel2.Size = new System.Drawing.Size(1166, 84);
             this.panel2.TabIndex = 46;
             // 
             // genpickgrid
@@ -413,15 +491,15 @@
             this.genpickgrid.AllowUserToAddRows = false;
             this.genpickgrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.genpickgrid.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.genpickgrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.genpickgrid.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.genpickgrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.genpickgrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.gridcolloc,
@@ -431,15 +509,15 @@
             this.gridcoluom,
             this.gridcollot,
             this.gridcolexpiry});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.genpickgrid.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.genpickgrid.DefaultCellStyle = dataGridViewCellStyle7;
             this.genpickgrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.genpickgrid.Location = new System.Drawing.Point(0, 42);
             this.genpickgrid.Margin = new System.Windows.Forms.Padding(2);
@@ -447,7 +525,7 @@
             this.genpickgrid.RowHeadersWidth = 40;
             this.genpickgrid.RowTemplate.Height = 150;
             this.genpickgrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.genpickgrid.Size = new System.Drawing.Size(1166, 241);
+            this.genpickgrid.Size = new System.Drawing.Size(1166, 42);
             this.genpickgrid.StandardTab = true;
             this.genpickgrid.TabIndex = 37;
             this.genpickgrid.TabStop = false;
@@ -512,7 +590,7 @@
             // 
             this.panel3.Controls.Add(this.btngendocs);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 890);
+            this.panel3.Location = new System.Drawing.Point(0, 691);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1191, 58);
             this.panel3.TabIndex = 43;
@@ -542,70 +620,6 @@
             this.tabgenpick.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
             this.tabgenpick.Visible = false;
             // 
-            // superTabControlPanel1
-            // 
-            this.superTabControlPanel1.Controls.Add(this.headerGrid);
-            this.superTabControlPanel1.Controls.Add(this.panel5);
-            this.superTabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.superTabControlPanel1.Location = new System.Drawing.Point(112, 0);
-            this.superTabControlPanel1.Name = "superTabControlPanel1";
-            this.superTabControlPanel1.Size = new System.Drawing.Size(1191, 948);
-            this.superTabControlPanel1.TabIndex = 1;
-            this.superTabControlPanel1.TabItem = this.tabdashboard;
-            // 
-            // headerGrid
-            // 
-            this.headerGrid.AllowUserToAddRows = false;
-            this.headerGrid.AllowUserToDeleteRows = false;
-            this.headerGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.headerGrid.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.headerGrid.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.headerGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            this.headerGrid.ColumnHeadersHeight = 80;
-            this.headerGrid.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.headerGrid.Location = new System.Drawing.Point(0, 0);
-            this.headerGrid.Margin = new System.Windows.Forms.Padding(2);
-            this.headerGrid.Name = "headerGrid";
-            this.headerGrid.RowTemplate.Height = 28;
-            this.headerGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.headerGrid.Size = new System.Drawing.Size(1191, 877);
-            this.headerGrid.StandardTab = true;
-            this.headerGrid.TabIndex = 38;
-            this.headerGrid.TabStop = false;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.button1);
-            this.panel5.Controls.Add(this.btnNewPutaway);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel5.Location = new System.Drawing.Point(0, 877);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1191, 71);
-            this.panel5.TabIndex = 37;
-            // 
-            // btnNewPutaway
-            // 
-            this.btnNewPutaway.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewPutaway.BackColor = System.Drawing.Color.LightGreen;
-            this.btnNewPutaway.Location = new System.Drawing.Point(952, 5);
-            this.btnNewPutaway.Margin = new System.Windows.Forms.Padding(2);
-            this.btnNewPutaway.Name = "btnNewPutaway";
-            this.btnNewPutaway.Size = new System.Drawing.Size(114, 64);
-            this.btnNewPutaway.TabIndex = 2;
-            this.btnNewPutaway.Text = "Replenish Bin";
-            this.btnNewPutaway.UseVisualStyleBackColor = false;
-            this.btnNewPutaway.Click += new System.EventHandler(this.btnNewPutaway_Click);
-            // 
-            // tabdashboard
-            // 
-            this.tabdashboard.AttachedControl = this.superTabControlPanel1;
-            this.tabdashboard.GlobalItem = false;
-            this.tabdashboard.ItemAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-            this.tabdashboard.Name = "tabdashboard";
-            this.tabdashboard.PredefinedColor = DevComponents.DotNetBar.eTabItemColor.OfficeMobile2014Coral;
-            this.tabdashboard.Text = "Dashboard";
-            this.tabdashboard.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
-            // 
             // superTabControlPanel5
             // 
             this.superTabControlPanel5.Controls.Add(this.grdreplenishmentconfirm);
@@ -613,7 +627,7 @@
             this.superTabControlPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.superTabControlPanel5.Location = new System.Drawing.Point(112, 0);
             this.superTabControlPanel5.Name = "superTabControlPanel5";
-            this.superTabControlPanel5.Size = new System.Drawing.Size(1191, 948);
+            this.superTabControlPanel5.Size = new System.Drawing.Size(1191, 749);
             this.superTabControlPanel5.TabIndex = 0;
             this.superTabControlPanel5.TabItem = this.tablistreplenish;
             // 
@@ -632,7 +646,7 @@
             this.grdreplenishmentconfirm.Name = "grdreplenishmentconfirm";
             this.grdreplenishmentconfirm.RowTemplate.Height = 28;
             this.grdreplenishmentconfirm.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.grdreplenishmentconfirm.Size = new System.Drawing.Size(1191, 948);
+            this.grdreplenishmentconfirm.Size = new System.Drawing.Size(1191, 749);
             this.grdreplenishmentconfirm.StandardTab = true;
             this.grdreplenishmentconfirm.TabIndex = 39;
             this.grdreplenishmentconfirm.TabStop = false;
@@ -654,7 +668,7 @@
             this.gridreplenish.ReadOnly = true;
             this.gridreplenish.RowTemplate.Height = 28;
             this.gridreplenish.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gridreplenish.Size = new System.Drawing.Size(1191, 948);
+            this.gridreplenish.Size = new System.Drawing.Size(1191, 749);
             this.gridreplenish.StandardTab = true;
             this.gridreplenish.TabIndex = 37;
             this.gridreplenish.TabStop = false;
@@ -686,24 +700,10 @@
             this.tablistpick.Text = "List\nof\nPicklist";
             this.tablistpick.TextAlignment = DevComponents.DotNetBar.eItemAlignment.Center;
             // 
-            // button1
-            // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.BackColor = System.Drawing.Color.Red;
-            this.button1.ForeColor = System.Drawing.Color.White;
-            this.button1.Location = new System.Drawing.Point(1070, 5);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(114, 64);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Closed";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // BinReplishmentWindow
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
-            this.ClientSize = new System.Drawing.Size(1303, 948);
+            this.ClientSize = new System.Drawing.Size(1303, 749);
             this.Controls.Add(this.tabcontrol);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -713,6 +713,9 @@
             this.Load += new System.EventHandler(this.BinReplishmentWindow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tabcontrol)).EndInit();
             this.tabcontrol.ResumeLayout(false);
+            this.superTabControlPanel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).EndInit();
+            this.panel5.ResumeLayout(false);
             this.superTabControlPanel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -722,9 +725,6 @@
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.genpickgrid)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.superTabControlPanel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.headerGrid)).EndInit();
-            this.panel5.ResumeLayout(false);
             this.superTabControlPanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.grdreplenishmentconfirm)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gridreplenish)).EndInit();

@@ -102,8 +102,33 @@ namespace WMS
 
         private void NewPicklistWindow_Load(object sender, EventArgs e)
         {
+            DataTable pendingcasebreak = DataSupport.RunDataSet("SELECT *  FROM pendingcasebreak").Tables[0];
+            DataTable order = new DataTable();
+            order.Columns.Add("ORDER ID");
+            order.Columns.Add("CLIENT");
+            order.Columns.Add("DOCUMENT REF ID");
+            order.Columns.Add("RECIPIENT");
+            order.Columns.Add("ADDED");
+
             dt = DataSupport.RunDataSet("SELECT order_id[ORDER ID], client[CLIENT], reference[DOCUMENT REF ID], recipient[RECIPIENT], 'NO' [ADDED]  FROM ReleaseOrders WHERE status = 'FOR PICKING' ORDER BY order_date ASC").Tables[0];
-            order_details_grid.DataSource = dt;
+
+
+            foreach (DataRow dRow in dt.Rows)
+            {
+                bool found = false;
+                foreach (DataRow s in pendingcasebreak.Rows)
+                {
+                    if (dRow["ORDER ID"] != s["order_id"])
+                    {
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found)
+                    order.Rows.Add(dRow["ORDER ID"], dRow["CLIENT"], dRow["DOCUMENT REF ID"], dRow["RECIPIENT"], dRow["ADDED"]);
+            }
+
+            order_details_grid.DataSource = order;
         }
 
         private void btnPrintPreview_Click(object sender, EventArgs e)

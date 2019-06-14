@@ -183,10 +183,8 @@ namespace WMS
         {
             if (btnPrintPreview.Text != "Print")
                 SaveData();
-            else
-            {
-                //webBrowser1.ShowPrintPreviewDialog();
-            }
+
+            viewer.PrintReport();
         }
 
         private void SaveData()
@@ -221,7 +219,7 @@ namespace WMS
             }
             foreach (DataGridViewRow row in parent.picklist_grid.Rows)
             {
-                sql += " UPDATE ReleaseOrders SET status='FOR PICKING' WHERE order_id='" + row.Cells["order_id"].Value.ToString() + "'; ";
+                sql += " UPDATE ReleaseOrders SET status='FOR PICKING CONFIRM' WHERE order_id='" + row.Cells["order_id"].Value.ToString() + "'; ";
             }
 
 

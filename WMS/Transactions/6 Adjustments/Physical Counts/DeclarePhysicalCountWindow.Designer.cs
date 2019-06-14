@@ -31,6 +31,7 @@
             this.header_grid = new System.Windows.Forms.DataGridView();
             this.location = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.product = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.desc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.uom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lot_no = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Expiry = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,17 +55,18 @@
             this.header_grid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.location,
             this.product,
+            this.desc,
             this.uom,
             this.lot_no,
             this.Expiry,
             this.actual_qty,
             this.expected});
             this.header_grid.Location = new System.Drawing.Point(15, 50);
-            this.header_grid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.header_grid.Margin = new System.Windows.Forms.Padding(2);
             this.header_grid.Name = "header_grid";
             this.header_grid.RowTemplate.Height = 28;
-            this.header_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.header_grid.Size = new System.Drawing.Size(615, 359);
+            this.header_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.header_grid.Size = new System.Drawing.Size(947, 359);
             this.header_grid.TabIndex = 2;
             // 
             // location
@@ -78,6 +80,11 @@
             this.product.HeaderText = "Product";
             this.product.Name = "product";
             this.product.ReadOnly = true;
+            // 
+            // desc
+            // 
+            this.desc.HeaderText = "Description";
+            this.desc.Name = "desc";
             // 
             // uom
             // 
@@ -111,7 +118,7 @@
             // 
             this.btnDeclareUnexpectedProduct.BackColor = System.Drawing.Color.Cyan;
             this.btnDeclareUnexpectedProduct.Location = new System.Drawing.Point(15, 23);
-            this.btnDeclareUnexpectedProduct.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDeclareUnexpectedProduct.Margin = new System.Windows.Forms.Padding(2);
             this.btnDeclareUnexpectedProduct.Name = "btnDeclareUnexpectedProduct";
             this.btnDeclareUnexpectedProduct.Size = new System.Drawing.Size(148, 23);
             this.btnDeclareUnexpectedProduct.TabIndex = 3;
@@ -123,7 +130,7 @@
             // 
             this.btnSave.BackColor = System.Drawing.Color.Lime;
             this.btnSave.Location = new System.Drawing.Point(15, 413);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(131, 46);
             this.btnSave.TabIndex = 4;
@@ -140,7 +147,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 46);
             this.button1.TabIndex = 4;
-            this.button1.Text = "Closed";
+            this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -148,16 +155,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(639, 463);
+            this.ClientSize = new System.Drawing.Size(971, 463);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnDeclareUnexpectedProduct);
             this.Controls.Add(this.header_grid);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.KeyPreview = true;
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DeclarePhysicalCountWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DeclarePhysicalCountWindow";
             this.Load += new System.EventHandler(this.DeclarePhysicalCountWindow_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.DeclarePhysicalCountWindow_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.header_grid)).EndInit();
             this.ResumeLayout(false);
 
@@ -168,13 +177,14 @@
         public System.Windows.Forms.DataGridView header_grid;
         private System.Windows.Forms.Button btnDeclareUnexpectedProduct;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.DataGridViewTextBoxColumn location;
         private System.Windows.Forms.DataGridViewTextBoxColumn product;
+        private System.Windows.Forms.DataGridViewTextBoxColumn desc;
         private System.Windows.Forms.DataGridViewTextBoxColumn uom;
         private System.Windows.Forms.DataGridViewTextBoxColumn lot_no;
         private System.Windows.Forms.DataGridViewTextBoxColumn Expiry;
         private System.Windows.Forms.DataGridViewTextBoxColumn actual_qty;
         private System.Windows.Forms.DataGridViewTextBoxColumn expected;
-        private System.Windows.Forms.Button button1;
     }
 }

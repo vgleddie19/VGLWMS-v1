@@ -29,8 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            DevComponents.DotNetBar.SuperGrid.Style.Padding padding5 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
+            DevComponents.DotNetBar.SuperGrid.Style.Padding padding6 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MenuWindow));
+            DevComponents.DotNetBar.SuperGrid.Style.Padding padding1 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
+            DevComponents.DotNetBar.SuperGrid.Style.Padding padding2 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
+            DevComponents.DotNetBar.SuperGrid.Style.Padding padding7 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
+            DevComponents.DotNetBar.SuperGrid.Style.Padding padding8 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
+            DevComponents.DotNetBar.SuperGrid.Style.Padding padding3 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
+            DevComponents.DotNetBar.SuperGrid.Style.Padding padding4 = new DevComponents.DotNetBar.SuperGrid.Style.Padding();
             this.btnAddReceipt = new System.Windows.Forms.Button();
             this.btnNewPutaway = new System.Windows.Forms.Button();
             this.btnConfirmPutaway = new System.Windows.Forms.Button();
@@ -42,6 +49,7 @@
             this.btnPhysicalCount = new System.Windows.Forms.Button();
             this.btnDeclarePhysicalCou = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.button5 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnNewBinReplishment = new System.Windows.Forms.Button();
             this.btnStockCheck = new System.Windows.Forms.Button();
@@ -49,23 +57,33 @@
             this.btnPutawayCancelledPallet = new System.Windows.Forms.Button();
             this.btnForOrderResolutions = new System.Windows.Forms.Button();
             this.btnBadStockDeclarations = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.LocationInventoryTab = new System.Windows.Forms.TabPage();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.grid = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.btnLoad = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.grdpendingtrip = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.cmbReports = new System.Windows.Forms.ComboBox();
             this.btnViewReport = new System.Windows.Forms.Button();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.grd = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button6 = new System.Windows.Forms.Button();
+            this.grdorderpick = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.button7 = new System.Windows.Forms.Button();
+            this.grdreceivedshipment = new DevComponents.DotNetBar.SuperGrid.SuperGridControl();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.LocationInventoryTab.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnAddReceipt
@@ -115,6 +133,7 @@
             this.btnNewOrder.TabIndex = 3;
             this.btnNewOrder.Text = "New Order from OMS";
             this.btnNewOrder.UseVisualStyleBackColor = false;
+            this.btnNewOrder.Visible = false;
             this.btnNewOrder.Click += new System.EventHandler(this.btnNewOrder_Click);
             // 
             // btnPicklist
@@ -196,6 +215,7 @@
             // groupBox1
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.Controls.Add(this.button5);
             this.groupBox1.Controls.Add(this.button1);
             this.groupBox1.Controls.Add(this.btnNewBinReplishment);
             this.groupBox1.Controls.Add(this.btnStockCheck);
@@ -214,6 +234,19 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Regular Operations";
+            // 
+            // button5
+            // 
+            this.button5.BackColor = System.Drawing.Color.LightGreen;
+            this.button5.ForeColor = System.Drawing.Color.Black;
+            this.button5.Location = new System.Drawing.Point(136, 97);
+            this.button5.Margin = new System.Windows.Forms.Padding(2);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(139, 38);
+            this.button5.TabIndex = 9;
+            this.button5.Text = "CASE BREAK";
+            this.button5.UseVisualStyleBackColor = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button1
             // 
@@ -262,6 +295,8 @@
             this.groupBox2.Controls.Add(this.btnBadStockDeclarations);
             this.groupBox2.Controls.Add(this.btnDeclarePhysicalCou);
             this.groupBox2.Controls.Add(this.btnForResolution);
+            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.button3);
             this.groupBox2.Controls.Add(this.btnPhysicalCount);
             this.groupBox2.Location = new System.Drawing.Point(468, 439);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
@@ -311,6 +346,29 @@
             this.btnBadStockDeclarations.UseVisualStyleBackColor = false;
             this.btnBadStockDeclarations.Click += new System.EventHandler(this.btnBadStockDeclarations_Click);
             // 
+            // button4
+            // 
+            this.button4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(210)))), ((int)(((byte)(230)))));
+            this.button4.Location = new System.Drawing.Point(22, 164);
+            this.button4.Margin = new System.Windows.Forms.Padding(2);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(107, 42);
+            this.button4.TabIndex = 8;
+            this.button4.Text = "Confirm Stocks Location Transfer";
+            this.button4.UseVisualStyleBackColor = false;
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(200)))), ((int)(((byte)(190)))));
+            this.button3.Location = new System.Drawing.Point(22, 118);
+            this.button3.Margin = new System.Windows.Forms.Padding(2);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(107, 42);
+            this.button3.TabIndex = 8;
+            this.button3.Text = "Stocks Location Transfer";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -318,7 +376,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
             this.tabControl1.Controls.Add(this.LocationInventoryTab);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ImageList = this.imageList1;
@@ -337,7 +397,7 @@
             this.LocationInventoryTab.BackColor = System.Drawing.Color.Transparent;
             this.LocationInventoryTab.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.LocationInventoryTab.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.LocationInventoryTab.Controls.Add(this.dataGridView1);
+            this.LocationInventoryTab.Controls.Add(this.grd);
             this.LocationInventoryTab.Controls.Add(this.btnLoad);
             this.LocationInventoryTab.Controls.Add(this.comboBox1);
             this.LocationInventoryTab.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -348,55 +408,6 @@
             this.LocationInventoryTab.Size = new System.Drawing.Size(1123, 365);
             this.LocationInventoryTab.TabIndex = 0;
             this.LocationInventoryTab.Text = "My Inventory";
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle7.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(9, 41);
-            this.dataGridView1.Margin = new System.Windows.Forms.Padding(2);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.RowTemplate.Height = 28;
-            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1101, 317);
-            this.dataGridView1.TabIndex = 5;
-            // 
-            // grid
-            // 
-            this.grid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.grid.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
-            this.grid.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
-            this.grid.Location = new System.Drawing.Point(6, 6);
-            this.grid.Name = "grid";
-            // 
-            // 
-            // 
-            this.grid.PrimaryGrid.ColumnAutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.Fill;
-            this.grid.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
-            this.grid.PrimaryGrid.ShowTreeButtons = true;
-            this.grid.PrimaryGrid.ShowTreeLines = true;
-            this.grid.PrimaryGrid.UseAlternateColumnStyle = true;
-            this.grid.PrimaryGrid.UseAlternateRowStyle = true;
-            this.grid.Size = new System.Drawing.Size(1107, 349);
-            this.grid.TabIndex = 4;
-            this.grid.Text = "superGridControl1";
             // 
             // btnLoad
             // 
@@ -423,6 +434,75 @@
             this.comboBox1.Size = new System.Drawing.Size(217, 21);
             this.comboBox1.TabIndex = 2;
             // 
+            // tabPage1
+            // 
+            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.tabPage1.Controls.Add(this.button2);
+            this.tabPage1.Controls.Add(this.grdpendingtrip);
+            this.tabPage1.Location = new System.Drawing.Point(4, 52);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1123, 365);
+            this.tabPage1.TabIndex = 1;
+            this.tabPage1.Text = "Pending Trip";
+            this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.Color.Lime;
+            this.button2.Location = new System.Drawing.Point(6, 7);
+            this.button2.Margin = new System.Windows.Forms.Padding(2);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(90, 29);
+            this.button2.TabIndex = 5;
+            this.button2.Text = "Load";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.btnLoad_Click);
+            // 
+            // grdpendingtrip
+            // 
+            this.grdpendingtrip.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdpendingtrip.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+            this.grdpendingtrip.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.grdpendingtrip.Location = new System.Drawing.Point(6, 35);
+            this.grdpendingtrip.Name = "grdpendingtrip";
+            // 
+            // 
+            // 
+            this.grdpendingtrip.PrimaryGrid.ColumnAutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.Fill;
+            padding5.Bottom = 3;
+            padding5.Top = 3;
+            this.grdpendingtrip.PrimaryGrid.DefaultVisualStyles.CellStyles.Default.Padding = padding5;
+            padding6.Bottom = 10;
+            padding6.Top = 10;
+            this.grdpendingtrip.PrimaryGrid.DefaultVisualStyles.ColumnHeaderStyles.Default.Padding = padding6;
+            this.grdpendingtrip.PrimaryGrid.EnableColumnFiltering = true;
+            this.grdpendingtrip.PrimaryGrid.EnableFiltering = true;
+            this.grdpendingtrip.PrimaryGrid.EnableRowFiltering = true;
+            this.grdpendingtrip.PrimaryGrid.EnsureVisibleAfterSort = true;
+            this.grdpendingtrip.PrimaryGrid.ExpandButtonType = DevComponents.DotNetBar.SuperGrid.ExpandButtonType.Square;
+            // 
+            // 
+            // 
+            this.grdpendingtrip.PrimaryGrid.Filter.Visible = true;
+            this.grdpendingtrip.PrimaryGrid.FilterLevel = ((DevComponents.DotNetBar.SuperGrid.FilterLevel)((DevComponents.DotNetBar.SuperGrid.FilterLevel.Root | DevComponents.DotNetBar.SuperGrid.FilterLevel.Expanded)));
+            this.grdpendingtrip.PrimaryGrid.FilterMatchType = DevComponents.DotNetBar.SuperGrid.FilterMatchType.RegularExpressions;
+            this.grdpendingtrip.PrimaryGrid.MultiSelect = false;
+            this.grdpendingtrip.PrimaryGrid.RowDoubleClickBehavior = DevComponents.DotNetBar.SuperGrid.RowDoubleClickBehavior.ExpandCollapse;
+            this.grdpendingtrip.PrimaryGrid.RowHeaderWidth = 20;
+            this.grdpendingtrip.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+            this.grdpendingtrip.PrimaryGrid.ShowTreeButtons = true;
+            this.grdpendingtrip.PrimaryGrid.ShowTreeLines = true;
+            this.grdpendingtrip.PrimaryGrid.SortLevel = ((DevComponents.DotNetBar.SuperGrid.SortLevel)((DevComponents.DotNetBar.SuperGrid.SortLevel.Root | DevComponents.DotNetBar.SuperGrid.SortLevel.Expanded)));
+            this.grdpendingtrip.PrimaryGrid.UseAlternateColumnStyle = true;
+            this.grdpendingtrip.PrimaryGrid.UseAlternateRowStyle = true;
+            this.grdpendingtrip.Size = new System.Drawing.Size(1107, 320);
+            this.grdpendingtrip.TabIndex = 4;
+            this.grdpendingtrip.Text = "superGridControl1";
+            // 
             // imageList1
             // 
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
@@ -448,7 +528,8 @@
             this.cmbReports.Items.AddRange(new object[] {
             "PHYSICAL COUNT CALENDAR",
             "STOCKS AGE REPORT",
-            "ACTUAL STOCK REPORT"});
+            "ACTUAL STOCK REPORT",
+            "TRANSACTION HISTORY"});
             this.cmbReports.Location = new System.Drawing.Point(957, 454);
             this.cmbReports.Margin = new System.Windows.Forms.Padding(2);
             this.cmbReports.Name = "cmbReports";
@@ -468,18 +549,180 @@
             this.btnViewReport.UseVisualStyleBackColor = false;
             this.btnViewReport.Click += new System.EventHandler(this.btnViewReport_Click);
             // 
-            // tabPage1
+            // grd
             // 
-            this.tabPage1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.tabPage1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.tabPage1.Controls.Add(this.grid);
-            this.tabPage1.Location = new System.Drawing.Point(4, 52);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1123, 365);
-            this.tabPage1.TabIndex = 1;
-            this.tabPage1.Text = "Pending Trip";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.grd.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grd.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+            this.grd.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.grd.Location = new System.Drawing.Point(9, 40);
+            this.grd.Name = "grd";
+            // 
+            // 
+            // 
+            this.grd.PrimaryGrid.ColumnAutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.Fill;
+            padding1.Bottom = 3;
+            padding1.Top = 3;
+            this.grd.PrimaryGrid.DefaultVisualStyles.CellStyles.Default.Padding = padding1;
+            padding2.Bottom = 10;
+            padding2.Top = 10;
+            this.grd.PrimaryGrid.DefaultVisualStyles.ColumnHeaderStyles.Default.Padding = padding2;
+            this.grd.PrimaryGrid.EnableColumnFiltering = true;
+            this.grd.PrimaryGrid.EnableFiltering = true;
+            this.grd.PrimaryGrid.EnableRowFiltering = true;
+            this.grd.PrimaryGrid.EnsureVisibleAfterSort = true;
+            this.grd.PrimaryGrid.ExpandButtonType = DevComponents.DotNetBar.SuperGrid.ExpandButtonType.Square;
+            // 
+            // 
+            // 
+            this.grd.PrimaryGrid.Filter.Visible = true;
+            this.grd.PrimaryGrid.FilterLevel = ((DevComponents.DotNetBar.SuperGrid.FilterLevel)((DevComponents.DotNetBar.SuperGrid.FilterLevel.Root | DevComponents.DotNetBar.SuperGrid.FilterLevel.Expanded)));
+            this.grd.PrimaryGrid.FilterMatchType = DevComponents.DotNetBar.SuperGrid.FilterMatchType.RegularExpressions;
+            this.grd.PrimaryGrid.MultiSelect = false;
+            this.grd.PrimaryGrid.RowDoubleClickBehavior = DevComponents.DotNetBar.SuperGrid.RowDoubleClickBehavior.ExpandCollapse;
+            this.grd.PrimaryGrid.RowHeaderWidth = 20;
+            this.grd.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+            this.grd.PrimaryGrid.ShowTreeButtons = true;
+            this.grd.PrimaryGrid.ShowTreeLines = true;
+            this.grd.PrimaryGrid.SortLevel = ((DevComponents.DotNetBar.SuperGrid.SortLevel)((DevComponents.DotNetBar.SuperGrid.SortLevel.Root | DevComponents.DotNetBar.SuperGrid.SortLevel.Expanded)));
+            this.grd.PrimaryGrid.UseAlternateColumnStyle = true;
+            this.grd.PrimaryGrid.UseAlternateRowStyle = true;
+            this.grd.Size = new System.Drawing.Size(1107, 318);
+            this.grd.TabIndex = 5;
+            this.grd.Text = "superGridControl1";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Controls.Add(this.button6);
+            this.tabPage2.Controls.Add(this.grdorderpick);
+            this.tabPage2.Location = new System.Drawing.Point(4, 52);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1123, 365);
+            this.tabPage2.TabIndex = 2;
+            this.tabPage2.Text = "Pending Orders for Picking";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button6
+            // 
+            this.button6.BackColor = System.Drawing.Color.Lime;
+            this.button6.Location = new System.Drawing.Point(8, 8);
+            this.button6.Margin = new System.Windows.Forms.Padding(2);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(90, 29);
+            this.button6.TabIndex = 7;
+            this.button6.Text = "Load";
+            this.button6.UseVisualStyleBackColor = false;
+            // 
+            // grdorderpick
+            // 
+            this.grdorderpick.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdorderpick.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+            this.grdorderpick.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.grdorderpick.Location = new System.Drawing.Point(8, 36);
+            this.grdorderpick.Name = "grdorderpick";
+            // 
+            // 
+            // 
+            this.grdorderpick.PrimaryGrid.ColumnAutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.Fill;
+            padding7.Bottom = 3;
+            padding7.Top = 3;
+            this.grdorderpick.PrimaryGrid.DefaultVisualStyles.CellStyles.Default.Padding = padding7;
+            padding8.Bottom = 10;
+            padding8.Top = 10;
+            this.grdorderpick.PrimaryGrid.DefaultVisualStyles.ColumnHeaderStyles.Default.Padding = padding8;
+            this.grdorderpick.PrimaryGrid.EnableColumnFiltering = true;
+            this.grdorderpick.PrimaryGrid.EnableFiltering = true;
+            this.grdorderpick.PrimaryGrid.EnableRowFiltering = true;
+            this.grdorderpick.PrimaryGrid.EnsureVisibleAfterSort = true;
+            this.grdorderpick.PrimaryGrid.ExpandButtonType = DevComponents.DotNetBar.SuperGrid.ExpandButtonType.Square;
+            // 
+            // 
+            // 
+            this.grdorderpick.PrimaryGrid.Filter.Visible = true;
+            this.grdorderpick.PrimaryGrid.FilterLevel = ((DevComponents.DotNetBar.SuperGrid.FilterLevel)((DevComponents.DotNetBar.SuperGrid.FilterLevel.Root | DevComponents.DotNetBar.SuperGrid.FilterLevel.Expanded)));
+            this.grdorderpick.PrimaryGrid.FilterMatchType = DevComponents.DotNetBar.SuperGrid.FilterMatchType.RegularExpressions;
+            this.grdorderpick.PrimaryGrid.MultiSelect = false;
+            this.grdorderpick.PrimaryGrid.RowDoubleClickBehavior = DevComponents.DotNetBar.SuperGrid.RowDoubleClickBehavior.ExpandCollapse;
+            this.grdorderpick.PrimaryGrid.RowHeaderWidth = 20;
+            this.grdorderpick.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+            this.grdorderpick.PrimaryGrid.ShowTreeButtons = true;
+            this.grdorderpick.PrimaryGrid.ShowTreeLines = true;
+            this.grdorderpick.PrimaryGrid.SortLevel = ((DevComponents.DotNetBar.SuperGrid.SortLevel)((DevComponents.DotNetBar.SuperGrid.SortLevel.Root | DevComponents.DotNetBar.SuperGrid.SortLevel.Expanded)));
+            this.grdorderpick.PrimaryGrid.UseAlternateColumnStyle = true;
+            this.grdorderpick.PrimaryGrid.UseAlternateRowStyle = true;
+            this.grdorderpick.Size = new System.Drawing.Size(1107, 320);
+            this.grdorderpick.TabIndex = 6;
+            this.grdorderpick.Text = "superGridControl1";
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.button7);
+            this.tabPage3.Controls.Add(this.grdreceivedshipment);
+            this.tabPage3.Location = new System.Drawing.Point(4, 52);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1123, 365);
+            this.tabPage3.TabIndex = 3;
+            this.tabPage3.Text = "Classify Received Shipment";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.BackColor = System.Drawing.Color.Lime;
+            this.button7.Location = new System.Drawing.Point(8, 8);
+            this.button7.Margin = new System.Windows.Forms.Padding(2);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(90, 29);
+            this.button7.TabIndex = 9;
+            this.button7.Text = "Load";
+            this.button7.UseVisualStyleBackColor = false;
+            // 
+            // grdreceivedshipment
+            // 
+            this.grdreceivedshipment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grdreceivedshipment.FilterExprColors.SysFunction = System.Drawing.Color.DarkRed;
+            this.grdreceivedshipment.LicenseKey = "F962CEC7-CD8F-4911-A9E9-CAB39962FC1F";
+            this.grdreceivedshipment.Location = new System.Drawing.Point(8, 36);
+            this.grdreceivedshipment.Name = "grdreceivedshipment";
+            // 
+            // 
+            // 
+            this.grdreceivedshipment.PrimaryGrid.ColumnAutoSizeMode = DevComponents.DotNetBar.SuperGrid.ColumnAutoSizeMode.Fill;
+            padding3.Bottom = 3;
+            padding3.Top = 3;
+            this.grdreceivedshipment.PrimaryGrid.DefaultVisualStyles.CellStyles.Default.Padding = padding3;
+            padding4.Bottom = 10;
+            padding4.Top = 10;
+            this.grdreceivedshipment.PrimaryGrid.DefaultVisualStyles.ColumnHeaderStyles.Default.Padding = padding4;
+            this.grdreceivedshipment.PrimaryGrid.EnableColumnFiltering = true;
+            this.grdreceivedshipment.PrimaryGrid.EnableFiltering = true;
+            this.grdreceivedshipment.PrimaryGrid.EnableRowFiltering = true;
+            this.grdreceivedshipment.PrimaryGrid.EnsureVisibleAfterSort = true;
+            this.grdreceivedshipment.PrimaryGrid.ExpandButtonType = DevComponents.DotNetBar.SuperGrid.ExpandButtonType.Square;
+            // 
+            // 
+            // 
+            this.grdreceivedshipment.PrimaryGrid.Filter.Visible = true;
+            this.grdreceivedshipment.PrimaryGrid.FilterLevel = ((DevComponents.DotNetBar.SuperGrid.FilterLevel)((DevComponents.DotNetBar.SuperGrid.FilterLevel.Root | DevComponents.DotNetBar.SuperGrid.FilterLevel.Expanded)));
+            this.grdreceivedshipment.PrimaryGrid.FilterMatchType = DevComponents.DotNetBar.SuperGrid.FilterMatchType.RegularExpressions;
+            this.grdreceivedshipment.PrimaryGrid.MultiSelect = false;
+            this.grdreceivedshipment.PrimaryGrid.RowDoubleClickBehavior = DevComponents.DotNetBar.SuperGrid.RowDoubleClickBehavior.ExpandCollapse;
+            this.grdreceivedshipment.PrimaryGrid.RowHeaderWidth = 20;
+            this.grdreceivedshipment.PrimaryGrid.SelectionGranularity = DevComponents.DotNetBar.SuperGrid.SelectionGranularity.Row;
+            this.grdreceivedshipment.PrimaryGrid.ShowTreeButtons = true;
+            this.grdreceivedshipment.PrimaryGrid.ShowTreeLines = true;
+            this.grdreceivedshipment.PrimaryGrid.SortLevel = ((DevComponents.DotNetBar.SuperGrid.SortLevel)((DevComponents.DotNetBar.SuperGrid.SortLevel.Root | DevComponents.DotNetBar.SuperGrid.SortLevel.Expanded)));
+            this.grdreceivedshipment.PrimaryGrid.UseAlternateColumnStyle = true;
+            this.grdreceivedshipment.PrimaryGrid.UseAlternateRowStyle = true;
+            this.grdreceivedshipment.Size = new System.Drawing.Size(1107, 320);
+            this.grdreceivedshipment.TabIndex = 8;
+            this.grdreceivedshipment.Text = "superGridControl1";
             // 
             // MenuWindow
             // 
@@ -492,20 +735,21 @@
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "MenuWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Main Menu";
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Text = "DASH BOARD";
             this.Load += new System.EventHandler(this.MenuWindow_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MenuWindow_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.LocationInventoryTab.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -536,11 +780,21 @@
         private System.Windows.Forms.ComboBox cmbReports;
         private System.Windows.Forms.Button btnViewReport;
         private System.Windows.Forms.Button btnStockCheck;
-        private DevComponents.DotNetBar.SuperGrid.SuperGridControl grid;
+        private DevComponents.DotNetBar.SuperGrid.SuperGridControl grdpendingtrip;
         private System.Windows.Forms.Button btnNewBinReplishment;
-        public System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TabPage tabPage1;
         public System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button5;
+        private DevComponents.DotNetBar.SuperGrid.SuperGridControl grd;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.Button button6;
+        private DevComponents.DotNetBar.SuperGrid.SuperGridControl grdorderpick;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.Button button7;
+        private DevComponents.DotNetBar.SuperGrid.SuperGridControl grdreceivedshipment;
     }
 }

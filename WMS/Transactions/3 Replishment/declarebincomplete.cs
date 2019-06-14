@@ -13,6 +13,7 @@ namespace WMS
 {
     public partial class declarebincomplete : Form
     {
+        public String param;
         public string picklistid = null;
         public string casebreakid = null;
         public string putawayid = null;
@@ -21,38 +22,44 @@ namespace WMS
         public declarebincomplete()
         {
             InitializeComponent();
+            txtbarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
         }
 
         private void txtbarcode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (type == "pick")
+                if (param == txtbarcode.Text)
                 {
-                    var dt = DataSupport.RunDataSet("SELECT * FROM [Picklists] WHERE picklist_id = '" + txtbarcode.Text + "' ").Tables[0];
-                    if (dt.Rows.Count > 0)
+                    if (type == "pick")
                     {
-                        picklistid = txtbarcode.Text;
-                        DialogResult = DialogResult.OK;
+                        var dt = DataSupport.RunDataSet("SELECT * FROM [Picklists] WHERE picklist_id = '" + txtbarcode.Text + "' ").Tables[0];
+                        if (dt.Rows.Count > 0)
+                        {
+                            picklistid = txtbarcode.Text;
+                            DialogResult = DialogResult.OK;
+                        }
+                    }
+                    else if (type == "casebreak")
+                    {
+                        var dt = DataSupport.RunDataSet("SELECT * FROM [Picklists] WHERE picklist_id = '" + picklistid + "' and [casebreak_id] = '" + txtbarcode.Text + "'").Tables[0];
+                        if (dt.Rows.Count > 0)
+                        {
+                            casebreakid = txtbarcode.Text;
+                            DialogResult = DialogResult.OK;
+                        }
+                    }
+                    else if (type == "putaway")
+                    {
+                        var dt = DataSupport.RunDataSet("SELECT * FROM [Picklists] WHERE picklist_id = '" + picklistid + "' and [casebreak_id] = '" + casebreakid + "' and [putaway_id] = '" + txtbarcode.Text + "'").Tables[0];
+                        if (dt.Rows.Count > 0)
+                        {
+                            DialogResult = DialogResult.OK;
+                        }
                     }
                 }
-                else if(type == "casebreak")
-                {
-                    var dt = DataSupport.RunDataSet("SELECT * FROM [Picklists] WHERE picklist_id = '" + picklistid + "' and [casebreak_id] = '" + txtbarcode.Text + "'").Tables[0];
-                    if (dt.Rows.Count > 0)
-                    {
-                        casebreakid = txtbarcode.Text;
-                        DialogResult = DialogResult.OK;
-                    }
-                }
-                else if (type == "putaway")
-                {
-                    var dt = DataSupport.RunDataSet("SELECT * FROM [Picklists] WHERE picklist_id = '" + picklistid + "' and [casebreak_id] = '" + casebreakid  + "' and [putaway_id] = '" + txtbarcode.Text + "'").Tables[0];
-                    if (dt.Rows.Count > 0)
-                    {
-                        DialogResult = DialogResult.OK;
-                    }
-                }
+                else
+                    MessageBox.Show("invalid barcode!");
             }
         }
     }

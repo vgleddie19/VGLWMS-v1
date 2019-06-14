@@ -14,6 +14,7 @@ namespace WMS
         public ScanPhysicalCountWindow()
         {
             InitializeComponent();
+            txtScan.KeyPress += new System.Windows.Forms.KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
         }
 
         private void txtScan_KeyDown(object sender, KeyEventArgs e)

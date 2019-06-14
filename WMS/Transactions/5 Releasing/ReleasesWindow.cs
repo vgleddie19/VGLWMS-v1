@@ -18,6 +18,7 @@ namespace WMS
         public ReleasesWindow()
         {
             InitializeComponent();
+            txtreleaseto.Select();
         }
 
         Dictionary<String, DataTable> dt_list = new Dictionary<String, DataTable>();
@@ -83,7 +84,7 @@ namespace WMS
                         String order_id = order_row["order_id"].ToString();
                         sql += " UPDATE ReleaseOrders SET status='RELEASED' WHERE order_id='" + order_id + "'; ";
                     }
-                    sql += String.Format("UPDATE [ReleaseTrips] SET releaseto='{0}' WHERE trip_id='{1}';", txtreleaseto.Text, txtTrip.Text);
+                    sql += String.Format("UPDATE [ReleaseTrips] SET releaseto='{0}',releaseby='{2}' WHERE trip_id='{1}';", txtreleaseto.Text, txtTrip.Text, RegistrationSupport.user_completename);
                     DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);
                 }
 
@@ -104,7 +105,8 @@ namespace WMS
         private void ReleasesWindow_Load(object sender, EventArgs e)
         {
             release_id = FAQ.GetReleaseID(txtTrip.Text);
-            LoadData();            
+            LoadData();
+            txtreleaseto.Select();
         }
 
         
@@ -122,17 +124,17 @@ namespace WMS
                 }
 
                 String product = product_row["PRODUCT"].ToString();
-                String uom = product_row["MATCHED_UOM"].ToString();
+                String uom1 = product_row["MATCHED_UOM"].ToString();
 
-                DataTable dt = DataSupport.RunDataSet("SELECT order_id[Order], Product, Expiry, lot_no[Lot No], order_qty[Order Qty], Uom, Scanned_qty[Scanned Qty], scanned_on [Scanned On] FROM ReleaseDetailItems WHERE release = @release AND order_id = @order_id AND product=@product AND @uom = @uom", "release", release_id, "order_id", current_order, "product", product, "uom", uom).Tables[0];
+                DataTable dt = DataSupport.RunDataSet("SELECT order_id[Order], Product, Expiry, lot_no[Lot No], order_qty[Order Qty], Uom, Scanned_qty[Scanned Qty], scanned_on [Scanned On] FROM ReleaseDetailItems WHERE release = @release AND order_id = @order_id AND product=@product AND uom = @uom", "release", release_id, "order_id", current_order, "product", product, "uom", uom1).Tables[0];
 
                 int order_qty = 0;
                 int scan_qty = 0;
                 foreach(DataRow dRow in dt.Rows)
                 {
                     order_qty += Convert.ToInt32(dRow["Order Qty"]);//int.Parse(dRow["Order Qty"].ToString());
-                    if(dRow["Scanned On"] != DBNull.Value)
-                        scan_qty += Convert.ToInt32(dRow["Scanned On"]);//int.Parse(dRow["Scanned On"].ToString());
+                    if(dRow["Scanned Qty"] != DBNull.Value)
+                        scan_qty += Convert.ToInt32(dRow["Scanned Qty"]);//int.Parse(dRow["Scanned On"].ToString());
                 }
                 if (order_qty <= scan_qty)
                     return;
@@ -150,7 +152,7 @@ namespace WMS
 
                 String sql = "";
 
-                sql += " UPDATE ReleaseDetailItems SET Scanned_qty = Scanned_qty +1 WHERE release = '"+release_id+"' AND order_id = '"+current_order+"' AND product='"+product+"' AND uom = '"+uom+"' AND expiry = '"+expiry+ "' AND lot_no='" + lot_no + "'  ";
+                sql += " UPDATE ReleaseDetailItems SET Scanned_qty = Scanned_qty +1 WHERE release = '"+release_id+"' AND order_id = '"+current_order+"' AND product='"+product+"' AND uom = '"+uom1+"' AND expiry = '"+expiry+ "' AND lot_no='" + lot_no + "'  ";
 
 
                 // Update Transaction Ledger
@@ -172,11 +174,11 @@ namespace WMS
                 {
                     // Out with the staging out 
                     DataTable outsDT = LedgerSupport.GetLocationProductsLedgerDT();                  
-                    outsDT.Rows.Add("STAGING-OUT", product,  -1, uom, lot_no, expiry);
+                    outsDT.Rows.Add("STAGING-OUT", product,  -1, uom1, lot_no, expiry);
                     sql += LedgerSupport.UpdateLocationProductsLedger(outsDT);
 
                     DataTable insDT = LedgerSupport.GetLocationProductsLedgerDT();
-                    insDT.Rows.Add("RELEASED", product, 1, uom, lot_no, expiry);
+                    insDT.Rows.Add("RELEASED", product, 1, uom1, lot_no, expiry);
                     sql += LedgerSupport.UpdateLocationProductsLedger(insDT);
 
 

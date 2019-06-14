@@ -214,6 +214,7 @@ public static class Utils
             details.Add("USERNAME", records[2]);
             details.Add("PASSWORD", records[3]);
             details.Add("DBNAME", records[4]);
+            details.Add("WNAME", records[5]);
             switch (records[0].ToUpper())
             {
                 case "DBSETTINGS":

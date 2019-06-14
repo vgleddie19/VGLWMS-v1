@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WMS.Reports {
+namespace WMS {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;

@@ -22,13 +22,14 @@ namespace WMS
         {
             InitializeComponent();
             this.txtbin_id.KeyPress += new System.Windows.Forms.KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
+            cboproduct.KeyPress += new KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
 
             //if (entrytype != "update")
             //{
-            DataTable dt = DataSupport.RunDataSet(@"SELECT *,(product_id+' - '+description)display FROM PRODUCTS ORDER BY product_id").Tables[0];
-            products = Utils.BuildIndex_DataTable(dt, "product_id");
+            DataTable dt = DataSupport.RunDataSet(@"SELECT *,UPPER(description)description1,UPPER(product_id+' - '+description)display FROM PRODUCTS ORDER BY product_id").Tables[0];
+            products = Utils.BuildIndex_DataTable(dt, "display");
             locations = Utils.BuildIndex("SELECT * FROM Locations ORDER BY location_id", "location_id");
-            UISetter.SetComboBox(cboproduct, DataSupport.RunDataSet(@"SELECT *,(product_id+' - '+description)display FROM PRODUCTS ORDER BY product_id").Tables[0], "description", "product_id", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDown);
+            UISetter.SetComboBox(cboproduct, DataSupport.RunDataSet(@"SELECT *,(product_id+' - '+description)display FROM PRODUCTS ORDER BY product_id").Tables[0], "display", "product_id", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDown);
             dt = DataSupport.RunDataSet(String.Format("SELECT * FROM PRODUCTuoms WHERE product = '{0}'", dt.Rows[0]["product_id"])).Tables[0];
             if (dt.Rows.Count != 0)
             {
@@ -39,6 +40,7 @@ namespace WMS
             dt = DataSupport.RunDataSet(String.Format("SELECT * FROM LocationProductsLedger WHERE product = '{0}' and uom = '{1}'", cboproduct.Text, cbouom.Text)).Tables[0];
             if (dt.Rows.Count != 0)
                 UISetter.SetComboBox(cbolot, dt, "lot_no", "lot_no", AutoCompleteSource.ListItems, AutoCompleteMode.SuggestAppend, ComboBoxStyle.DropDown);
+
         }
 
         private void addnewbin_Load(object sender, EventArgs e)
@@ -75,14 +77,21 @@ namespace WMS
                 }
                 if (txtbin_id.Text.Trim().Length == 0)
                     validate.Append("Missing Bin ID\n");
-                if (!products.ContainsKey(cboproduct.SelectedValue.ToString()))
+                if (!products.ContainsKey(cboproduct.Text.Trim().ToUpper()))
                     validate.Append("product not found\n");
+                else
+                    cboproduct.SelectedValue = products[cboproduct.Text.Trim().ToUpper()]["product_id"];
                 if (cbouom.Text.Trim().Length == 0)
                     validate.Append("Missing UOM");
                 if (cbolot.Text.Trim().Length == 0)
                     validate.Append("Missing Lot Number");
                 if (cboexpiry.Text.Trim().Length == 0)
-                    validate.Append("Missing Expiry");                
+                    validate.Append("Missing Expiry");
+                if (txtmax_qty.Text.Trim().Length == 0)
+                    validate.Append("Missing Maximum Qty!\n");
+                if (txtmin_qty.Text.Trim().Length == 0)
+                    validate.Append("Missing Minimum Qty!\n");
+
             }
             if (validate.Length != 0)
             {
@@ -213,13 +222,16 @@ namespace WMS
 
         private void lblShowProduct_Click(object sender, EventArgs e)
         {
+            DataTable dt = DataSupport.RunDataSet(@"SELECT *,(product_id+' - '+description)display FROM PRODUCTS ORDER BY product_id").Tables[0];
             if (lblShowProduct.Text == "Show IDs")
-            {                
+            {
+                products = Utils.BuildIndex_DataTable(dt, "display");
                 cboproduct.DisplayMember = "display";
                 lblShowProduct.Text = "Hide IDs";
             }
             else
             {
+                products = Utils.BuildIndex_DataTable(dt, "description1");
                 cboproduct.DisplayMember = "description";
                 lblShowProduct.Text = "Show IDs";
             }

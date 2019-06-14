@@ -15,6 +15,7 @@ namespace WMS
         public NewPutawayWindow()
         {
             InitializeComponent();
+            cboContainer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -55,6 +56,7 @@ namespace WMS
         private void btnSplit_Click(object sender, EventArgs e)
         {
             NewPutawaySplitLocationWindow dialog = new NewPutawaySplitLocationWindow();
+            dialog.WindowState = FormWindowState.Maximized;
             if (dialog.ShowDialog() != DialogResult.OK)
                 return;
             DataGridViewRow old_row = headerGrid.SelectedRows[0];
@@ -78,6 +80,7 @@ namespace WMS
             if (headerGrid.Rows.Count >= 1)
             {
                 NewPutawayConfirmationWindow dialog = new NewPutawayConfirmationWindow();
+                dialog.WindowState = FormWindowState.Maximized;
                 dialog.parent = this;
                 if (dialog.ShowDialog() == DialogResult.OK)
                     DialogResult = DialogResult.OK;
@@ -100,7 +103,7 @@ namespace WMS
             cboContainer.AutoCompleteSource = AutoCompleteSource.ListItems;
 
             if (dt.Rows.Count != 0)
-                cboContainer.SelectedIndex = 0;
+                cboContainer.SelectedValue = "FOR PUT-AWAY";
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

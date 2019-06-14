@@ -17,6 +17,7 @@ namespace WMS
         public DeclarePutawayScanContainerWindow()
         {
             InitializeComponent();
+            txtContainer.KeyPress += new System.Windows.Forms.KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
         }
 
         private void txtPutawayCode_KeyDown(object sender, KeyEventArgs e)

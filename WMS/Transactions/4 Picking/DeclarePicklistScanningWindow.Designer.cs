@@ -85,7 +85,7 @@
             this.location,
             this.original_location});
             this.scanned_grid.Location = new System.Drawing.Point(8, 246);
-            this.scanned_grid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.scanned_grid.Margin = new System.Windows.Forms.Padding(2);
             this.scanned_grid.Name = "scanned_grid";
             this.scanned_grid.ReadOnly = true;
             this.scanned_grid.RowTemplate.Height = 28;
@@ -145,7 +145,7 @@
             this.picklist_details_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.picklist_details_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.picklist_details_grid.Location = new System.Drawing.Point(8, 96);
-            this.picklist_details_grid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.picklist_details_grid.Margin = new System.Windows.Forms.Padding(2);
             this.picklist_details_grid.Name = "picklist_details_grid";
             this.picklist_details_grid.ReadOnly = true;
             this.picklist_details_grid.RowTemplate.Height = 28;
@@ -188,7 +188,7 @@
             // txtScan
             // 
             this.txtScan.Location = new System.Drawing.Point(71, 48);
-            this.txtScan.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtScan.Margin = new System.Windows.Forms.Padding(2);
             this.txtScan.Name = "txtScan";
             this.txtScan.Size = new System.Drawing.Size(193, 20);
             this.txtScan.TabIndex = 39;
@@ -199,8 +199,9 @@
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.BackColor = System.Drawing.Color.Lime;
+            this.btnSave.Enabled = false;
             this.btnSave.Location = new System.Drawing.Point(8, 376);
-            this.btnSave.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(164, 21);
             this.btnSave.TabIndex = 40;
@@ -222,7 +223,7 @@
             this.Controls.Add(this.picklist_details_grid);
             this.Controls.Add(this.txtPicklist);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "DeclarePicklistScanningWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Declare Picklist...";

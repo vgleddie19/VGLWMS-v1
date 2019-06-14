@@ -25,7 +25,7 @@ public class FAQ
 
     public static Boolean IsAlreadyDownloaded(String oms_shipment_id)
     {
-        DataTable dt = DataSupport.RunDataSet("SELECT order_id FROM ReleaseOrders WHERE oms_shipment_id = '"+oms_shipment_id+"'").Tables[0];
+        DataTable dt = DataSupport.RunDataSet("SELECT order_id FROM ReleaseOrders WHERE oms_shipment_id = '" + oms_shipment_id + "'").Tables[0];
         if (dt.Rows.Count > 0)
             return true;
         return false;
@@ -39,13 +39,13 @@ public class FAQ
         DataSet set = oms_dh.ExecuteDataSet(@"SELECT * FROM OutgoingShipmentRequests WHERE status = 'FOR STOCK CHECKING' AND warehouse = '" + DataSupport.GetWarehouseCode() + "' ;");
         return set.Tables[0];
     }
-    
+
     public static DataTable GetOMSIncoming()
     {
         Utils.SetConnectionDetails();
         dbConnectionSettings = Utils.DBConnection;
         DataSupport oms_dh = new DataSupport("Initial Catalog=" + Utils.DBConnection["OMS"]["DBNAME"] + ";Data Source=" + Utils.DBConnection["OMS"]["SERVER"] + ";User Id = " + Utils.DBConnection["OMS"]["USERNAME"] + "; Password = " + Utils.DBConnection["OMS"]["PASSWORD"]);
-        DataSet set = oms_dh.ExecuteDataSet(@"SELECT shipment_id[Shipment ID],Client[Client Name],authorized_shipper[Authorize Shipper],document_reference[Document Reference #],shippedvia[Shipped Via],convert(varchar, document_reference_date, 107)[Doc. Ref. Date]  FROM IncomingShipmentRequests WHERE status = 'FOR RECEIVING' AND warehouse = '" + DataSupport.GetWarehouseCode()+"' ;");
+        DataSet set = oms_dh.ExecuteDataSet(@"SELECT shipment_id[Shipment ID],sourcename[Source Name],shippername[Authorize Shipper],refno[Document Reference #],convert(varchar, refdate, 107)[Doc. Ref. Date], transactiontype[RECEIVED TYPE],sourcetype,shippername,vanno  FROM IncomingShipmentRequests WHERE status = 'FOR RECEIVING' AND warehousecode = '" + DataSupport.GetWarehouseCode() + "' ;");
         return set.Tables[0];
     }
 
@@ -64,7 +64,7 @@ public class FAQ
         Utils.SetConnectionDetails();
         dbConnectionSettings = Utils.DBConnection;
         DataSupport oms_dh = new DataSupport("Initial Catalog=" + Utils.DBConnection["OMS"]["DBNAME"] + ";Data Source=" + Utils.DBConnection["OMS"]["SERVER"] + ";User Id = " + Utils.DBConnection["OMS"]["USERNAME"] + "; Password = " + Utils.DBConnection["OMS"]["PASSWORD"]);
-        DataSet set = oms_dh.ExecuteDataSet(@"SELECT Product, description,Uom, lot_no, expiry, expected_qty  FROM IncomingShipmentRequestDetails i JOIN products p ON p.product_id = i.product WHERE shipment = '"+shipment_id+"'");
+        DataSet set = oms_dh.ExecuteDataSet(@"SELECT DISTINCT Product, description,i.Uom, lot_no, expiry, expected_qty, i.remarks ,_lineno FROM IncomingShipmentRequestDetails i JOIN products p ON p.product_id = i.product WHERE shipment = '" + shipment_id + "' order by _lineno");
         return set.Tables[0];
     }
 
@@ -80,10 +80,10 @@ public class FAQ
 
     public static String GetPicklistID(String order_id)
     {
-        return DataSupport.RunDataSet("SELECT picklist FROM PicklistDetails WHERE order_id = '"+order_id+"'; ").Tables[0].Rows[0][0].ToString();
+        return DataSupport.RunDataSet("SELECT picklist FROM PicklistDetails WHERE order_id = '" + order_id + "'; ").Tables[0].Rows[0][0].ToString();
     }
 
-    public static DataTable GetPickedItems(String picklist,String order_id)
+    public static DataTable GetPickedItems(String picklist, String order_id)
     {
         DataTable dt = DataSupport.RunDataSet(@"SELECT *
                             FROM
@@ -100,13 +100,10 @@ public class FAQ
 	                               )
 	                               [exist]
 	                            FROM PicklistDetails A
-	                            WHERE picklist='"+picklist+@"' AND order_id = '"+order_id+@"'
+	                            WHERE picklist='" + picklist + @"' AND order_id = '" + order_id + @"'
                             ) T 
                             WHERE exist IS NULL
-
-   
                                "
-
                                         ).Tables[0];
 
         return dt;
@@ -117,14 +114,14 @@ public class FAQ
     public static DataTable GetLocationsFromPhysicalCount(String physical_count_id)
     {
         DataTable dt = DataSupport.RunDataSet("SELECT DISTINCT Location FROM PhysicalCountDetailItems WHERE phcount = '" + physical_count_id + "'").Tables[0];
-       
+
         return dt;
     }
 
 
     public static Boolean DoesPhysicalCountExist(String physical_count_id)
     {
-        DataTable dt = DataSupport.RunDataSet("SELECT phcount_id FROM PhysicalCounts WHERE phcount_id=@id", "id", physical_count_id).Tables[0];
+        DataTable dt = DataSupport.RunDataSet("SELECT phcount_id FROM PhysicalCounts WHERE phcount_id=@id and finished_on IS NULL", "id", physical_count_id).Tables[0];
         if (dt.Rows.Count <= 0)
             return false;
         return true;
@@ -171,6 +168,7 @@ public class FAQ
                         FROM LocationProductsLedger 
                         WHERE  product = @product AND uom = @uom
                         AND (reserved_qty - to_be_picked_qty) > 0
+                        AND location !='RELEASED'
                         ORDER BY expiry 
                         ", "product", product, "uom", uom).Tables[0];
     }
@@ -235,7 +233,7 @@ public class FAQ
                 WHERE product = @product AND uom = @uom";
 
         DataTable dt = DataSupport.RunDataSet(sql, "product", product, "uom", uom).Tables[0];
-        if(dt.Rows[0]["IN_PIECES"] != DBNull.Value)
+        if (dt.Rows[0]["IN_PIECES"] != DBNull.Value)
             result = int.Parse(dt.Rows[0]["IN_PIECES"].ToString()) * qty;
         return result;
     }
@@ -243,24 +241,10 @@ public class FAQ
     public static int HowManyPiecesInWarehouseWithReserved(String product_id)
     {
         int result = 0;
-        //String sql = @"SELECT *
-        //                ,CASE WHEN uom='CASES'
-        //                   THEN (SELECT pcs_per_case FROM Products WHERE product = product_id) * available_qty
-        //                   WHEN uom='PIECES'
-        //                   THEN available_qty
-        //                   WHEN uom='PCS'
-        //                   THEN available_qty
-        //                   ELSE 
-        //                   (SELECT qty FROM ProductUOMs PU WHERE PU.product = L.product AND PU.uom = L.uom ) * available_qty
-        //                 END
-        //                 [IN_PIECES]
-        //                FROM LocationProductsLedger L
-        //                WHERE product= @product
-        //                AND available_qty >0 AND expiry_status IS NULL"; //AND expiry > GETDATE()";
         String sql = @"SELECT *
-                        ,CASE WHEN uom='CASES' OR uom='CASE' OR uom='CS'
+                        ,CASE WHEN uom !='PC'
                            THEN (SELECT qty FROM ProductUOMs PU WHERE PU.product = L.product AND PU.uom = L.uom ) * available_qty
-                           WHEN uom='PIECES' OR uom='PC' OR uom='PIECE' OR uom='PC'
+                           WHEN uom='PIECES' OR uom='PC' OR uom='PIECE' OR uom='PCS'
                            THEN available_qty
                          END
                          [IN_PIECES]
@@ -269,11 +253,12 @@ public class FAQ
                         AND available_qty >0 AND expiry_status IS NULL"; //AND expiry > GETDATE()";
         DataTable dt = DataSupport.RunDataSet(sql, "product", product_id).Tables[0];
         foreach (DataRow row in dt.Rows)
-            if(row["IN_PIECES"] != DBNull .Value)
+            if (row["IN_PIECES"] != DBNull.Value)
                 result += int.Parse(row["IN_PIECES"].ToString());
-        
+
         return result;
     }
+
 
     public static int HowManyPiecesInWarehouse(String product_id)
     {
@@ -294,26 +279,66 @@ public class FAQ
                         AND available_qty >0 AND expiry_status IS NULL AND expiry > GETDATE()";
         DataTable dt = DataSupport.RunDataSet(sql, "product", product_id).Tables[0];
         foreach (DataRow row in dt.Rows)
-            result += int.Parse( row["IN_PIECES"].ToString());
+            result += int.Parse(row["IN_PIECES"].ToString());
         return result;
     }
 
     public static DataTable GetOrderDetails(String order_id)
     {
-        return DataSupport.RunDataSet(@"SELECT ROD.*,PU.qty[uomconv] FROM ReleaseOrderDetails ROD INNER JOIN 
+        return DataSupport.RunDataSet(@"SELECT DISTINCT ROD.*,PU.qty[uomconv] FROM ReleaseOrderDetails ROD INNER JOIN 
                                         ProductUOMs PU ON ROD.product = PU .product and ROD.uom = PU.uom  
                                         WHERE release_order = @id", "id", order_id).Tables[0]; ;
     }
 
     public static Boolean DoesOrderHaveStocks(String order_id)
     {
+        Dictionary<string, int> productinwarehouse = new Dictionary<string, int>();
         DataTable detailsDT = DataSupport.RunDataSet("SELECT * FROM ReleaseOrderDetails WHERE release_order = @id", "id", order_id).Tables[0];
         foreach (DataRow row in detailsDT.Rows)
         {
-            int pieces_in_warehouse = FAQ.HowManyPiecesInWarehouseWithReserved(row["product"].ToString());
-            int pieces_in_order = FAQ.HowManyPiecesInUOM(row["product"].ToString(), row["uom"].ToString(), int.Parse(row["qty"].ToString()));
-            if (pieces_in_warehouse < pieces_in_order)
-                return false;
+            if (row["uom"].ToString() != "CS")
+            {
+                int pieces_in_warehouse = FAQ.HowManyPiecesInWarehouseWithReserved(row["product"].ToString());
+                int pieces_in_order = FAQ.HowManyPiecesInUOM(row["product"].ToString(), row["uom"].ToString(), int.Parse(row["qty"].ToString()));
+
+                int pieces_order = 0;
+                if (productinwarehouse.TryGetValue(row["product"].ToString(), out pieces_order))
+                {
+                    pieces_in_warehouse = pieces_in_warehouse - pieces_order;
+                    productinwarehouse[row["product"].ToString()] += pieces_in_order;
+                }
+                else
+                {
+                    productinwarehouse.Add(row["product"].ToString(), pieces_in_order);
+                }
+
+                if (pieces_in_warehouse < pieces_in_order)
+                    return false;
+            }
+            else
+            {
+                DataTable dt = WhereAreProductsInWarehouse(row["product"].ToString(), row["uom"].ToString());
+                int pieces_in_warehouse = 0;
+                foreach (DataRow drow in dt.Rows)
+                    if (drow["available_qty"] != DBNull.Value)
+                        pieces_in_warehouse += int.Parse(drow["available_qty"].ToString());
+
+                int pieces_in_order = int.Parse(row["qty"].ToString());
+
+                int pieces_order = 0;
+                if (productinwarehouse.TryGetValue(row["product"].ToString(), out pieces_order))
+                {
+                    pieces_in_warehouse = pieces_in_warehouse - pieces_order;
+                    productinwarehouse[row["product"].ToString()] += pieces_in_order;
+                }
+                else
+                {
+                    productinwarehouse.Add(row["product"].ToString(), pieces_in_order);
+                }
+
+                if (pieces_in_warehouse < pieces_in_order)
+                    return false;
+            }
         }
 
         return true;
@@ -329,10 +354,10 @@ public class FAQ
         var dt = DataSupport.RunDataSet(SQL).Tables[0];
         return dt;
     }
-    
+
     public static String GetContainerType(String container_id)
     {
-        return DataSupport.RunDataSet("SELECT type FROM Containers WHERE container_id='"+container_id+"' ").Tables[0].Rows[0][0].ToString();
+        return DataSupport.RunDataSet("SELECT type FROM Containers WHERE container_id='" + container_id + "' ").Tables[0].Rows[0][0].ToString();
     }
 
     public static String GetContainer(String putaway_id)
@@ -342,8 +367,8 @@ public class FAQ
             return dt.Rows[0]["container"].ToString();
 
         return null;
-    }  
-    
+    }
+
     public static Boolean DoesPicklistExist(String picklist_id)
     {
         var dt = DataSupport.RunDataSet("SELECT * FROM Picklists WHERE picklist_id = '" + picklist_id + "' AND STATUS != 'DECLARED COMPLETE' AND [casebreak_id] IS NULL").Tables[0];
@@ -403,17 +428,17 @@ public class FAQ
 
         foreach (DataRow dRow in Getbintobereplenish().Rows)
         {
-            foreach(KeyValuePair<String,int> kvp in stocksinwarehouse(dRow["product"].ToString(), dRow["lot_no"].ToString(), dRow["expiry"].ToString(), Convert.ToInt32(dRow["max_qty"]) - Convert.ToInt32(dRow["actualqty"])))
+            foreach (KeyValuePair<String, int> kvp in stocksinwarehouse(dRow["product"].ToString(), dRow["lot_no"].ToString(), dRow["expiry"].ToString(), Convert.ToInt32(dRow["max_qty"]) - Convert.ToInt32(dRow["actualqty"])))
             {
-                string[] locuom = kvp.Key.ToString().Split(new String[] { "<limit>" }, StringSplitOptions.RemoveEmptyEntries);                
-                result.Rows.Add(dRow["location"],locuom[0], dRow["product"], locuom[1],dRow["lot_no"],Convert.ToDateTime(dRow["expiry"]).ToShortDateString(), kvp.Value,dRow["uom"], locuom[2],dRow["uomconv"]);
+                string[] locuom = kvp.Key.ToString().Split(new String[] { "<limit>" }, StringSplitOptions.RemoveEmptyEntries);
+                result.Rows.Add(dRow["location"], locuom[0], dRow["product"], locuom[1], dRow["lot_no"], Convert.ToDateTime(dRow["expiry"]).ToShortDateString(), kvp.Value, dRow["uom"], locuom[2], dRow["uomconv"]);
             }
         }
         return result;
     }
-    public static Dictionary<String,int> stocksinwarehouse(String product, String lot, String expiry,int qty)
+    public static Dictionary<String, int> stocksinwarehouse(String product, String lot, String expiry, int qty)
     {
-        Dictionary<String,int> result = new Dictionary<string, int>();
+        Dictionary<String, int> result = new Dictionary<string, int>();
         int totalqty = qty;
         foreach (DataRow dRow in DataSupport.RunDataSet(String.Format("SELECT pl.*, (available_qty * u.qty)[qty1],u.qty[uom_qty] FROM LocationProductsLedger pl join ProductUOMs u ON pl.product = u.product AND  pl.uom = u.uom WHERE pl.product = '{0}' and pl.lot_no = '{1}' and pl.expiry = '{2}' and available_qty >= 1 order by expiry asc,uom_qty asc", product, lot, expiry)).Tables[0].Rows)
         {
@@ -443,14 +468,20 @@ public class FAQ
                 else
                 {
                     decimal conv = Convert.ToDecimal(dRow["uom_qty"]);
-                    decimal s = Convert.ToDecimal((decimal)totalqty / conv); 
-                     result.Add(String.Format("{0}<limit>{1}<limit>{2}", dRow["location"], dRow["uom"], dRow["uom_qty"]), (int)Math.Ceiling(s));
+                    decimal s = Convert.ToDecimal((decimal)totalqty / conv);
+                    result.Add(String.Format("{0}<limit>{1}<limit>{2}", dRow["location"], dRow["uom"], dRow["uom_qty"]), (int)Math.Ceiling(s));
                     totalqty = 0;
                     break;
                 }
             }
         }
-
+        return result;
+    }
+    public static Dictionary<String, String> whatAreTheStocksToTransfer(String location)
+    {
+        Dictionary<String, String> result = new Dictionary<String, String>();
+        foreach (DataRow dRow in DataSupport.RunDataSet(String.Format("SELECT DISTINCT product,uom FROM LocationProductsLedger WHERE location = '{0}'", location)).Tables[0].Rows)
+            result.Add(String.Format("{0}{1}",dRow["product"].ToString(), dRow["uom"].ToString()), dRow["product"].ToString());
 
         return result;
     }

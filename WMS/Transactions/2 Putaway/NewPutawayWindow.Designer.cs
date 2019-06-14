@@ -173,6 +173,7 @@
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 16;
             this.label2.Text = "Container:";
+            this.label2.Visible = false;
             // 
             // label3
             // 
@@ -218,6 +219,7 @@
             this.cboContainer.Size = new System.Drawing.Size(147, 20);
             this.cboContainer.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.cboContainer.TabIndex = 32;
+            this.cboContainer.Visible = false;
             // 
             // button1
             // 
@@ -228,7 +230,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(128, 56);
             this.button1.TabIndex = 27;
-            this.button1.Text = "Closed";
+            this.button1.Text = "Close";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 

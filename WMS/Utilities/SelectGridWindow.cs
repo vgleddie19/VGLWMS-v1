@@ -33,5 +33,10 @@ namespace WMS
         {
             this.Close();
         }
+
+        private void btnnewdetails_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Yes;
+        }
     }
 }

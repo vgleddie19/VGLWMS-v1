@@ -15,6 +15,7 @@ namespace WMS
         public ScanReleaseIDWindow()
         {
             InitializeComponent();
+            txtBarcode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
         }
 
         private void txtBarcode_KeyDown(object sender, KeyEventArgs e)
@@ -80,6 +81,7 @@ namespace WMS
 
 
                 ReleasesWindow dialog = new ReleasesWindow();
+                dialog.txtreleaseto.Text = "";
                 dialog.txtTrip.Text = txtBarcode.Text;
                 dialog.ShowDialog();
             }

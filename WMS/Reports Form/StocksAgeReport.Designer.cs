@@ -44,21 +44,23 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.header_grid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.header_grid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.header_grid.Location = new System.Drawing.Point(24, 51);
+            this.header_grid.Location = new System.Drawing.Point(16, 33);
+            this.header_grid.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.header_grid.Name = "header_grid";
             this.header_grid.ReadOnly = true;
             this.header_grid.RowTemplate.Height = 28;
             this.header_grid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.header_grid.Size = new System.Drawing.Size(1082, 510);
+            this.header_grid.Size = new System.Drawing.Size(721, 331);
             this.header_grid.TabIndex = 45;
             // 
             // btnDeclareExpiredStocks
             // 
             this.btnDeclareExpiredStocks.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDeclareExpiredStocks.BackColor = System.Drawing.Color.DarkSeaGreen;
-            this.btnDeclareExpiredStocks.Location = new System.Drawing.Point(24, 577);
+            this.btnDeclareExpiredStocks.Location = new System.Drawing.Point(16, 375);
+            this.btnDeclareExpiredStocks.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDeclareExpiredStocks.Name = "btnDeclareExpiredStocks";
-            this.btnDeclareExpiredStocks.Size = new System.Drawing.Size(286, 76);
+            this.btnDeclareExpiredStocks.Size = new System.Drawing.Size(191, 49);
             this.btnDeclareExpiredStocks.TabIndex = 46;
             this.btnDeclareExpiredStocks.Text = "Declare Stocks \"Near Expiry\" and Unavailable for Orders";
             this.btnDeclareExpiredStocks.UseVisualStyleBackColor = false;
@@ -68,9 +70,10 @@
             // 
             this.btnDispose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnDispose.BackColor = System.Drawing.Color.Lime;
-            this.btnDispose.Location = new System.Drawing.Point(331, 577);
+            this.btnDispose.Location = new System.Drawing.Point(221, 375);
+            this.btnDispose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnDispose.Name = "btnDispose";
-            this.btnDispose.Size = new System.Drawing.Size(286, 76);
+            this.btnDispose.Size = new System.Drawing.Size(191, 49);
             this.btnDispose.TabIndex = 47;
             this.btnDispose.Text = "Generate Picklist - Expired Stocks";
             this.btnDispose.UseVisualStyleBackColor = false;
@@ -80,9 +83,10 @@
             // 
             this.btnRelease.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnRelease.BackColor = System.Drawing.Color.Yellow;
-            this.btnRelease.Location = new System.Drawing.Point(623, 577);
+            this.btnRelease.Location = new System.Drawing.Point(415, 375);
+            this.btnRelease.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnRelease.Name = "btnRelease";
-            this.btnRelease.Size = new System.Drawing.Size(286, 76);
+            this.btnRelease.Size = new System.Drawing.Size(191, 49);
             this.btnRelease.TabIndex = 48;
             this.btnRelease.Text = "Release Picklists - Expired Stocks";
             this.btnRelease.UseVisualStyleBackColor = false;
@@ -90,16 +94,18 @@
             // 
             // StocksAgeReport
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1152, 676);
+            this.ClientSize = new System.Drawing.Size(768, 439);
             this.Controls.Add(this.btnRelease);
             this.Controls.Add(this.btnDispose);
             this.Controls.Add(this.btnDeclareExpiredStocks);
             this.Controls.Add(this.header_grid);
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "StocksAgeReport";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Stocks Age Report";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.StocksAgeReport_Load);
             ((System.ComponentModel.ISupportInitialize)(this.header_grid)).EndInit();
             this.ResumeLayout(false);

@@ -79,6 +79,9 @@
   <PropertyGroup>
     <StartupObject>WMS.Program</StartupObject>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BarcodeStandard">
       <HintPath>..\BarcodeStandard.dll</HintPath>
@@ -191,6 +194,105 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MasterFile\newproduct.cs">
+      <SubType>Form</SubType>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </Compile>
+    <Compile Include="MasterFile\newproduct.Designer.cs">
+      <DependentUpon>newproduct.cs</DependentUpon>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Reports\crtactualstockreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtactualstockreport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtcasebreak.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtcasebreak.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtdiscrepancyreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtdiscrepancyreport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Reports\crtphysicalcount.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtphysicalcount.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtphysicalcount_declare.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtphysicalcount_declare.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtpicklist.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtpicklist.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtpicklistforcasebreak.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtpicklistforcasebreak.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtpicklist_sub.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtpicklist_sub.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtputaway.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtputaway.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtputawaycasebreak.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtputawaycasebreak.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtreceivingreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtreceivingreport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtreleasing.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtreleasing.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crtstockcheckreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crtstockcheckreport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\crttransactionhistoryreport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crttransactionhistoryreport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenu.Designer.cs">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterFile\addnewbin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,58 +305,24 @@
     <Compile Include="MasterFile\BinMasterFile.Designer.cs">
       <DependentUpon>BinMasterFile.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterFile\ProductMaster.cs">
+      <SubType>Form</SubType>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </Compile>
+    <Compile Include="MasterFile\ProductMaster.Designer.cs">
+      <DependentUpon>ProductMaster.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\ActualStockReport.cs">
+    <Compile Include="Reports Form\ActualStockReport.cs">
       <SubType>Form</SubType>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
     </Compile>
-    <Compile Include="Reports\ActualStockReport.Designer.cs">
+    <Compile Include="Reports Form\ActualStockReport.Designer.cs">
       <DependentUpon>ActualStockReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\crtcasebreak.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crtcasebreak.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\crtpicklist.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crtpicklist.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\crtpicklist_sub.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crtpicklist_sub.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\crtputawaycasebreak.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crtputawaycasebreak.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\crtputaway.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crtputaway.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\crtpicklistforcasebreak.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crtpicklistforcasebreak.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\crtreceivingreport.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>crtreceivingreport.rpt</DependentUpon>
-      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SupportForms\AuthenticationForm.cs">
       <SubType>Form</SubType>
@@ -274,11 +342,23 @@
     <Compile Include="SupportForms\ConnectionSettings.Designer.cs">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="SupportForms\reportform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupportForms\reportform.Designer.cs">
+      <DependentUpon>reportform.cs</DependentUpon>
+    </Compile>
     <Compile Include="SupportForms\reportviewer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="SupportForms\reportviewer.Designer.cs">
       <DependentUpon>reportviewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\1 Receiving\discrepancyform.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\1 Receiving\discrepancyform.Designer.cs">
+      <DependentUpon>discrepancyform.cs</DependentUpon>
     </Compile>
     <Compile Include="Transactions\3 Replishment\CaseBreakPickListConfirmation.cs">
       <SubType>Form</SubType>
@@ -310,6 +390,18 @@
     <Compile Include="Transactions\3 Replishment\declarebincomplete.Designer.cs">
       <DependentUpon>declarebincomplete.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions\6 Adjustments\For CaseBreak\casebreakdetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For CaseBreak\casebreakdetails.Designer.cs">
+      <DependentUpon>casebreakdetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For CaseBreak\NewCaseBreak.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For CaseBreak\NewCaseBreak.Designer.cs">
+      <DependentUpon>NewCaseBreak.cs</DependentUpon>
+    </Compile>
     <Compile Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanningWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -340,24 +432,54 @@
     <Compile Include="Transactions\6 Adjustments\Bad Stocks\PrintReleaseDocument.Designer.cs">
       <DependentUpon>PrintReleaseDocument.cs</DependentUpon>
     </Compile>
+    <Compile Include="Transactions\6 Adjustments\For CaseBreak\putawaycasebreakpicklistconfirmation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\For CaseBreak\putawaycasebreakpicklistconfirmation.Designer.cs">
+      <DependentUpon>putawaycasebreakpicklistconfirmation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\manualaddedPhysicalCount.cs">
+      <SubType>Form</SubType>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Physical Counts\manualaddedPhysicalCount.Designer.cs">
+      <DependentUpon>manualaddedPhysicalCount.cs</DependentUpon>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Stocks Location Transfer\newstocklocationtransfers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Stocks Location Transfer\newstocklocationtransfers.Designer.cs">
+      <DependentUpon>newstocklocationtransfers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Stocks Location Transfer\stockstransferdetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Transactions\6 Adjustments\Stocks Location Transfer\stockstransferdetails.Designer.cs">
+      <DependentUpon>stockstransferdetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Connection.cs" />
     <Compile Include="Utilities\KeyBoardSupport.cs" />
     <Compile Include="Utilities\RegistrationSupport.cs" />
-    <Compile Include="Reports\PhysicalCountCalendarReport.cs">
+    <Compile Include="Reports Form\PhysicalCountCalendarReport.cs">
       <SubType>Form</SubType>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
     </Compile>
-    <Compile Include="Reports\PhysicalCountCalendarReport.Designer.cs">
+    <Compile Include="Reports Form\PhysicalCountCalendarReport.Designer.cs">
       <DependentUpon>PhysicalCountCalendarReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\PrintPhysicalCountReport.cs">
+    <Compile Include="Reports Form\PrintPhysicalCountReport.cs">
       <SubType>Form</SubType>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
     </Compile>
-    <Compile Include="Reports\PrintPhysicalCountReport.Designer.cs">
+    <Compile Include="Reports Form\PrintPhysicalCountReport.Designer.cs">
       <DependentUpon>PrintPhysicalCountReport.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\StocksAgeReport.cs">
+    <Compile Include="Reports Form\StocksAgeReport.cs">
       <SubType>Form</SubType>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
     </Compile>
-    <Compile Include="Reports\StocksAgeReport.Designer.cs">
+    <Compile Include="Reports Form\StocksAgeReport.Designer.cs">
       <DependentUpon>StocksAgeReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Utilities\SecuritySupport.cs" />
@@ -648,18 +770,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>wms_ds.xsd</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="MasterFile\addnewbin.resx">
-      <DependentUpon>addnewbin.cs</DependentUpon>
+    <EmbeddedResource Include="MasterFile\newproduct.resx">
+      <DependentUpon>newproduct.cs</DependentUpon>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="MasterFile\BinMasterFile.resx">
-      <DependentUpon>BinMasterFile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\ActualStockReport.resx">
-      <DependentUpon>ActualStockReport.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\crtactualstockreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtactualstockreport.cs</LastGenOutput>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\crtcasebreak.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crtcasebreak.cs</LastGenOutput>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crtdiscrepancyreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtdiscrepancyreport.cs</LastGenOutput>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crtphysicalcount.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtphysicalcount.cs</LastGenOutput>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crtphysicalcount_declare.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtphysicalcount_declare.cs</LastGenOutput>
       <CustomToolNamespace>WMS</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\crtpicklist.rpt">
@@ -667,13 +804,14 @@
       <LastGenOutput>crtpicklist.cs</LastGenOutput>
       <CustomToolNamespace>WMS</CustomToolNamespace>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crtpicklistforcasebreak.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtpicklistforcasebreak.cs</LastGenOutput>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\crtpicklist_sub.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crtpicklist_sub.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\crtputawaycasebreak.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>crtputawaycasebreak.cs</LastGenOutput>
       <CustomToolNamespace>WMS</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\crtputaway.rpt">
@@ -681,15 +819,44 @@
       <LastGenOutput>crtputaway.cs</LastGenOutput>
       <CustomToolNamespace>WMS</CustomToolNamespace>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\crtpicklistforcasebreak.rpt">
+    <EmbeddedResource Include="Reports\crtputawaycasebreak.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>crtpicklistforcasebreak.cs</LastGenOutput>
+      <LastGenOutput>crtputawaycasebreak.cs</LastGenOutput>
       <CustomToolNamespace>WMS</CustomToolNamespace>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\crtreceivingreport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crtreceivingreport.cs</LastGenOutput>
       <CustomToolNamespace>WMS</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crtreleasing.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtreleasing.cs</LastGenOutput>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crtstockcheckreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crtstockcheckreport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\crttransactionhistoryreport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crttransactionhistoryreport.cs</LastGenOutput>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenu.resx">
+      <DependentUpon>MainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterFile\addnewbin.resx">
+      <DependentUpon>addnewbin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterFile\BinMasterFile.resx">
+      <DependentUpon>BinMasterFile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterFile\ProductMaster.resx">
+      <DependentUpon>ProductMaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports Form\ActualStockReport.resx">
+      <DependentUpon>ActualStockReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SupportForms\AuthenticationForm.resx">
       <DependentUpon>AuthenticationForm.cs</DependentUpon>
@@ -700,8 +867,14 @@
     <EmbeddedResource Include="SupportForms\ConnectionSettings.resx">
       <DependentUpon>ConnectionSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="SupportForms\reportform.resx">
+      <DependentUpon>reportform.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="SupportForms\reportviewer.resx">
       <DependentUpon>reportviewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\1 Receiving\discrepancyform.resx">
+      <DependentUpon>discrepancyform.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\3 Replishment\CaseBreakPickListConfirmation.resx">
       <DependentUpon>CaseBreakPickListConfirmation.cs</DependentUpon>
@@ -718,6 +891,12 @@
     <EmbeddedResource Include="Transactions\3 Replishment\declarebincomplete.resx">
       <DependentUpon>declarebincomplete.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For CaseBreak\casebreakdetails.resx">
+      <DependentUpon>casebreakdetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For CaseBreak\NewCaseBreak.resx">
+      <DependentUpon>NewCaseBreak.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\DisposeExpiredStocksScanningWindow.resx">
       <DependentUpon>DisposeExpiredStocksScanningWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -733,14 +912,17 @@
     <EmbeddedResource Include="Transactions\6 Adjustments\Bad Stocks\PrintReleaseDocument.resx">
       <DependentUpon>PrintReleaseDocument.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\PhysicalCountCalendarReport.resx">
+    <EmbeddedResource Include="Reports Form\PhysicalCountCalendarReport.resx">
       <DependentUpon>PhysicalCountCalendarReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\PrintPhysicalCountReport.resx">
+    <EmbeddedResource Include="Reports Form\PrintPhysicalCountReport.resx">
       <DependentUpon>PrintPhysicalCountReport.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\StocksAgeReport.resx">
+    <EmbeddedResource Include="Reports Form\StocksAgeReport.resx">
       <DependentUpon>StocksAgeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\For CaseBreak\putawaycasebreakpicklistconfirmation.resx">
+      <DependentUpon>putawaycasebreakpicklistconfirmation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\6 Adjustments\For Resolutions\CancelledPalletPutawayWindow.resx">
       <DependentUpon>CancelledPalletPutawayWindow.cs</DependentUpon>
@@ -808,6 +990,10 @@
     <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\GenerateCountSheetWindow.resx">
       <DependentUpon>GenerateCountSheetWindow.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\manualaddedPhysicalCount.resx">
+      <DependentUpon>manualaddedPhysicalCount.cs</DependentUpon>
+      <CustomToolNamespace>WMS</CustomToolNamespace>
+    </EmbeddedResource>
     <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\ScanPhysicalCountWindow.resx">
       <DependentUpon>ScanPhysicalCountWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -831,6 +1017,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\6 Adjustments\Physical Counts\NewPhysicalCountWindow.resx">
       <DependentUpon>NewPhysicalCountWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Stocks Location Transfer\newstocklocationtransfers.resx">
+      <DependentUpon>newstocklocationtransfers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Transactions\6 Adjustments\Stocks Location Transfer\stockstransferdetails.resx">
+      <DependentUpon>stockstransferdetails.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Transactions\API\MakeReleaseOrderWindow.resx">
       <DependentUpon>MakeReleaseOrderWindow.cs</DependentUpon>
@@ -962,9 +1154,7 @@
     <None Include="Resources\order_cancel.html" />
     <None Include="Resources\incomplete_picklist_report.html" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Crystal Report\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\VGLHelper\VGLHelper.csproj">
       <Project>{74B10D25-B102-4936-B6FC-9BF8785DEF93}</Project>

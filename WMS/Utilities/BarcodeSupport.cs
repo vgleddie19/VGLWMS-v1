@@ -32,7 +32,7 @@ public class BarcodeSupport
             //    var row = productsDT.Rows[0];
             //    return row;
             //}
-            DataTable productsDT = DataSupport.RunDataSet("SELECT product[PRODUCT], uom[MATCHED_UOM], * FROM ProductUOMs WHERE barcode = '" + barcode + "' ").Tables[0];
+            DataTable productsDT = DataSupport.RunDataSet("SELECT u.product[PRODUCT], u.uom[MATCHED_UOM], u.*, p.description FROM ProductUOMs u join products p on u.product = p.product_id WHERE barcode = '" + barcode + "' ").Tables[0];
             if (productsDT.Rows.Count > 0)
             {
                 var row = productsDT.Rows[0];

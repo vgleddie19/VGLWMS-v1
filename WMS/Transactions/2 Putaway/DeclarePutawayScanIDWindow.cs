@@ -14,6 +14,7 @@ namespace WMS
         public DeclarePutawayScanIDWindow()
         {
             InitializeComponent();
+            txtPutawayCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(KeyBoardSupport.ForAlhpaNumericUpper_KeyPress);
         }
 
         private void txtPutawayCode_KeyDown(object sender, KeyEventArgs e)
@@ -31,9 +32,16 @@ namespace WMS
                 // dialog.txtPutawayID.Text = txtPutawayCode.Text;
                 // dialog.txtContainer.Text = container;
 
-                DeclarePutawayScanContainerWindow dialog = new DeclarePutawayScanContainerWindow();
-                dialog.putaway_id = this.txtPutawayCode.Text;
-                dialog.container = container;
+                //DeclarePutawayScanContainerWindow dialog = new DeclarePutawayScanContainerWindow();
+                //dialog.putaway_id = this.txtPutawayCode.Text;
+                //dialog.container = container;
+                //dialog.ShowDialog();
+                //this.Close();
+
+                DeclareCompleteOptions dialog = new DeclareCompleteOptions();
+                dialog.txtPutawayID.Text = txtPutawayCode.Text;
+                dialog.txtContainer.Text = container;
+                this.Visible = false;
                 dialog.ShowDialog();
                 this.Close();
             }

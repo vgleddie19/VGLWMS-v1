@@ -92,11 +92,11 @@ namespace WMS
             {
                 String product = product_row.Cells["product"].Value.ToString();
                 DataTable dt = orders_dict[product];
-                int qty_ordered = 0;
+                int qty_ordered = int.Parse(product_row.Cells["qty_ordered"].Value.ToString());
                 foreach (DataRow row in dt.Rows)
                 {
-                    if (row["Status"].ToString() == "ACTIVE")
-                        qty_ordered += int.Parse( row["Qty Ordered"].ToString());
+                    if (row["Status"].ToString() == "HOLD")
+                        qty_ordered -= int.Parse( row["Qty Ordered"].ToString());
                 }
                 product_row.Cells["qty_ordered"].Value = qty_ordered.ToString();
             }

@@ -35,14 +35,15 @@
             this.importToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.programsGrid = new System.Windows.Forms.DataGridView();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnTest = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.gridcolName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridcolserver = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridcoluser = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridcolpassword = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gridcoldbname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnTest = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
+            this.wname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.programsGrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -99,7 +100,8 @@
             this.gridcolserver,
             this.gridcoluser,
             this.gridcolpassword,
-            this.gridcoldbname});
+            this.gridcoldbname,
+            this.wname});
             this.programsGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.programsGrid.Location = new System.Drawing.Point(0, 24);
             this.programsGrid.Name = "programsGrid";
@@ -107,31 +109,6 @@
             this.programsGrid.Size = new System.Drawing.Size(935, 356);
             this.programsGrid.TabIndex = 1;
             this.programsGrid.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.programsGrid_CellFormatting);
-            // 
-            // gridcolName
-            // 
-            this.gridcolName.HeaderText = "Name";
-            this.gridcolName.Name = "gridcolName";
-            // 
-            // gridcolserver
-            // 
-            this.gridcolserver.HeaderText = "Server";
-            this.gridcolserver.Name = "gridcolserver";
-            // 
-            // gridcoluser
-            // 
-            this.gridcoluser.HeaderText = "UserName";
-            this.gridcoluser.Name = "gridcoluser";
-            // 
-            // gridcolpassword
-            // 
-            this.gridcolpassword.HeaderText = "Password";
-            this.gridcolpassword.Name = "gridcolpassword";
-            // 
-            // gridcoldbname
-            // 
-            this.gridcoldbname.HeaderText = "DB Name";
-            this.gridcoldbname.Name = "gridcoldbname";
             // 
             // panel1
             // 
@@ -162,6 +139,36 @@
             this.btnSave.Text = "&Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // gridcolName
+            // 
+            this.gridcolName.HeaderText = "Name";
+            this.gridcolName.Name = "gridcolName";
+            // 
+            // gridcolserver
+            // 
+            this.gridcolserver.HeaderText = "Server";
+            this.gridcolserver.Name = "gridcolserver";
+            // 
+            // gridcoluser
+            // 
+            this.gridcoluser.HeaderText = "UserName";
+            this.gridcoluser.Name = "gridcoluser";
+            // 
+            // gridcolpassword
+            // 
+            this.gridcolpassword.HeaderText = "Password";
+            this.gridcolpassword.Name = "gridcolpassword";
+            // 
+            // gridcoldbname
+            // 
+            this.gridcoldbname.HeaderText = "DB Name";
+            this.gridcoldbname.Name = "gridcoldbname";
+            // 
+            // wname
+            // 
+            this.wname.HeaderText = "Warehouse Code";
+            this.wname.Name = "wname";
             // 
             // ConnectionSettings
             // 
@@ -199,12 +206,13 @@
         private System.Windows.Forms.ToolStripMenuItem exportToolStripMenuItem;
         private System.Windows.Forms.DataGridView programsGrid;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnTest;
+        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridcolName;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridcolserver;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridcoluser;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridcolpassword;
         private System.Windows.Forms.DataGridViewTextBoxColumn gridcoldbname;
-        private System.Windows.Forms.Button btnTest;
-        private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.DataGridViewTextBoxColumn wname;
     }
 }

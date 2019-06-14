@@ -219,6 +219,8 @@ namespace WMS
             }
 
             DataSupport.RunNonQuery(sql, IsolationLevel.ReadCommitted);
+            MessageBox.Show("success");
+            this.Close();
         }
     }
 }

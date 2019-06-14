@@ -60,7 +60,7 @@
             this.Controls.Add(this.label2);
             this.Name = "declarebincomplete";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "declarebincomplete";
+            this.Text = "Declare Complete Bin Replenishment";
             this.ResumeLayout(false);
             this.PerformLayout();
 

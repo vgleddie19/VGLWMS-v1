@@ -63,7 +63,7 @@ namespace WMS
                 Properties.Settings.Default.Save();
 
                 RegistrationSupport.username = txtUsername.Text;
-                MenuWindow dialog = new MenuWindow();
+                MainMenu dialog = new MainMenu();
                 this.Visible = false;
                 dialog.Text = "WAREHOUSE MANAGEMENT SYSTEM - MAIN MENU";
                 dialog.Icon = this.Icon;

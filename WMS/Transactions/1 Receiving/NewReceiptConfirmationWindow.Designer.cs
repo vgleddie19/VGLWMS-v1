@@ -44,7 +44,7 @@
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(92, 52);
             this.btnPrintPreview.TabIndex = 18;
-            this.btnPrintPreview.Text = "Save";
+            this.btnPrintPreview.Text = "Save and Print";
             this.btnPrintPreview.UseVisualStyleBackColor = false;
             this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
             // 
@@ -77,7 +77,7 @@
             this.viewer.ShowPrintButton = false;
             this.viewer.ShowRefreshButton = false;
             this.viewer.ShowTextSearchButton = false;
-            this.viewer.Size = new System.Drawing.Size(782, 614);
+            this.viewer.Size = new System.Drawing.Size(831, 614);
             this.viewer.TabIndex = 53;
             this.viewer.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
             // 
@@ -86,7 +86,7 @@
             this.panel1.Controls.Add(this.btnPrintPreview);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(782, 0);
+            this.panel1.Location = new System.Drawing.Point(831, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(110, 614);
             this.panel1.TabIndex = 52;
@@ -95,7 +95,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(892, 614);
+            this.ClientSize = new System.Drawing.Size(941, 614);
             this.Controls.Add(this.viewer);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
